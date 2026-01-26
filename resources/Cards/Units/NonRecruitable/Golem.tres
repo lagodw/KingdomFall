@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=6 format=3 uid="uid://cm7cfxdw06f34"]
+
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_a4pis"]
+[ext_resource type="Script" uid="uid://c32smhssask30" path="res://src/Events/Curse.gd" id="2_sq1cx"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="3_k6qe5"]
+[ext_resource type="Script" uid="uid://btqer7ygl3gn0" path="res://src/Cards/CustomSetups/GolemSetup.gd" id="3_sq1cx"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_acxx6"]
+
+[resource]
+script = ExtResource("4_acxx6")
+upkeep = 1
+damage = 0
+health = 5
+shield = 0
+speed = 3
+attack_type = 0
+armor_type = 1
+has_support = false
+combat_modifiers = Array[ExtResource("1_a4pis")]([])
+default_animation = "sword"
+box_priority = "Hybrid"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+curses = Array[ExtResource("2_sq1cx")]([])
+card_name = "Golem"
+card_type = "Unit"
+activation = 0
+tags = Array[int]([2])
+text = ""
+effects = Array[ExtResource("3_k6qe5")]([])
+custom_startup_script = ExtResource("3_sq1cx")
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

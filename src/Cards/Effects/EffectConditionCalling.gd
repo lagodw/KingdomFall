@@ -1,0 +1,11 @@
+class_name EffectConditionCalling
+extends Resource
+
+@export var require_trigger: bool = false
+@export var required_slots: Array[TokenSlot.SlotType] = []
+@export var require_act: bool = false
+@export var minimum_damage: int = 0
+## remaining_life > 0
+@export var require_alive: bool = false
+@export_enum("Either", "Player", "Enemy") var require_owner: String = "Either"
+@export var require_turn: int = -1

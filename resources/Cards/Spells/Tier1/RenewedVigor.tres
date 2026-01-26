@@ -1,0 +1,294 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=29 format=3 uid="uid://dl3og7r8rrtt4"]
+
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="1_gmbm3"]
+[ext_resource type="Script" uid="uid://djcgpmr7wgdwa" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="2_8q4t4"]
+[ext_resource type="Script" uid="uid://u1jeft0lr6qg" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="2_igve5"]
+[ext_resource type="Script" uid="uid://dhao8bx6np0me" path="res://src/Cards/Effects/EffectValue.gd" id="4_8q4t4"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="4_x5crs"]
+[ext_resource type="Script" uid="uid://dfa2hjqrbw0w7" path="res://src/Cards/Effects/EffectIf.gd" id="5_f88xy"]
+[ext_resource type="Script" uid="uid://b5qpbn2ly3mh" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_kj2m0"]
+
+[sub_resource type="Resource" id="Resource_rhtce"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_f88xy"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 5
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_kj2m0"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 5
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_4b3to"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_fwxpx"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_unydi"]
+script = ExtResource("2_8q4t4")
+require_trigger = false
+required_slots = Array[int]([])
+require_act = false
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+metadata/_custom_type_script = "uid://djcgpmr7wgdwa"
+
+[sub_resource type="Resource" id="Resource_228ta"]
+script = ExtResource("2_igve5")
+require_allied = true
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_c455m"]
+script = ExtResource("2_igve5")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+metadata/_custom_type_script = "uid://u1jeft0lr6qg"
+
+[sub_resource type="Resource" id="Resource_5crak"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_74agc"]
+script = ExtResource("5_f88xy")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_5crak")
+
+[sub_resource type="Resource" id="Resource_m1sw3"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_jvq44"]
+script = ExtResource("5_f88xy")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_m1sw3")
+
+[sub_resource type="Resource" id="Resource_y66wk"]
+script = ExtResource("1_gmbm3")
+function_script = ExtResource("5_kj2m0")
+function = "buff_stats"
+trigger_signal = "attach"
+subject = "host"
+conditions_calling = SubResource("Resource_unydi")
+conditions_trigger = SubResource("Resource_c455m")
+conditions_subject = SubResource("Resource_228ta")
+if_calling_card = SubResource("Resource_74agc")
+if_subject = SubResource("Resource_jvq44")
+animation = "none"
+sfx = ""
+buff_damage = SubResource("Resource_f88xy")
+buff_health = SubResource("Resource_kj2m0")
+buff_shield = SubResource("Resource_4b3to")
+buff_speed = SubResource("Resource_fwxpx")
+buff_activation = SubResource("Resource_rhtce")
+affect_max = true
+persistent_effect = true
+metadata/_custom_type_script = "uid://cvhk48agl218e"
+
+[sub_resource type="Resource" id="Resource_6yaxl"]
+script = ExtResource("2_8q4t4")
+require_trigger = true
+required_slots = Array[int]([])
+require_act = true
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+
+[sub_resource type="Resource" id="Resource_otx2e"]
+script = ExtResource("2_igve5")
+require_allied = true
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([2])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_duljq"]
+script = ExtResource("2_igve5")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_us0vp"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_4wn8d"]
+script = ExtResource("5_f88xy")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_us0vp")
+
+[sub_resource type="Resource" id="Resource_7u73m"]
+script = ExtResource("4_8q4t4")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_hhs4v"]
+script = ExtResource("5_f88xy")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_7u73m")
+
+[sub_resource type="Resource" id="Resource_0ih1k"]
+script = ExtResource("1_gmbm3")
+function_script = ExtResource("5_kj2m0")
+function = "attach"
+trigger_signal = "target"
+target_type = "Unit"
+subject = "target"
+conditions_calling = SubResource("Resource_6yaxl")
+conditions_trigger = SubResource("Resource_duljq")
+conditions_subject = SubResource("Resource_otx2e")
+if_calling_card = SubResource("Resource_4wn8d")
+if_subject = SubResource("Resource_hhs4v")
+animation = "none"
+sfx = ""
+metadata/_custom_type_script = "uid://cvhk48agl218e"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("4_x5crs")
+mana_cost = 1
+target = "ally"
+card_name = "Renewed Vigor"
+card_type = "Spell"
+activation = 2
+tags = Array[int]([])
+text = "Give a unit +5/5"
+effects = Array[ExtResource("1_gmbm3")]([SubResource("Resource_y66wk"), SubResource("Resource_0ih1k")])
+card_art_path = ""
+metadata/_custom_type_script = "uid://dcrytj3q0pgux"

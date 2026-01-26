@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=3 format=3 uid="uid://cp20020r77pa8"]
+
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="1_nd8h5"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_6c3pj"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_6c3pj")
+upkeep = 2
+health = 5
+damage = 2
+shield = 0
+allowed_boxes = Array[String](["Attack", "Defend", "Support", "Retreat"])
+combat_modifier_self = Dictionary[String, String]({})
+combat_modifier_target = Dictionary[String, String]({})
+box_priority = "Defend"
+act_target = ""
+card_name = "Pegasus"
+card_type = "Unit"
+card_art_path = ""
+activation = 5
+tags = Array[int]([6])
+text = "Attach to a unit to give it flying"
+effects = Array[ExtResource("1_nd8h5")]([])
+metadata/_custom_type_script = "uid://fjs70167oea6"

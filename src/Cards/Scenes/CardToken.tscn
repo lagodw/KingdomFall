@@ -1,0 +1,564 @@
+[gd_scene load_steps=21 format=3 uid="uid://64ksoqa1gi7w"]
+
+[ext_resource type="Script" uid="uid://dcd6psvxgk1fb" path="res://src/Cards/Scenes/CardToken.gd" id="1_00mgh"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="1_sclck"]
+[ext_resource type="Texture2D" uid="uid://doy0y4ndc6hu4" path="res://assets/Card/CardArt/Footman/Footman.png" id="2_cicnf"]
+[ext_resource type="Texture2D" uid="uid://c862y6ebv8ui0" path="res://assets/Card/Card/Tokens/CardToken_Blue.png" id="7_sclck"]
+[ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Card/Icons/icon_box.png" id="7_u756d"]
+[ext_resource type="PackedScene" uid="uid://ckitycmjwcwx7" path="res://src/Cards/TargetArrow.tscn" id="8_bikeq"]
+[ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="9_sclck"]
+[ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Card/Icons/Damage.png" id="11_lr5n7"]
+[ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Card/Icons/Shield.png" id="12_4r546"]
+[ext_resource type="Texture2D" uid="uid://dslmxepbi7rae" path="res://assets/Card/Icons/skull.png" id="12_utrt8"]
+[ext_resource type="Texture2D" uid="uid://0un1v3txl4g7" path="res://assets/Card/Card/Icons/Vulnerable.png" id="13_4r546"]
+[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Card/Icons/Health.png" id="13_7hai3"]
+[ext_resource type="Texture2D" uid="uid://8f7nhd2p1vde" path="res://assets/Card/Card/Icons/Feeble.png" id="14_7hai3"]
+[ext_resource type="Texture2D" uid="uid://dwmvkbkwnjymf" path="res://assets/Card/Icons/Discard.png" id="14_7m80x"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="16_7m80x"]
+[ext_resource type="Shader" uid="uid://xt0mhmnlmr5x" path="res://src/UI/BlockText.gdshader" id="17_vglqt"]
+[ext_resource type="Texture2D" uid="uid://cq3jcn3yjscxt" path="res://assets/Card/Card/Icons/Moves.png" id="18_5jmab"]
+[ext_resource type="Texture2D" uid="uid://ccablnn8jxip4" path="res://assets/Theme/silver_texture.png" id="18_g26p3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u756d"]
+draw_center = false
+corner_radius_top_left = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elkpa"]
+shader = ExtResource("17_vglqt")
+shader_parameter/text_texture = ExtResource("18_g26p3")
+shader_parameter/texture_scale = 1.0
+
+[node name="CardToken" type="Control"]
+custom_minimum_size = Vector2(85, 120)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 85.0
+offset_bottom = 120.0
+theme = ExtResource("1_sclck")
+script = ExtResource("1_00mgh")
+
+[node name="CardArt" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 3.0
+offset_top = 22.0
+offset_right = 82.0
+offset_bottom = 97.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("2_cicnf")
+expand_mode = 1
+
+[node name="Frame" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_sclck")
+expand_mode = 1
+
+[node name="Previews" type="VBoxContainer" parent="Frame"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 0
+offset_left = 3.0
+offset_top = 22.0
+offset_right = 82.0
+offset_bottom = 96.0
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="Life" type="HBoxContainer" parent="Frame/Previews"]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthPreview" type="TextureRect" parent="Frame/Previews/Life"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(35, 20)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/Previews/Life/HealthPreview"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -7.5
+offset_right = 18.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("13_7hai3")
+expand_mode = 1
+
+[node name="HealthPreviewText" type="Label" parent="Frame/Previews/Life/HealthPreview"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.75, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+text = "-1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShieldPreview" type="TextureRect" parent="Frame/Previews/Life"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(35, 20)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/Previews/Life/ShieldPreview"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -7.5
+offset_right = 18.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("12_4r546")
+expand_mode = 1
+
+[node name="ShieldPreviewText" type="Label" parent="Frame/Previews/Life/ShieldPreview"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.75, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+text = "-1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Debuff" type="HBoxContainer" parent="Frame/Previews"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="VulnerablePreview" type="TextureRect" parent="Frame/Previews/Debuff"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(30, 20)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/Previews/Debuff/VulnerablePreview"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -7.5
+offset_right = 17.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("13_4r546")
+expand_mode = 1
+
+[node name="VulnerablePreviewText" type="Label" parent="Frame/Previews/Debuff/VulnerablePreview"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -10.0
+offset_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeeblePreview" type="TextureRect" parent="Frame/Previews/Debuff"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(30, 20)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/Previews/Debuff/FeeblePreview"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -7.5
+offset_right = 17.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("14_7hai3")
+expand_mode = 1
+
+[node name="FeeblePreviewText" type="Label" parent="Frame/Previews/Debuff/FeeblePreview"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -10.0
+offset_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PoisonPreview" type="TextureRect" parent="Frame/Previews/Debuff"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(30, 20)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/Previews/Debuff/PoisonPreview"]
+self_modulate = Color(0, 0.783563, 0.00811754, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -7.5
+offset_right = 17.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("12_utrt8")
+expand_mode = 1
+
+[node name="PoisonPreviewText" type="Label" parent="Frame/Previews/Debuff/PoisonPreview"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -10.0
+offset_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Skull" type="TextureRect" parent="Frame"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -22.5
+offset_right = 22.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_7m80x")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Frame"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 82.0
+offset_bottom = 19.0
+theme_override_constants/separation = 0
+
+[node name="Shadow" type="Label" parent="Frame/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("16_7m80x")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_u756d")
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="Frame/HBoxContainer/Shadow"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_elkpa")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("16_7m80x")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_u756d")
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="TextureRect" parent="Frame/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(21, 16)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/HBoxContainer/Speed"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -4.5
+offset_right = 10.0
+offset_bottom = 4.5
+grow_vertical = 2
+texture = ExtResource("18_5jmab")
+expand_mode = 1
+
+[node name="SpeedText" type="Label" parent="Frame/HBoxContainer/Speed"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -10.0
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_sclck")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomBox" type="HBoxContainer" parent="Frame"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -21.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_sclck")
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Damage" type="TextureRect" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/BottomBox/Damage"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -4.5
+offset_right = 10.0
+offset_bottom = 4.5
+grow_vertical = 2
+texture = ExtResource("11_lr5n7")
+expand_mode = 1
+
+[node name="DamageText" type="Label" parent="Frame/BottomBox/Damage"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -10.5
+offset_right = 3.0
+offset_bottom = 13.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_sclck")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShieldSpacing" type="Control" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Shield" type="TextureRect" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/BottomBox/Shield"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -4.5
+offset_right = 10.0
+offset_bottom = 4.5
+grow_vertical = 2
+texture = ExtResource("12_4r546")
+expand_mode = 1
+
+[node name="ShieldText" type="Label" parent="Frame/BottomBox/Shield"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -10.5
+offset_right = 3.0
+offset_bottom = 13.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_sclck")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureRect" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/BottomBox/Health"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 11.0
+offset_bottom = 5.0
+grow_vertical = 2
+texture = ExtResource("13_7hai3")
+expand_mode = 1
+
+[node name="HealthText" type="Label" parent="Frame/BottomBox/Health"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -10.5
+offset_right = 3.0
+offset_bottom = 13.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_sclck")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShieldSpacing2" type="Control" parent="Frame"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 99.0
+offset_right = 4.0
+offset_bottom = 99.0
+size_flags_horizontal = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PackedVector2Array(29, 0, 91, 0, 120, 60, 91, 119, 29, 119, 0, 60)
+
+[node name="TargetLine" parent="." instance=ExtResource("8_bikeq")]
+
+[node name="Highlight" type="ReferenceRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.835, 0.835, 0, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="ActivationText" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 21.0

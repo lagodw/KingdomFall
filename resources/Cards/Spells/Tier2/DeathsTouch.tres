@@ -1,0 +1,136 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=16 format=3 uid="uid://b65f5gmv26rsg"]
+
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="1_5dk4x"]
+[ext_resource type="Script" uid="uid://u1jeft0lr6qg" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="2_pjwef"]
+[ext_resource type="Script" uid="uid://djcgpmr7wgdwa" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="3_r2o0s"]
+[ext_resource type="Script" uid="uid://b5qpbn2ly3mh" path="res://src/Cards/Effects/EffectFunctions.gd" id="4_2nfk4"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="4_5sdm0"]
+[ext_resource type="Script" uid="uid://dfa2hjqrbw0w7" path="res://src/Cards/Effects/EffectIf.gd" id="5_0gqis"]
+[ext_resource type="Script" uid="uid://dhao8bx6np0me" path="res://src/Cards/Effects/EffectValue.gd" id="6_ismuw"]
+
+[sub_resource type="Resource" id="Resource_nmp5d"]
+script = ExtResource("3_r2o0s")
+require_trigger = true
+required_slots = Array[int]([])
+require_act = true
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+
+[sub_resource type="Resource" id="Resource_ylht3"]
+script = ExtResource("2_pjwef")
+require_allied = false
+require_enemies = true
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([2])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_2nfk4"]
+script = ExtResource("2_pjwef")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_1xn1g"]
+script = ExtResource("6_ismuw")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_80lb4"]
+script = ExtResource("5_0gqis")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_1xn1g")
+
+[sub_resource type="Resource" id="Resource_fus0q"]
+script = ExtResource("6_ismuw")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_1dmka"]
+script = ExtResource("5_0gqis")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_fus0q")
+
+[sub_resource type="Resource" id="Resource_tjw0c"]
+script = ExtResource("1_5dk4x")
+function_script = ExtResource("4_2nfk4")
+function = "discard"
+trigger_signal = "target"
+target_type = "Unit"
+subject = "target"
+conditions_calling = SubResource("Resource_nmp5d")
+conditions_trigger = SubResource("Resource_2nfk4")
+conditions_subject = SubResource("Resource_ylht3")
+if_calling_card = SubResource("Resource_80lb4")
+if_subject = SubResource("Resource_1dmka")
+animation = "cast"
+metadata/_custom_type_script = "uid://cvhk48agl218e"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("4_5sdm0")
+mana_cost = 2
+target = "enemy"
+card_name = "Death's Touch"
+card_type = "Spell"
+activation = 3
+tags = Array[int]([])
+text = "Destroy a Unit"
+effects = Array[ExtResource("1_5dk4x")]([SubResource("Resource_tjw0c")])
+card_art_path = ""
+metadata/_custom_type_script = "uid://dcrytj3q0pgux"

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=5 format=3 uid="uid://8gvhddwk01g7"]
+
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_vuh8a"]
+[ext_resource type="Script" uid="uid://c32smhssask30" path="res://src/Events/Curse.gd" id="2_3fbwv"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_gks6u"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="3_p0xba"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_gks6u")
+upkeep = 3
+damage = 16
+health = 25
+shield = 0
+speed = 8
+attack_type = 2
+armor_type = 1
+has_support = false
+combat_modifiers = Array[ExtResource("1_vuh8a")]([])
+default_animation = "sword"
+box_priority = "Hybrid"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+curses = Array[ExtResource("2_3fbwv")]([])
+card_name = "Dragon"
+card_type = "Unit"
+activation = 5
+tags = Array[int]([0, 2, 6])
+text = ""
+effects = Array[ExtResource("3_p0xba")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

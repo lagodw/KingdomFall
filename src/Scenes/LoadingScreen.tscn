@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfoyg5g1vd7mh"]
+
+[ext_resource type="Script" uid="uid://cojweub47ol2m" path="res://src/Scenes/LoadScreen.gd" id="1_26ywv"]
+[ext_resource type="Texture2D" uid="uid://un3wo8x1ag3a" path="res://assets/Theme/title_background.png" id="2_7cg3y"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="3_7io57"]
+[ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="4_0ah0d"]
+[ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="5_7lf53"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_65sfc"]
+texture = ExtResource("4_0ah0d")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2p3v"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="LoadScreen" type="Control"]
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_26ywv")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_7cg3y")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.5
+offset_top = -52.0
+offset_right = 223.5
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_7io57")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_65sfc")
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Border" type="NinePatchRect" parent="Label"]
+layout_mode = 0
+offset_top = -9.0
+offset_right = 1820.0
+offset_bottom = 479.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_7lf53")
+patch_margin_left = 48
+patch_margin_top = 47
+patch_margin_right = 48
+patch_margin_bottom = 46
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 735.0
+offset_top = 694.0
+offset_right = 1173.0
+offset_bottom = 754.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/background = SubResource("StyleBoxFlat_g2p3v")

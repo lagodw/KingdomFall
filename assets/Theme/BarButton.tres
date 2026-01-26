@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cjqqlmx54tvf1"]
+
+[ext_resource type="Texture2D" uid="uid://bpyxushqnbqc" path="res://assets/UI/Buttons/Bar/Bar_Button_disabled.png" id="1_17lk4"]
+[ext_resource type="Texture2D" uid="uid://q5scvpeknv6n" path="res://assets/UI/Buttons/Bar/Bar_Button_hovered.png" id="2_dusvt"]
+[ext_resource type="Texture2D" uid="uid://cvg0j3xe3854t" path="res://assets/UI/Buttons/Bar/Bar_Button.png" id="3_ajqk8"]
+[ext_resource type="Texture2D" uid="uid://c61eqh3fxco58" path="res://assets/UI/Buttons/Bar/Bar_Button_pressed.png" id="4_nar42"]
+[ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="5_uobjd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q1kg1"]
+texture = ExtResource("1_17lk4")
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_17lk4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pq1md"]
+texture = ExtResource("2_dusvt")
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1v2yd"]
+texture = ExtResource("3_ajqk8")
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r3ddw"]
+texture = ExtResource("4_nar42")
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+expand_margin_bottom = 5.0
+
+[resource]
+default_font = ExtResource("5_uobjd")
+default_font_size = 16
+Button/styles/disabled = SubResource("StyleBoxTexture_q1kg1")
+Button/styles/focus = SubResource("StyleBoxEmpty_17lk4")
+Button/styles/hover = SubResource("StyleBoxTexture_pq1md")
+Button/styles/normal = SubResource("StyleBoxTexture_1v2yd")
+Button/styles/pressed = SubResource("StyleBoxTexture_r3ddw")

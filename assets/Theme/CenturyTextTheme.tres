@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cujbvn4cbvnf2"]
+
+[ext_resource type="FontFile" uid="uid://sl4aux616nss" path="res://assets/Theme/Century.ttf" id="2_l44co"]
+[ext_resource type="FontFile" uid="uid://drhnex2wa7hn8" path="res://assets/Theme/Century Bold.ttf" id="4_oxgay"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ek63"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxgay"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ek63"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hynj8"]
+
+[resource]
+default_font = ExtResource("2_l44co")
+Button/colors/font_color = Color(0.986318, 0.88455, 0.728337, 1)
+Button/colors/icon_focus_color = Color(0.831373, 0.764706, 0.690196, 1)
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxEmpty_7ek63")
+Button/styles/hover = SubResource("StyleBoxTexture_oxgay")
+Button/styles/normal = SubResource("StyleBoxTexture_7ek63")
+Button/styles/pressed = SubResource("StyleBoxTexture_hynj8")
+Label/colors/font_color = Color(0.831373, 0.764706, 0.690196, 1)
+Label/font_sizes/font_size = 32
+RichTextLabel/colors/default_color = Color(0.831373, 0.764706, 0.690196, 1)
+RichTextLabel/fonts/bold_font = ExtResource("4_oxgay")
+RichTextLabel/fonts/normal_font = ExtResource("2_l44co")

@@ -1,0 +1,160 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=19 format=3 uid="uid://s7pxrdhfofhn"]
+
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_qgj8e"]
+[ext_resource type="Script" uid="uid://c32smhssask30" path="res://src/Events/Curse.gd" id="2_1jbyx"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="3_wjc4d"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_r8vci"]
+[ext_resource type="Script" uid="uid://djcgpmr7wgdwa" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="4_umxy8"]
+[ext_resource type="Script" uid="uid://u1jeft0lr6qg" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="5_qgj8e"]
+[ext_resource type="Script" uid="uid://dhao8bx6np0me" path="res://src/Cards/Effects/EffectValue.gd" id="6_1jbyx"]
+[ext_resource type="Script" uid="uid://b5qpbn2ly3mh" path="res://src/Cards/Effects/EffectFunctions.gd" id="7_qgj8e"]
+[ext_resource type="Script" uid="uid://dfa2hjqrbw0w7" path="res://src/Cards/Effects/EffectIf.gd" id="7_umxy8"]
+
+[sub_resource type="Resource" id="Resource_qg4h1"]
+script = ExtResource("4_umxy8")
+require_trigger = true
+required_slots = Array[int]([])
+require_act = false
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+
+[sub_resource type="Resource" id="Resource_snoxp"]
+script = ExtResource("5_qgj8e")
+require_allied = false
+require_enemies = true
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = true
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_f31w3"]
+script = ExtResource("5_qgj8e")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_sfhib"]
+script = ExtResource("6_1jbyx")
+value_type = "number"
+affected_by_spell_power = false
+number = 2
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_qgj8e"]
+script = ExtResource("6_1jbyx")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_1jbyx"]
+script = ExtResource("7_umxy8")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_qgj8e")
+
+[sub_resource type="Resource" id="Resource_urkbk"]
+script = ExtResource("6_1jbyx")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_wl0dr"]
+script = ExtResource("7_umxy8")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_urkbk")
+
+[sub_resource type="Resource" id="Resource_sbcf7"]
+script = ExtResource("3_wjc4d")
+function_script = ExtResource("7_qgj8e")
+function = "add_debuff"
+trigger_signal = "play"
+subject = "Board"
+conditions_calling = SubResource("Resource_qg4h1")
+conditions_trigger = SubResource("Resource_f31w3")
+conditions_subject = SubResource("Resource_snoxp")
+if_calling_card = SubResource("Resource_1jbyx")
+if_subject = SubResource("Resource_wl0dr")
+animation = "none"
+sfx = ""
+debuff = "weak"
+debuff_amount = SubResource("Resource_sfhib")
+metadata/_custom_type_script = "uid://cvhk48agl218e"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("4_r8vci")
+upkeep = 2
+damage = 6
+health = 8
+shield = 0
+speed = 5
+attack_type = 0
+armor_type = 0
+has_support = false
+combat_modifiers = Array[ExtResource("1_qgj8e")]([])
+default_animation = "sword"
+box_priority = "Attack"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+curses = Array[ExtResource("2_1jbyx")]([])
+card_name = "Ursine"
+card_type = "Unit"
+activation = 3
+tags = Array[int]([])
+text = "[b]Deploy[/b]: Apply 2 [b]Feeble[/b] to enemy units in the same [b]File[/b]"
+effects = Array[ExtResource("3_wjc4d")]([SubResource("Resource_sbcf7")])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

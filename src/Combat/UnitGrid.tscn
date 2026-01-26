@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b307r73bvmxl0"]
+
+[ext_resource type="Script" uid="uid://bx7s3uj5vtumm" path="res://src/Combat/UnitGrid.gd" id="1_gcvdu"]
+
+[node name="UnitGrid" type="GridContainer"]
+offset_right = 510.0
+offset_bottom = 720.0
+mouse_filter = 2
+columns = 5
+script = ExtResource("1_gcvdu")

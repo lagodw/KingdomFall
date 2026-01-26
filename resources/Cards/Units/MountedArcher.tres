@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=3 format=3 uid="uid://0130kw6bu52e"]
+
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="1_d2nvu"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_gjehe"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_gjehe")
+upkeep = 1
+health = 2
+damage = 2
+shield = 0
+moves = 2
+attack_reset = 2
+attack_range = 2
+block_range = 1
+act_range = 1
+combat_modifier_self = Dictionary[String, String]({})
+combat_modifier_target = Dictionary[String, String]({})
+move_limits = Array[String]([])
+action_priority = Array[String](["attack", "advance"])
+attack_priority_override = 6
+act_target = ""
+act_in_combat = true
+act_play_position = "closest"
+act_priority_override = 7
+card_name = "Mounted Archer"
+card_type = "Unit"
+card_art_path = ""
+activation = 3
+tags = Array[int]([1, 5])
+text = ""
+effects = Array[ExtResource("1_d2nvu")]([])
+metadata/_custom_type_script = "uid://fjs70167oea6"

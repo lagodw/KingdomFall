@@ -1,0 +1,174 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=20 format=3 uid="uid://byaa5ujhbstwu"]
+
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="1_435jk"]
+[ext_resource type="Script" uid="uid://dhao8bx6np0me" path="res://src/Cards/Effects/EffectValue.gd" id="2_2bl6c"]
+[ext_resource type="Script" uid="uid://u1jeft0lr6qg" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="2_gr5nx"]
+[ext_resource type="Script" uid="uid://djcgpmr7wgdwa" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="3_2bl6c"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="4_jsf38"]
+[ext_resource type="Script" uid="uid://dfa2hjqrbw0w7" path="res://src/Cards/Effects/EffectIf.gd" id="5_10yex"]
+[ext_resource type="Script" uid="uid://b5qpbn2ly3mh" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_r8wxx"]
+
+[sub_resource type="Resource" id="Resource_f8ebv"]
+script = ExtResource("2_2bl6c")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+metadata/_custom_type_script = "uid://dhao8bx6np0me"
+
+[sub_resource type="Resource" id="Resource_10yex"]
+script = ExtResource("2_2bl6c")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_r8wxx"]
+script = ExtResource("2_2bl6c")
+value_type = "number"
+affected_by_spell_power = true
+number = 18
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_8ooh5"]
+script = ExtResource("2_2bl6c")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_gwube"]
+script = ExtResource("3_2bl6c")
+require_trigger = true
+required_slots = Array[int]([])
+require_act = true
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+metadata/_custom_type_script = "uid://djcgpmr7wgdwa"
+
+[sub_resource type="Resource" id="Resource_t064y"]
+script = ExtResource("2_gr5nx")
+require_allied = true
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([2])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String](["Unit"])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = true
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_nbf4r"]
+script = ExtResource("2_gr5nx")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+metadata/_custom_type_script = "uid://u1jeft0lr6qg"
+
+[sub_resource type="Resource" id="Resource_iexn5"]
+script = ExtResource("2_2bl6c")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_ysupy"]
+script = ExtResource("5_10yex")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_iexn5")
+
+[sub_resource type="Resource" id="Resource_wtfpv"]
+script = ExtResource("2_2bl6c")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_m3gmr"]
+script = ExtResource("5_10yex")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_wtfpv")
+
+[sub_resource type="Resource" id="Resource_vrobk"]
+script = ExtResource("1_435jk")
+function_script = ExtResource("5_r8wxx")
+function = "buff_stats"
+trigger_signal = "target"
+target_type = "Unit"
+subject = "target"
+conditions_calling = SubResource("Resource_gwube")
+conditions_trigger = SubResource("Resource_nbf4r")
+conditions_subject = SubResource("Resource_t064y")
+if_calling_card = SubResource("Resource_ysupy")
+if_subject = SubResource("Resource_m3gmr")
+animation = "cast"
+sfx = "Spell"
+buff_damage = SubResource("Resource_10yex")
+buff_health = SubResource("Resource_r8wxx")
+buff_shield = SubResource("Resource_8ooh5")
+buff_activation = SubResource("Resource_f8ebv")
+affect_max = false
+persistent_effect = false
+metadata/_custom_type_script = "uid://cvhk48agl218e"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("4_jsf38")
+mana_cost = 1
+target = "ally"
+card_name = "Hands of Light"
+card_type = "Spell"
+activation = 1
+tags = Array[int]([])
+text = "Restore 18[+sp] health to a target"
+effects = Array[ExtResource("1_435jk")]([SubResource("Resource_vrobk")])
+card_art_path = ""
+metadata/_custom_type_script = "uid://dcrytj3q0pgux"

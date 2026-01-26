@@ -1,0 +1,197 @@
+[gd_scene load_steps=16 format=3 uid="uid://cd28vo6umqhig"]
+
+[ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="1_chf5d"]
+[ext_resource type="Script" uid="uid://bl23h64tem5ub" path="res://src/Cards/Scenes/Card.gd" id="2_lydcd"]
+[ext_resource type="Texture2D" uid="uid://doy0y4ndc6hu4" path="res://assets/Card/CardArt/Footman/Footman.png" id="4_ps48f"]
+[ext_resource type="Texture2D" uid="uid://ukytjhjjvr7s" path="res://assets/Card/CardArt/Items/background_frame.png" id="4_xbolh"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_fwcra"]
+[ext_resource type="Texture2D" uid="uid://c8ukjqancdo17" path="res://assets/Card/Card/Frames/CardFrame_Blue.png" id="7_fsigc"]
+[ext_resource type="Script" uid="uid://cpm0x5shgyi3" path="res://src/Cards/Popups/PopupContainer.gd" id="8_c0f1x"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="8_chf5d"]
+[ext_resource type="Texture2D" uid="uid://cj1m8aroronnd" path="res://assets/Card/Card/Backs/CardBack_Red.png" id="8_fwcra"]
+[ext_resource type="PackedScene" uid="uid://ckitycmjwcwx7" path="res://src/Cards/TargetArrow.tscn" id="8_qiat4"]
+[ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="9_lydcd"]
+[ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Card/Icons/Activation.png" id="10_yaxrj"]
+[ext_resource type="Script" uid="uid://1t0mdgq5oypo" path="res://src/Cards/Tags.gd" id="18_fsigc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ej07p"]
+draw_center = false
+corner_radius_top_left = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggiot"]
+size = Vector2(189, 288)
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(204, 304)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 204.0
+offset_bottom = 304.0
+theme = ExtResource("1_chf5d")
+script = ExtResource("2_lydcd")
+
+[node name="Highlight" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Front" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Background" type="TextureRect" parent="Front"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = 173.0
+texture = ExtResource("4_xbolh")
+expand_mode = 1
+
+[node name="CardArt" type="TextureRect" parent="Front"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 15.0
+offset_top = 33.0
+offset_right = 189.0
+offset_bottom = 173.0
+texture = ExtResource("4_ps48f")
+expand_mode = 1
+
+[node name="Frame" type="TextureRect" parent="Front"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 202.0
+offset_bottom = 302.0
+texture = ExtResource("7_fsigc")
+expand_mode = 1
+
+[node name="Shadow" type="Label" parent="Front"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 28)
+layout_mode = 2
+offset_left = 52.0
+offset_top = 4.0
+offset_right = 152.0
+offset_bottom = 32.0
+theme = ExtResource("6_fwcra")
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_ej07p")
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Name" type="Label" parent="Front/Shadow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 28)
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 28.0
+theme = ExtResource("6_fwcra")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_ej07p")
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Tags" type="HBoxContainer" parent="Front"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 48.0
+offset_top = 169.0
+offset_right = 156.0
+offset_bottom = 186.0
+alignment = 1
+script = ExtResource("18_fsigc")
+
+[node name="PopupContainer" type="VBoxContainer" parent="Front"]
+unique_name_in_owner = true
+z_index = 3
+layout_mode = 0
+offset_left = 215.0
+offset_right = 365.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("8_c0f1x")
+
+[node name="CardText" type="RichTextLabel" parent="Front"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(166, 83)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 187.0
+offset_right = 185.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("6_fwcra")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "This is the card text that will show"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 202.0
+offset_bottom = 302.0
+texture = ExtResource("8_fwcra")
+expand_mode = 1
+
+[node name="Activation" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 5.0
+offset_right = 197.0
+offset_bottom = 32.0
+theme = ExtResource("8_chf5d")
+texture = ExtResource("10_yaxrj")
+expand_mode = 1
+
+[node name="ActivationText" type="Label" parent="Activation"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = -2.0
+offset_bottom = -2.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_lydcd")
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(102.5, 150)
+shape = SubResource("RectangleShape2D_ggiot")
+
+[node name="TargetLine" parent="." instance=ExtResource("8_qiat4")]

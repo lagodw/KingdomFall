@@ -1,0 +1,233 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpnsgrt8hjbre"]
+
+[ext_resource type="PackedScene" uid="uid://cd28vo6umqhig" path="res://src/Cards/Scenes/Card.tscn" id="1_1svyu"]
+[ext_resource type="Script" uid="uid://cdmleuvj8w833" path="res://src/Cards/Scenes/Unit.gd" id="2_my6ub"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="3_ce5f5"]
+[ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="4_aibo2"]
+[ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="6_oln2p"]
+[ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="7_6d7p2"]
+[ext_resource type="Texture2D" uid="uid://cq3jcn3yjscxt" path="res://assets/Card/Icons/Speed.png" id="8_hhhr0"]
+[ext_resource type="Texture2D" uid="uid://dbr0f8hb1g31b" path="res://assets/Card/Icons/Upkeep.png" id="9_ff1kl"]
+[ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Icons/Shield.png" id="14_a0dq3"]
+[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="16_m5bsm"]
+
+[node name="Unit" instance=ExtResource("1_1svyu")]
+script = ExtResource("2_my6ub")
+
+[node name="Cost" type="TextureRect" parent="Front" index="6"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 33.0
+offset_bottom = 31.0
+theme = ExtResource("3_ce5f5")
+texture = ExtResource("9_ff1kl")
+expand_mode = 1
+
+[node name="CostText" type="Label" parent="Front/Cost" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Front" index="7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 275.0
+offset_right = 193.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ce5f5")
+theme_override_constants/separation = 0
+
+[node name="Damage" type="TextureRect" parent="Front/HBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("6_oln2p")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/HBoxContainer/Damage" index="0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("7_6d7p2")
+expand_mode = 2
+
+[node name="DamageText" type="Label" parent="Front/HBoxContainer/Damage" index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_aibo2")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacing3" type="Control" parent="Front/HBoxContainer" index="1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="ShieldSpacing2" type="Control" parent="Front/HBoxContainer" index="2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+
+[node name="Speed" type="TextureRect" parent="Front/HBoxContainer" index="3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("6_oln2p")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/HBoxContainer/Speed" index="0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("8_hhhr0")
+expand_mode = 2
+
+[node name="SpeedText" type="Label" parent="Front/HBoxContainer/Speed" index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_aibo2")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacing" type="Control" parent="Front/HBoxContainer" index="4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="ShieldSpacing" type="Control" parent="Front/HBoxContainer" index="5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(17, 0)
+layout_mode = 2
+
+[node name="Shield" type="TextureRect" parent="Front/HBoxContainer" index="6"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("6_oln2p")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/HBoxContainer/Shield" index="0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("14_a0dq3")
+expand_mode = 2
+
+[node name="ShieldText" type="Label" parent="Front/HBoxContainer/Shield" index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_aibo2")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacing2" type="Control" parent="Front/HBoxContainer" index="7"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="Health" type="TextureRect" parent="Front/HBoxContainer" index="8"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("6_oln2p")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/HBoxContainer/Health" index="0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("16_m5bsm")
+expand_mode = 2
+
+[node name="HealthText" type="Label" parent="Front/HBoxContainer/Health" index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_aibo2")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

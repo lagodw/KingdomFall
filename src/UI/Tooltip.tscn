@@ -1,0 +1,267 @@
+[gd_scene load_steps=15 format=3 uid="uid://2gd3eej6fvla"]
+
+[ext_resource type="Script" uid="uid://b863vmxy535g7" path="res://src/UI/Tooltip.gd" id="1_is8h5"]
+[ext_resource type="Texture2D" uid="uid://bqaqhsh05lktm" path="res://assets/UI/paper.png" id="2_6v0jk"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="2_8qq1k"]
+[ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Card/Icons/icon_box.png" id="3_is8h5"]
+[ext_resource type="Texture2D" uid="uid://b1owsl2q05bfe" path="res://assets/Card/Card/Icons/Ranged.png" id="5_8xvoy"]
+[ext_resource type="Shader" uid="uid://xt0mhmnlmr5x" path="res://src/UI/BlockText.gdshader" id="5_is8h5"]
+[ext_resource type="Texture2D" uid="uid://dw5pd3smalbuk" path="res://assets/UI/Bar_separator.png" id="5_y6ww3"]
+[ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="7_6v0jk"]
+[ext_resource type="Texture2D" uid="uid://ccablnn8jxip4" path="res://assets/Theme/silver_texture.png" id="7_is8h5"]
+[ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Card/Icons/Damage.png" id="9_6v0jk"]
+[ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="10_si8mk"]
+[ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Card/Icons/Shield.png" id="11_dlj6w"]
+[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Card/Icons/Health.png" id="12_wggi0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qq1k"]
+shader = ExtResource("5_is8h5")
+shader_parameter/text_texture = ExtResource("7_is8h5")
+shader_parameter/texture_scale = 1.0
+
+[node name="Tooltip" type="Control"]
+z_index = 15
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 70.0
+mouse_filter = 2
+script = ExtResource("1_is8h5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Background" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_6v0jk")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_8qq1k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Background/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="IconBG" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_is8h5")
+expand_mode = 2
+flip_h = true
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/HBoxContainer/IconBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_8xvoy")
+expand_mode = 1
+
+[node name="Shadow" type="Label" parent="MarginContainer/Background/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Ranged"
+
+[node name="Title" type="Label" parent="MarginContainer/Background/VBoxContainer/HBoxContainer/Shadow"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_8qq1k")
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Ranged"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_y6ww3")
+expand_mode = 1
+
+[node name="Content" type="RichTextLabel" parent="MarginContainer/Background/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+
+[node name="Stats" type="HBoxContainer" parent="MarginContainer/Background/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Damage" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/Stats"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("3_is8h5")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/Stats/Damage"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("9_6v0jk")
+expand_mode = 2
+
+[node name="DamageText" type="Label" parent="MarginContainer/Background/VBoxContainer/Stats/Damage"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_si8mk")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/Stats"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("3_is8h5")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/Stats/Shield"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("11_dlj6w")
+expand_mode = 2
+
+[node name="ShieldText" type="Label" parent="MarginContainer/Background/VBoxContainer/Stats/Shield"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_si8mk")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/Stats"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("3_is8h5")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background/VBoxContainer/Stats/Health"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("12_wggi0")
+expand_mode = 2
+
+[node name="HealthText" type="Label" parent="MarginContainer/Background/VBoxContainer/Stats/Health"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_si8mk")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Border" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 8.0
+anchor_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("7_6v0jk")
+patch_margin_left = 48
+patch_margin_top = 47
+patch_margin_right = 48
+patch_margin_bottom = 46

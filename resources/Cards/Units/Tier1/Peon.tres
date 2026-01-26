@@ -1,0 +1,154 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=18 format=3 uid="uid://dx0v4je3pacfj"]
+
+[ext_resource type="Script" uid="uid://c32smhssask30" path="res://src/Events/Curse.gd" id="1_5cdjl"]
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_6aqdi"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="1_rpd2y"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_6edq6"]
+[ext_resource type="Script" uid="uid://djcgpmr7wgdwa" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="4_8d2p6"]
+[ext_resource type="Script" uid="uid://u1jeft0lr6qg" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="5_3dxda"]
+[ext_resource type="Script" uid="uid://b5qpbn2ly3mh" path="res://src/Cards/Effects/EffectFunctions.gd" id="6_3dxda"]
+[ext_resource type="Script" uid="uid://dfa2hjqrbw0w7" path="res://src/Cards/Effects/EffectIf.gd" id="6_ga8ir"]
+[ext_resource type="Script" uid="uid://dhao8bx6np0me" path="res://src/Cards/Effects/EffectValue.gd" id="7_r8u2l"]
+
+[sub_resource type="Resource" id="Resource_wd88d"]
+script = ExtResource("4_8d2p6")
+require_trigger = false
+required_slots = Array[int]([2])
+require_act = false
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+
+[sub_resource type="Resource" id="Resource_8uby3"]
+script = ExtResource("5_3dxda")
+require_allied = true
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_06dbv"]
+script = ExtResource("5_3dxda")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_vlsx4"]
+script = ExtResource("7_r8u2l")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_y63ww"]
+script = ExtResource("6_ga8ir")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_vlsx4")
+
+[sub_resource type="Resource" id="Resource_185tn"]
+script = ExtResource("7_r8u2l")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_6x8j4"]
+script = ExtResource("6_ga8ir")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_185tn")
+
+[sub_resource type="Resource" id="Resource_ew17u"]
+script = ExtResource("1_rpd2y")
+function_script = ExtResource("6_3dxda")
+function = "add_activation_slots"
+trigger_signal = "move"
+subject = "ActivationBoxes"
+conditions_calling = SubResource("Resource_wd88d")
+conditions_trigger = SubResource("Resource_06dbv")
+conditions_subject = SubResource("Resource_8uby3")
+if_calling_card = SubResource("Resource_y63ww")
+if_subject = SubResource("Resource_6x8j4")
+animation = "none"
+sfx = ""
+num_slots = 1
+temporary_slot = true
+persistent_effect = true
+metadata/_custom_type_script = "uid://cvhk48agl218e"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("4_6edq6")
+upkeep = 1
+damage = 0
+health = 9
+shield = 0
+speed = 3
+attack_type = 0
+armor_type = 0
+has_support = true
+combat_modifiers = Array[ExtResource("1_6aqdi")]([])
+default_animation = "sword"
+box_priority = "Support"
+target = "none_needed"
+equivalent_damage = 6
+target_face = false
+curses = Array[ExtResource("1_5cdjl")]([])
+card_name = "Peon"
+card_type = "Unit"
+activation = 2
+tags = Array[int]([])
+text = "[b]Support[/b]: gain 1 Activation Slot"
+effects = Array[ExtResource("1_rpd2y")]([SubResource("Resource_ew17u")])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

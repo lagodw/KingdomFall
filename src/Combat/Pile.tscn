@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cahuyqwtqssxu"]
+
+[ext_resource type="Script" uid="uid://ifvbm2gjls" path="res://src/Combat/Pile.gd" id="1_j4tm0"]
+[ext_resource type="Texture2D" uid="uid://cj1m8aroronnd" path="res://assets/Card/Card/Backs/CardBack_Red.png" id="2_h5fcg"]
+
+[node name="CardPile" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 204.0
+offset_bottom = 304.0
+script = ExtResource("1_j4tm0")
+
+[node name="CardBack" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 202.0
+offset_bottom = 302.0
+texture = ExtResource("2_h5fcg")
+expand_mode = 1
+
+[node name="Cards" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

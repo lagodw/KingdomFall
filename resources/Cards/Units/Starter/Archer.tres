@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=5 format=3 uid="uid://f4aimjalkcre"]
+
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_5w7o7"]
+[ext_resource type="Script" uid="uid://c32smhssask30" path="res://src/Events/Curse.gd" id="1_8rjr1"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="1_ejd1b"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_kiobh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_kiobh")
+upkeep = 1
+damage = 8
+health = 6
+shield = 0
+attack_type = 1
+armor_type = 0
+allowed_boxes = Array[String](["Attack", "Defend", "Support", "Retreat"])
+combat_modifiers = Array[ExtResource("1_5w7o7")]([])
+default_animation = "arrow"
+box_priority = "Attack"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+curses = Array[ExtResource("1_8rjr1")]([])
+card_name = "Archer"
+card_type = "Unit"
+card_art_path = ""
+activation = 1
+tags = Array[int]([])
+text = ""
+effects = Array[ExtResource("1_ejd1b")]([])
+metadata/_custom_type_script = "uid://fjs70167oea6"

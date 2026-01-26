@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=5 format=3 uid="uid://dnri6ebnwt7vi"]
+
+[ext_resource type="Script" uid="uid://c32smhssask30" path="res://src/Events/Curse.gd" id="1_0w7v5"]
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_hlkth"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="2_hlkth"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="3_h3ya7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("3_h3ya7")
+upkeep = 1
+damage = 8
+health = 6
+shield = 0
+speed = 3
+attack_type = 0
+armor_type = 0
+has_support = false
+combat_modifiers = Array[ExtResource("1_hlkth")]([])
+default_animation = "sword"
+box_priority = "Attack"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+curses = Array[ExtResource("1_0w7v5")]([])
+card_name = "Assassin"
+card_type = "Unit"
+activation = 2
+tags = Array[int]([4])
+text = ""
+effects = Array[ExtResource("2_hlkth")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

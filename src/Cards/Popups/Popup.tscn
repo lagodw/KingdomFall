@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsf6rbn4u7ham"]
+
+[ext_resource type="Script" uid="uid://dhlqbfckq6iig" path="res://src/Cards/Popups/Popup.gd" id="1_ie81q"]
+[ext_resource type="Theme" uid="uid://dl2e8pdusy48b" path="res://assets/Theme/TextTheme.tres" id="1_xxe2j"]
+[ext_resource type="Texture2D" uid="uid://b1owsl2q05bfe" path="res://assets/Card/Icons/Ranged.png" id="2_j7lhh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpsuc"]
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8abpw"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="Popup" type="VBoxContainer"]
+z_index = 3
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme = ExtResource("1_xxe2j")
+theme_override_constants/separation = -1
+script = ExtResource("1_ie81q")
+
+[node name="Title" type="Panel" parent="."]
+z_index = 3
+custom_minimum_size = Vector2(186, 30)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpsuc")
+
+[node name="H" type="HBoxContainer" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="Title/H"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_j7lhh")
+expand_mode = 3
+
+[node name="TitleText" type="RichTextLabel" parent="Title/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "Ranged"
+vertical_alignment = 1
+
+[node name="Description" type="Panel" parent="."]
+custom_minimum_size = Vector2(186, 56)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8abpw")
+
+[node name="DescriptionText" type="RichTextLabel" parent="Description"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "Does not take damage when attacking"

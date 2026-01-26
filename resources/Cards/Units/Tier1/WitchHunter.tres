@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=8 format=3 uid="uid://bxbcp7kqgtal1"]
+
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_8ochs"]
+[ext_resource type="Script" uid="uid://dhao8bx6np0me" path="res://src/Cards/Effects/EffectValue.gd" id="2_tnxhy"]
+[ext_resource type="Script" uid="uid://c32smhssask30" path="res://src/Events/Curse.gd" id="3_8ochs"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="4_tnxhy"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="5_ll05i"]
+
+[sub_resource type="Resource" id="Resource_x4bcp"]
+script = ExtResource("2_tnxhy")
+value_type = "number"
+affected_by_spell_power = false
+number = 5
+chain_value = false
+metadata/_custom_type_script = "uid://dhao8bx6np0me"
+
+[sub_resource type="Resource" id="Resource_ix0fh"]
+script = ExtResource("1_8ochs")
+affect_when = "Attack"
+affect_whos_damage = "Attacker"
+require_opponent_tag = Array[int]([0])
+require_opponent_attack_type = Array[int]([])
+require_opponent_armor_type = Array[int]([])
+require_slot_types = Array[int]([0, 1, 2])
+require_target_face = false
+value = SubResource("Resource_x4bcp")
+metadata/_custom_type_script = "uid://jihtb6wsjwcs"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("5_ll05i")
+upkeep = 1
+damage = 5
+health = 10
+shield = 0
+speed = 6
+attack_type = 0
+armor_type = 0
+has_support = false
+combat_modifiers = Array[ExtResource("1_8ochs")]([SubResource("Resource_ix0fh")])
+default_animation = "sword"
+box_priority = "Defend"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+curses = Array[ExtResource("3_8ochs")]([])
+card_name = "Witch Hunter"
+card_type = "Unit"
+activation = 2
+tags = Array[int]([])
+text = "Has +5 Attack when attacking Creatures"
+effects = Array[ExtResource("4_tnxhy")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

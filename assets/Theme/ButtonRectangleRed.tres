@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://d272ryafvp8p2"]
+
+[ext_resource type="Texture2D" uid="uid://cg33ulyow8yqa" path="res://assets/UI/Buttons/Rectangle/Rectangle_button_red_disabled.png" id="1_jadxh"]
+[ext_resource type="Texture2D" uid="uid://ce4unav622sjb" path="res://assets/UI/Buttons/Rectangle/Rectangle_button_red_hover.png" id="2_xp4et"]
+[ext_resource type="Texture2D" uid="uid://c2by8r0dqwc8x" path="res://assets/UI/Buttons/Rectangle/Rectangle_button_red_normal.png" id="3_1mq5f"]
+[ext_resource type="Texture2D" uid="uid://bvner6ctuuxr5" path="res://assets/UI/Buttons/Rectangle/Rectangle_button_red_pressed.png" id="4_t5cff"]
+[ext_resource type="FontFile" uid="uid://drhnex2wa7hn8" path="res://assets/Theme/Century Bold.ttf" id="5_vxngj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0wc1"]
+texture = ExtResource("1_jadxh")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wf42i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_50acm"]
+texture = ExtResource("2_xp4et")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5icsl"]
+texture = ExtResource("3_1mq5f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ind4"]
+texture = ExtResource("4_t5cff")
+
+[resource]
+default_font = ExtResource("5_vxngj")
+Button/colors/font_color = Color(0.831373, 0.764706, 0.690196, 1)
+Button/colors/font_pressed_color = Color(0.831373, 0.764706, 0.690196, 1)
+Button/styles/disabled = SubResource("StyleBoxTexture_y0wc1")
+Button/styles/focus = SubResource("StyleBoxEmpty_wf42i")
+Button/styles/hover = SubResource("StyleBoxTexture_50acm")
+Button/styles/normal = SubResource("StyleBoxTexture_5icsl")
+Button/styles/pressed = SubResource("StyleBoxTexture_8ind4")

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://wkvlkif84nj3"]
+
+[ext_resource type="PackedScene" uid="uid://cd28vo6umqhig" path="res://src/Cards/Scenes/Card.tscn" id="1_mvkr6"]
+[ext_resource type="Script" uid="uid://ct4nympydfrsa" path="res://src/Cards/Scenes/Spell.gd" id="2_n4ddu"]
+[ext_resource type="Texture2D" uid="uid://dd3ll637yrs0j" path="res://assets/Card/CardArt/Time Warp/Time Warp.png" id="3_ghsmr"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="3_johp1"]
+[ext_resource type="Texture2D" uid="uid://dvufh7d70hlow" path="res://assets/Card/Card/Frames/CardFrame_Purple.png" id="4_15qg4"]
+[ext_resource type="Texture2D" uid="uid://bithkfa0yaj55" path="res://assets/Card/Card/Icons/Mana.png" id="4_ashyo"]
+
+[node name="Spell" instance=ExtResource("1_mvkr6")]
+script = ExtResource("2_n4ddu")
+
+[node name="CardArt" parent="Front" index="1"]
+texture = ExtResource("3_ghsmr")
+
+[node name="Frame" parent="Front" index="2"]
+texture = ExtResource("4_15qg4")
+
+[node name="Cost" type="TextureRect" parent="Front" index="6"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 33.0
+offset_bottom = 31.0
+theme = ExtResource("3_johp1")
+texture = ExtResource("4_ashyo")
+expand_mode = 1
+
+[node name="CostText" type="Label" parent="Front/Cost" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = null

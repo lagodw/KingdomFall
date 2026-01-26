@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyai8rsp8py54"]
+
+[ext_resource type="Script" uid="uid://d0cha6pd2ikew" path="res://src/Scenes/MainMenu.gd" id="1_814sq"]
+[ext_resource type="Texture2D" uid="uid://un3wo8x1ag3a" path="res://assets/Theme/title_background.png" id="2_ftic1"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_814sq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ftic1")
+expand_mode = 1

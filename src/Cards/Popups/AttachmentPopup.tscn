@@ -1,0 +1,240 @@
+[gd_scene load_steps=11 format=3 uid="uid://dof0dbgv2fqmk"]
+
+[ext_resource type="Script" uid="uid://co4bsy1wxs2xb" path="res://src/Cards/Popups/AttachmentPopup.gd" id="1_1o585"]
+[ext_resource type="Texture2D" uid="uid://ukytjhjjvr7s" path="res://assets/CardArt/Items/background_frame.png" id="2_6qvkk"]
+[ext_resource type="Texture2D" uid="uid://bxjk0bcg8lspe" path="res://assets/CardArt/Ice Tomb/Ice Tomb.png" id="2_pru6w"]
+[ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="3_rb10h"]
+[ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="4_6qvkk"]
+[ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="5_283o1"]
+[ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Icons/Shield.png" id="6_epe6x"]
+[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="7_i7u2j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpsuc"]
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8abpw"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="AttachmentPopup" type="VBoxContainer"]
+custom_minimum_size = Vector2(186, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_constants/separation = -1
+script = ExtResource("1_1o585")
+
+[node name="Title" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpsuc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="Title/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_6qvkk")
+expand_mode = 3
+
+[node name="Icon" type="TextureRect" parent="Title/HBoxContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_pru6w")
+expand_mode = 3
+
+[node name="TitleText" type="Label" parent="Title/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Card Name"
+vertical_alignment = 1
+
+[node name="Stats" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8abpw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Damage" type="TextureRect" parent="Stats/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_rb10h")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Stats/HBoxContainer/Damage"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_6qvkk")
+expand_mode = 2
+
+[node name="DamageText" type="Label" parent="Stats/HBoxContainer/Damage"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_283o1")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="TextureRect" parent="Stats/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_rb10h")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Stats/HBoxContainer/Shield"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_epe6x")
+expand_mode = 2
+
+[node name="ShieldText" type="Label" parent="Stats/HBoxContainer/Shield"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_283o1")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureRect" parent="Stats/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_rb10h")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Stats/HBoxContainer/Health"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_i7u2j")
+expand_mode = 2
+
+[node name="HealthText" type="Label" parent="Stats/HBoxContainer/Health"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_283o1")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8abpw")
+
+[node name="DescriptionText" type="Label" parent="Description"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 183.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Card Text"
+autowrap_mode = 3

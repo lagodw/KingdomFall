@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://cnoty6ors3h52"]
+
+[ext_resource type="Script" uid="uid://jihtb6wsjwcs" path="res://src/Cards/Effects/CombatModifier.gd" id="1_bjw5p"]
+[ext_resource type="Script" uid="uid://cvhk48agl218e" path="res://src/Cards/Effects/Effect.gd" id="2_xxlon"]
+[ext_resource type="Script" uid="uid://hat3dgsvixk8" path="res://src/Cards/ResourceTypes/ItemResource.gd" id="3_wlpbx"]
+
+[resource]
+script = ExtResource("3_wlpbx")
+item_type = 0
+attack_type = 1
+armor_type = 0
+damage = 2
+health = 0
+shield = 0
+max_durability = 3
+current_durability = 3
+cost = 0
+combat_modifiers = Array[ExtResource("1_bjw5p")]([])
+target = "ally"
+card_name = "Blow Gun"
+card_type = "Item"
+activation = 0
+tags = Array[int]([])
+text = ""
+effects = Array[ExtResource("2_xxlon")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://hat3dgsvixk8"

@@ -1,0 +1,208 @@
+[gd_scene load_steps=12 format=3 uid="uid://snfirkvlfltv"]
+
+[ext_resource type="PackedScene" uid="uid://cd28vo6umqhig" path="res://src/Cards/Scenes/Card.tscn" id="1_jv1sb"]
+[ext_resource type="Texture2D" uid="uid://drb55w775roid" path="res://assets/Card/Frames/CardFrame_Brown.png" id="2_7hkl3"]
+[ext_resource type="Script" uid="uid://bpxv6on3go2ed" path="res://src/Cards/Scenes/Item.gd" id="2_b476k"]
+[ext_resource type="Texture2D" uid="uid://br2274yw5375n" path="res://assets/CardArt/Items/Leather Armor.png" id="3_b476k"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="4_ug6y2"]
+[ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="5_00s52"]
+[ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="6_wntyu"]
+[ext_resource type="Texture2D" uid="uid://dkteqdm5uvadh" path="res://assets/Card/Icons/Durability.png" id="7_0lxga"]
+[ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="7_0uy0w"]
+[ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Icons/Shield.png" id="8_0lxga"]
+[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="9_ml4st"]
+
+[node name="Item" instance=ExtResource("1_jv1sb")]
+script = ExtResource("2_b476k")
+
+[node name="Background" parent="Front" index="0"]
+offset_top = 31.0
+offset_right = 193.0
+offset_bottom = 174.0
+
+[node name="CardArt" parent="Front" index="1"]
+texture = ExtResource("3_b476k")
+
+[node name="Frame" parent="Front" index="2"]
+texture = ExtResource("2_7hkl3")
+
+[node name="Cost" type="TextureRect" parent="Front" index="6"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 33.0
+offset_bottom = 31.0
+theme = ExtResource("4_ug6y2")
+texture = ExtResource("7_0lxga")
+expand_mode = 1
+
+[node name="CostText" type="Label" parent="Front/Cost" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Front" index="7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 275.0
+offset_right = 193.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ug6y2")
+theme_override_constants/separation = 0
+
+[node name="DamageSpacing" type="Control" parent="Front/HBoxContainer" index="0"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Damage" type="TextureRect" parent="Front/HBoxContainer" index="1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("5_00s52")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/HBoxContainer/Damage" index="0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("6_wntyu")
+expand_mode = 2
+
+[node name="DamageText" type="Label" parent="Front/HBoxContainer/Damage" index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_0uy0w")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacing" type="Control" parent="Front/HBoxContainer" index="2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="ShieldSpacing" type="Control" parent="Front/HBoxContainer" index="3"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Shield" type="TextureRect" parent="Front/HBoxContainer" index="4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("5_00s52")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/HBoxContainer/Shield" index="0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("8_0lxga")
+expand_mode = 2
+
+[node name="ShieldText" type="Label" parent="Front/HBoxContainer/Shield" index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_0uy0w")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacing2" type="Control" parent="Front/HBoxContainer" index="5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Health" type="TextureRect" parent="Front/HBoxContainer" index="6"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("5_00s52")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/HBoxContainer/Health" index="0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("9_ml4st")
+expand_mode = 2
+
+[node name="HealthText" type="Label" parent="Front/HBoxContainer/Health" index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_0uy0w")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthSpacing" type="Control" parent="Front/HBoxContainer" index="7"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
