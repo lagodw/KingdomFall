@@ -66,14 +66,9 @@ func type_only_setup():
 	add_animation()
 	for effect in effects:
 		effect.connect_signal(self)
-	ee.combat_start.connect(rescale)
 	
 func setup_upkeep():
 	pass
-	
-func rescale():
-	var new_scale: float = Bus.Grid.get_token_scale()
-	scale = Vector2(new_scale, new_scale)
 	
 func set_art(override: String = ""):
 	card_art = card_name
@@ -207,14 +202,13 @@ func move_to(target: Control, animation: bool = true, mouse_pos: bool = false):
 	visible = true
 	var start_position: Vector2 = global_position
 	target.add_token(self)
-	rescale()
 	if animation:
 		if mouse_pos:
 			start_position = get_global_mouse_position() - size / 2 
 		global_position = start_position
 		await get_tree().process_frame
 		reset_tween()
-		tween.tween_property(self, "global_position", target.get_token_position(), kf.tween_time)
+		tween.tween_property(self, "global_position", target.global_position, kf.tween_time)
 		await tween.finished
 	ee.emit_signal("move", self)
 	

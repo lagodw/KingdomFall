@@ -62,7 +62,7 @@ var snapshot_gold: int
 
 ########################################
 
-#var ui: UI
+var ui: UI
 var Board: Combat
 var draw: Pile
 var hand: Hand

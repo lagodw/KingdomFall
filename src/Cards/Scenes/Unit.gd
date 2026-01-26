@@ -209,10 +209,6 @@ func _get_drag_data(_at_position: Vector2):
 		if current_slot.occupied_unit:
 			if current_slot.occupied_unit == self:
 				current_slot.occupied_unit = null
-		
-	if get_parent() is TokenSlot:
-		var slot: TokenSlot = get_parent()
-		slot.get_box()._on_unit_drag_started(self, slot)
 
 	var control = Control.new()
 	var preview: Control
@@ -241,7 +237,5 @@ func _notification(notification_type):
 						# and we haven't been successfully placed elsewhere (which would update current_slot),
 						# then we need to force our way back in.
 						if current_slot.occupied_unit != self:
-							# Push back any units that moved up while we were dragging
-							current_slot.get_box().push_units_back(current_slot)
 							# Re-add ourselves to the slot officially
 							current_slot.add_token(self)

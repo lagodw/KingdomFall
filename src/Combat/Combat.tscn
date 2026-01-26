@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=12 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cialou463k85i" path="res://assets/Combat/EndTurn/EndTurn_Clicked.png" id="8_dyjub"]
 [ext_resource type="Texture2D" uid="uid://dbsx8ecfe07wd" path="res://assets/Combat/EndTurn/EndTurn_Hovered.png" id="9_55i6c"]
 [ext_resource type="Texture2D" uid="uid://bnaxe2ykiimtm" path="res://assets/Combat/EndTurn/EndTurn_Text.png" id="10_duo21"]
+[ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="11_dyjub"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -32,28 +33,30 @@ expand_mode = 1
 
 [node name="Castle" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 2823.0
-offset_top = -84.0
-offset_right = 4084.0
-offset_bottom = 1202.0
+offset_left = 2813.0
+offset_top = -51.0
+offset_right = 4013.0
+offset_bottom = 1235.0
 rotation = 1.5708
 texture = ExtResource("1_ewkg0")
 expand_mode = 1
 
 [node name="UnitGrid" parent="." instance=ExtResource("2_m70ga")]
 layout_mode = 0
-offset_left = 1039.0
-offset_top = 176.0
-offset_right = 1549.0
-offset_bottom = 896.0
+offset_left = 1079.0
+offset_top = 238.0
+offset_right = 1504.0
+offset_bottom = 838.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 num_neutral_slots = 1
 
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
 layout_mode = 1
-offset_left = 396.0
-offset_top = 766.0
-offset_right = -1039.0
-offset_bottom = -14.0
+offset_left = 412.0
+offset_top = 750.0
+offset_right = -1023.0
+offset_bottom = -30.0
 
 [node name="Draw" parent="." instance=ExtResource("6_nthc5")]
 offset_left = 37.0
@@ -62,16 +65,16 @@ offset_right = 241.0
 offset_bottom = 1054.0
 
 [node name="Discard" parent="." instance=ExtResource("6_nthc5")]
-offset_left = 1714.0
-offset_top = 616.0
-offset_right = 1918.0
-offset_bottom = 920.0
+offset_left = 1676.0
+offset_top = 609.0
+offset_right = 1880.0
+offset_bottom = 913.0
 
 [node name="EndTurn" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1677.0
+offset_left = 1653.0
 offset_top = 473.0
-offset_right = 1936.0
+offset_right = 1912.0
 offset_bottom = 598.0
 texture_normal = ExtResource("7_yxnwc")
 texture_pressed = ExtResource("8_dyjub")
@@ -88,3 +91,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_duo21")
 expand_mode = 1
+
+[node name="UI" parent="." instance=ExtResource("11_dyjub")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 1920.0
+grow_horizontal = 1

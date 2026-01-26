@@ -30,7 +30,7 @@ func draw_card(card: Card) -> void:
 	# 2. Add card visual
 	# Add to Hand but TopLevel so it doesn't affect layout immediately
 	add_child(card)
-	card.z_index = 10
+	#card.z_index = 10
 	card.top_level = true
 	card.global_position = old_pos
 	# Reset any rotation from deck or previous state

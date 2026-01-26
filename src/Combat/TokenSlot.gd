@@ -40,23 +40,8 @@ var temporary_bumped_unit: CardToken
 func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exit)
 		
-func _calculate_zone(local_mouse_pos: Vector2) -> String:
-	var x_ratio: float = local_mouse_pos.x / size.x
-	var y_ratio: float = local_mouse_pos.y / size.y
-	
-	if y_ratio < 0.33333:
-		return "Back"
-	elif x_ratio < 0.5:
-		return "Right"
-	else:
-		return "Left"
-	
 func _on_mouse_exit():
-	if Rect2(Vector2.ZERO, size).has_point(get_local_mouse_position()):
-		return
-	current_mouse_zone = "None"
-	if kf.dragging and card_owner == "Player":
-		emit_signal("slot_exited", self)
+	show_highlight(false)
 
 func add_token(token: CardToken):
 	occupied_unit = token
@@ -76,40 +61,20 @@ func add_token(token: CardToken):
 	token.visible = true
 	$Border.visible = false
 
-func get_token_position() -> Vector2:
-	var target_pos: Vector2 = global_position
-	target_pos.x += Bus.token_size.x * (1 - Bus.Grid.get_token_scale()) / 2
-	return(target_pos)
-
 func show_highlight(highlight: bool = true):
 	$Border.visible = highlight
 	
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	if not box:
-		return false
-	
-	# 1. Drive State: Update the zone immediately
-	current_mouse_zone = _calculate_zone(at_position)
-	
-	# 2. Drive Logic: Ask Box if we can drop using this zone
-	if box.has_method("can_drop_on_slot"):
-		return box.can_drop_on_slot(self, data, current_mouse_zone)
-		
-	return false
+func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
+	show_highlight(true)
+	return(true)
 
 func _drop_data(_at_position: Vector2, data: Variant):
-	if not box:
-		return(false)
-	if box.has_method("drop_unit_on_slot"):
-		box.drop_unit_on_slot(self, data)
+	data.move_to(self)
+	kf.dragging = null
 	
 func get_box() -> UnitBox:
 	return box
 	
-# Called by the File to place a unit here
-func set_unit(unit: Unit) -> void:
-	unit.move_to(self)
-		
 # Called when dragging *from* this slot
 func clear_unit() -> void:
 	occupied_unit = null
@@ -145,7 +110,7 @@ func validate_state() -> void:
 				break
 	
 	if occupied_unit:
-		occupied_unit.global_position = get_token_position()
+		occupied_unit.position = Vector2.ZERO
 		
 	# 3. Clean up stale Temporary Bumps
 	if temporary_bumped_unit:
