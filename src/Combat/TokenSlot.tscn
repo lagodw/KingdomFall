@@ -24,3 +24,41 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_65l8j")
 expand_mode = 4
+
+[node name="EnemyOutline" type="ReferenceRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_width = 2.0
+editor_only = false
+
+[node name="NeutralOutline" type="ReferenceRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.426367, 0.434933, 0.419393, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="PlayerOutline" type="ReferenceRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.0612042, 0.492045, 0.19923, 1)
+border_width = 2.0
+editor_only = false

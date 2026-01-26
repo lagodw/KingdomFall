@@ -1,7 +1,7 @@
 class_name UnitGrid
-extends GridContainer
+extends VBoxContainer
 
-@onready var slot_scene: PackedScene = preload("uid://cshkmwknv7s5g")
+@onready var file_scene: PackedScene = preload("uid://bsp0fgo7c1qcn")
 
 @export var num_files: int = 5
 @export var num_enemy_slots: int = 2
@@ -9,17 +9,13 @@ extends GridContainer
 @export var num_player_slots: int = 2
 
 func _ready() -> void:
-	for row in num_enemy_slots:
-		for col in num_files:
-			add_slot("Enemy")
-	for row in num_neutral_slots:
-		for col in num_files:
-			add_slot("Neutral")
-	for row in num_player_slots:
-		for col in num_files:
-			add_slot("Player")
+	var even: bool = false
+	for i in num_files:
+		add_file(even)
+		even = not even
 
-func add_slot(slot_owner: String):
-	var slot = slot_scene.instantiate()
-	slot.card_owner = slot_owner
-	add_child(slot)
+func add_file(even: bool):
+	var file: UnitFile = file_scene.instantiate()
+	add_child(file)
+	file.create_slots(num_player_slots, num_neutral_slots, 
+			num_enemy_slots, even)

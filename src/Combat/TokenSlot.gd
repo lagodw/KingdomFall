@@ -5,13 +5,11 @@ extends TextureRect
 signal slot_exited(slot: TokenSlot)
 
 enum SlotType {
-	Vanguard,
-	Assault,
-	Support,
-	Empty,
+	Player,
+	Neutral,
+	Enemy,
 }
 
-@export_enum("Player", "Neutral", "Enemy") var card_owner: String = "Player"
 @export var slot_type: SlotType
 var dark_floor: bool = false
 var occupied_unit: CardToken = null:
@@ -26,7 +24,6 @@ var occupied_unit: CardToken = null:
 		if occupied_unit == null and temporary_bumped_unit and current_mouse_zone == "None":
 			temporary_bumped_unit.move_to(self, false)
 			temporary_bumped_unit = null
-var box: UnitBox
 var file: UnitFile
 var current_mouse_zone: String = "None":
 	set(new_zone):
@@ -39,6 +36,13 @@ var temporary_bumped_unit: CardToken
 
 func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exit)
+	match slot_type:
+		SlotType.Player:
+			$PlayerOutline.visible = true
+		SlotType.Neutral:
+			$NeutralOutline.visible = true
+		SlotType.Enemy:
+			$EnemyOutline.visible = true
 		
 func _on_mouse_exit():
 	show_highlight(false)
@@ -65,15 +69,14 @@ func show_highlight(highlight: bool = true):
 	$Border.visible = highlight
 	
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	show_highlight(true)
-	return(true)
+	if slot_type == SlotType.Player:
+		show_highlight(true)
+		return(true)
+	return(false)
 
 func _drop_data(_at_position: Vector2, data: Variant):
 	data.move_to(self)
 	kf.dragging = null
-	
-func get_box() -> UnitBox:
-	return box
 	
 # Called when dragging *from* this slot
 func clear_unit() -> void:
@@ -84,50 +87,3 @@ func get_occupied_unit_data() -> Unit:
 	if occupied_unit:
 		return occupied_unit
 	return null
-
-func validate_state() -> void:
-	# 1. Validate the Occupied Unit reference
-	if occupied_unit:
-		# If the object was deleted from memory but we still hold a ref
-		if not is_instance_valid(occupied_unit):
-			occupied_unit = null
-		# If the unit exists but is physically parented to a different node
-		elif occupied_unit.get_parent() != self:
-			# This detects the specific glitch you mentioned.
-			# By setting it to null, we trigger the setter you added previously,
-			# which effectively says "I'm empty now, revert any temporary bumps!"
-			occupied_unit = null
-			
-	# 2. Validate Physical Children (The Truth)
-	# If variables say we are empty, but we actually hold a Unit child, claim it.
-	if occupied_unit == null:
-		for child in get_children():
-			if child is CardToken and not child.is_queued_for_deletion():
-				# We found a squatter. Update variable to match reality.
-				occupied_unit = child
-				# If we had a temp bump waiting, this line will incidentally 
-				# prevent it from returning (since we are now occupied), which is correct.
-				break
-	
-	if occupied_unit:
-		occupied_unit.position = Vector2.ZERO
-		
-	# 3. Clean up stale Temporary Bumps
-	if temporary_bumped_unit:
-		# If the bumped unit died or was deleted while waiting
-		if not is_instance_valid(temporary_bumped_unit):
-			temporary_bumped_unit = null
-		
-	# 4. Evict Extra Children
-	# If we have children that are not the occupied unit and not the temp bump, they are stuck.
-	for child in get_children():
-		if child is CardToken and not child.is_queued_for_deletion():
-			# If child is occupied_unit, it's fine.
-			# If child is temporary_bumped_unit, it's fine (waiting to return).
-			if child != occupied_unit and child != temporary_bumped_unit:
-				# This is an extra unit. Use the box to find it a home.
-				if box:
-					var target_slot = box.get_first_unoccupied(child.has_support)
-					if target_slot:
-						# Found a home, move it.
-						child.move_to(target_slot, false)

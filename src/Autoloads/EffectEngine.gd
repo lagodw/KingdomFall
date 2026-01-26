@@ -240,19 +240,19 @@ func require_same_rank(subject: Control, trigger_card: Control, is_same_required
 	if not subject.current_slot or not trigger_card.current_slot or \
 			subject.card_owner != trigger_card.card_owner:
 		return(false)
-	var is_support_slot: bool = (subject.current_slot.slot_type == TokenSlot.SlotType.Support)
-	if is_support_slot and trigger_card.current_slot.slot_type != TokenSlot.SlotType.Support:
-		return(false)
-	if not is_support_slot and trigger_card.current_slot.slot_type == TokenSlot.SlotType.Support:
-		return(false)
+	#var is_support_slot: bool = (subject.current_slot.slot_type == TokenSlot.SlotType.Support)
+	#if is_support_slot and trigger_card.current_slot.slot_type != TokenSlot.SlotType.Support:
+		#return(false)
+	#if not is_support_slot and trigger_card.current_slot.slot_type == TokenSlot.SlotType.Support:
+		#return(false)
 	var subject_rank: int
 	var trigger_rank: int
-	if is_support_slot:
-		subject_rank = subject.current_slot.box.support_slots.find(subject.current_slot)
-		trigger_rank = trigger_card.current_slot.box.support_slots.find(trigger_card.current_slot)
-	else:
-		subject_rank = subject.current_slot.box.fighting_slots.find(subject.current_slot)
-		trigger_rank = trigger_card.current_slot.box.fighting_slots.find(trigger_card.current_slot)
+	#if is_support_slot:
+		#subject_rank = subject.current_slot.box.support_slots.find(subject.current_slot)
+		#trigger_rank = trigger_card.current_slot.box.support_slots.find(trigger_card.current_slot)
+	#else:
+		#subject_rank = subject.current_slot.box.fighting_slots.find(subject.current_slot)
+		#trigger_rank = trigger_card.current_slot.box.fighting_slots.find(trigger_card.current_slot)
 	return(subject_rank == trigger_rank)
 
 func require_tags(subject: Control, _trigger_card: Control, required_tags: Array) -> bool:

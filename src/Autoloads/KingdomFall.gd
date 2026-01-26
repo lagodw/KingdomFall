@@ -25,7 +25,6 @@ var color_map: Dictionary[String, String] = {"NoAct": "Grey",
 				}
 var mouse_disabled := false
 var dragging: Unit = null
-var highlighted_box: UnitBox = null
 var highlighted_slot: TokenSlot
 
 var fog: bool = true

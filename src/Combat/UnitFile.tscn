@@ -1,58 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsp0fgo7c1qcn"]
+[gd_scene load_steps=2 format=3 uid="uid://bsp0fgo7c1qcn"]
 
 [ext_resource type="Script" uid="uid://deabnlvn6klst" path="res://src/Combat/UnitFile.gd" id="1_1temp"]
-[ext_resource type="PackedScene" uid="uid://butr5cp6lgmmp" path="res://src/Combat/UnitBox.tscn" id="2_lsgl3"]
 
 [node name="File1" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 120.0
-offset_bottom = 920.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_1temp")
 
-[node name="EnemyOutline" type="ReferenceRect" parent="."]
-layout_mode = 0
-offset_right = 120.0
-offset_bottom = 240.0
-border_color = Color(0.610332, 0.0814923, 0.215003, 1)
-border_width = 4.0
-editor_only = false
-
-[node name="NeutralOutline" type="ReferenceRect" parent="."]
-layout_mode = 0
-offset_top = 240.0
-offset_right = 120.0
-offset_bottom = 480.0
-border_color = Color(0.384402, 0.374436, 0.384177, 1)
-border_width = 4.0
-editor_only = false
-
-[node name="PlayerOutline" type="ReferenceRect" parent="."]
-layout_mode = 0
-offset_top = 480.0
-offset_right = 120.0
-offset_bottom = 720.0
-border_color = Color(0, 0.397634, 0.114282, 1)
-border_width = 4.0
-editor_only = false
-
-[node name="Boxes" type="VBoxContainer" parent="."]
+[node name="Outline" type="ReferenceRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -200.0
 grow_horizontal = 2
 grow_vertical = 2
+border_color = Color(0.677472, 0.670944, 0.0383302, 1)
+border_width = 8.0
+editor_only = false
 
-[node name="EnemyBox" parent="Boxes" instance=ExtResource("2_lsgl3")]
-layout_mode = 2
-
-[node name="NeutralBox" parent="Boxes" instance=ExtResource("2_lsgl3")]
-layout_mode = 2
-player_box = true
-
-[node name="PlayerBox" parent="Boxes" instance=ExtResource("2_lsgl3")]
-layout_mode = 2
-player_box = true
+[node name="Box" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

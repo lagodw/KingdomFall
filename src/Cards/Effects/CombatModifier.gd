@@ -7,7 +7,7 @@ extends Resource
 @export var require_opponent_attack_type: Array[kf.AttackType] = []
 @export var require_opponent_armor_type: Array[kf.ArmorType] = []
 @export var require_slot_types: Array[TokenSlot.SlotType] = [
-	TokenSlot.SlotType.Vanguard, TokenSlot.SlotType.Assault, TokenSlot.SlotType.Support]
+	TokenSlot.SlotType.Enemy, TokenSlot.SlotType.Neutral, TokenSlot.SlotType.Player]
 ## for now can only be used on attackers
 #@export var unit_comparison: StatComparison
 @export var value: EffectValue = EffectValue.new()
