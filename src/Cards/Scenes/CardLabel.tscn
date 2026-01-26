@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://bfbt12injyh4a"]
 
-[ext_resource type="Script" uid="uid://d1rnqjlipwj3x" path="res://src/Cards/Scenes/CardLabel.gd" id="1_ihmwu"]
-[ext_resource type="Theme" uid="uid://dl2e8pdusy48b" path="res://assets/Theme/TextTheme.tres" id="1_m5xcm"]
+[ext_resource type="Script" uid="uid://bpnu0isdbl8sx" path="res://src/Cards/Scenes/CardLabel.gd" id="1_ihmwu"]
+[ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="1_m5xcm"]
 [ext_resource type="Texture2D" uid="uid://u6eru43u3i8b" path="res://assets/Card/Labels/CardLabel_Blue.png" id="3_omowj"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="4_llukd"]
-[ext_resource type="Shader" uid="uid://mvnxkr0gljtr" path="res://src/UI/BlockText.gdshader" id="5_6eekr"]
+[ext_resource type="Shader" uid="uid://xt0mhmnlmr5x" path="res://src/UI/BlockText.gdshader" id="5_6eekr"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="5_omowj"]
 [ext_resource type="Texture2D" uid="uid://dbr0f8hb1g31b" path="res://assets/Card/Icons/Upkeep.png" id="6_6eekr"]
 [ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="6_421ua"]
-[ext_resource type="Texture2D" uid="uid://26uiu1qvrisl" path="res://assets/Theme/silver_texture.png" id="6_vhwaq"]
+[ext_resource type="Texture2D" uid="uid://ccablnn8jxip4" path="res://assets/Theme/silver_texture.png" id="6_vhwaq"]
 [ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Icons/Activation.png" id="7_vhwaq"]
 [ext_resource type="Texture2D" uid="uid://cxd6i8nixv1li" path="res://assets/Card/Backs/CardBack_Label_Red.png" id="8_llukd"]
 

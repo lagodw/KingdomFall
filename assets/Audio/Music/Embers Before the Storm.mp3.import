@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddkjbwbxebm3h"
+path="res://.godot/imported/Embers Before the Storm.mp3-eec2413b939bf98f441442801da55896.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/Music/Embers Before the Storm.mp3"
+dest_files=["res://.godot/imported/Embers Before the Storm.mp3-eec2413b939bf98f441442801da55896.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

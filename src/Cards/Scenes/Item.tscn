@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cd28vo6umqhig" path="res://src/Cards/Scenes/Card.tscn" id="1_jv1sb"]
 [ext_resource type="Texture2D" uid="uid://drb55w775roid" path="res://assets/Card/Frames/CardFrame_Brown.png" id="2_7hkl3"]
-[ext_resource type="Script" uid="uid://bpxv6on3go2ed" path="res://src/Cards/Scenes/Item.gd" id="2_b476k"]
+[ext_resource type="Script" uid="uid://brfbk8mn5g7d5" path="res://src/Cards/Scenes/Item.gd" id="2_b476k"]
 [ext_resource type="Texture2D" uid="uid://br2274yw5375n" path="res://assets/CardArt/Items/Leather Armor.png" id="3_b476k"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="4_ug6y2"]
 [ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="5_00s52"]

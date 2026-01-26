@@ -2,22 +2,24 @@
 
 [ext_resource type="Script" uid="uid://dcd6psvxgk1fb" path="res://src/Cards/Scenes/CardToken.gd" id="1_00mgh"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="1_sclck"]
-[ext_resource type="Texture2D" uid="uid://doy0y4ndc6hu4" path="res://assets/Card/CardArt/Footman/Footman.png" id="2_cicnf"]
-[ext_resource type="Texture2D" uid="uid://c862y6ebv8ui0" path="res://assets/Card/Card/Tokens/CardToken_Blue.png" id="7_sclck"]
-[ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Card/Icons/icon_box.png" id="7_u756d"]
+[ext_resource type="Texture2D" uid="uid://doy0y4ndc6hu4" path="res://assets/CardArt/Footman/Footman.png" id="2_cicnf"]
+[ext_resource type="Texture2D" uid="uid://c862y6ebv8ui0" path="res://assets/Card/Tokens/CardToken_Blue.png" id="7_sclck"]
+[ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="7_u756d"]
 [ext_resource type="PackedScene" uid="uid://ckitycmjwcwx7" path="res://src/Cards/TargetArrow.tscn" id="8_bikeq"]
 [ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="9_sclck"]
-[ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Card/Icons/Damage.png" id="11_lr5n7"]
-[ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Card/Icons/Shield.png" id="12_4r546"]
-[ext_resource type="Texture2D" uid="uid://dslmxepbi7rae" path="res://assets/Card/Icons/skull.png" id="12_utrt8"]
-[ext_resource type="Texture2D" uid="uid://0un1v3txl4g7" path="res://assets/Card/Card/Icons/Vulnerable.png" id="13_4r546"]
-[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Card/Icons/Health.png" id="13_7hai3"]
-[ext_resource type="Texture2D" uid="uid://8f7nhd2p1vde" path="res://assets/Card/Card/Icons/Feeble.png" id="14_7hai3"]
+[ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="11_lr5n7"]
+[ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Icons/Shield.png" id="12_4r546"]
+[ext_resource type="Texture2D" uid="uid://0un1v3txl4g7" path="res://assets/Card/Icons/Vulnerable.png" id="13_4r546"]
+[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="13_7hai3"]
+[ext_resource type="Texture2D" uid="uid://8f7nhd2p1vde" path="res://assets/Card/Icons/Feeble.png" id="14_7hai3"]
 [ext_resource type="Texture2D" uid="uid://dwmvkbkwnjymf" path="res://assets/Card/Icons/Discard.png" id="14_7m80x"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="16_7m80x"]
 [ext_resource type="Shader" uid="uid://xt0mhmnlmr5x" path="res://src/UI/BlockText.gdshader" id="17_vglqt"]
-[ext_resource type="Texture2D" uid="uid://cq3jcn3yjscxt" path="res://assets/Card/Card/Icons/Moves.png" id="18_5jmab"]
+[ext_resource type="Texture2D" uid="uid://cq3jcn3yjscxt" path="res://assets/Card/Icons/Moves.png" id="18_5jmab"]
 [ext_resource type="Texture2D" uid="uid://ccablnn8jxip4" path="res://assets/Theme/silver_texture.png" id="18_g26p3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lij14"]
+load_path = "res://.godot/imported/skull.png-6f1409a3065c75b0e3c1c08ca7273477.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u756d"]
 draw_center = false
@@ -261,7 +263,7 @@ offset_top = -7.5
 offset_right = 17.0
 offset_bottom = 7.5
 grow_vertical = 2
-texture = ExtResource("12_utrt8")
+texture = SubResource("CompressedTexture2D_lij14")
 expand_mode = 1
 
 [node name="PoisonPreviewText" type="Label" parent="Frame/Previews/Debuff/PoisonPreview"]

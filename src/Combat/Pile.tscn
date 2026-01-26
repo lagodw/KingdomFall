@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cahuyqwtqssxu"]
 
 [ext_resource type="Script" uid="uid://ifvbm2gjls" path="res://src/Combat/Pile.gd" id="1_j4tm0"]
-[ext_resource type="Texture2D" uid="uid://cj1m8aroronnd" path="res://assets/Card/Card/Backs/CardBack_Red.png" id="2_h5fcg"]
+[ext_resource type="Texture2D" uid="uid://cj1m8aroronnd" path="res://assets/Card/Backs/CardBack_Red.png" id="2_h5fcg"]
 
 [node name="CardPile" type="Control"]
 layout_mode = 3

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5j7tlvn7ha63"
+path="res://.godot/imported/Hearthsong at the Oakwood Inn.mp3-223ae8ea0e6597c0f8dfac719631a650.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/Music/Hearthsong at the Oakwood Inn.mp3"
+dest_files=["res://.godot/imported/Hearthsong at the Oakwood Inn.mp3-223ae8ea0e6597c0f8dfac719631a650.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

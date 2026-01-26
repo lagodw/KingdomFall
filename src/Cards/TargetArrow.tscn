@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckitycmjwcwx7"]
 
-[ext_resource type="Script" uid="uid://bvdl0anrfsug6" path="res://src/Cards/TargetArrow.gd" id="1_73ee6"]
+[ext_resource type="Script" uid="uid://bdhiotatekn80" path="res://src/Cards/TargetArrow.gd" id="1_73ee6"]
 
 [node name="TargetLine" type="Line2D"]
 self_modulate = Color(0.490196, 0, 0, 1)
