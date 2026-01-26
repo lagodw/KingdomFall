@@ -169,15 +169,25 @@ func show_popups(value: bool = true, left_side: bool = false):
 		pop.global_position.x = global_position.x - 10 - pop.size.x
 	pop.global_position.y = min(global_position.y, get_viewport_rect().size.y - pop.size.y - 10)
 	
-func move_to(_target: Control, _animation: bool = true):
-	pass
+func move_to(target: Control, animation: bool = true):
+	var old_pos: Vector2 = global_position
+	if animation:
+		global_position = old_pos
+		reset_tween()
+		tween.tween_property(self, "global_position", target.global_position, kf.tween_time)
+		await tween.finished
+	if get_parent():
+		get_parent().remove_child(self)
+	target.add_child(self)
+	position = Vector2(0, 0)
+
 
 func _on_mouse_enter():
 	show_popups()
 	# don't do anything is another card is targeting
 	if ((kf.mouse_disabled and not $TargetLine.is_targeting) or (not visible)):
 		return
-	if get_parent() == Bus.PlayerHand and not kf.dragging:
+	if get_parent() == Bus.hand and not kf.dragging:
 		get_parent().set_card_focus(self, true)
 	if not kf.dragging and card_owner == "Player":
 		set_highlight(true)
@@ -185,7 +195,7 @@ func _on_mouse_enter():
 func _on_mouse_exit():
 	show_popups(false)
 	
-	if get_parent() == Bus.PlayerHand:
+	if get_parent() == Bus.hand:
 		get_parent().set_card_focus(self, false)
 	
 	if ((kf.mouse_disabled and not $TargetLine.is_targeting) or (

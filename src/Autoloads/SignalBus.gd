@@ -64,15 +64,11 @@ var snapshot_gold: int
 
 #var ui: UI
 var Board: Combat
-#var PlayerDeck: DeckNode
-#var EnemyDeck: DeckNode
-#var PlayerActivatedCards: ActivationBox
-#var EnemyActivatedCards: ActivationBox
+var draw: Pile
 var hand: Hand
-#var EnemyHand: Hand
 var Grid: UnitGrid
 #var Retreat: RetreatBox
-#var PlayerDiscard: Discard
+var discard: Pile
 #var EnemyDiscard: Discard
 #var PlayerFace: Face
 #var EnemyFace: Face

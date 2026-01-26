@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=5 format=3 uid="uid://dpbdi1nbjxtop"]
+
+[ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_ps1fl"]
+[ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_qnym2"]
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="3_60w4s"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_t0rs8"]
+
+[resource]
+script = ExtResource("4_t0rs8")
+upkeep = 1
+damage = 1
+health = 1
+shield = 0
+attack_type = 0
+armor_type = 0
+has_support = false
+combat_modifiers = Array[ExtResource("1_ps1fl")]([])
+default_animation = "sword"
+curses = Array[ExtResource("2_qnym2")]([])
+box_priority = "Hybrid"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+card_name = "Footman"
+card_type = "Unit"
+activation = 1
+tags = Array[int]([])
+text = ""
+effects = Array[ExtResource("3_60w4s")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

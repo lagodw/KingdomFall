@@ -66,6 +66,21 @@ func draw_card(card: Card) -> void:
 func on_reset_turn():
 	await get_tree().process_frame
 	update_z_indexes()
+		
+func discard():
+	var discarded_cards: Array[Card]
+	for card in get_children():
+		if card is Card:
+			var card_pos: Vector2 = card.global_position
+			remove_child(card)
+			get_tree().current_scene.add_child(card)
+			card.global_position = card_pos
+			discarded_cards.append(card)
+	discarded_cards.reverse()
+	for card in discarded_cards:
+		card.move_to(Bus.discard.cards)
+		await get_tree().create_timer(.05).timeout
+	await get_tree().create_timer(kf.tween_time*1.25).timeout
 
 func set_card_focus(card: Card, is_focused: bool) -> void:
 	if is_focused:

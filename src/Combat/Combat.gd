@@ -5,9 +5,13 @@ extends Control
 @onready var discard_pile: Pile = $Discard
 
 func _ready() -> void:
-	load_deck(Bus.deck)
+	draw_pile.load_deck(Bus.deck)
+	Bus.draw = draw_pile
+	Bus.discard = discard_pile
+	$EndTurn.pressed.connect(end_turn)
+	end_turn()
 
-func load_deck(deck: Deck) -> void:
-	for res in deck.cards:
-		var card = kf.create_card(res)
-		draw_pile.add_card(card)
+func end_turn():
+	await Bus.hand.discard()
+	draw_pile.draw_cards(5)
+	

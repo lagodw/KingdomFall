@@ -72,7 +72,7 @@ func Decks() -> Array[Control]:
 	
 func Hands() -> Array[Control]:
 	var subjects: Array[Control]
-	for card in Bus.PlayerHand.get_children() + Bus.EnemyHand.get_children():
+	for card in Bus.hand.get_children() + Bus.EnemyHand.get_children():
 		subjects.append(card)
 	return(subjects)
 

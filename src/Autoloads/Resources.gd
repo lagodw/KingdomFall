@@ -23,6 +23,8 @@ var cardart: ResourceGroup
 var twists: ResourceGroup
 var art: ResourceGroup
 var burdens: ResourceGroup
+var music: ResourceGroup
+var sfx: ResourceGroup
 
 ##### CARDS #####
 var card_label: PackedScene
@@ -54,6 +56,8 @@ const RESOURCE_MAP = {
 	#"twists": "uid://cqka11cda5an6",
 	#"art": "uid://bwleajy1yq78g",
 	#"burdens": "uid://b0clwu8e66uyx",
+	"music": "uid://bqbk7cku2sx87",
+	"sfx": "uid://cngvxc5tp7l8r",
 	#
 	#"card_label": "uid://bfbt12injyh4a",
 	"card": "uid://cd28vo6umqhig",

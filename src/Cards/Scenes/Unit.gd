@@ -88,6 +88,8 @@ func setup_upkeep():
 func move_to(target: Control, animation: bool = true):
 	if target is TokenSlot:
 		await play_token(target, animation)
+	else:
+		await super.move_to(target, animation)
 
 func play_token(target: TokenSlot, animation: bool = true):
 	if card_owner == "Enemy":

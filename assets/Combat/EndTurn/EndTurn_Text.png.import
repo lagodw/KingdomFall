@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtsb8nbhpq5yw"
-path="res://.godot/imported/Militia.png-3e572155695d2ac0ad697bc3491a4220.ctex"
+uid="uid://bnaxe2ykiimtm"
+path="res://.godot/imported/EndTurn_Text.png-c30831cfef932fe4b9c58274a272b8ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CardArt/Militia/Militia.png"
-dest_files=["res://.godot/imported/Militia.png-3e572155695d2ac0ad697bc3491a4220.ctex"]
+source_file="res://assets/Combat/EndTurn/EndTurn_Text.png"
+dest_files=["res://.godot/imported/EndTurn_Text.png-c30831cfef932fe4b9c58274a272b8ae.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

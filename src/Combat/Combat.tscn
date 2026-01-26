@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=11 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b307r73bvmxl0" path="res://src/Combat/UnitGrid.tscn" id="2_m70ga"]
 [ext_resource type="PackedScene" uid="uid://b8a6fsekofwdm" path="res://src/Combat/Hand.tscn" id="4_1dph2"]
 [ext_resource type="PackedScene" uid="uid://cahuyqwtqssxu" path="res://src/Combat/Pile.tscn" id="6_nthc5"]
+[ext_resource type="Texture2D" uid="uid://oxmwne2ge5mt" path="res://assets/Combat/EndTurn/EndTurn.png" id="7_yxnwc"]
+[ext_resource type="Texture2D" uid="uid://cialou463k85i" path="res://assets/Combat/EndTurn/EndTurn_Clicked.png" id="8_dyjub"]
+[ext_resource type="Texture2D" uid="uid://dbsx8ecfe07wd" path="res://assets/Combat/EndTurn/EndTurn_Hovered.png" id="9_55i6c"]
+[ext_resource type="Texture2D" uid="uid://bnaxe2ykiimtm" path="res://assets/Combat/EndTurn/EndTurn_Text.png" id="10_duo21"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -46,15 +50,15 @@ num_neutral_slots = 1
 
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
 layout_mode = 1
-offset_left = 604.0
-offset_top = 750.0
-offset_right = -831.0
-offset_bottom = -30.0
+offset_left = 396.0
+offset_top = 766.0
+offset_right = -1039.0
+offset_bottom = -14.0
 
 [node name="Draw" parent="." instance=ExtResource("6_nthc5")]
-offset_left = 245.0
+offset_left = 37.0
 offset_top = 750.0
-offset_right = 449.0
+offset_right = 241.0
 offset_bottom = 1054.0
 
 [node name="Discard" parent="." instance=ExtResource("6_nthc5")]
@@ -62,3 +66,25 @@ offset_left = 1714.0
 offset_top = 616.0
 offset_right = 1918.0
 offset_bottom = 920.0
+
+[node name="EndTurn" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1677.0
+offset_top = 473.0
+offset_right = 1936.0
+offset_bottom = 598.0
+texture_normal = ExtResource("7_yxnwc")
+texture_pressed = ExtResource("8_dyjub")
+texture_hover = ExtResource("9_55i6c")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="EndTurn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_duo21")
+expand_mode = 1

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://bqbk7cku2sx87"]
+
+[ext_resource type="Script" uid="uid://da1l0ib1csn4e" path="res://addons/godot_resource_groups/resource_group.gd" id="1_rntie"]
+
+[resource]
+script = ExtResource("1_rntie")
+base_folder = "res://assets/Audio/Music"
+includes = Array[String](["**"])
+excludes = Array[String]([])
+paths = Array[String](["res://assets/Audio/Music/Blades Before Dawn.mp3", "res://assets/Audio/Music/Echoes of the Hearthroad.mp3", "res://assets/Audio/Music/Embers Before the Storm.mp3", "res://assets/Audio/Music/Hearthsong at the Oakwood Inn.mp3", "res://assets/Audio/Music/Steel and Sigils.mp3", "res://assets/Audio/Music/Steel in the Morning.mp3", "res://assets/Audio/Music/Stone Echoes.mp3", "res://assets/Audio/Music/Trumpets After the Win.mp3"])
+metadata/_custom_type_script = "uid://da1l0ib1csn4e"

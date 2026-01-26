@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://cngvxc5tp7l8r"]
+
+[ext_resource type="Script" uid="uid://da1l0ib1csn4e" path="res://addons/godot_resource_groups/resource_group.gd" id="1_a8srs"]
+
+[resource]
+script = ExtResource("1_a8srs")
+base_folder = "res://assets/Audio/SFX"
+includes = Array[String](["**"])
+excludes = Array[String]([])
+paths = Array[String](["res://assets/Audio/SFX/AnvilStrike.wav", "res://assets/Audio/SFX/Arrow.mp3", "res://assets/Audio/SFX/CardFlick.mp3", "res://assets/Audio/SFX/CardFlickThump.mp3", "res://assets/Audio/SFX/Death.mp3", "res://assets/Audio/SFX/Drum.mp3", "res://assets/Audio/SFX/Spell.mp3", "res://assets/Audio/SFX/SwordSlice.mp3", "res://assets/Audio/SFX/Thud.mp3", "res://assets/Audio/SFX/TrumpetCall.mp3"])
+metadata/_custom_type_script = "uid://da1l0ib1csn4e"
