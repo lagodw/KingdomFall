@@ -9,13 +9,45 @@ extends VBoxContainer
 @export var num_player_slots: int = 2
 
 func _ready() -> void:
-	var even: bool = false
+	Bus.Grid = self
 	for i in num_files:
-		add_file(even)
-		even = not even
+		add_file()
+	Bus.trigger_occurred.connect(on_trigger)
 
-func add_file(even: bool):
+func on_trigger(trigger: String, _trigger_card: Control):
+	if trigger in ['target', 'cast', 'discard', 'attach', 'move', 'consume_used']:
+		update_previews()
+		
+func add_file():
 	var file: UnitFile = file_scene.instantiate()
 	add_child(file)
 	file.create_slots(num_player_slots, num_neutral_slots, 
-			num_enemy_slots, even)
+			num_enemy_slots)
+
+func deploy_enemy_rank(rank: EnemyRank):
+	var i: int = 0
+	for res in rank.units:
+		var unit: Unit = kf.create_card(res, "Enemy")
+		Bus.Board.get_node("Enemy").add_child(unit)
+		await get_tree().process_frame
+		get_child(i).add_enemy_unit(unit)
+		i += 1
+	
+func calculate_slot_distance(slot1: TokenSlot, slot2: TokenSlot) -> int:
+	if slot1.file == slot2.file:
+		return(abs(slot1.get_index() - slot2.get_index()))
+	else:
+		return(abs(slot1.file.get_index() - slot2.file.get_index()))
+
+func start_combat():
+	for file: UnitFile in get_children():
+		await file.start_attacks()
+
+func reset_previews() -> void:
+	get_tree().call_group("Tokens", "reset_remaining")
+	
+func update_previews() -> void:
+	reset_previews()
+	await get_tree().process_frame
+	for file: UnitFile in get_children():
+		file.update_previews()

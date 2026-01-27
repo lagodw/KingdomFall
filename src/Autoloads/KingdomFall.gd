@@ -45,7 +45,7 @@ func copy_deck(deck: Deck) -> Deck:
 	var new_deck = deck.dupe()
 	return(new_deck)
 	
-func create_card(card_resource: CardResource) -> Card:
+func create_card(card_resource: CardResource, card_owner: String = "Player") -> Card:
 	var newcard: Card
 	if card_resource is UnitResource:
 		newcard = R.unit.instantiate()
@@ -59,6 +59,7 @@ func create_card(card_resource: CardResource) -> Card:
 	elif card_resource is ConsumeResource:
 		newcard = R.consume.instantiate()
 	newcard.card_resource = card_resource
+	newcard.card_owner = card_owner
 	return(newcard)
 	
 func create_label(card_resource: CardResource, card_owner: String = "Player") -> CardLabel:

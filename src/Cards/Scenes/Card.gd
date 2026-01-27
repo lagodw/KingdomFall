@@ -310,9 +310,10 @@ func discard():
 	# prevent arrow from targeting as card is being discarded
 	disabled = true
 	# could already be turned to label if board effect
-	if get_parent() != label:
-		turn_to_label()
-	label.discard()
+	#if get_parent() != label:
+		#turn_to_label()
+	#label.discard()
+	queue_free()
 	
 ## reset a card's act ability
 ## used in spells to gray out non castable
@@ -328,6 +329,11 @@ func get_bg_color() -> String:
 	if not can_act:
 		color_name = "NoAct"
 	else:
+		if card_type == "Unit":
+			if card_owner == "Player":
+				return("Blue")
+			else:
+				return("Red")
 		color_name = card_type
 	return(kf.color_map[color_name])
 

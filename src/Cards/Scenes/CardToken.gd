@@ -393,9 +393,9 @@ func attack_animation(target: CardToken) -> void:
 	z_index = 10
 	$Animation.visible = true
 	var orig_position = global_position
-	var direction = "E"
+	var direction = "W"
 	if card_owner == "Enemy":
-		direction = "W"
+		direction = "E"
 	var track = "attack_%s"%direction
 	var anim : Animation = player.get_animation(track)
 	var length = anim.length

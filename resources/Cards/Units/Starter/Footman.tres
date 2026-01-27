@@ -8,9 +8,11 @@
 [resource]
 script = ExtResource("4_t0rs8")
 upkeep = 1
-damage = 1
-health = 1
+damage = 5
+health = 12
 shield = 0
+attack_range = 1
+speed = 4
 attack_type = 0
 armor_type = 0
 has_support = false

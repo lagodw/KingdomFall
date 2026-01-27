@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=14 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dbsx8ecfe07wd" path="res://assets/Combat/EndTurn/EndTurn_Hovered.png" id="9_55i6c"]
 [ext_resource type="Texture2D" uid="uid://bnaxe2ykiimtm" path="res://assets/Combat/EndTurn/EndTurn_Text.png" id="10_duo21"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="11_dyjub"]
+[ext_resource type="Script" uid="uid://02o7a8o8wjjd" path="res://src/Combat/Enemy.gd" id="12_55i6c"]
+[ext_resource type="Resource" uid="uid://d3024l3wyhs5m" path="res://resources/Enemies/TestEnemy.tres" id="13_duo21"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -47,8 +49,6 @@ offset_left = 1079.0
 offset_top = 238.0
 offset_right = 1504.0
 offset_bottom = 838.0
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
 num_neutral_slots = 1
 
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
@@ -99,3 +99,12 @@ anchor_right = 0.0
 offset_left = 0.0
 offset_right = 1920.0
 grow_horizontal = 1
+
+[node name="Enemy" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1019.0
+offset_top = 482.0
+offset_right = 1019.0
+offset_bottom = 482.0
+script = ExtResource("12_55i6c")
+res = ExtResource("13_duo21")

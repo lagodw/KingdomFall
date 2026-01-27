@@ -11,7 +11,6 @@ enum SlotType {
 }
 
 @export var slot_type: SlotType
-var dark_floor: bool = false
 var occupied_unit: CardToken = null:
 	set(value):
 		occupied_unit = value
@@ -69,7 +68,7 @@ func show_highlight(highlight: bool = true):
 	$Border.visible = highlight
 	
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	if slot_type == SlotType.Player:
+	if slot_type == SlotType.Player and not occupied_unit:
 		show_highlight(true)
 		return(true)
 	return(false)
@@ -87,3 +86,14 @@ func get_occupied_unit_data() -> Unit:
 	if occupied_unit:
 		return occupied_unit
 	return null
+
+func get_next_slot(towards_gate: bool = true) -> TokenSlot:
+	var idx = get_index()
+	if idx >= file.box.get_child_count() - 1 or idx <= 0:
+		return(null)
+	var next_idx: int = idx
+	if towards_gate:
+		next_idx += 1
+	else:
+		next_idx -= 1
+	return(file.box.get_children()[next_idx])

@@ -382,6 +382,47 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Attack_Range" type="TextureRect" parent="Frame/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(21, 16)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/HBoxContainer/Attack_Range"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -4.5
+offset_right = 10.0
+offset_bottom = 4.5
+grow_vertical = 2
+texture = ExtResource("18_5jmab")
+expand_mode = 1
+
+[node name="Attack_RangeText" type="Label" parent="Frame/HBoxContainer/Attack_Range"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -10.0
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_sclck")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BottomBox" type="HBoxContainer" parent="Frame"]
 layout_mode = 1
 anchors_preset = 12

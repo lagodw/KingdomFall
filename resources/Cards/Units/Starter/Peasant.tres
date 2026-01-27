@@ -8,9 +8,11 @@
 [resource]
 script = ExtResource("4_mh4cb")
 upkeep = 1
-damage = 1
-health = 1
+damage = 3
+health = 8
 shield = 0
+attack_range = 1
+speed = 6
 attack_type = 0
 armor_type = 0
 has_support = false

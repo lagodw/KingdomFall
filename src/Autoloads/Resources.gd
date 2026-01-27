@@ -84,8 +84,9 @@ func load_resources_threaded():
 	loading_requests.clear()
 	
 	# Configure threading based on available cores
-	var processor_count = OS.get_processor_count()
-	var use_sub_threads = processor_count > 1
+	#var processor_count = OS.get_processor_count()
+	#var use_sub_threads = processor_count > 1
+	var use_sub_threads = true
 	
 	# Prepare and start loading requests
 	for resource_name in RESOURCE_MAP:

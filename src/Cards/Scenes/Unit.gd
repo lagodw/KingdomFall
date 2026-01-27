@@ -8,6 +8,7 @@ var base_health: int
 var base_damage: int
 var base_shield: int
 var base_activation: int
+var base_attack_range: int
 var base_speed: int
 var current_health: int:
 	set(val):
@@ -39,6 +40,14 @@ var max_shield: int:
 		else:
 			show_shield(false)
 		compare_stat("Shield", current_shield, max_shield)
+var current_attack_range: int:
+	set(val):
+		current_attack_range = clamp(val, 0, max_attack_range)
+		compare_stat("Attack_Range", current_attack_range, max_attack_range)
+var max_attack_range: int:
+	set(val):
+		max_attack_range = max(0, val)
+		compare_stat("Attack_Range", current_attack_range, max_attack_range)
 var current_speed: int:
 	set(val):
 		current_speed = clamp(val, 0, max_speed)
@@ -73,7 +82,7 @@ func class_setup():
 	has_support = card_resource.has_support
 
 func setup_stats():
-	for stat in ['health', 'damage', 'shield', 'activation', 'speed']:
+	for stat in ['health', 'damage', 'shield', 'activation', 'attack_range', 'speed']:
 		set("base_%s"%stat, card_resource.get(stat))
 		set("max_%s"%stat, card_resource.get(stat))
 		set("current_%s"%stat, card_resource.get(stat))
@@ -81,6 +90,7 @@ func setup_stats():
 	if current_shield > 0 and pop:
 		pop.create_keyword_popup("Shield")
 	setup_complete = true
+	#print(max_attack_range)
 
 func setup_upkeep():
 	%CostText.text = str(card_resource.upkeep)
@@ -99,7 +109,9 @@ func play_token(target: TokenSlot, animation: bool = true):
 		Audio.play_sfx("TrumpetCall")
 	set_flip_card(true)
 	token.reset_remaining()
-	remove_child(token)
+	if token.get_parent():
+		if token.get_parent() == self:
+			remove_child(token)
 	get_parent().remove_child(self)
 	token.add_child(self)
 	visible = false
@@ -151,6 +163,9 @@ func set_Damage_text(value: int) -> void:
 	
 func set_Shield_text(value: int) -> void:
 	%ShieldText.text = str(value)
+	
+func set_Attack_Range_text(value: int) -> void:
+	%RangeText.text = str(value)
 	
 func set_Speed_text(value: int) -> void:
 	%SpeedText.text = str(value)
