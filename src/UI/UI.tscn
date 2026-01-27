@@ -54,12 +54,14 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="healthIcon" type="TextureRect" parent="Stats"]
+visible = false
 layout_mode = 2
 texture = ExtResource("8_w1jl2")
 expand_mode = 3
 
 [node name="healthAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -176,6 +178,7 @@ title = "Gold"
 description = "Can be used to buy stuff."
 
 [node name="HealthArea" type="Control" parent="Tooltips"]
+visible = false
 anchors_preset = 0
 offset_left = 1397.0
 offset_right = 1500.0

@@ -13,6 +13,7 @@ signal take_snapshot
 signal restart_turn
 signal currency_changed(currency: String, old_amt: int, change: int)
 signal map_scale_changed(new_scale: float)
+signal energy_changed
 
 var map: Control
 var player: Player
@@ -67,14 +68,11 @@ var Board: Combat
 var draw: Pile
 var hand: Hand
 var Grid: UnitGrid
-#var Retreat: RetreatBox
 var discard: Pile
-#var EnemyDiscard: Discard
-#var PlayerFace: Face
-#var EnemyFace: Face
-#var PlayerEffects: EffectBox
-#var EnemyEffects: EffectBox
-#var enemy: Enemy
+var energy: int:
+	set(val):
+		energy = val
+		emit_signal("energy_changed")
 
 ########################################
 
@@ -86,8 +84,6 @@ func _ready() -> void:
 	scene_changed.connect(reset_vars)
 
 func reset_vars() -> void:
-	var node_list = ["Board", "PlayerDeck", "EnemyDeck", "PlayerActivatedCards",
-	"EnemyActivatedCards", "PlayerHand", "EnemyHand", "Grid", "PlayerDiscard",
-	"EnemyDiscard", "PlayerFace", "EnemyFace", "PlayerEffects", "EnemyEffects", "enemy"]
+	var node_list = ["Board", "ui", "draw", "discard", "hand", "Grid"]
 	for node in node_list:
 		set(node, null)

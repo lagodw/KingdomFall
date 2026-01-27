@@ -67,8 +67,8 @@ func add_token(token: CardToken):
 func show_highlight(highlight: bool = true):
 	$Border.visible = highlight
 	
-func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	if slot_type == SlotType.Player and not occupied_unit:
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	if slot_type == SlotType.Player and not occupied_unit and data.current_activation <= Bus.energy:
 		show_highlight(true)
 		return(true)
 	return(false)

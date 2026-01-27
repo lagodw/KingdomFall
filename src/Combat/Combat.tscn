@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=17 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://02o7a8o8wjjd" path="res://src/Combat/Enemy.gd" id="12_55i6c"]
 [ext_resource type="Resource" uid="uid://d3024l3wyhs5m" path="res://resources/Enemies/TestEnemy.tres" id="13_duo21"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="14_bx2u5"]
+[ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Icons/Activation.png" id="15_3cf12"]
+[ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="16_whu61"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -54,9 +56,9 @@ num_neutral_slots = 1
 
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
 layout_mode = 1
-offset_left = 412.0
+offset_left = 530.0
 offset_top = 750.0
-offset_right = -1023.0
+offset_right = -905.0
 offset_bottom = -30.0
 
 [node name="Draw" parent="." instance=ExtResource("6_nthc5")]
@@ -112,3 +114,26 @@ res = ExtResource("13_duo21")
 
 [node name="Escape" parent="." instance=ExtResource("14_bx2u5")]
 visible = false
+
+[node name="Energy" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 823.0
+offset_right = 479.0
+offset_bottom = 1036.0
+texture = ExtResource("15_3cf12")
+expand_mode = 1
+
+[node name="EnergyText" type="Label" parent="Energy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("16_whu61")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 128
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1

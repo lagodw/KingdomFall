@@ -22,6 +22,8 @@ func draw_cards(num: int):
 	for i in num:
 		if cards.get_child_count() == 0:
 			await Bus.discard.shuffle_discard()
+		if cards.get_child_count() == 0:
+			return
 		var card = cards.get_child(0)
 		Bus.hand.draw_card(card)
 		

@@ -106,7 +106,10 @@ func play_token(target: TokenSlot, animation: bool = true):
 		if tween:
 			tween.kill()
 	if card_owner == "Player":
+		if current_activation > Bus.energy:
+			return
 		Audio.play_sfx("TrumpetCall")
+		Bus.energy -= current_activation
 	set_flip_card(true)
 	token.reset_remaining()
 	if token.get_parent():
@@ -213,6 +216,8 @@ func revert_to_snapshot() -> void:
 
 func _get_drag_data(_at_position: Vector2):
 	if card_owner == "Enemy" or not can_act or disabled: 
+		return null
+	if current_activation > Bus.energy:
 		return null
 	Audio.play_sfx("CardFlick")
 	visible = false
