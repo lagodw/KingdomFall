@@ -41,12 +41,15 @@ func find_next_target(attacker: CardToken = null, real: bool = true) -> CardToke
 			break
 		next_slot = next_slot.get_next_slot(towards_gate)
 		if not next_slot:
+			if attacker.card_owner == "Enemy":
+				return(Bus.gate)
 			return(null)
 		if not next_slot.occupied_unit:
 			continue
 		var next_unit: CardToken = next_slot.occupied_unit
 		if next_unit.get(health_var) > 0 and next_unit.card_owner != attacker.card_owner:
 			return(next_unit)
+			
 	return(null)
 
 func combat(real: bool = true):

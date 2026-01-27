@@ -219,6 +219,8 @@ func _get_drag_data(_at_position: Vector2):
 		return null
 	if current_activation > Bus.energy:
 		return null
+	if get_tree().paused:
+		return(null)
 	Audio.play_sfx("CardFlick")
 	visible = false
 	kf.dragging = self

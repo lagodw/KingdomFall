@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://k4x5rr75uoch"]
 
-[ext_resource type="Script" path="res://src/UI/EscapeMenu.gd" id="1_773g6"]
+[ext_resource type="Script" uid="uid://dsqfkckxaokiw" path="res://src/UI/EscapeMenu.gd" id="1_773g6"]
 [ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="2_1yuj1"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="3_hh72s"]
 [ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="4_773g6"]
-[ext_resource type="PackedScene" path="res://src/UI/SettingsMenu.tscn" id="5_hh72s"]
+[ext_resource type="PackedScene" uid="uid://dgfnwmx31wba3" path="res://src/UI/SettingsMenu.tscn" id="5_hh72s"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_544ym"]
 texture = ExtResource("2_1yuj1")

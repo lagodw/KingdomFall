@@ -89,7 +89,8 @@ func get_occupied_unit_data() -> Unit:
 
 func get_next_slot(towards_gate: bool = true) -> TokenSlot:
 	var idx = get_index()
-	if idx >= file.box.get_child_count() - 1 or idx <= 0:
+	if (idx >= file.box.get_child_count() - 1 and towards_gate) or (
+			idx <= 0 and not towards_gate):
 		return(null)
 	var next_idx: int = idx
 	if towards_gate:

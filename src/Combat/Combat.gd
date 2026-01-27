@@ -30,3 +30,6 @@ func end_turn():
 
 func update_energy():
 	energy_txt.text = str(Bus.energy)
+
+func game_over():
+	$GameOver.appear()

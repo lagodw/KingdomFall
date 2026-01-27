@@ -163,9 +163,6 @@ func take_damage(dmg = 0, damaging_card: Card = null, blocked_by_shield: bool = 
 		ee.emit_signal("killing_blow", damaging_card, self)
 		ee.discard_card(self)
 	else:
-		#if current_shield == 0:
-			#max_shield = 0
-			#base_shield = 0
 		refresh_stats_labels()
 
 func show_popups(value: bool = true, _left_side: bool = false):

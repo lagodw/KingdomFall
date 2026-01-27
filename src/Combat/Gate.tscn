@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhlijfvm4rjj5"]
+
+[ext_resource type="Texture2D" uid="uid://bgv61ib3ek7fc" path="res://assets/Combat/Gate.png" id="1_c4xnp"]
+[ext_resource type="Script" uid="uid://dufgs1wli0k0d" path="res://src/Combat/Gate.gd" id="1_iijvo"]
+[ext_resource type="PackedScene" uid="uid://64ksoqa1gi7w" path="res://src/Cards/Scenes/CardToken.tscn" id="1_vypth"]
+
+[node name="Gate" instance=ExtResource("1_vypth")]
+offset_right = 150.0
+offset_bottom = 300.0
+script = ExtResource("1_iijvo")
+
+[node name="CardArt" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c4xnp")
+
+[node name="Frame" parent="." index="1"]
+texture = null
+
+[node name="Previews" parent="Frame" index="0"]
+offset_left = 25.0
+offset_top = 102.0
+offset_right = 112.0
+offset_bottom = 176.0
+
+[node name="HealthPreview" parent="Frame/Previews/Life" index="0"]
+custom_minimum_size = Vector2(87, 50)
+
+[node name="TextureRect" parent="Frame/Previews/Life/HealthPreview" index="0"]
+offset_left = 4.0
+offset_top = -15.0
+offset_right = 34.0
+offset_bottom = 15.0
+
+[node name="HealthPreviewText" parent="Frame/Previews/Life/HealthPreview" index="1"]
+offset_left = -60.0
+offset_top = -30.0
+offset_right = 4.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 42
+
+[node name="Skull" parent="Frame" index="1"]
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 51.0
+offset_bottom = 51.0
+
+[node name="Shadow" parent="Frame/HBoxContainer" index="0"]
+visible = false
+
+[node name="Speed" parent="Frame/HBoxContainer" index="1"]
+visible = false
+
+[node name="BottomBox" parent="Frame" index="3"]
+offset_left = -6.0
+offset_top = -77.0
+offset_right = -14.0
+offset_bottom = -27.0
+
+[node name="Damage" parent="Frame/BottomBox" index="0"]
+visible = false
+
+[node name="Shield" parent="Frame/BottomBox" index="2"]
+visible = false
+
+[node name="Health" parent="Frame/BottomBox" index="3"]
+custom_minimum_size = Vector2(87, 50)
+
+[node name="TextureRect" parent="Frame/BottomBox/Health" index="0"]
+offset_left = 4.0
+offset_top = -15.0
+offset_right = 34.0
+offset_bottom = 15.0
+
+[node name="HealthText" parent="Frame/BottomBox/Health" index="1"]
+offset_left = -60.0
+offset_top = -30.0
+offset_right = 4.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 42

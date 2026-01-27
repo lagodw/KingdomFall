@@ -76,6 +76,9 @@ func discard():
 			get_tree().current_scene.add_child(card)
 			card.global_position = card_pos
 			discarded_cards.append(card)
+		# potential spacing controls not cleared
+		else:
+			card.queue_free()
 	discarded_cards.reverse()
 	for card in discarded_cards:
 		card.move_to(Bus.discard.cards)
