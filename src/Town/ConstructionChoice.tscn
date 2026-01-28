@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://ky4h0wpdmvoj"]
+
+[ext_resource type="Script" uid="uid://cc8gw0a56ckjd" path="res://src/Town/ConstructionChoice.gd" id="1_1y4ye"]
+[ext_resource type="Texture2D" uid="uid://c5vuv1nmcxxf4" path="res://assets/Buildings/Farm.png" id="1_beqjw"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="2_1y4ye"]
+
+[node name="ConstructionChoice" type="Button"]
+custom_minimum_size = Vector2(0, 150)
+offset_right = 616.0
+offset_bottom = 150.0
+script = ExtResource("1_1y4ye")
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Icon" type="TextureRect" parent="H"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_beqjw")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="H"]
+layout_mode = 2
+theme = ExtResource("2_1y4ye")
+text = "Farm"
+
+[node name="Description" type="Label" parent="H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_1y4ye")
+text = "provides food"
+autowrap_mode = 3

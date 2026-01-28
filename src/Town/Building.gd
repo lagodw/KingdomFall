@@ -7,7 +7,7 @@ extends Button
 @onready var token_grid: GridContainer = %TokenGrid
 @onready var popup: TextureRect = $Popup
 
-@export var res: BuildingResource
+@export var resource: BuildingResource
 
 var capacity: int:
 	set(val):
@@ -28,8 +28,13 @@ func _ready() -> void:
 func setup():
 	if get_tree().current_scene is not Town:
 		return
-	capacity = res.capacity
-	%Description.text = res.description
+	var construction_left: int = resource.construction_cost - resource.current_construction
+	if construction_left <= 0:
+		capacity = resource.capacity
+	else:
+		capacity = construction_left
+		$UnderConstruction.visible = true
+	%Description.text = resource.description
 	remove_child(popup)
 	get_tree().current_scene.call_deferred("add_child", popup)
 	set_popup_position()
@@ -58,7 +63,7 @@ func update_capacity():
 
 func set_art():
 	var texture: Texture = R.building_art.get_matching_resource(
-			["**%s.png"%res.building_name])[0]
+			["**%s.png"%resource.building_name])[0]
 	$Art.texture = texture
 	
 func setup_slots():

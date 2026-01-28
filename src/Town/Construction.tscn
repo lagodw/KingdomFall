@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://df7bb45nih6i8"]
+
+[ext_resource type="Script" uid="uid://c4xb6qtdrvdhp" path="res://src/Town/Construction.gd" id="1_7rs7i"]
+[ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="2_wmiud"]
+[ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="4_7rs7i"]
+[ext_resource type="Texture2D" uid="uid://dah1rs43s1nm2" path="res://assets/UI/Buttons/Plus/Plus_Button.png" id="4_b3nrj"]
+[ext_resource type="Texture2D" uid="uid://dgmqg6qwcojqw" path="res://assets/UI/Buttons/Plus/Plus_Button_pressed.png" id="5_5xxi6"]
+[ext_resource type="Texture2D" uid="uid://biwqrd1c8sv1m" path="res://assets/UI/Buttons/Plus/Plus_Button_hovered.png" id="6_spaso"]
+[ext_resource type="Texture2D" uid="uid://65bnceigndlw" path="res://assets/UI/Buttons/Plus/Plus_Button_disabled.png" id="7_16u13"]
+
+[node name="Construction" type="Button"]
+custom_minimum_size = Vector2(250, 250)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1670.0
+offset_bottom = -830.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7rs7i")
+
+[node name="ConstructionPanel" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1489.0
+offset_bottom = 755.0
+texture = ExtResource("2_wmiud")
+expand_mode = 1
+
+[node name="Cancel" type="Button" parent="ConstructionPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -107.0
+offset_right = 92.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_7rs7i")
+theme_override_font_sizes/font_size = 32
+text = "Cancel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ConstructionPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -150.0
+grow_horizontal = 2
+
+[node name="Choices" type="VBoxContainer" parent="ConstructionPanel/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture_normal = ExtResource("4_b3nrj")
+texture_pressed = ExtResource("5_5xxi6")
+texture_hover = ExtResource("6_spaso")
+texture_disabled = ExtResource("7_16u13")
+ignore_texture_size = true
+stretch_mode = 0

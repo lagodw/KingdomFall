@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2e28fvpdufxt"]
+[gd_scene load_steps=8 format=3 uid="uid://2e28fvpdufxt"]
 
 [ext_resource type="Texture2D" uid="uid://c5vuv1nmcxxf4" path="res://assets/Buildings/Farm.png" id="1_286lr"]
 [ext_resource type="Script" uid="uid://h2ihf5bt4qi8" path="res://src/Town/Building.gd" id="1_p6hl2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="4_lsdw1"]
 [ext_resource type="Texture2D" uid="uid://bqaqhsh05lktm" path="res://assets/UI/paper.png" id="5_x61nd"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_55514"]
+[ext_resource type="Texture2D" uid="uid://dah1rs43s1nm2" path="res://assets/UI/Buttons/Plus/Plus_Button.png" id="7_55514"]
 
 [node name="Building" type="Button"]
 custom_minimum_size = Vector2(250, 250)
@@ -113,3 +114,13 @@ layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 5
 columns = 3
+
+[node name="UnderConstruction" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 62.0
+offset_right = 204.0
+offset_bottom = 208.0
+texture = ExtResource("7_55514")
+expand_mode = 1

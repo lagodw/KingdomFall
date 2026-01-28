@@ -12,7 +12,7 @@ func _input(event):
 		elif not event.is_pressed() and event.get_button_index() == 2:
 			if $TargetLine.is_targeting:
 				kf.mouse_disabled = false
-				var result = targeting_arrow.complete_targeting()
+				targeting_arrow.complete_targeting()
 			elif highlighted:
 				ee.emit_signal("consume_used", self)
 			set_highlight(false)
