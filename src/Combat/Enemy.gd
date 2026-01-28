@@ -2,15 +2,17 @@ class_name Enemy
 extends Control
 
 @export var res: EnemyResource
+var enemy_dupe: EnemyResource
 
-#func _ready() -> void:
-	#ee.start_turn.connect(on_turn_start)
+func _ready() -> void:
+	enemy_dupe = res.dupe()
+	Bus.trigger_occurred.connect(on_trigger)
 
 func on_turn_start(_turn_num: int):
 	await move_units_forward()
-	if res.ranks.size() == 0:
+	if enemy_dupe.ranks.size() == 0:
 		return
-	var next_rank: EnemyRank = res.ranks.pop_front()
+	var next_rank: EnemyRank = enemy_dupe.ranks.pop_front()
 	Bus.Grid.deploy_enemy_rank(next_rank)
 
 func move_units_forward():
@@ -32,3 +34,14 @@ func move_unit_forward(token: CardToken):
 	if next_slot.occupied_unit:
 		return
 	token.move_to(next_slot)
+
+func on_trigger(trigger: String, trigger_card: Control):
+	# Check if no enemy units left
+	if trigger == "discard":
+		if trigger_card.card_owner == "Enemy":
+			if enemy_dupe.ranks.size() > 0:
+				return
+			for unit: CardToken in Bus.Grid.get_units():
+				if unit.card_owner == "Enemy":
+					return
+		Bus.Board.combat_won()

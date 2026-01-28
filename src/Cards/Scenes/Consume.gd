@@ -4,8 +4,16 @@ extends Card
 func _input(event):
 	# right click = target or cast spell
 	if event is InputEventMouseButton and card_owner == "Player":
-		if not event.is_pressed() and event.get_button_index() == 2:
-			if highlighted:
+		if event.is_pressed() and event.get_button_index() == 2 and highlighted:
+			var target_effects = get_trigger_effects("target")
+			if target_effects:
+				kf.mouse_disabled = true
+				targeting_arrow.initiate_targeting(target_effects)
+		elif not event.is_pressed() and event.get_button_index() == 2:
+			if $TargetLine.is_targeting:
+				kf.mouse_disabled = false
+				var result = targeting_arrow.complete_targeting()
+			elif highlighted:
 				ee.emit_signal("consume_used", self)
 			set_highlight(false)
 

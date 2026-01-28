@@ -3,9 +3,9 @@ extends Control
 
 @onready var cards: Control = $Cards
 
-func load_deck(deck: Deck):
-	for res in deck.cards:
-		var card = kf.create_card(res)
+func load_deck(cards: Array[CardResource]):
+	for resource in cards:
+		var card = kf.create_card(resource)
 		add_card(card)
 	shuffle()
 

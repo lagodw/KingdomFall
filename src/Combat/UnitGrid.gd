@@ -29,7 +29,6 @@ func deploy_enemy_rank(rank: EnemyRank):
 	for res in rank.units:
 		var unit: Unit = kf.create_card(res, "Enemy")
 		Bus.Board.get_node("Enemy").add_child(unit)
-		await get_tree().create_timer(2).timeout
 		get_child(lane_num).add_enemy_unit(unit)
 		await get_tree().process_frame
 		lane_num += 1
@@ -52,3 +51,13 @@ func update_previews() -> void:
 	await get_tree().process_frame
 	for file: UnitFile in get_children():
 		file.update_previews()
+
+func get_units(card_owner: String = "All") -> Array[CardToken]:
+	var units: Array[CardToken]
+	for file in get_children():
+		for slot: TokenSlot in file.box.get_children():
+			if slot.occupied_unit:
+				var unit = slot.occupied_unit
+				if unit.card_owner == card_owner or card_owner == "All":
+					units.append(slot.occupied_unit)
+	return(units)

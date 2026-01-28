@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=24 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dhlijfvm4rjj5" path="res://src/Combat/Gate.tscn" id="17_whu61"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="18_7vgw0"]
 [ext_resource type="PackedScene" uid="uid://cngo42s45sirp" path="res://src/Combat/GameOver.tscn" id="18_wbuvy"]
+[ext_resource type="PackedScene" uid="uid://ddu14f5y2d8sj" path="res://src/Combat/CombatWon.tscn" id="23_vywh8"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -240,3 +241,11 @@ visible = false
 
 [node name="GameOver" parent="." instance=ExtResource("18_wbuvy")]
 visible = false
+
+[node name="CombatWon" parent="." instance=ExtResource("23_vywh8")]
+visible = false
+layout_mode = 1
+offset_left = 491.0
+offset_top = 40.0
+offset_right = -323.0
+offset_bottom = -39.0

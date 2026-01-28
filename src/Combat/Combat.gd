@@ -40,6 +40,11 @@ func game_over():
 	$GameOver.appear()
 
 func start_combat():
+	var non_units: Array[CardResource]
+	for resource in Bus.deck.cards:
+		if resource is not UnitResource:
+			non_units.append(resource)
+	draw_pile.load_deck(non_units)
 	for card: Card in $ArmyChoice/FightPanel.box.get_children():
 		army.append(card.card_resource)
 		var old_pos: Vector2 = card.global_position
@@ -54,3 +59,8 @@ func start_combat():
 	await get_tree().create_timer(kf.tween_time * 1.5).timeout
 	draw_pile.shuffle()
 	end_turn()
+
+func combat_won():
+	get_tree().paused = true
+	combat_over = true
+	$CombatWon.visible = true

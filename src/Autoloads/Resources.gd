@@ -71,7 +71,7 @@ const RESOURCE_MAP = {
 	#"burden": "uid://bldvkx4hqe5yh",
 	"token": "uid://64ksoqa1gi7w",
 	#"equip_item": "uid://bvghc6u3bwmci",
-	#"consume": "uid://ibxnexqptvkq",
+	"consume": "uid://cs22w1p7m5pn3",
 
 	"loading_scene": "uid://bfoyg5g1vd7mh",
 	"tooltip": "uid://2gd3eej6fvla"
