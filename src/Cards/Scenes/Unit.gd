@@ -111,14 +111,16 @@ func play_token(target: TokenSlot, animation: bool = true):
 		Audio.play_sfx("TrumpetCall")
 		Bus.energy -= current_activation
 	set_flip_card(true)
+	scale = Vector2.ONE
+	var old_pos: Vector2 = global_position
 	token.reset_remaining()
 	if token.get_parent():
 		if token.get_parent() == self:
 			remove_child(token)
 	get_parent().remove_child(self)
 	token.add_child(self)
+	token.global_position = old_pos
 	visible = false
-	scale = Vector2.ONE
 	var mouse_position: bool = (card_owner == "Player")
 	token.move_to(target, animation, mouse_position)
 	ee.emit_signal("play", token)
@@ -219,8 +221,9 @@ func _get_drag_data(_at_position: Vector2):
 		return null
 	if (get_tree().current_scene is Combat and current_activation > Bus.energy):
 		return null
-	if get_tree().paused:
-		return(null)
+	if Bus.Board:
+		if Bus.Board.combat_over:
+			return
 	Audio.play_sfx("CardFlick")
 	visible = false
 	kf.dragging = self
@@ -242,6 +245,7 @@ func _get_drag_data(_at_position: Vector2):
 	preview.get_node("Frame/Previews").visible = false
 	preview.get_node("Frame/Skull").visible = false
 	control.add_child(preview)
+	control.z_index = 999
 	preview.position = -0.5 * preview.size
 	set_drag_preview(control)
 	return self

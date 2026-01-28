@@ -25,6 +25,8 @@ func _ready() -> void:
 	Bus.new_scene_loaded.connect(setup)
 		
 func setup():
+	if get_tree().current_scene is not Town:
+		return
 	capacity = res.capacity
 	%Description.text = res.description
 	remove_child(popup)

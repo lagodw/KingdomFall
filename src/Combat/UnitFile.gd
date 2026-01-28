@@ -25,9 +25,11 @@ func get_units(_unit_owner: String) -> Array[CardToken]:
 func add_enemy_unit(unit: Unit) -> void:
 	var slots = box.get_children()
 	slots.reverse()
+	var target_slot: TokenSlot
 	for slot: TokenSlot in slots:
 		if slot.slot_type == TokenSlot.SlotType.Enemy and not slot.occupied_unit:
-			unit.move_to(slot)
+			target_slot = slot
+	unit.move_to(target_slot)
 	
 func find_next_target(attacker: CardToken = null, real: bool = true) -> CardToken:
 	var health_var: String = "current_health"

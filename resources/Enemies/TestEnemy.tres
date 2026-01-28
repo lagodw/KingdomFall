@@ -19,5 +19,5 @@ metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [resource]
 script = ExtResource("2_5037s")
-ranks = Array[ExtResource("1_ew62s")]([SubResource("Resource_8bv8s"), SubResource("Resource_cx1at")])
+ranks = Array[ExtResource("1_ew62s")]([SubResource("Resource_8bv8s"), SubResource("Resource_cx1at"), SubResource("Resource_8bv8s")])
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

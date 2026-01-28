@@ -5,10 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="3_56o5s"]
 
 [node name="UnitPanel" type="TextureRect"]
-offset_left = 289.0
-offset_top = 12.0
-offset_right = 1642.0
-offset_bottom = 342.0
+offset_right = 1353.0
+offset_bottom = 330.0
 texture = ExtResource("1_06ht7")
 expand_mode = 1
 script = ExtResource("2_vfspe")

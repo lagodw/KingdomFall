@@ -25,13 +25,13 @@ func add_file():
 			num_enemy_slots)
 
 func deploy_enemy_rank(rank: EnemyRank):
-	var i: int = 0
+	var lane_num: int = 0
 	for res in rank.units:
 		var unit: Unit = kf.create_card(res, "Enemy")
 		Bus.Board.get_node("Enemy").add_child(unit)
+		get_child(lane_num).add_enemy_unit(unit)
 		await get_tree().process_frame
-		get_child(i).add_enemy_unit(unit)
-		i += 1
+		lane_num += 1
 	
 func calculate_slot_distance(slot1: TokenSlot, slot2: TokenSlot) -> int:
 	if slot1.file == slot2.file:

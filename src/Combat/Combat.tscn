@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=23 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -14,9 +14,13 @@
 [ext_resource type="Script" uid="uid://02o7a8o8wjjd" path="res://src/Combat/Enemy.gd" id="12_55i6c"]
 [ext_resource type="Resource" uid="uid://d3024l3wyhs5m" path="res://resources/Enemies/TestEnemy.tres" id="13_duo21"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="14_bx2u5"]
+[ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="15_1c8jx"]
 [ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Icons/Activation.png" id="15_3cf12"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="16_7vgw0"]
 [ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="16_whu61"]
+[ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="17_vywh8"]
 [ext_resource type="PackedScene" uid="uid://dhlijfvm4rjj5" path="res://src/Combat/Gate.tscn" id="17_whu61"]
+[ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="18_7vgw0"]
 [ext_resource type="PackedScene" uid="uid://cngo42s45sirp" path="res://src/Combat/GameOver.tscn" id="18_wbuvy"]
 
 [node name="Combat" type="Control"]
@@ -134,6 +138,93 @@ anchor_right = 0.0
 offset_left = 0.0
 offset_right = 1920.0
 grow_horizontal = 1
+
+[node name="ArmyChoice" type="TextureRect" parent="."]
+process_mode = 3
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 143.0
+offset_top = 66.0
+offset_right = 1766.0
+offset_bottom = 1043.0
+texture = ExtResource("15_1c8jx")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ArmyChoice"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 31.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme = ExtResource("16_7vgw0")
+theme_override_font_sizes/font_size = 48
+text = "Choose which units to fight in the battle"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RestPanel" parent="ArmyChoice" instance=ExtResource("17_vywh8")]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 145.0
+offset_right = 1567.0
+offset_bottom = 475.0
+
+[node name="RestTxt" type="Label" parent="ArmyChoice/RestPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -29.0
+offset_right = 1.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme = ExtResource("16_7vgw0")
+theme_override_font_sizes/font_size = 48
+text = "Rest"
+autowrap_mode = 3
+
+[node name="FightPanel" parent="ArmyChoice" instance=ExtResource("17_vywh8")]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 497.0
+offset_right = 1567.0
+offset_bottom = 827.0
+
+[node name="FightTxt" type="Label" parent="ArmyChoice/FightPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -29.0
+offset_right = 1.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme = ExtResource("16_7vgw0")
+theme_override_font_sizes/font_size = 48
+text = "Fight"
+autowrap_mode = 3
+
+[node name="ConfirmArmy" type="Button" parent="ArmyChoice"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -127.0
+offset_right = 145.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("18_7vgw0")
+theme_override_font_sizes/font_size = 40
+text = "Confirm"
 
 [node name="Enemy" type="Control" parent="."]
 anchors_preset = 0

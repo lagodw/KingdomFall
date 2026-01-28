@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djtcf3x2wg721"]
+[gd_scene load_steps=16 format=3 uid="uid://djtcf3x2wg721"]
 
 [ext_resource type="Script" uid="uid://bewt2iotlx4sw" path="res://src/Town/Town.gd" id="1_lk6hu"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="2_lk6hu"]
@@ -7,8 +7,11 @@
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="5_upyly"]
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="5_whka0"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_70d4t"]
+[ext_resource type="Texture2D" uid="uid://oxmwne2ge5mt" path="res://assets/Combat/EndTurn/EndTurn.png" id="7_8p5a6"]
 [ext_resource type="Texture2D" uid="uid://bqaqhsh05lktm" path="res://assets/UI/paper.png" id="7_n1enq"]
+[ext_resource type="Texture2D" uid="uid://cialou463k85i" path="res://assets/Combat/EndTurn/EndTurn_Clicked.png" id="8_j5igp"]
 [ext_resource type="Resource" uid="uid://bnu4cowv70yck" path="res://resources/Buildings/Farm.tres" id="9_70d4t"]
+[ext_resource type="Texture2D" uid="uid://dbsx8ecfe07wd" path="res://assets/Combat/EndTurn/EndTurn_Hovered.png" id="9_eim2o"]
 [ext_resource type="Resource" uid="uid://cdvm1hhuxdo1r" path="res://resources/Buildings/Barracks.tres" id="10_n1enq"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="12_0seve"]
 
@@ -117,6 +120,32 @@ Total Training: 2
 Total Learning: 1
 
 Units with fatigue: 0"
+
+[node name="EndTurn" type="TextureButton" parent="Bottom"]
+layout_mode = 0
+offset_left = 1680.0
+offset_top = 229.0
+offset_right = 1887.0
+offset_bottom = 329.0
+texture_normal = ExtResource("7_8p5a6")
+texture_pressed = ExtResource("8_j5igp")
+texture_hover = ExtResource("9_eim2o")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Bottom/EndTurn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_70d4t")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Night
+Fall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buildings" type="Control" parent="."]
 anchors_preset = 0
