@@ -3,7 +3,7 @@ extends Button
 
 @onready var slot_scene = preload("uid://cshkmwknv7s5g")
 @onready var highlight: ReferenceRect = $Highlight
-@onready var capacitytxt: Label = $Capacity
+@onready var capacitytxt: Label = $CapacityBox/Capacity
 @onready var token_grid: GridContainer = %TokenGrid
 @onready var popup: TextureRect = $Popup
 
