@@ -158,3 +158,4 @@ offset_right = 1920.0
 grow_horizontal = 1
 
 [node name="Escape" parent="." instance=ExtResource("12_0seve")]
+visible = false

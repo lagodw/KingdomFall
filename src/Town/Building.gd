@@ -26,6 +26,7 @@ func _ready() -> void:
 		
 func setup():
 	capacity = res.capacity
+	%Description.text = res.description
 	remove_child(popup)
 	get_tree().current_scene.call_deferred("add_child", popup)
 	set_popup_position()
@@ -64,6 +65,10 @@ func setup_slots():
 		var slot = slot_scene.instantiate()
 		slot.building = self
 		token_grid.add_child(slot)
+	if capacity > 3:
+		popup.size.y += Bus.token_size.y + 5
+	if capacity > 6:
+		popup.size.x += 15
 
 func find_first_slot() -> TokenSlot:
 	for slot: TokenSlot in token_grid.get_children():
@@ -82,7 +87,8 @@ func show_popup(value: bool):
 	popup.visible = value
 
 func toggle_popup():
-	show_popup(not popup.visible)
+	popup.visible = not popup.visible
+	set_popup_position()
 
 func set_popup_position():
 	if popup.global_position.x >= get_viewport_rect().size.x - popup.size.x:
