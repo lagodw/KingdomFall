@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	R.resources_loaded.connect(start_game)
-	R.load_resources_threaded()
+	R.load_resources_non_threaded()
 	
 func start_game():
 	Bus.player = Player.new()

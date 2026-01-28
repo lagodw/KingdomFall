@@ -242,7 +242,7 @@ func load_scene(path: String) -> void:
 	Bus.emit_signal("scene_changed")
 	var loading_screen_instance = R.loading_scene.instantiate()
 	get_tree().root.add_child(loading_screen_instance)
-
+	
 	# 2. Tell the loading screen to start the asynchronous load
 	# Note: We pass the path to the loading screen which will handle the ResourceLoader calls
 	loading_screen_instance.start_loading(path)

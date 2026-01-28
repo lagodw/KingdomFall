@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://djtcf3x2wg721"]
+[gd_scene load_steps=13 format=3 uid="uid://djtcf3x2wg721"]
 
 [ext_resource type="Script" uid="uid://bewt2iotlx4sw" path="res://src/Town/Town.gd" id="1_lk6hu"]
-[ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="2_cfuvt"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="2_lk6hu"]
-[ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="3_whka0"]
+[ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_n1enq"]
 [ext_resource type="PackedScene" uid="uid://2e28fvpdufxt" path="res://src/Town/Building.tscn" id="5_sji1c"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="5_upyly"]
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="5_whka0"]
@@ -60,44 +59,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lk6hu")
 
-[node name="TextureRect" type="TextureRect" parent="Bottom"]
+[node name="UnitPanel" parent="Bottom" instance=ExtResource("3_n1enq")]
 layout_mode = 0
-offset_left = 289.0
-offset_top = 12.0
-offset_right = 1642.0
-offset_bottom = 342.0
-texture = ExtResource("2_cfuvt")
-expand_mode = 1
-
-[node name="Cards" type="ScrollContainer" parent="Bottom/TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 6.0
-offset_right = -6.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CardsBox" type="HBoxContainer" parent="Bottom/TextureRect/Cards"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Border" type="NinePatchRect" parent="Bottom/TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 8.0
-anchor_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("3_whka0")
-patch_margin_left = 48
-patch_margin_top = 47
-patch_margin_right = 48
-patch_margin_bottom = 46
+offset_left = 304.0
+offset_top = 13.0
+offset_right = 1657.0
+offset_bottom = 343.0
 
 [node name="Filters" type="VBoxContainer" parent="Bottom"]
 layout_mode = 0
@@ -191,4 +158,3 @@ offset_right = 1920.0
 grow_horizontal = 1
 
 [node name="Escape" parent="." instance=ExtResource("12_0seve")]
-visible = false

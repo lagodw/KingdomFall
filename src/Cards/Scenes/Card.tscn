@@ -39,6 +39,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 204.0
 offset_bottom = 304.0
+mouse_filter = 1
 theme = ExtResource("1_chf5d")
 script = ExtResource("2_lydcd")
 

@@ -390,3 +390,6 @@ func reset_tween():
 	if tween:
 		tween.kill()
 	tween = create_tween()
+
+func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
+	return(false)

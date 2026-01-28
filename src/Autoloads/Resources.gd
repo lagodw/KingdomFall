@@ -80,6 +80,12 @@ const RESOURCE_MAP = {
 func _ready() -> void:
 	set_process(false)
 	
+func load_resources_non_threaded():
+	for resource_name in RESOURCE_MAP:
+		set(resource_name, load(RESOURCE_MAP[resource_name]))
+	await get_tree().process_frame
+	initial_loaded = true
+	
 func load_resources_threaded():
 	if loading_requests.size() > 0:
 		push_error("Threaded resource loading is already active.")

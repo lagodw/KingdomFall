@@ -215,7 +215,7 @@ func revert_to_snapshot() -> void:
 	current_shield = token.snapshot_current_shield
 
 func _get_drag_data(_at_position: Vector2):
-	if card_owner == "Enemy" or not can_act or disabled: 
+	if card_owner == "Enemy" or not can_act or disabled:
 		return null
 	if (get_tree().current_scene is Combat and current_activation > Bus.energy):
 		return null

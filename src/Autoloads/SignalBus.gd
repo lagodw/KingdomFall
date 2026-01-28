@@ -2,7 +2,6 @@ extends Node
 
 signal turn_starting
 signal board_loaded
-signal town_loaded
 signal combat_starting
 signal scene_changed
 signal new_scene_loaded

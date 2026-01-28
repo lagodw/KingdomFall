@@ -9,8 +9,14 @@ extends Button
 
 @export var res: BuildingResource
 
-var capacity: int
-var current_workers: int = 0
+var capacity: int:
+	set(val):
+		capacity = val
+		update_capacity()
+var current_workers: int = 0:
+	set(val):
+		current_workers = val
+		update_capacity()
 
 func _ready() -> void:
 	popup = $Popup
@@ -23,7 +29,6 @@ func setup():
 	remove_child(popup)
 	get_tree().current_scene.call_deferred("add_child", popup)
 	set_popup_position()
-	update_capacity()
 	set_art()
 	setup_slots()
 	
@@ -40,7 +45,6 @@ func _drop_data(_at_position: Vector2, data: Variant):
 	kf.dragging = null
 	current_workers += 1
 	add_unit(data)
-	update_capacity()
 	
 func show_highlight(value: bool):
 	highlight.visible = value
@@ -58,6 +62,7 @@ func setup_slots():
 		child.queue_free()
 	for i in capacity:
 		var slot = slot_scene.instantiate()
+		slot.building = self
 		token_grid.add_child(slot)
 
 func find_first_slot() -> TokenSlot:
@@ -69,6 +74,8 @@ func find_first_slot() -> TokenSlot:
 func add_unit(unit: Unit):
 	var slot = find_first_slot()
 	unit.move_to(slot, false)
+	await get_tree().process_frame
+	unit.token.move_card()
 
 func show_popup(value: bool):
 	set_popup_position()
@@ -84,3 +91,17 @@ func set_popup_position():
 		popup.global_position.x = global_position.x + size.x + 10
 	popup.global_position.y = min(global_position.y,
 		get_viewport_rect().size.y - popup.size.y)
+
+func release_unit(token: CardToken):
+	current_workers -= 1
+	token.current_slot.occupied_unit = null
+	move_tokens_up()
+
+func move_tokens_up():
+	for i in range(token_grid.get_child_count() - 1):
+		var slot: TokenSlot = token_grid.get_child(i)
+		if slot.occupied_unit:
+			continue
+		var next_slot: TokenSlot = token_grid.get_child(i + 1)
+		if next_slot.occupied_unit:
+			next_slot.occupied_unit.move_to(slot, false)

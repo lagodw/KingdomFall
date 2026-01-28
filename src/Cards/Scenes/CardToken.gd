@@ -136,6 +136,18 @@ func turn_to_label() -> CardLabel:
 	label.global_position = old_pos
 	return(label)
 	
+func turn_to_card() -> Unit:
+	if card.get_parent():
+		card.get_parent().remove_child(card)
+	if get_parent():
+		get_parent().remove_child(self)
+	card.visible = true
+	card.disabled = false
+	visible = false
+	card.add_child(self)
+	position = Vector2.ZERO
+	return(card)
+	
 func discard():
 	discarded = true
 	if current_slot:
@@ -475,3 +487,8 @@ func show_previews():
 func hide_previews():
 	$Frame/Previews.visible = false
 	%Skull.visible = false
+
+func move_card():
+	if card.get_parent():
+		card.get_parent().remove_child(card)
+	get_tree().current_scene.call_deferred("add_child", card)
