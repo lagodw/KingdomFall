@@ -124,3 +124,5 @@ func end_day():
 	for slot: TokenSlot in token_grid.get_children():
 		if slot.occupied_unit:
 			slot.occupied_unit.card_resource.fatigue += 5
+	if resource.current_construction < resource.construction_cost:
+		resource.current_construction += current_workers

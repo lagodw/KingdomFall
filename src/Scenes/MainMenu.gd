@@ -7,5 +7,7 @@ func _ready() -> void:
 func start_game():
 	Bus.player = Player.new()
 	Bus.deck = Bus.player.deck.dupe()
+	var town = load("uid://bmwj3jl3o8tm4").dupe()
+	Bus.player.town = town
 	#kf.load_scene("uid://dvld0lyuo33oq")
 	kf.load_scene("uid://djtcf3x2wg721")

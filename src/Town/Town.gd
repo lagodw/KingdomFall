@@ -5,6 +5,8 @@ extends Control
 @onready var building_grid: GridContainer = $Buildings/ScrollContainer/GridContainer
 
 func _ready() -> void:
+	for building in Bus.player.town.buildings:
+		add_building(building)
 	$Bottom/UnitPanel.load_units(Bus.deck.cards)
 	$Bottom/EndTurn.pressed.connect(night_fall)
 	var construction = load("uid://df7bb45nih6i8").instantiate()

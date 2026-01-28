@@ -11,6 +11,8 @@ func _ready() -> void:
 	Bus.new_scene_loaded.connect(move_panel)
 	
 func move_panel():
+	if get_tree().current_scene is not Town:
+		return
 	panel.visible = false
 	remove_child(panel)
 	panel.global_position = get_viewport_rect().size / 2 - panel.size / 2
@@ -24,7 +26,9 @@ func setup_choices(choices: Array):
 		button.pressed.connect(choose.bind(choice))
 		
 func choose(building: BuildingResource):
-	get_tree().current_scene.add_building(building)
+	var duped = building.duplicate(true)
+	get_tree().current_scene.add_building(duped)
+	Bus.player.town.buildings.append(duped)
 	panel.visible = false
 	
 func cancel():

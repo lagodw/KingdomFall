@@ -6,5 +6,7 @@
 script = ExtResource("1_ivoxv")
 building_name = "Farm"
 capacity = 1
+construction_cost = 3
+current_construction = 0
 description = "Provides 1 food per worker"
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

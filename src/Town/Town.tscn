@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://djtcf3x2wg721"]
+[gd_scene load_steps=13 format=3 uid="uid://djtcf3x2wg721"]
 
 [ext_resource type="Script" uid="uid://bewt2iotlx4sw" path="res://src/Town/Town.gd" id="1_lk6hu"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="2_lk6hu"]
 [ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_n1enq"]
-[ext_resource type="PackedScene" uid="uid://2e28fvpdufxt" path="res://src/Town/Building.tscn" id="5_sji1c"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="5_upyly"]
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="5_whka0"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_70d4t"]
@@ -11,37 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bqaqhsh05lktm" path="res://assets/UI/paper.png" id="7_n1enq"]
 [ext_resource type="Texture2D" uid="uid://cialou463k85i" path="res://assets/Combat/EndTurn/EndTurn_Clicked.png" id="8_j5igp"]
 [ext_resource type="Texture2D" uid="uid://dbsx8ecfe07wd" path="res://assets/Combat/EndTurn/EndTurn_Hovered.png" id="9_eim2o"]
-[ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="11_k25qk"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="12_0seve"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk6hu"]
-
-[sub_resource type="Resource" id="Resource_8p5a6"]
-script = ExtResource("11_k25qk")
-building_name = "Farm"
-capacity = 1
-construction_cost = 5
-current_construction = 5
-description = "Provides 1 food per worker"
-metadata/_custom_type_script = "uid://8ulf8s82ml2o"
-
-[sub_resource type="Resource" id="Resource_j5igp"]
-script = ExtResource("11_k25qk")
-building_name = "Farm"
-capacity = 1
-construction_cost = 5
-current_construction = 5
-description = "Provides 1 food per worker"
-metadata/_custom_type_script = "uid://8ulf8s82ml2o"
-
-[sub_resource type="Resource" id="Resource_eim2o"]
-script = ExtResource("11_k25qk")
-building_name = "Barracks"
-capacity = 5
-construction_cost = 5
-current_construction = 5
-description = "Provides 1 training to occupants"
-metadata/_custom_type_script = "uid://8ulf8s82ml2o"
 
 [node name="Town" type="Control"]
 layout_mode = 3
@@ -192,18 +163,6 @@ grow_vertical = 2
 [node name="GridContainer" type="GridContainer" parent="Buildings/ScrollContainer"]
 layout_mode = 2
 columns = 6
-
-[node name="Building" parent="Buildings/ScrollContainer/GridContainer" instance=ExtResource("5_sji1c")]
-layout_mode = 2
-resource = SubResource("Resource_8p5a6")
-
-[node name="Building2" parent="Buildings/ScrollContainer/GridContainer" instance=ExtResource("5_sji1c")]
-layout_mode = 2
-resource = SubResource("Resource_j5igp")
-
-[node name="Building3" parent="Buildings/ScrollContainer/GridContainer" instance=ExtResource("5_sji1c")]
-layout_mode = 2
-resource = SubResource("Resource_eim2o")
 
 [node name="UI" parent="." instance=ExtResource("2_lk6hu")]
 layout_mode = 0

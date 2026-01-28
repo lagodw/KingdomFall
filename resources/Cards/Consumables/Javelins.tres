@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_1i5jk"]
 script = ExtResource("2_q7s0y")
-require_trigger = false
+require_trigger = true
 required_slots = Array[int]([])
 require_act = false
 minimum_damage = 0
@@ -21,7 +21,7 @@ require_turn = -1
 [sub_resource type="Resource" id="Resource_oclc3"]
 script = ExtResource("3_0r34q")
 require_allied = false
-require_enemies = false
+require_enemies = true
 exclude_trigger = false
 require_act = false
 exclude_act = false
@@ -117,15 +117,14 @@ value = SubResource("Resource_ypl2p")
 script = ExtResource("1_kdh3a")
 function_script = ExtResource("5_jwqks")
 function = "damage"
-trigger_signal = "target"
-target_type = "Unit"
-subject = "target"
+trigger_signal = "consume_used"
+subject = "Board"
 conditions_calling = SubResource("Resource_1i5jk")
 conditions_trigger = SubResource("Resource_0gw30")
 conditions_subject = SubResource("Resource_oclc3")
 if_calling_card = SubResource("Resource_mwra6")
 if_subject = SubResource("Resource_22gbt")
-animation = "none"
+animation = "cast"
 damage_amt = SubResource("Resource_yq68d")
 blocked_by_shield = true
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"

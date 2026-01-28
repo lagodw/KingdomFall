@@ -6,3 +6,9 @@ extends Resource
 @export var construction_cost: int = 5
 @export var current_construction: int = 0
 @export var description: String
+
+
+
+func dupe() -> BuildingResource:
+	var duped: BuildingResource = duplicate(true)
+	return(duped)
