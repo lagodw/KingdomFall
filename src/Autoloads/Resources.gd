@@ -11,6 +11,8 @@ var loading_requests = {} # { path: { "name": "card", "status": 0 } }
 
 ##### RESOURCE GROUPS #####
 var card_resources: ResourceGroup
+var buildings: ResourceGroup
+var building_art: ResourceGroup
 var enemies: ResourceGroup
 var events: ResourceGroup
 var curses: ResourceGroup
@@ -44,6 +46,8 @@ var tooltip: PackedScene
 const RESOURCE_MAP = {
 	###### resource groups #####
 	"card_resources": "uid://bjdqhsddp1rxj",
+	"buildings": "uid://6uwynbbqo5fm",
+	"building_art": "uid://vioxwkbn4m3u",
 	#"enemies": "uid://byhybgpfms51e",
 	#"events": "uid://d4kf5b3g5m4gm",
 	#"curses": "uid://drd4qppsgxfuh",
@@ -84,8 +88,9 @@ func load_resources_threaded():
 	loading_requests.clear()
 	
 	# Configure threading based on available cores
-	var processor_count = OS.get_processor_count()
-	var use_sub_threads = processor_count > 1
+	#var processor_count = OS.get_processor_count()
+	#var use_sub_threads = processor_count > 1
+	var use_sub_threads = false
 	
 	# Prepare and start loading requests
 	for resource_name in RESOURCE_MAP:

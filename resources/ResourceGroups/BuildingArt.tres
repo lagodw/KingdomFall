@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://vioxwkbn4m3u"]
+
+[ext_resource type="Script" uid="uid://da1l0ib1csn4e" path="res://addons/godot_resource_groups/resource_group.gd" id="1_gvtp4"]
+
+[resource]
+script = ExtResource("1_gvtp4")
+base_folder = "res://assets/Buildings"
+includes = Array[String](["**"])
+excludes = Array[String]([])
+paths = Array[String](["res://assets/Buildings/Barracks.png", "res://assets/Buildings/Farm.png"])
+metadata/_custom_type_script = "uid://da1l0ib1csn4e"

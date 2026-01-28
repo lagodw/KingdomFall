@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ctftomca4hpa3" path="res://assets/Combat/Castle_floor.png" id="3_g3pui"]
 
 [node name="TokenSlot1" type="TextureRect"]
+custom_minimum_size = Vector2(85, 120)
 offset_right = 85.0
 offset_bottom = 120.0
 size_flags_horizontal = 3
