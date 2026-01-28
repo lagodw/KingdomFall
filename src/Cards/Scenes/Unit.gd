@@ -66,6 +66,7 @@ var max_activation: int:
 		compare_stat("Activation", current_activation, max_activation)
 		if label:
 			label.max_activation = max_activation
+var current_fatigue: int
 var items: Array[Item]
 var snapshot_max_damage: int
 var snapshot_current_damage: int
@@ -78,7 +79,7 @@ var setup_complete: bool = false
 func class_setup():
 	add_to_group("Units")
 	setup_stats()
-	setup_upkeep()
+	setup_fatigue()
 	has_support = card_resource.has_support
 
 func setup_stats():
@@ -90,10 +91,10 @@ func setup_stats():
 	if current_shield > 0 and pop:
 		pop.create_keyword_popup("Shield")
 	setup_complete = true
-	#print(max_attack_range)
 
-func setup_upkeep():
-	%CostText.text = str(card_resource.upkeep)
+func setup_fatigue():
+	current_fatigue = card_resource.fatigue
+	%CostText.text = str(card_resource.fatigue)
 	
 func move_to(target: Control, animation: bool = true):
 	if target is TokenSlot:

@@ -1,7 +1,7 @@
 class_name UnitResource
 extends CardResource
 
-@export var upkeep: int = 1
+@export var fatigue: int = 0
 @export var damage: int = 1
 @export var health: int = 1
 @export var shield: int = 0

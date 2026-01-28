@@ -4,7 +4,6 @@ extends TextureRect
 #@onready var boon_tooltip = preload("uid://cffwny47g72jv")
 
 @onready var gold = %goldAmt
-@onready var upkeep = %upkeepAmt
 @onready var mana = %manaAmt
 @onready var spell_power = %spell_powerAmt
 @onready var health = %healthAmt
@@ -20,7 +19,6 @@ func _ready() -> void:
 	
 func update_amounts():
 	set_gold_text(Bus.gold)
-	set_upkeep_text(Bus.upkeep)
 	set_mana_text(Bus.mana)
 	set_spell_power_text(Bus.spell_power)
 	set_health_text()
@@ -30,7 +28,6 @@ func update_currency(currency: String, new_amt: int, change: int) -> void:
 		return
 	var tween = create_tween()
 	var color_dict := {"gold": {"up": Color.GOLD, "down": Color.FIREBRICK},
-					"upkeep": {"up": Color.FIREBRICK, "down": Color.SEA_GREEN},
 					"mana": {"up": Color.BLUE, "down": Color.FIREBRICK},
 					"spell_power": {"up": Color.FIREBRICK, "down": Color.YELLOW}}
 	var direction: String = "up"
@@ -42,19 +39,9 @@ func update_currency(currency: String, new_amt: int, change: int) -> void:
 	tween.tween_method(callable, new_amt - change, new_amt, .5)
 	await tween.finished
 	get(currency).set("theme_override_colors/font_color", Color.WHITE)
-	check_upkeep()
-	
-func check_upkeep() -> void:
-	if Bus.upkeep > Bus.gold:
-		upkeep.set("theme_override_colors/font_color", Color.FIREBRICK)
-	else:
-		upkeep.set("theme_override_colors/font_color", Color.WHITE)
 	
 func set_gold_text(value: int) -> void:
 	gold.text = str(value)
-
-func set_upkeep_text(value: int) -> void:
-	upkeep.text = str(value)
 
 func set_mana_text(_value: int) -> void:
 	mana.text = "%s / %s"%[Bus.mana, Bus.player.max_mana]
@@ -90,7 +77,7 @@ func toggle_deck():
 	$ToggleDeck/Deck/EyeClosed.visible = not deck_visible
 
 func setup_tooltips():
-	for stat in ["Health", "Mana", "Power", "Upkeep", "Gold"]:
+	for stat in ["Health", "Mana", "Power", "Gold"]:
 		get_node("Tooltips/%sArea"%stat).mouse_entered.connect(show_tooltip.bind(stat))
 		get_node("Tooltips/%sArea"%stat).mouse_exited.connect(hide_tooltip.bind(stat))
 		get_node("Tooltips/%s_tip"%stat).setup()

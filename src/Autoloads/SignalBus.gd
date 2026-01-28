@@ -21,7 +21,6 @@ var player: Player
 var deck: Deck:
 	set(val):
 		player.deck = val
-		val.update_upkeep()
 	get():
 		if not player:
 			return(null)
@@ -33,11 +32,6 @@ var gold: int:
 		emit_signal("currency_changed", "gold", player.gold, change)
 	get():
 		return(player.gold)
-var upkeep: int:
-	set(val):
-		var change = val - upkeep
-		upkeep = val
-		emit_signal("currency_changed", "upkeep", upkeep, change)
 var mana: int:
 	set(val):
 		val = clamp(val, 0, max_mana)

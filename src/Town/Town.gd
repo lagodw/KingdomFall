@@ -6,4 +6,5 @@ func _ready() -> void:
 	$Bottom/EndTurn.pressed.connect(night_fall)
 	
 func night_fall():
+	get_tree().call_group("Buildings", "end_day")
 	kf.load_scene("uid://dvld0lyuo33oq")

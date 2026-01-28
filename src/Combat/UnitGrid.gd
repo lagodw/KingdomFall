@@ -29,6 +29,7 @@ func deploy_enemy_rank(rank: EnemyRank):
 	for res in rank.units:
 		var unit: Unit = kf.create_card(res, "Enemy")
 		Bus.Board.get_node("Enemy").add_child(unit)
+		await get_tree().create_timer(2).timeout
 		get_child(lane_num).add_enemy_unit(unit)
 		await get_tree().process_frame
 		lane_num += 1

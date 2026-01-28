@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dglfstjlbuudi"]
+[gd_scene load_steps=8 format=3 uid="uid://dglfstjlbuudi"]
 
 [ext_resource type="Texture2D" uid="uid://dlc20e4hsnoel" path="res://assets/UI/skill_bar.png" id="1_h5akv"]
 [ext_resource type="Script" uid="uid://cyecs3huva81k" path="res://src/UI/UI.gd" id="2_c5ut5"]
 [ext_resource type="Texture2D" uid="uid://bithkfa0yaj55" path="res://assets/Card/Icons/Mana.png" id="3_dyal0"]
 [ext_resource type="Texture2D" uid="uid://b5cdi4ovi55qk" path="res://assets/Card/Icons/SpellPower.png" id="3_hdn2o"]
-[ext_resource type="Texture2D" uid="uid://dbr0f8hb1g31b" path="res://assets/Card/Icons/Upkeep.png" id="4_c5ut5"]
 [ext_resource type="Texture2D" uid="uid://dkud1ngvb85db" path="res://assets/UI/money.png" id="7_l34ye"]
 [ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="8_w1jl2"]
 [ext_resource type="PackedScene" uid="uid://2gd3eej6fvla" path="res://src/UI/Tooltip.tscn" id="14_l34ye"]
@@ -74,7 +73,7 @@ expand_mode = 3
 
 [node name="manaAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(75, 0)
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "10 / 10"
@@ -86,31 +85,10 @@ expand_mode = 3
 
 [node name="spell_powerAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "0"
-
-[node name="UpkeepIcon" type="TextureRect" parent="Stats"]
-layout_mode = 2
-texture = ExtResource("4_c5ut5")
-expand_mode = 3
-
-[node name="Upkeep" type="HBoxContainer" parent="Stats"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="negative" type="Label" parent="Stats/Upkeep"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "-"
-
-[node name="upkeepAmt" type="Label" parent="Stats/Upkeep"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "10"
 
 [node name="GoldIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
@@ -194,12 +172,6 @@ offset_bottom = 30.0
 anchors_preset = 0
 offset_left = 1517.0
 offset_right = 1620.0
-offset_bottom = 30.0
-
-[node name="UpkeepArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 1736.0
-offset_right = 1814.0
 offset_bottom = 30.0
 
 [node name="GoldArea" type="Control" parent="Tooltips"]

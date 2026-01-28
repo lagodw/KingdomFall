@@ -30,21 +30,10 @@ func dupe() -> Deck:
 	
 func add_card(card: CardResource):
 	cards.append(card)
-	update_upkeep()
 	sort()
 	
 func remove_card(card: CardResource):
 	cards.erase(card)
-	update_upkeep()
-
-func update_upkeep():
-	if Bus.deck != self:
-		return
-	var upkeep = 0
-	for card in cards:
-		if card is UnitResource:
-			upkeep += card.upkeep
-	Bus.upkeep = upkeep
 
 func sort():
 	cards.sort_custom(sort_resources)

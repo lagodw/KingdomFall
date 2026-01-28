@@ -67,7 +67,7 @@ func type_only_setup():
 	for effect in effects:
 		effect.connect_signal(self)
 	
-func setup_upkeep():
+func setup_fatigue():
 	pass
 	
 func set_art(override: String = ""):
@@ -220,6 +220,7 @@ func move_to(target: Control, animation: bool = true, mouse_pos: bool = false):
 		tween.tween_property(self, "global_position", target.global_position, kf.tween_time)
 		await tween.finished
 	ee.emit_signal("move", self)
+	position = Vector2.ZERO
 	
 ## card sets stats to max value, token to current value
 func compare_stat(property: String, current_value: int, max_value: int):

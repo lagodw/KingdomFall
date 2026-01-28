@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://dgxkigbdbir0k" path="res://src/Cards/Scenes/Unit.gd" id="2_my6ub"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="3_ce5f5"]
 [ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="4_aibo2"]
+[ext_resource type="Texture2D" uid="uid://37qvgtj4hugx" path="res://assets/Card/Icons/Fatigue.png" id="4_hhhr0"]
 [ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="6_oln2p"]
 [ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="7_6d7p2"]
 [ext_resource type="Texture2D" uid="uid://cq3jcn3yjscxt" path="res://assets/Card/Icons/Moves.png" id="8_hhhr0"]
-[ext_resource type="Texture2D" uid="uid://dbr0f8hb1g31b" path="res://assets/Card/Icons/Upkeep.png" id="9_ff1kl"]
 [ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Icons/Shield.png" id="14_a0dq3"]
 [ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="16_m5bsm"]
 
@@ -21,7 +21,7 @@ offset_top = 5.0
 offset_right = 33.0
 offset_bottom = 31.0
 theme = ExtResource("3_ce5f5")
-texture = ExtResource("9_ff1kl")
+texture = ExtResource("4_hhhr0")
 expand_mode = 1
 
 [node name="CostText" type="Label" parent="Front/Cost" index="0"]
@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "1"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 

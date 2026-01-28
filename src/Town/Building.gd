@@ -23,6 +23,7 @@ func _ready() -> void:
 	pressed.connect(toggle_popup)
 	mouse_exited.connect(_on_mouse_exit)
 	Bus.new_scene_loaded.connect(setup)
+	add_to_group("Buildings")
 		
 func setup():
 	if get_tree().current_scene is not Town:
@@ -113,3 +114,8 @@ func move_tokens_up():
 		var next_slot: TokenSlot = token_grid.get_child(i + 1)
 		if next_slot.occupied_unit:
 			next_slot.occupied_unit.move_to(slot, false)
+
+func end_day():
+	for slot: TokenSlot in token_grid.get_children():
+		if slot.occupied_unit:
+			slot.occupied_unit.card_resource.fatigue += 5

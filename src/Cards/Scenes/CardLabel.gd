@@ -59,7 +59,7 @@ func setup_card():
 	update_bg_color()
 	if card_resource is UnitResource:
 		%Cost.texture = load("uid://dbr0f8hb1g31b")
-		base_cost = card_resource.upkeep
+		base_cost = card_resource.fatigue
 		current_cost = base_cost
 	elif card_resource is SpellResource:
 		%Cost.texture = load("uid://bithkfa0yaj55")

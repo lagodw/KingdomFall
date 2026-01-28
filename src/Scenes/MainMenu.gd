@@ -6,7 +6,6 @@ func _ready() -> void:
 	
 func start_game():
 	Bus.player = Player.new()
-	#var deck = Bus.player.deck.dupe()
-	Bus.deck = Bus.player.deck
+	Bus.deck = Bus.player.deck.dupe()
 	#kf.load_scene("uid://dvld0lyuo33oq")
 	kf.load_scene("uid://djtcf3x2wg721")
