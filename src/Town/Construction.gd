@@ -5,6 +5,7 @@ extends Button
 
 func _ready() -> void:
 	var choices: Array = R.buildings.get_matching_resource([])
+	choices.sort_custom(sort_by_construction)
 	setup_choices(choices)
 	pressed.connect(show_panel)
 	$ConstructionPanel/Cancel.pressed.connect(cancel)
@@ -36,3 +37,11 @@ func cancel():
 
 func show_panel():
 	panel.visible = true
+
+func sort_by_construction(building1: BuildingResource, 
+		building2: BuildingResource) -> bool:
+	if building1.construction_cost < building2.construction_cost:
+		return(true)
+	if building1.construction_cost == building2.construction_cost:
+		return(building1.building_name <= building2.building_name)
+	return(false)

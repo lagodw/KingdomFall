@@ -72,7 +72,7 @@ var perm_activation: EffectValue = EffectValue.new()
 var target_type: String = "Unit"
 var cost_change: EffectValue = EffectValue.new()
 var max_activation_change: EffectValue = EffectValue.new()
-var unit_upgrade: UnitUpgrade = UnitUpgrade.new()
+var skill: UnitSkill = UnitSkill.new()
 
 var host_card: CardToken
 var effect_dict: Dictionary = {}
@@ -365,8 +365,8 @@ func _get_property_list() -> Array:
 			'change_max_activation':
 				list.append(resource_hint("max_activation_change", "EffectValue"))
 				list.append(type_hint("persistent_effect", TYPE_BOOL))
-			'upgrade_unit':
-				list.append(resource_hint("unit_upgrade", "UnitUpgrade"))
+			'add_skill':
+				list.append(resource_hint("skill", "UnitSkill"))
 			
 		if trigger_signal == "consume_used":
 			animation = "cast"

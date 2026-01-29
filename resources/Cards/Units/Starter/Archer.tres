@@ -1,16 +1,10 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=7 format=3 uid="uid://dacsxay2ixbib"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=6 format=3 uid="uid://dacsxay2ixbib"]
 
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_5w7o7"]
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_ejd1b"]
 [ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_ihua7"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_kiobh"]
-[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitUpgrade.gd" id="5_hltp7"]
-
-[sub_resource type="Resource" id="Resource_vfl6u"]
-script = ExtResource("5_hltp7")
-upgrade_type = 2
-amount = 1
-metadata/_custom_type_script = "uid://bn2lsa6d725jx"
+[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_hltp7"]
 
 [resource]
 script = ExtResource("2_kiobh")
@@ -26,7 +20,7 @@ has_support = false
 combat_modifiers = Array[ExtResource("1_5w7o7")]([])
 default_animation = "sword"
 curses = Array[ExtResource("2_ihua7")]([])
-upgrades = Array[ExtResource("5_hltp7")]([SubResource("Resource_vfl6u")])
+skills = Array[ExtResource("5_hltp7")]([])
 box_priority = "Hybrid"
 target = "none_needed"
 equivalent_damage = 0

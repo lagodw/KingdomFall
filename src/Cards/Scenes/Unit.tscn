@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cd28vo6umqhig" path="res://src/Cards/Scenes/Card.tscn" id="1_1svyu"]
 [ext_resource type="Script" uid="uid://dgxkigbdbir0k" path="res://src/Cards/Scenes/Unit.gd" id="2_my6ub"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="3_ce5f5"]
-[ext_resource type="Script" uid="uid://ckb5i1gmfc77g" path="res://src/Cards/UpgradeBox.gd" id="3_oi10b"]
+[ext_resource type="Script" uid="uid://ckb5i1gmfc77g" path="res://src/Cards/SkillBox.gd" id="3_oi10b"]
 [ext_resource type="FontFile" uid="uid://bjcfvs5gej41m" path="res://assets/Theme/Crimson_Text/CrimsonText-Bold.ttf" id="4_aibo2"]
 [ext_resource type="Texture2D" uid="uid://37qvgtj4hugx" path="res://assets/Card/Icons/Fatigue.png" id="4_hhhr0"]
 [ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="6_oln2p"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=17 format=3 uid="uid://bnu4cowv70yck"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=18 format=3 uid="uid://bnu4cowv70yck"]
 
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_1ycp7"]
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_ivoxv"]
@@ -7,15 +7,9 @@
 [ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="4_x82ne"]
 [ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_5csmk"]
 [ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="6_ow12q"]
+[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="7_axed2"]
 
-[sub_resource type="Resource" id="Resource_o2r1m"]
-script = ExtResource("2_axed2")
-value_type = "number"
-affected_by_spell_power = false
-number = 3
-chain_value = false
-
-[sub_resource type="Resource" id="Resource_6m7rp"]
+[sub_resource type="Resource" id="Resource_4rdbb"]
 script = ExtResource("3_4rdbb")
 require_trigger = false
 required_slots = Array[int]([])
@@ -25,7 +19,7 @@ require_alive = false
 require_owner = "Either"
 require_turn = -1
 
-[sub_resource type="Resource" id="Resource_dfseb"]
+[sub_resource type="Resource" id="Resource_x82ne"]
 script = ExtResource("4_x82ne")
 require_allied = false
 require_enemies = false
@@ -52,81 +46,85 @@ require_alive = false
 minimum_activation = 0
 maximum_activation = 99
 require_name = ""
+
+[sub_resource type="Resource" id="Resource_5csmk"]
+script = ExtResource("4_x82ne")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_ow12q"]
+script = ExtResource("2_axed2")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_o2r1m"]
+script = ExtResource("6_ow12q")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_ow12q")
+
+[sub_resource type="Resource" id="Resource_6m7rp"]
+script = ExtResource("2_axed2")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_dfseb"]
+script = ExtResource("6_ow12q")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_6m7rp")
 
 [sub_resource type="Resource" id="Resource_dc22j"]
-script = ExtResource("4_x82ne")
-require_allied = false
-require_enemies = false
-exclude_trigger = false
-require_act = false
-exclude_act = false
-require_act_disabled = false
-exclude_act_disabled = false
-exclude_faces = true
-require_activated = true
-require_same_file = false
-require_same_rank = false
-require_tags = Array[int]([])
-exclude_tags = Array[int]([])
-require_attack_type = Array[int]([0, 1, 2])
-require_armor_type = Array[int]([0, 1])
-exclude_item_type_equipped = Array[int]([])
-required_slots = Array[int]([])
-require_card_type = Array[String]([])
-minimum_damage = 0
-minimum_shield = 0
-require_missing_health = false
-require_alive = false
-minimum_activation = 0
-maximum_activation = 99
-require_name = ""
+script = ExtResource("7_axed2")
+skill_type = 2
+amount = 1
 
 [sub_resource type="Resource" id="Resource_rjv0g"]
-script = ExtResource("2_axed2")
-value_type = "number"
-affected_by_spell_power = false
-number = 0
-chain_value = false
-
-[sub_resource type="Resource" id="Resource_3hdu0"]
-script = ExtResource("6_ow12q")
-time_frame = "now"
-who = "Owner"
-what = "value"
-minimum = 0
-maximum = 999
-value = SubResource("Resource_rjv0g")
-
-[sub_resource type="Resource" id="Resource_adsqm"]
-script = ExtResource("2_axed2")
-value_type = "number"
-affected_by_spell_power = false
-number = 0
-chain_value = false
-
-[sub_resource type="Resource" id="Resource_647gn"]
-script = ExtResource("6_ow12q")
-time_frame = "now"
-who = "Owner"
-what = "value"
-minimum = 0
-maximum = 999
-value = SubResource("Resource_adsqm")
-
-[sub_resource type="Resource" id="Resource_yf0r7"]
 script = ExtResource("1_1ycp7")
 function_script = ExtResource("5_5csmk")
-function = "change_bus_var"
+function = "add_skill"
 trigger_signal = "end_day"
 subject = "building_occupants"
-conditions_calling = SubResource("Resource_6m7rp")
-conditions_trigger = SubResource("Resource_dc22j")
-conditions_subject = SubResource("Resource_dfseb")
-if_calling_card = SubResource("Resource_3hdu0")
-if_subject = SubResource("Resource_647gn")
+conditions_calling = SubResource("Resource_4rdbb")
+conditions_trigger = SubResource("Resource_5csmk")
+conditions_subject = SubResource("Resource_x82ne")
+if_calling_card = SubResource("Resource_o2r1m")
+if_subject = SubResource("Resource_dfseb")
 animation = "none"
-bus_var = "food"
-bus_var_change = SubResource("Resource_o2r1m")
+skill = SubResource("Resource_dc22j")
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [resource]
@@ -136,5 +134,5 @@ capacity = 1
 construction_cost = 3
 current_construction = 0
 description = "Provides 3 food per [b]Productivity[/b]"
-effects = Array[ExtResource("1_1ycp7")]([SubResource("Resource_yf0r7")])
+effects = Array[ExtResource("1_1ycp7")]([SubResource("Resource_rjv0g")])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

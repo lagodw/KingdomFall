@@ -1,13 +1,13 @@
-class_name UnitUpgrade
+class_name UnitSkill
 extends Resource
 
-enum Upgrade {
+enum Skill {
 	TRAINING,
 	EDUCATION,
 	PRODUCTIVITY,
 }
 
-@export var upgrade_type: Upgrade
+@export var skill_type: Skill
 @export var amount: int = 1
 ## only need to populate if not straight int, 
 ## otherwise uses amount
