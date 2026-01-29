@@ -6,9 +6,13 @@ extends Resource
 @export var construction_cost: int = 5
 @export var current_construction: int = 0
 @export var description: String
-
+@export var effects: Array[Effect]
 
 
 func dupe() -> BuildingResource:
 	var duped: BuildingResource = duplicate(true)
+	var duped_effects: Array[Effect]
+	for effect in effects:
+		duped_effects.append(effect.dupe())
+	duped.effects = duped_effects
 	return(duped)

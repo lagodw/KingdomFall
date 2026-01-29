@@ -14,6 +14,8 @@ func _ready() -> void:
 	
 func night_fall():
 	get_tree().call_group("Buildings", "end_day")
+	ee.emit_signal("end_day")
+	await get_tree().create_timer(2).timeout
 	var population: int = Bus.deck.get_units().size()
 	Bus.food -= population
 	kf.load_scene("uid://dvld0lyuo33oq")

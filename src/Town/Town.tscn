@@ -144,13 +144,6 @@ Fall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buildings" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 195.0
-offset_top = 113.0
-offset_right = 1673.0
-offset_bottom = 655.0
-
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_left = 278.0

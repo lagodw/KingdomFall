@@ -34,6 +34,8 @@ func setup():
 	set_popup_position()
 	set_art()
 	setup_slots()
+	for effect in resource.effects:
+		effect.connect_signal(self)
 	
 func _on_mouse_exit():
 	show_highlight(false)
@@ -115,9 +117,12 @@ func end_day():
 	if resource.current_construction < resource.construction_cost:
 		resource.current_construction += get_worker_count()
 
-func get_worker_count() -> int:
-	var num_workers: int = 0
+func get_occupants() -> Array[CardToken]:
+	var units: Array[CardToken]
 	for slot: TokenSlot in token_grid.get_children():
 		if slot.occupied_unit:
-			num_workers += 1
-	return(num_workers)
+			units.append(slot.occupied_unit)
+	return(units)
+	
+func get_worker_count() -> int:
+	return(get_occupants().size())

@@ -1,36 +1,11 @@
-[gd_resource type="Resource" script_class="TownResource" load_steps=6 format=3 uid="uid://bmwj3jl3o8tm4"]
+[gd_resource type="Resource" script_class="TownResource" load_steps=5 format=3 uid="uid://bmwj3jl3o8tm4"]
 
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_gcq3e"]
 [ext_resource type="Script" uid="uid://dmrjpysoe3qk2" path="res://src/Town/TownResource.gd" id="2_b573t"]
-
-[sub_resource type="Resource" id="Resource_gcq3e"]
-script = ExtResource("1_gcq3e")
-building_name = "Farm"
-capacity = 1
-construction_cost = 3
-current_construction = 3
-description = "Provides 1 food per worker"
-metadata/_custom_type_script = "uid://8ulf8s82ml2o"
-
-[sub_resource type="Resource" id="Resource_b573t"]
-script = ExtResource("1_gcq3e")
-building_name = "Farm"
-capacity = 1
-construction_cost = 3
-current_construction = 3
-description = "Provides 1 food per worker"
-metadata/_custom_type_script = "uid://8ulf8s82ml2o"
-
-[sub_resource type="Resource" id="Resource_lti62"]
-script = ExtResource("1_gcq3e")
-building_name = "Barracks"
-capacity = 5
-construction_cost = 5
-current_construction = 5
-description = "Provides 1 training to occupants"
-metadata/_custom_type_script = "uid://8ulf8s82ml2o"
+[ext_resource type="Resource" uid="uid://bnu4cowv70yck" path="res://resources/Buildings/Farm.tres" id="2_lti62"]
+[ext_resource type="Resource" uid="uid://cdvm1hhuxdo1r" path="res://resources/Buildings/Barracks.tres" id="3_f7ulh"]
 
 [resource]
 script = ExtResource("2_b573t")
-buildings = Array[ExtResource("1_gcq3e")]([SubResource("Resource_gcq3e"), SubResource("Resource_b573t"), SubResource("Resource_lti62")])
+buildings = Array[ExtResource("1_gcq3e")]([ExtResource("2_lti62"), ExtResource("2_lti62"), ExtResource("3_f7ulh")])
 metadata/_custom_type_script = "uid://dmrjpysoe3qk2"

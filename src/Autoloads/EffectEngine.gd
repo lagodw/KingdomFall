@@ -23,6 +23,7 @@ signal unit_killed(killed_unit: CardToken, killing_card: Card)
 signal play(played_unit: Unit)
 signal consume_used(consume: Consume)
 signal card_added_to_deck(card: CardResource)
+signal end_day
 # for automatically pulling signals
 signal BREAK_HERE
 
@@ -141,7 +142,7 @@ func check_conditions_calling(call_card: Card, trigger_card: Control, conditions
 		var result = condition_callable.call(call_card, trigger_card, conditions.get(condition_type))
 		# result is true if condition is passed
 		if not result:
-			#print('%s failed calling condition: %s'%[call_card.card_name, condition_type])
+			print('%s failed calling condition: %s'%[call_card.card_name, condition_type])
 			return(result)
 	return(true)
 
@@ -154,7 +155,7 @@ func check_conditions_subject(subject: Control, call_card: Control,
 		var result = condition_callable.call(subject, call_card, conditions.get(condition_type))
 		# result is true if condition is passed
 		if not result:
-			#print('%s failed subject condition: %s'%[subject.get_path(), condition_type])
+			print('%s failed subject condition: %s'%[subject.get_path(), condition_type])
 			return(result)
 	return(true)
 	

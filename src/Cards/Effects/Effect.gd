@@ -13,7 +13,7 @@ var script_instance: Resource
 ## will be assigned when played
 ## trigger card could also be combat node
 var trigger_card: Control
-var calling_card: Card
+var calling_card: Control
 var function: String:
 	set(the_function):
 		function = the_function
@@ -76,7 +76,7 @@ var max_activation_change: EffectValue = EffectValue.new()
 var host_card: CardToken
 var effect_dict: Dictionary = {}
 
-func connect_signal(call_card: Card = null):
+func connect_signal(call_card: Control = null):
 	script_instance = function_script.new()
 	if call_card:
 		calling_card = call_card
@@ -244,6 +244,8 @@ func on_card_added_to_deck(card: CardResource):
 		"card": card
 	}
 	apply_effect(dict)
+func on_end_day():
+	apply_effect({})
 	
 func _get_property_list() -> Array:
 	#print(get_script().get_script_property_list())
@@ -349,7 +351,7 @@ func _get_property_list() -> Array:
 				list.append(resource_hint("debuff_amount", "EffectValue"))
 			'change_bus_var':
 				list.append(type_hint("bus_var", TYPE_STRING, PROPERTY_HINT_ENUM,
-						"mana,gold,spell_power"))
+						"mana,gold,spell_power,food"))
 				list.append(resource_hint("bus_var_change", "EffectValue"))
 			'permanent_buff':
 				list.append(resource_hint("perm_damage", "EffectValue"))
