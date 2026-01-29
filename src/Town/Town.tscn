@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djtcf3x2wg721"]
+[gd_scene load_steps=14 format=3 uid="uid://djtcf3x2wg721"]
 
 [ext_resource type="Script" uid="uid://bewt2iotlx4sw" path="res://src/Town/Town.gd" id="1_lk6hu"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="2_lk6hu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cialou463k85i" path="res://assets/Combat/EndTurn/EndTurn_Clicked.png" id="8_j5igp"]
 [ext_resource type="Texture2D" uid="uid://dbsx8ecfe07wd" path="res://assets/Combat/EndTurn/EndTurn_Hovered.png" id="9_eim2o"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="12_0seve"]
+[ext_resource type="Texture2D" uid="uid://cscrq7yjuyvkm" path="res://assets/UI/Popup_window_paper.png" id="12_k25qk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk6hu"]
 
@@ -165,3 +166,74 @@ grow_horizontal = 1
 
 [node name="Escape" parent="." instance=ExtResource("12_0seve")]
 visible = false
+
+[node name="UnitUpgrades" type="TextureRect" parent="."]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_left = 252.0
+offset_top = 36.0
+offset_right = 1626.0
+offset_bottom = 1019.0
+texture = ExtResource("12_k25qk")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UnitUpgrades"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 75.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme = ExtResource("6_70d4t")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "You have units with available upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnitPanel" parent="UnitUpgrades" instance=ExtResource("3_n1enq")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -492.0
+offset_top = -490.0
+offset_right = 492.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Done" type="Button" parent="UnitUpgrades"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.5
+offset_top = -137.0
+offset_right = 76.5
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_upyly")
+theme_override_font_sizes/font_size = 32
+text = "Done"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UnitUpgrades"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 151.0
+offset_right = 1166.0
+offset_bottom = 455.0
+
+[node name="UpgradeOptions" type="HBoxContainer" parent="UnitUpgrades/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1

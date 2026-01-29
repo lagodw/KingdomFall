@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://7iyrp623m11p"]
+
+[ext_resource type="Script" uid="uid://cf7gtm8pckwyh" path="res://src/Town/UpgradeButton.gd" id="1_1fcsc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6asb"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.819494, 0.848384, 7.70092e-07, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="UpgradeButton" type="Button"]
+custom_minimum_size = Vector2(204, 304)
+offset_right = 204.0
+offset_bottom = 304.0
+mouse_filter = 1
+script = ExtResource("1_1fcsc")
+
+[node name="Highlight" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_q6asb")

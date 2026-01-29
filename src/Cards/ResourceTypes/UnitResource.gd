@@ -14,6 +14,7 @@ extends CardResource
 @export var default_animation: String = "sword"
 @export var curses: Array[Curse]
 @export var skills: Array[UnitSkill]
+@export var upgrade_options: Array[UnitUpgrade]
 
 @export_category("Enemy Behavior")
 @export_enum("Hybrid", "Attack", "Defend", "Support") var box_priority: String = "Hybrid"
@@ -33,3 +34,23 @@ func dupe() -> Resource:
 		new_effects.append(effect.dupe())
 	duped.effects = new_effects
 	return(duped)
+
+func get_skill_count(check_skill: UnitSkill.Skill) -> int:
+	var count: int = 0
+	for skill in skills:
+		if skill.skill_type == check_skill:
+			count += 1
+	return(count)
+
+func check_upgrade_requirements(upgrade: UnitUpgrade) -> bool:
+	for requirement in upgrade.requirements:
+		if get_skill_count(requirement.skill) < requirement.amount:
+			return(false)
+	return(true)
+	
+func get_eligible_upgrades() -> Array[UnitUpgrade]:
+	var eligible: Array[UnitUpgrade]
+	for upgrade in upgrade_options:
+		if check_upgrade_requirements(upgrade):
+			eligible.append(upgrade)
+	return(eligible)
