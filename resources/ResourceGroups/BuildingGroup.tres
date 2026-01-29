@@ -7,5 +7,5 @@ script = ExtResource("1_t71cn")
 base_folder = "res://resources/Buildings"
 includes = Array[String](["**"])
 excludes = Array[String]([])
-paths = Array[String](["res://resources/Buildings/Barracks.tres", "res://resources/Buildings/Farm.tres"])
+paths = Array[String](["res://resources/Buildings/Barracks.tres", "res://resources/Buildings/Farm.tres", "res://resources/Buildings/Library.tres", "res://resources/Buildings/GuildHall.tres"])
 metadata/_custom_type_script = "uid://da1l0ib1csn4e"

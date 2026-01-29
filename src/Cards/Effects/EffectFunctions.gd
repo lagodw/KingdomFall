@@ -211,3 +211,11 @@ func modify_cost(subjects: Array, calling_card: Control, trigger_card: Control,
 			subject.base_cost += val
 			subject.current_cost += val
 	
+func upgrade_unit(subjects: Array, calling_card: Control, trigger_card: Control,
+		unit_upgrade: UnitUpgrade, effect_dict: Dictionary):
+	for subject in subjects:
+		if unit_upgrade.effect_value:
+			var amt = unit_upgrade.effect_value.get_value(subject, 
+					trigger_card, calling_card, effect_dict)
+			unit_upgrade.amount = amt
+		subject.card_resource.upgrades.append(unit_upgrade)

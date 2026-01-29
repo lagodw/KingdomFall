@@ -135,6 +135,6 @@ building_name = "Farm"
 capacity = 1
 construction_cost = 3
 current_construction = 0
-description = "Provides 3 food per worker"
+description = "Provides 3 food per [b]Productivity[/b]"
 effects = Array[ExtResource("1_1ycp7")]([SubResource("Resource_yf0r7")])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

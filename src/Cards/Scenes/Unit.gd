@@ -84,6 +84,8 @@ func class_setup():
 	setup_stats()
 	setup_fatigue()
 	has_support = card_resource.has_support
+	if self is not CardToken:
+		%UpgradeBox.add_tags()
 
 func setup_stats():
 	for stat in ['health', 'damage', 'shield', 'activation', 'attack_range', 'speed']:

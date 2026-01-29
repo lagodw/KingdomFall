@@ -13,6 +13,7 @@ extends CardResource
 @export var combat_modifiers: Array[CombatModifier] = []
 @export var default_animation: String = "sword"
 @export var curses: Array[Curse]
+@export var upgrades: Array[UnitUpgrade]
 
 @export_category("Enemy Behavior")
 @export_enum("Hybrid", "Attack", "Defend", "Support") var box_priority: String = "Hybrid"

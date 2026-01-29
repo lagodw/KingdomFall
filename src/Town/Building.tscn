@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://2e28fvpdufxt"]
+[gd_scene load_steps=11 format=3 uid="uid://2e28fvpdufxt"]
 
 [ext_resource type="Texture2D" uid="uid://c5vuv1nmcxxf4" path="res://assets/Buildings/Farm.png" id="1_286lr"]
 [ext_resource type="Script" uid="uid://h2ihf5bt4qi8" path="res://src/Town/Building.gd" id="1_p6hl2"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="2_mcgxq"]
 [ext_resource type="Theme" uid="uid://cn6xijpm0jdg2" path="res://assets/Theme/ScrollBar.tres" id="4_55514"]
 [ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="4_lsdw1"]
 [ext_resource type="Texture2D" uid="uid://bqaqhsh05lktm" path="res://assets/UI/paper.png" id="5_x61nd"]
@@ -80,6 +81,19 @@ grow_vertical = 2
 texture = ExtResource("7_55514")
 expand_mode = 1
 
+[node name="ConstructionAmt" type="Label" parent="Button/UnderConstruction"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 102.0
+offset_right = 170.0
+offset_bottom = 186.0
+theme = ExtResource("2_mcgxq")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Highlight" type="ReferenceRect" parent="Button"]
 visible = false
 layout_mode = 1
@@ -116,7 +130,7 @@ grow_horizontal = 2
 texture = ExtResource("5_x61nd")
 expand_mode = 1
 
-[node name="Description" type="Label" parent="Popup/Paper"]
+[node name="Description" type="RichTextLabel" parent="Popup/Paper"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -129,10 +143,12 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_55514")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
 text = "This is the building description"
-autowrap_mode = 3
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Popup"]
 layout_mode = 0

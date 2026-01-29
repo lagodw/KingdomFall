@@ -9,3 +9,4 @@ func _ready() -> void:
 		$H/Icon.texture = texture
 		$H/Name.text = building.building_name
 		$H/Description.text = building.description
+		$H/Construction/Cost.text = str(building.construction_cost)

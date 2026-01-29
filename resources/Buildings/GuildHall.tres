@@ -1,0 +1,138 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=18 format=3 uid="uid://bl83qwrme1kgv"]
+
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_vnnx8"]
+[ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="2_3fx71"]
+[ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="2_dc64d"]
+[ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="3_hln65"]
+[ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="4_8hov8"]
+[ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="5_tm6hy"]
+[ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="6_w6xts"]
+[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitUpgrade.gd" id="7_vs7ux"]
+
+[sub_resource type="Resource" id="Resource_la6qr"]
+script = ExtResource("2_dc64d")
+require_trigger = false
+required_slots = Array[int]([])
+require_act = false
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+
+[sub_resource type="Resource" id="Resource_ch3tu"]
+script = ExtResource("3_hln65")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_1a23u"]
+script = ExtResource("3_hln65")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_hulfa"]
+script = ExtResource("6_w6xts")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_1n3ou"]
+script = ExtResource("5_tm6hy")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_hulfa")
+
+[sub_resource type="Resource" id="Resource_3exww"]
+script = ExtResource("6_w6xts")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_0s05g"]
+script = ExtResource("5_tm6hy")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_3exww")
+
+[sub_resource type="Resource" id="Resource_bi64t"]
+script = ExtResource("7_vs7ux")
+upgrade_type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_l5h32"]
+script = ExtResource("1_vnnx8")
+function_script = ExtResource("4_8hov8")
+function = "upgrade_unit"
+trigger_signal = "end_day"
+subject = "building_occupants"
+conditions_calling = SubResource("Resource_la6qr")
+conditions_trigger = SubResource("Resource_1a23u")
+conditions_subject = SubResource("Resource_ch3tu")
+if_calling_card = SubResource("Resource_1n3ou")
+if_subject = SubResource("Resource_0s05g")
+animation = "none"
+unit_upgrade = SubResource("Resource_bi64t")
+metadata/_custom_type_script = "uid://c1s3857yqcx8q"
+
+[resource]
+script = ExtResource("2_3fx71")
+building_name = "Guild Hall"
+capacity = 2
+construction_cost = 6
+current_construction = 0
+description = "Grants occupants 1 [b]Productivity[/b]"
+effects = Array[ExtResource("1_vnnx8")]([SubResource("Resource_l5h32")])
+metadata/_custom_type_script = "uid://8ulf8s82ml2o"

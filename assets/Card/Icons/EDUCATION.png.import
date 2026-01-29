@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clf1gvoj43kub"
-path="res://.godot/imported/Scroll.png-b17e508055cc7c7f0dc590d4e82d4195.ctex"
+path="res://.godot/imported/EDUCATION.png-c80d824c0a8bd3cb29954c94c243dcee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Scroll.png"
-dest_files=["res://.godot/imported/Scroll.png-b17e508055cc7c7f0dc590d4e82d4195.ctex"]
+source_file="res://assets/Card/Icons/EDUCATION.png"
+dest_files=["res://.godot/imported/EDUCATION.png-c80d824c0a8bd3cb29954c94c243dcee.ctex"]
 
 [params]
 
