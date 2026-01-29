@@ -29,7 +29,7 @@ func setup():
 		capacity = construction_left
 		$Button/UnderConstruction.visible = true
 		$Button/UnderConstruction/ConstructionAmt.text = str(construction_left)
-	%Description.text = resource.description
+	%Description.text = kf.replace_skill_icons(resource.description)
 	remove_child(popup)
 	get_tree().current_scene.call_deferred("add_child", popup)
 	set_popup_position()

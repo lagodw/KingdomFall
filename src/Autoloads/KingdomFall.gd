@@ -290,3 +290,10 @@ func load_tutorial_scene(scene_path: String, use_tween: bool = true) -> void:
 	# 5. Add to the SceneTree root (so it persists across scene changes if needed)
 	get_tree().root.add_child(instance)
 	return
+
+func replace_skill_icons(text: String, size: int = 32) -> String:
+	for skill in UnitSkill.Skill.keys():
+		var icon_path = "res://assets/Card/Icons/%s.png"%skill
+		text = text.replace("[b]%s[/b]"%skill, "[img=%sx%s]%s[/img]"%[size, size, icon_path])
+	text = text.replace("[b]Food[/b]", "[img=%sx%s]uid://dir6jcwcaephg[/img]"%[size, size])
+	return(text)

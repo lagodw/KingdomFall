@@ -2,9 +2,9 @@ class_name UnitSkill
 extends Resource
 
 enum Skill {
-	TRAINING,
-	EDUCATION,
-	PRODUCTIVITY,
+	Training,
+	Education,
+	Productivity,
 }
 
 @export var skill_type: Skill
