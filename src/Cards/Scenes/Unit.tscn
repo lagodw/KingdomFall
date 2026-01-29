@@ -14,7 +14,7 @@
 [node name="Unit" instance=ExtResource("1_1svyu")]
 script = ExtResource("2_my6ub")
 
-[node name="Cost" type="TextureRect" parent="Front" index="6"]
+[node name="Fatigue" type="TextureRect" parent="Front" index="6"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 5.0
@@ -24,7 +24,7 @@ theme = ExtResource("3_ce5f5")
 texture = ExtResource("4_hhhr0")
 expand_mode = 1
 
-[node name="CostText" type="Label" parent="Front/Cost" index="0"]
+[node name="FatigueText" type="Label" parent="Front/Fatigue" index="0"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

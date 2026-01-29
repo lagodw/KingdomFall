@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bqpfca8014vtm" path="res://assets/Town/Construction.png" id="7_55514"]
 
 [node name="Building" type="Control"]
-custom_minimum_size = Vector2(270, 390)
+custom_minimum_size = Vector2(270, 410)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 270.0
@@ -40,7 +40,7 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 120.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_lsdw1")

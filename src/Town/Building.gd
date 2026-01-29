@@ -37,7 +37,6 @@ func _on_mouse_exit():
 	show_highlight(false)
 	
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	print('drop?')
 	if find_first_slot():
 		show_highlight(true)
 		return(true)
@@ -68,9 +67,7 @@ func setup_slots():
 		popup.size.x += 15
 
 func find_first_slot() -> TokenSlot:
-	print(token_grid.get_children())
 	for slot: TokenSlot in token_grid.get_children():
-		print(slot.occupied_unit)
 		if not slot.occupied_unit:
 			return(slot)
 	return(null)

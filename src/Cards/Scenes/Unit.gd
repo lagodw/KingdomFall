@@ -66,7 +66,10 @@ var max_activation: int:
 		compare_stat("Activation", current_activation, max_activation)
 		if label:
 			label.max_activation = max_activation
-var current_fatigue: int
+var current_fatigue: int:
+	set(val):
+		current_fatigue = max(0, val)
+		compare_stat("Fatigue", current_fatigue, current_fatigue)
 var items: Array[Item]
 var snapshot_max_damage: int
 var snapshot_current_damage: int
@@ -87,6 +90,7 @@ func setup_stats():
 		set("base_%s"%stat, card_resource.get(stat))
 		set("max_%s"%stat, card_resource.get(stat))
 		set("current_%s"%stat, card_resource.get(stat))
+	current_fatigue = card_resource.fatigue
 	refresh_stats_labels()
 	if current_shield > 0 and pop:
 		pop.create_keyword_popup("Shield")
@@ -94,7 +98,7 @@ func setup_stats():
 
 func setup_fatigue():
 	current_fatigue = card_resource.fatigue
-	%CostText.text = str(card_resource.fatigue)
+	%FatigueText.text = str(card_resource.fatigue)
 	
 func move_to(target: Control, animation: bool = true):
 	if target is TokenSlot:
@@ -184,6 +188,8 @@ func refresh_stats_labels():
 	compare_stat("Damage", current_damage, max_damage)
 	compare_stat("Shield", current_shield, max_shield)
 	compare_stat("Speed", current_speed, max_speed)
+	compare_stat("Attack_Range", current_attack_range, max_attack_range)
+	compare_stat("Fatigue", current_fatigue, current_fatigue)
 	if max_shield == 0:
 		show_shield(false)
 	else:

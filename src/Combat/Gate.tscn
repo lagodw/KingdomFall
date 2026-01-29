@@ -56,10 +56,10 @@ offset_bottom = 51.0
 [node name="Shadow" parent="Frame/HBoxContainer" index="0"]
 visible = false
 
-[node name="Speed" parent="Frame/HBoxContainer" index="1"]
+[node name="TopBox" parent="Frame" index="3"]
 visible = false
 
-[node name="BottomBox" parent="Frame" index="3"]
+[node name="BottomBox" parent="Frame" index="4"]
 offset_left = -6.0
 offset_top = -77.0
 offset_right = -14.0

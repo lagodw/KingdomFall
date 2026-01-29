@@ -72,7 +72,7 @@ var energy: int:
 ########################################
 
 const card_size := Vector2(200, 300)
-const token_size := Vector2(120, 120)
+const token_size := Vector2(85, 140)
 const label_size := Vector2(170, 25)
 
 func _ready() -> void:

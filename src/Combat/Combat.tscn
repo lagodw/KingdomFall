@@ -55,10 +55,10 @@ expand_mode = 1
 
 [node name="UnitGrid" parent="." instance=ExtResource("2_m70ga")]
 layout_mode = 0
-offset_left = 1079.0
-offset_top = 238.0
-offset_right = 1504.0
-offset_bottom = 838.0
+offset_left = 1078.0
+offset_top = 186.0
+offset_right = 1503.0
+offset_bottom = 886.0
 num_neutral_slots = 1
 
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
@@ -126,6 +126,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Gate" parent="." instance=ExtResource("17_whu61")]
+custom_minimum_size = Vector2(85, 120)
 layout_mode = 1
 offset_left = 1511.0
 offset_top = 395.0

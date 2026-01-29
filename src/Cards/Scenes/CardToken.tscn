@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://64ksoqa1gi7w"]
+[gd_scene load_steps=23 format=3 uid="uid://64ksoqa1gi7w"]
 
 [ext_resource type="Script" uid="uid://dcd6psvxgk1fb" path="res://src/Cards/Scenes/CardToken.gd" id="1_00mgh"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="1_sclck"]
@@ -11,9 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://b6lm11rvw7ni3" path="res://assets/Card/Icons/Shield.png" id="12_4r546"]
 [ext_resource type="Texture2D" uid="uid://0un1v3txl4g7" path="res://assets/Card/Icons/Vulnerable.png" id="13_4r546"]
 [ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="13_7hai3"]
+[ext_resource type="Texture2D" uid="uid://37qvgtj4hugx" path="res://assets/Card/Icons/Fatigue.png" id="14_5jmab"]
 [ext_resource type="Texture2D" uid="uid://8f7nhd2p1vde" path="res://assets/Card/Icons/Feeble.png" id="14_7hai3"]
 [ext_resource type="Texture2D" uid="uid://dwmvkbkwnjymf" path="res://assets/Card/Icons/Discard.png" id="14_7m80x"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="16_7m80x"]
+[ext_resource type="Texture2D" uid="uid://b1owsl2q05bfe" path="res://assets/Card/Icons/Ranged.png" id="16_dogpx"]
 [ext_resource type="Shader" uid="uid://xt0mhmnlmr5x" path="res://src/UI/BlockText.gdshader" id="17_vglqt"]
 [ext_resource type="Texture2D" uid="uid://cq3jcn3yjscxt" path="res://assets/Card/Icons/Moves.png" id="18_5jmab"]
 [ext_resource type="Texture2D" uid="uid://ccablnn8jxip4" path="res://assets/Theme/silver_texture.png" id="18_g26p3"]
@@ -31,7 +33,7 @@ shader_parameter/text_texture = ExtResource("18_g26p3")
 shader_parameter/texture_scale = 1.0
 
 [node name="CardToken" type="Control"]
-custom_minimum_size = Vector2(85, 120)
+custom_minimum_size = Vector2(85, 140)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 85.0
@@ -43,9 +45,9 @@ script = ExtResource("1_00mgh")
 unique_name_in_owner = true
 layout_mode = 2
 offset_left = 3.0
-offset_top = 22.0
+offset_top = 41.0
 offset_right = 82.0
-offset_bottom = 97.0
+offset_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 texture = ExtResource("2_cicnf")
@@ -342,14 +344,25 @@ text = "Card Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Speed" type="TextureRect" parent="Frame/HBoxContainer"]
+[node name="TopBox" type="HBoxContainer" parent="Frame"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 23.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme = ExtResource("1_sclck")
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Fatigue" type="TextureRect" parent="Frame/TopBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(21, 16)
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 texture = ExtResource("7_u756d")
 expand_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="Frame/HBoxContainer/Speed"]
+[node name="TextureRect" type="TextureRect" parent="Frame/TopBox/Fatigue"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -359,10 +372,10 @@ offset_top = -4.5
 offset_right = 10.0
 offset_bottom = 4.5
 grow_vertical = 2
-texture = ExtResource("18_5jmab")
+texture = ExtResource("14_5jmab")
 expand_mode = 1
 
-[node name="SpeedText" type="Label" parent="Frame/HBoxContainer/Speed"]
+[node name="FatigueText" type="Label" parent="Frame/TopBox/Fatigue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -382,15 +395,54 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Attack_Range" type="TextureRect" parent="Frame/HBoxContainer"]
+[node name="Attack_Range" type="TextureRect" parent="Frame/TopBox"]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(21, 16)
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 texture = ExtResource("7_u756d")
 expand_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="Frame/HBoxContainer/Attack_Range"]
+[node name="TextureRect" type="TextureRect" parent="Frame/TopBox/Attack_Range"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -4.5
+offset_right = 10.0
+offset_bottom = 4.5
+grow_vertical = 2
+texture = ExtResource("16_dogpx")
+expand_mode = 1
+
+[node name="Attack_RangeText" type="Label" parent="Frame/TopBox/Attack_Range"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -10.0
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_sclck")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="TextureRect" parent="Frame/TopBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/TopBox/Speed"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -403,7 +455,7 @@ grow_vertical = 2
 texture = ExtResource("18_5jmab")
 expand_mode = 1
 
-[node name="Attack_RangeText" type="Label" parent="Frame/HBoxContainer/Attack_Range"]
+[node name="SpeedText" type="Label" parent="Frame/TopBox/Speed"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6

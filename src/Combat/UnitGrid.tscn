@@ -4,6 +4,6 @@
 
 [node name="UnitGrid" type="VBoxContainer"]
 offset_right = 510.0
-offset_bottom = 720.0
+offset_bottom = 700.0
 mouse_filter = 2
 script = ExtResource("1_gcvdu")
