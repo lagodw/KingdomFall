@@ -2,7 +2,7 @@ class_name Town
 extends Control
 
 @onready var building_scene = preload("uid://2e28fvpdufxt")
-@onready var building_grid: GridContainer = $Buildings/ScrollContainer/GridContainer
+@onready var building_grid: GridContainer = $ScrollContainer/GridContainer
 
 func _ready() -> void:
 	for building in Bus.player.town.buildings:
@@ -10,7 +10,7 @@ func _ready() -> void:
 	$Bottom/UnitPanel.load_units(Bus.deck.cards)
 	$Bottom/EndTurn.pressed.connect(night_fall)
 	var construction = load("uid://df7bb45nih6i8").instantiate()
-	$Buildings/ScrollContainer/GridContainer.add_child(construction)
+	building_grid.add_child(construction)
 	
 func night_fall():
 	get_tree().call_group("Buildings", "end_day")

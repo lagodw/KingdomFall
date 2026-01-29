@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cshkmwknv7s5g"]
+[gd_scene load_steps=3 format=3 uid="uid://cshkmwknv7s5g"]
 
 [ext_resource type="Script" uid="uid://8c4r0kcfflsb" path="res://src/Combat/TokenSlot.gd" id="2_g3pui"]
 [ext_resource type="Texture2D" uid="uid://do80ypiwidhxi" path="res://assets/Combat/Castle_floor_border.png" id="3_65l8j"]
-[ext_resource type="Texture2D" uid="uid://ctftomca4hpa3" path="res://assets/Combat/Castle_floor.png" id="3_g3pui"]
 
 [node name="TokenSlot1" type="TextureRect"]
 custom_minimum_size = Vector2(85, 120)
@@ -10,7 +9,6 @@ offset_right = 85.0
 offset_bottom = 120.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("3_g3pui")
 expand_mode = 1
 script = ExtResource("2_g3pui")
 
@@ -35,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-border_width = 2.0
+border_width = 4.0
 editor_only = false
 
 [node name="NeutralOutline" type="ReferenceRect" parent="."]
@@ -48,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 border_color = Color(0.426367, 0.434933, 0.419393, 1)
-border_width = 2.0
+border_width = 4.0
 editor_only = false
 
 [node name="PlayerOutline" type="ReferenceRect" parent="."]
@@ -61,5 +59,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 border_color = Color(0.0612042, 0.492045, 0.19923, 1)
-border_width = 2.0
+border_width = 4.0
 editor_only = false

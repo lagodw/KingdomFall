@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://cn6xijpm0jdg2"]
 
-[ext_resource type="Texture2D" uid="uid://dfn75bme70p4y" path="res://assets/UI/Medieval/scroll_button.png" id="1_xunfl"]
-[ext_resource type="Texture2D" uid="uid://s0t7hkh4rof" path="res://assets/UI/Medieval/scroll_button_selected.png" id="2_ha4cc"]
-[ext_resource type="Texture2D" uid="uid://bso1eoiqhkkxk" path="res://assets/UI/Medieval/scroll_frame_simple.png" id="3_rtmjs"]
+[ext_resource type="Texture2D" uid="uid://c2thhfj0it8js" path="res://assets/Theme/ScrollBar/scroll_button.png" id="1_xunfl"]
+[ext_resource type="Texture2D" uid="uid://cb84ajcjqlf6m" path="res://assets/Theme/ScrollBar/scroll_button_selected.png" id="2_ha4cc"]
+[ext_resource type="Texture2D" uid="uid://wh3xujmqahhw" path="res://assets/Theme/ScrollBar/scroll_frame_simple.png" id="3_rtmjs"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_llu12"]
 texture = ExtResource("1_xunfl")

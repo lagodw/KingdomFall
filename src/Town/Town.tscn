@@ -151,18 +151,16 @@ offset_top = 113.0
 offset_right = 1673.0
 offset_bottom = 655.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Buildings"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 42.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 108.0
+offset_right = 1673.0
+offset_bottom = 664.0
 
-[node name="GridContainer" type="GridContainer" parent="Buildings/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 layout_mode = 2
-columns = 6
+columns = 5
 
 [node name="UI" parent="." instance=ExtResource("2_lk6hu")]
 layout_mode = 0

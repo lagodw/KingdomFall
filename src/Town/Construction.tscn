@@ -6,14 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://b6qclnwqj7vy4" path="res://assets/Town/NewConstruction.png" id="4_wmiud"]
 
 [node name="Construction" type="Button"]
-custom_minimum_size = Vector2(250, 250)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1670.0
-offset_bottom = -830.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(275, 275)
+offset_right = 250.0
+offset_bottom = 250.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("1_7rs7i")
 
 [node name="ConstructionPanel" type="TextureRect" parent="."]
