@@ -2,6 +2,7 @@ class_name Card
 extends Control
 
 @onready var targeting_arrow: TargetingArrow = $TargetLine
+@onready var frame_rect: TextureRect = %Frame
 
 @export var card_resource: CardResource
 var token: CardToken
@@ -340,7 +341,10 @@ func get_bg_color() -> String:
 func update_bg_color():
 	var bg_color = get_bg_color()
 	var frame = "res://assets/Card/Frames/CardFrame_%s.png"%bg_color
-	%Frame.texture = load(frame)
+	frame_rect.texture = load(frame)
+	if self is not CardToken:
+		var box = "res://assets/Card/Frames/TagBox_%s.png"%bg_color
+		%TagFrame.texture = load(box)
 
 func disable_act(status):
 	act_disabled = status

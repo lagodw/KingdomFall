@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cd28vo6umqhig"]
+[gd_scene load_steps=18 format=3 uid="uid://cd28vo6umqhig"]
 
 [ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="1_chf5d"]
 [ext_resource type="Script" uid="uid://bl23h64tem5ub" path="res://src/Cards/Scenes/Card.gd" id="2_lydcd"]
 [ext_resource type="Texture2D" uid="uid://doy0y4ndc6hu4" path="res://assets/CardArt/Footman/Footman.png" id="4_ps48f"]
 [ext_resource type="Texture2D" uid="uid://ukytjhjjvr7s" path="res://assets/CardArt/Items/background_frame.png" id="4_xbolh"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_fwcra"]
+[ext_resource type="Texture2D" uid="uid://7urwh0ar7hs8" path="res://assets/Card/Frames/TagBox_Blue.png" id="6_vdqpd"]
 [ext_resource type="Texture2D" uid="uid://c8ukjqancdo17" path="res://assets/Card/Frames/CardFrame_Blue.png" id="7_fsigc"]
 [ext_resource type="Script" uid="uid://cpm0x5shgyi3" path="res://src/Cards/Popups/PopupContainer.gd" id="8_c0f1x"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="8_chf5d"]
@@ -85,6 +86,16 @@ offset_top = 2.0
 offset_right = 202.0
 offset_bottom = 302.0
 texture = ExtResource("7_fsigc")
+expand_mode = 1
+
+[node name="TagFrame" type="TextureRect" parent="Front"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 202.0
+offset_bottom = 302.0
+texture = ExtResource("6_vdqpd")
 expand_mode = 1
 
 [node name="Shadow" type="Label" parent="Front"]
