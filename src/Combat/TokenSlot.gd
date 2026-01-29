@@ -10,6 +10,8 @@ enum SlotType {
 	Enemy,
 }
 
+@onready var border: TextureRect = $Border
+
 @export var slot_type: SlotType
 var occupied_unit: CardToken = null:
 	set(value):
@@ -63,10 +65,10 @@ func add_token(token: CardToken):
 		
 	token.current_slot = self
 	token.visible = true
-	$Border.visible = false
+	border.visible = false
 
 func show_highlight(highlight: bool = true):
-	$Border.visible = highlight
+	border.visible = highlight
 	
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if slot_type == SlotType.Player and not occupied_unit and data.current_activation <= Bus.energy:
@@ -99,3 +101,9 @@ func get_next_slot(towards_gate: bool = true) -> TokenSlot:
 	else:
 		next_idx -= 1
 	return(file.box.get_children()[next_idx])
+
+func toggle_highlight(slot_owner: String):
+	for color in ["Enemy", "Neutral", "Player"]:
+		var highlight = get_node("%sOutline"%slot_owner)
+		highlight.visible = (color == slot_owner)
+	

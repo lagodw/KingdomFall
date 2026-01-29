@@ -32,6 +32,13 @@ var gold: int:
 		emit_signal("currency_changed", "gold", player.gold, change)
 	get():
 		return(player.gold)
+var food: int:
+	set(val):
+		var change = max(0, val) - player.food
+		player.food = max(0, val)
+		emit_signal("currency_changed", "food", player.food, change)
+	get():
+		return(player.food)
 var mana: int:
 	set(val):
 		val = clamp(val, 0, max_mana)

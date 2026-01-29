@@ -55,3 +55,10 @@ func sort_resources(data_a: CardResource, data_b: CardResource) -> bool:
 	elif data_a.activation < data_b.activation:
 		return(true)
 	return(false)
+
+func get_units() -> Array[UnitResource]:
+	var units: Array[UnitResource]
+	for card in cards:
+		if card is UnitResource:
+			units.append(card)
+	return(units)

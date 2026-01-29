@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6qclnwqj7vy4"
-path="res://.godot/imported/NewConstruction.png-816c18e1e9b5ee13b78f2bad341f8899.ctex"
+path="res://.godot/imported/Upgrade.png-accc8803d6ae2ad34e826b2c689177cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Town/NewConstruction.png"
-dest_files=["res://.godot/imported/NewConstruction.png-816c18e1e9b5ee13b78f2bad341f8899.ctex"]
+source_file="res://assets/Town/Upgrade.png"
+dest_files=["res://.godot/imported/Upgrade.png-accc8803d6ae2ad34e826b2c689177cb.ctex"]
 
 [params]
 

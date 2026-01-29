@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg7i7h2ywhdvu"
-path="res://.godot/imported/Head.png-0813d860a0e4a83f39c391d20ebd4950.ctex"
+uid="uid://dir6jcwcaephg"
+path="res://.godot/imported/food.png-b70fa89342bbc4eb81388e4c28743d14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Town/Head.png"
-dest_files=["res://.godot/imported/Head.png-0813d860a0e4a83f39c391d20ebd4950.ctex"]
+source_file="res://assets/UI/food.png"
+dest_files=["res://.godot/imported/food.png-b70fa89342bbc4eb81388e4c28743d14.ctex"]
 
 [params]
 

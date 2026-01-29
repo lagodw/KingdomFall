@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dglfstjlbuudi"]
+[gd_scene load_steps=9 format=3 uid="uid://dglfstjlbuudi"]
 
 [ext_resource type="Texture2D" uid="uid://dlc20e4hsnoel" path="res://assets/UI/skill_bar.png" id="1_h5akv"]
 [ext_resource type="Script" uid="uid://cyecs3huva81k" path="res://src/UI/UI.gd" id="2_c5ut5"]
+[ext_resource type="Texture2D" uid="uid://dcfqun6y306nf" path="res://assets/UI/population.png" id="3_48qpi"]
 [ext_resource type="Texture2D" uid="uid://bithkfa0yaj55" path="res://assets/Card/Icons/Mana.png" id="3_dyal0"]
 [ext_resource type="Texture2D" uid="uid://b5cdi4ovi55qk" path="res://assets/Card/Icons/SpellPower.png" id="3_hdn2o"]
+[ext_resource type="Texture2D" uid="uid://dir6jcwcaephg" path="res://assets/UI/food.png" id="4_f5lgd"]
 [ext_resource type="Texture2D" uid="uid://dkud1ngvb85db" path="res://assets/UI/money.png" id="7_l34ye"]
-[ext_resource type="Texture2D" uid="uid://bdurhcqjvqq3e" path="res://assets/Card/Icons/Health.png" id="8_w1jl2"]
 [ext_resource type="PackedScene" uid="uid://2gd3eej6fvla" path="res://src/UI/Tooltip.tscn" id="14_l34ye"]
 
 [node name="UI" type="TextureRect"]
@@ -52,19 +53,29 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="healthIcon" type="TextureRect" parent="Stats"]
-visible = false
+[node name="PopulationIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
-texture = ExtResource("8_w1jl2")
+texture = ExtResource("3_48qpi")
 expand_mode = 3
 
-[node name="healthAmt" type="Label" parent="Stats"]
+[node name="PopulationAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(75, 0)
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "30 / 30"
+text = "10"
+
+[node name="FoodIcon" type="TextureRect" parent="Stats"]
+layout_mode = 2
+texture = ExtResource("4_f5lgd")
+expand_mode = 3
+
+[node name="foodAmt" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "15"
 
 [node name="ManaIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
@@ -73,7 +84,7 @@ expand_mode = 3
 
 [node name="manaAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(90, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "10 / 10"
@@ -105,16 +116,6 @@ text = "100"
 [node name="Tooltips" type="Control" parent="."]
 anchors_preset = 0
 
-[node name="Health_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1439.0
-offset_top = 40.0
-offset_right = 1639.0
-offset_bottom = 110.0
-icon_path = "uid://bdurhcqjvqq3e"
-title = "Health"
-description = "You probably don't want this to go to 0"
-
 [node name="Mana_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
 visible = false
 offset_left = 1527.0
@@ -135,16 +136,6 @@ icon_path = "uid://b5cdi4ovi55qk"
 title = "Spell Power"
 description = "Increases spell damage"
 
-[node name="Upkeep_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1735.0
-offset_top = 40.0
-offset_right = 1935.0
-offset_bottom = 110.0
-icon_path = "uid://dbr0f8hb1g31b"
-title = "Upkeep"
-description = "The cost of your army. Must be paid after each combat."
-
 [node name="Gold_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
 visible = false
 offset_left = 1735.0
@@ -155,23 +146,16 @@ icon_path = "uid://k4fhlip7l4rd"
 title = "Gold"
 description = "Can be used to buy stuff."
 
-[node name="HealthArea" type="Control" parent="Tooltips"]
-visible = false
-anchors_preset = 0
-offset_left = 1397.0
-offset_right = 1500.0
-offset_bottom = 30.0
-
 [node name="PowerArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1638.0
-offset_right = 1704.0
+offset_left = 1750.0
+offset_right = 1816.0
 offset_bottom = 30.0
 
 [node name="ManaArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1517.0
-offset_right = 1620.0
+offset_left = 1621.0
+offset_right = 1724.0
 offset_bottom = 30.0
 
 [node name="GoldArea" type="Control" parent="Tooltips"]

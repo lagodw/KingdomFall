@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c4xb6qtdrvdhp" path="res://src/Town/Construction.gd" id="1_7rs7i"]
 [ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="2_wmiud"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="4_7rs7i"]
-[ext_resource type="Texture2D" uid="uid://b6qclnwqj7vy4" path="res://assets/Town/NewConstruction.png" id="4_wmiud"]
+[ext_resource type="Texture2D" uid="uid://bqpfca8014vtm" path="res://assets/Town/Construction.png" id="4_wmiud"]
 
 [node name="Construction" type="Button"]
 custom_minimum_size = Vector2(275, 275)

@@ -5,8 +5,9 @@ extends TextureRect
 
 @onready var gold = %goldAmt
 @onready var mana = %manaAmt
+@onready var food = %foodAmt
 @onready var spell_power = %spell_powerAmt
-@onready var health = %healthAmt
+@onready var population = %PopulationAmt
 
 func _ready() -> void:
 	Bus.ui = self
@@ -21,14 +22,15 @@ func update_amounts():
 	set_gold_text(Bus.gold)
 	set_mana_text(Bus.mana)
 	set_spell_power_text(Bus.spell_power)
-	set_health_text()
-
+	set_food_text(Bus.food)
+	
 func update_currency(currency: String, new_amt: int, change: int) -> void:
 	if change == 0:
 		return
 	var tween = create_tween()
 	var color_dict := {"gold": {"up": Color.GOLD, "down": Color.FIREBRICK},
 					"mana": {"up": Color.BLUE, "down": Color.FIREBRICK},
+					"food": {"up": Color.SADDLE_BROWN, "down": Color.FIREBRICK},
 					"spell_power": {"up": Color.FIREBRICK, "down": Color.YELLOW}}
 	var direction: String = "up"
 	if change < 0:
@@ -49,17 +51,11 @@ func set_mana_text(_value: int) -> void:
 func set_spell_power_text(value: int) -> void:
 	spell_power.text = str(value)
 	
-func set_health_text() -> void:
-	health.text = "%s / %s"%[Bus.player.current_health, Bus.player.health]
-
-func open_drop_units() -> void:
-	if $DropUnits.visible:
-		# remove labels and close
-		$DropUnits.cancel()
-		return
-	if not Bus.PlayerDeck.visible:
-		toggle_deck()
-	$DropUnits.open()
+func set_food_text(value: int) -> void:
+	food.text = str(value)
+	
+func update_population():
+	population.text = str(Bus.player.deck.get_units().size())
 	
 func on_combat() -> void:
 	$DropButton.visible = false
@@ -77,7 +73,7 @@ func toggle_deck():
 	$ToggleDeck/Deck/EyeClosed.visible = not deck_visible
 
 func setup_tooltips():
-	for stat in ["Health", "Mana", "Power", "Gold"]:
+	for stat in ["Mana", "Power", "Gold"]:
 		get_node("Tooltips/%sArea"%stat).mouse_entered.connect(show_tooltip.bind(stat))
 		get_node("Tooltips/%sArea"%stat).mouse_exited.connect(hide_tooltip.bind(stat))
 		get_node("Tooltips/%s_tip"%stat).setup()

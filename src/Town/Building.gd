@@ -9,6 +9,7 @@ extends Control
 @export var resource: BuildingResource
 
 var capacity: int
+var under_construction: bool = false
 
 func _ready() -> void:
 	popup = $Popup
@@ -24,6 +25,7 @@ func setup():
 	if construction_left <= 0:
 		capacity = resource.capacity
 	else:
+		under_construction = true
 		capacity = construction_left
 		$Button/UnderConstruction.visible = true
 	%Description.text = resource.description
@@ -58,13 +60,11 @@ func setup_slots():
 	for child in token_grid.get_children():
 		child.queue_free()
 	for i in capacity:
-		var slot = slot_scene.instantiate()
+		var slot: TokenSlot = slot_scene.instantiate()
 		slot.building = self
+		if under_construction:
+			slot.slot_type = TokenSlot.SlotType.Neutral
 		token_grid.add_child(slot)
-	if capacity > 3:
-		popup.size.y += Bus.token_size.y + 5
-	if capacity > 6:
-		popup.size.x += 15
 
 func find_first_slot() -> TokenSlot:
 	for slot: TokenSlot in token_grid.get_children():
