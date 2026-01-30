@@ -13,18 +13,20 @@
 [ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="11_2xmfc"]
 
 [node name="Building" type="Control"]
-custom_minimum_size = Vector2(270, 410)
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 270.0
-offset_bottom = 390.0
+offset_right = 200.0
+offset_bottom = 200.0
 script = ExtResource("1_p6hl2")
 
 [node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(270, 270)
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 
 [node name="Art" type="TextureRect" parent="Button"]
@@ -37,37 +39,6 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_286lr")
 expand_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="Button"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 142.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_lsdw1")
-expand_mode = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Button/TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_right = -3.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_55514")
-
-[node name="TokenGrid" type="GridContainer" parent="Button/TextureRect/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 5
-columns = 3
 
 [node name="UnderConstruction" type="TextureRect" parent="Button"]
 visible = false
@@ -108,13 +79,22 @@ border_color = Color(0.217763, 0.430852, 0.237079, 1)
 border_width = 6.0
 editor_only = false
 
+[node name="CapacityGrid" type="GridContainer" parent="Button"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 120.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 5
+
 [node name="Popup" type="TextureRect" parent="."]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 285.0
-offset_right = 635.0
-offset_bottom = 240.0
+offset_left = 210.0
+offset_right = 675.0
+offset_bottom = 399.0
 mouse_filter = 0
 texture = ExtResource("4_lsdw1")
 expand_mode = 1
@@ -123,8 +103,8 @@ expand_mode = 1
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 340.0
-offset_bottom = 230.0
+offset_right = 455.0
+offset_bottom = 390.0
 theme_override_constants/separation = 20
 
 [node name="Paper" type="TextureRect" parent="Popup/V"]
@@ -157,6 +137,18 @@ vertical_alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popup/V"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+theme = ExtResource("4_55514")
+
+[node name="TokenGrid" type="GridContainer" parent="Popup/V/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 5
+columns = 5
 
 [node name="BuildOptions" type="HBoxContainer" parent="Popup/V"]
 layout_mode = 2

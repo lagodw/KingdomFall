@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bqpfca8014vtm" path="res://assets/Town/Construction.png" id="4_wmiud"]
 
 [node name="Construction" type="Button"]
-custom_minimum_size = Vector2(275, 275)
-offset_right = 250.0
-offset_bottom = 250.0
+custom_minimum_size = Vector2(200, 200)
+offset_right = 200.0
+offset_bottom = 200.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_7rs7i")

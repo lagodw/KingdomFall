@@ -3,10 +3,12 @@ extends Control
 
 @onready var slot_scene = preload("uid://cshkmwknv7s5g")
 @onready var progress_scene = preload("uid://bpxp4s2o7n5ef")
+@onready var capacity_panel = preload("uid://ctc1gy8wqgc02")
 @onready var highlight: ReferenceRect = $Button/Highlight
 @onready var token_grid: GridContainer = %TokenGrid
 @onready var popup: TextureRect = $Popup
 @onready var popup_v: VBoxContainer = $Popup/V
+@onready var capacity_grid: GridContainer = %CapacityGrid
 
 @export var resource: BuildingResource
 
@@ -52,6 +54,8 @@ func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant):
 	kf.dragging = null
+	if data.current_slot:
+		data.current_slot.building.release_unit(data)
 	add_unit(data)
 	
 func show_highlight(value: bool):
@@ -71,6 +75,10 @@ func setup_slots():
 		if under_construction:
 			slot.slot_type = TokenSlot.SlotType.Neutral
 		token_grid.add_child(slot)
+		var cap = capacity_panel.instantiate()
+		capacity_grid.add_child(cap)
+		cap.set_panel(false, under_construction)
+		
 
 func find_first_slot() -> TokenSlot:
 	for slot: TokenSlot in token_grid.get_children():
@@ -79,11 +87,24 @@ func find_first_slot() -> TokenSlot:
 	return(null)
 
 func add_unit(unit: Unit):
+	fill_capacity_slot()
 	var slot = find_first_slot()
 	unit.move_to(slot, false)
 	if unit is not CardToken:
 		await get_tree().process_frame
 		unit.token.move_card()
+
+func fill_capacity_slot():
+	for panel in capacity_grid.get_children():
+		if not panel.full:
+			panel.set_panel(true, under_construction)
+			return
+
+func empty_capacity_slot():
+	for panel in capacity_grid.get_children():
+		if panel.full:
+			panel.set_panel(false, under_construction)
+			return
 
 func show_popup(value: bool):
 	set_popup_position()
@@ -105,6 +126,7 @@ func set_popup_position():
 func release_unit(token: CardToken):
 	token.current_slot.occupied_unit = null
 	move_tokens_up()
+	empty_capacity_slot()
 
 func move_tokens_up():
 	for i in range(token_grid.get_child_count() - 1):

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=18 format=3 uid="uid://cdvm1hhuxdo1r"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=19 format=3 uid="uid://cdvm1hhuxdo1r"]
 
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_6xi5p"]
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_c5elr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="5_xwpur"]
 [ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="6_oh6mm"]
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="7_s0l2h"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="8_t8ery"]
 
 [sub_resource type="Resource" id="Resource_s0l2h"]
 script = ExtResource("2_s0l2h")
@@ -135,4 +136,6 @@ construction_cost = 5
 current_construction = 0
 description = "Grants occupants 1 [b]Training[/b]"
 effects = Array[ExtResource("1_6xi5p")]([SubResource("Resource_b2v77")])
+requirements = Array[ExtResource("8_t8ery")]([])
+progress = Array[ExtResource("8_t8ery")]([])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"
