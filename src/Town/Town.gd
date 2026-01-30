@@ -19,6 +19,10 @@ func _ready() -> void:
 	$UnitUpgrades/Done.pressed.connect(start_combat)
 	
 func night_fall():
+	for building in building_grid.get_children():
+		# exclude construction
+		if building is Building:
+			building.show_popup(false)
 	get_tree().call_group("Buildings", "end_day")
 	ee.emit_signal("end_day")
 	#await get_tree().create_timer(1).timeout

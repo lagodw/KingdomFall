@@ -109,7 +109,7 @@ func update_bg_color():
 	%Frame.texture = load(frame)
 		
 func _process(_delta):
-	z_index = 1
+	z_index = 0
 	if kf.dragging == self:
 		z_index = 10
 		rotation = 0
@@ -424,7 +424,7 @@ func attack_animation(target: CardToken) -> void:
 	await tween.finished
 	player.stop()
 	$Animation.visible = false
-	z_index = 2
+	z_index = 0
 	player.speed_scale = 1.0
 	
 func take_snapshot() -> void:

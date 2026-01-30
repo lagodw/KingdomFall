@@ -1,23 +1,13 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=5 format=3 uid="uid://ddx2ywtq1u34k"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3 uid="uid://ddx2ywtq1u34k"]
 
-[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_t3ns6"]
-[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="2_70xjl"]
+[ext_resource type="Script" uid="uid://druilahufs03l" path="res://src/Town/Job.gd" id="1_t3ns6"]
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="2_ry3ir"]
-
-[sub_resource type="Resource" id="Resource_6iw7p"]
-script = ExtResource("2_70xjl")
-skill = 1
-amount = 5
-metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [resource]
 script = ExtResource("2_ry3ir")
 building_name = "Library"
-capacity = 2
+building_description = "Unlocks cards or something"
 construction_cost = 6
 current_construction = 0
-description = "After 5 [b]Education[/b], choose a card reward"
-effects = Array[ExtResource("1_t3ns6")]([])
-requirements = Array[ExtResource("2_70xjl")]([SubResource("Resource_6iw7p")])
-progress = Array[ExtResource("2_70xjl")]([])
+jobs = Array[ExtResource("1_t3ns6")]([])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

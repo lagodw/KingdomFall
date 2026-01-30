@@ -8,5 +8,5 @@ func _ready() -> void:
 			["**%s.png"%building.building_name])[0]
 		$H/Icon.texture = texture
 		$H/Name.text = building.building_name
-		$H/Description.text = kf.replace_skill_icons(building.description)
+		$H/Description.text = kf.replace_skill_icons(building.building_description)
 		$H/Construction/Cost.text = str(building.construction_cost)

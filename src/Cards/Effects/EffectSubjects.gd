@@ -85,7 +85,7 @@ func attacking_unit(attacker: CardToken) -> Array[Control]:
 func lookup(calling_card: Card, unit_lookup: UnitLookup) -> Array[Control]:
 	return(unit_lookup.get_units(calling_card))
 
-func building_occupants(calling_card: Building) -> Array[Control]:
+func job_occupants(calling_card: JobContainer) -> Array[Control]:
 	var occupants: Array[Control]
 	for occupant in calling_card.get_occupants():
 		occupants.append(occupant)

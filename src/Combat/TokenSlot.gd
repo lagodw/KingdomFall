@@ -26,7 +26,7 @@ var occupied_unit: CardToken = null:
 			temporary_bumped_unit.move_to(self, false)
 			temporary_bumped_unit = null
 var file: UnitFile
-var building: Building
+var job: JobContainer
 var current_mouse_zone: String = "None":
 	set(new_zone):
 		# If zone changes, we might need to revert a temporary bump

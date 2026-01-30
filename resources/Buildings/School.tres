@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=18 format=3 uid="uid://bt3mcs0qphj1g"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=21 format=3 uid="uid://bt3mcs0qphj1g"]
 
+[ext_resource type="Script" uid="uid://druilahufs03l" path="res://src/Town/Job.gd" id="1_decqy"]
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_wixdu"]
 [ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="2_685yy"]
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="2_kx51n"]
@@ -8,8 +9,9 @@
 [ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="5_xm1e8"]
 [ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="6_qvm2w"]
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="7_08h5k"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="9_xm1e8"]
 
-[sub_resource type="Resource" id="Resource_c3dc4"]
+[sub_resource type="Resource" id="Resource_qvm2w"]
 script = ExtResource("2_685yy")
 require_trigger = false
 required_slots = Array[int]([])
@@ -19,7 +21,7 @@ require_alive = false
 require_owner = "Either"
 require_turn = -1
 
-[sub_resource type="Resource" id="Resource_tgni6"]
+[sub_resource type="Resource" id="Resource_08h5k"]
 script = ExtResource("3_fpnal")
 require_allied = false
 require_enemies = false
@@ -47,7 +49,7 @@ minimum_activation = 0
 maximum_activation = 99
 require_name = ""
 
-[sub_resource type="Resource" id="Resource_c28ie"]
+[sub_resource type="Resource" id="Resource_c3dc4"]
 script = ExtResource("3_fpnal")
 require_allied = false
 require_enemies = false
@@ -74,6 +76,22 @@ require_alive = false
 minimum_activation = 0
 maximum_activation = 99
 require_name = ""
+
+[sub_resource type="Resource" id="Resource_tgni6"]
+script = ExtResource("6_qvm2w")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_c28ie"]
+script = ExtResource("5_xm1e8")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_tgni6")
 
 [sub_resource type="Resource" id="Resource_terrj"]
 script = ExtResource("6_qvm2w")
@@ -92,47 +110,39 @@ maximum = 999
 value = SubResource("Resource_terrj")
 
 [sub_resource type="Resource" id="Resource_befyy"]
-script = ExtResource("6_qvm2w")
-value_type = "number"
-affected_by_spell_power = false
-number = 0
-chain_value = false
-
-[sub_resource type="Resource" id="Resource_016yn"]
-script = ExtResource("5_xm1e8")
-time_frame = "now"
-who = "Owner"
-what = "value"
-minimum = 0
-maximum = 999
-value = SubResource("Resource_befyy")
-
-[sub_resource type="Resource" id="Resource_n48qa"]
 script = ExtResource("7_08h5k")
 skill_type = 1
 amount = 1
 
-[sub_resource type="Resource" id="Resource_4fmrq"]
+[sub_resource type="Resource" id="Resource_016yn"]
 script = ExtResource("1_wixdu")
 function_script = ExtResource("4_decqy")
 function = "add_skill"
 trigger_signal = "end_day"
-subject = "building_occupants"
-conditions_calling = SubResource("Resource_c3dc4")
-conditions_trigger = SubResource("Resource_c28ie")
-conditions_subject = SubResource("Resource_tgni6")
-if_calling_card = SubResource("Resource_nycfe")
-if_subject = SubResource("Resource_016yn")
+subject = "job_occupants"
+conditions_calling = SubResource("Resource_qvm2w")
+conditions_trigger = SubResource("Resource_c3dc4")
+conditions_subject = SubResource("Resource_08h5k")
+if_calling_card = SubResource("Resource_c28ie")
+if_subject = SubResource("Resource_nycfe")
 animation = "none"
-skill = SubResource("Resource_n48qa")
+skill = SubResource("Resource_befyy")
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
+
+[sub_resource type="Resource" id="Resource_n48qa"]
+script = ExtResource("1_decqy")
+description = "Grants occupants 1 [b]Education[/b]"
+capacity = 2
+effects = Array[ExtResource("1_wixdu")]([SubResource("Resource_016yn")])
+requirements = Array[ExtResource("9_xm1e8")]([])
+progress = Array[ExtResource("9_xm1e8")]([])
+metadata/_custom_type_script = "uid://druilahufs03l"
 
 [resource]
 script = ExtResource("2_kx51n")
 building_name = "School"
-capacity = 1
-construction_cost = 5
+building_description = "Grants occupants 1 [b]Education[/b]"
+construction_cost = 6
 current_construction = 0
-description = "Grants occupants 1 [b]Education[/b]"
-effects = Array[ExtResource("1_wixdu")]([SubResource("Resource_4fmrq")])
+jobs = Array[ExtResource("1_decqy")]([SubResource("Resource_n48qa")])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

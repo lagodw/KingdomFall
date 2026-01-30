@@ -37,6 +37,8 @@ func change_bus_var(subjects: Array, calling_card: Control, trigger_card: Contro
 	var subject
 	if subjects.size() > 0:
 		subject = subjects[0]
+	else:
+		return
 	var val = bus_var_change.get_value(subject, trigger_card, calling_card, effect_dict)
 	Bus.set(bus_var, Bus.get(bus_var) + val)
 	

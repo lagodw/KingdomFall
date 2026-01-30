@@ -33,7 +33,7 @@ func show_highlight(value: bool):
 func add_token(token: CardToken):
 	var card = token.turn_to_card()
 	box.add_child(card)
-	token.current_slot.building.release_unit(token)
+	token.current_slot.job.release_unit(token)
 	token.current_slot = null
 
 func add_card(card: Unit):

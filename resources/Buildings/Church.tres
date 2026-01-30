@@ -1,14 +1,13 @@
 [gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3 uid="uid://bq55aonredjke"]
 
-[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_yd7ay"]
+[ext_resource type="Script" uid="uid://druilahufs03l" path="res://src/Town/Job.gd" id="1_yd7ay"]
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="2_f34ml"]
 
 [resource]
 script = ExtResource("2_f34ml")
 building_name = "Church"
-capacity = 1
-construction_cost = 5
+building_description = "Does Holy Stuff"
+construction_cost = 8
 current_construction = 0
-description = "Provides blessings"
-effects = Array[ExtResource("1_yd7ay")]([])
+jobs = Array[ExtResource("1_yd7ay")]([])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

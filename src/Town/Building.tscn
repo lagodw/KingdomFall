@@ -1,12 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://2e28fvpdufxt"]
+[gd_scene load_steps=9 format=3 uid="uid://2e28fvpdufxt"]
 
 [ext_resource type="Texture2D" uid="uid://c5vuv1nmcxxf4" path="res://assets/Buildings/Farm.png" id="1_286lr"]
 [ext_resource type="Script" uid="uid://h2ihf5bt4qi8" path="res://src/Town/Building.gd" id="1_p6hl2"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="2_mcgxq"]
-[ext_resource type="Theme" uid="uid://cn6xijpm0jdg2" path="res://assets/Theme/ScrollBar.tres" id="4_55514"]
 [ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="4_lsdw1"]
-[ext_resource type="Texture2D" uid="uid://bqaqhsh05lktm" path="res://assets/UI/paper.png" id="5_x61nd"]
-[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_55514"]
 [ext_resource type="Texture2D" uid="uid://bqpfca8014vtm" path="res://assets/Town/Construction.png" id="7_55514"]
 [ext_resource type="Texture2D" uid="uid://b6qclnwqj7vy4" path="res://assets/Town/Upgrade.png" id="8_h4yar"]
 [ext_resource type="Texture2D" uid="uid://d3ljyqot8354n" path="res://assets/Town/Demolish.png" id="9_la14e"]
@@ -99,68 +96,26 @@ mouse_filter = 0
 texture = ExtResource("4_lsdw1")
 expand_mode = 1
 
-[node name="V" type="VBoxContainer" parent="Popup"]
+[node name="JobsBox" type="VBoxContainer" parent="Popup"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 455.0
-offset_bottom = 390.0
+offset_bottom = 110.0
 theme_override_constants/separation = 20
 
-[node name="Paper" type="TextureRect" parent="Popup/V"]
-custom_minimum_size = Vector2(280, 100)
-layout_mode = 2
-texture = ExtResource("5_x61nd")
-expand_mode = 1
-
-[node name="Description" type="RichTextLabel" parent="Popup/V/Paper"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 5.0
-offset_right = -10.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_55514")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-bbcode_enabled = true
-text = "Provides occupants 1 T"
-vertical_alignment = 1
-
-[node name="Requirements" type="HBoxContainer" parent="Popup/V"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Popup/V"]
-custom_minimum_size = Vector2(0, 140)
-layout_mode = 2
-theme = ExtResource("4_55514")
-
-[node name="TokenGrid" type="GridContainer" parent="Popup/V/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 5
-columns = 5
-
-[node name="BuildOptions" type="HBoxContainer" parent="Popup/V"]
+[node name="BuildOptions" type="HBoxContainer" parent="Popup/JobsBox"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Upgrade" type="Button" parent="Popup/V/BuildOptions"]
+[node name="Upgrade" type="Button" parent="Popup/JobsBox/BuildOptions"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 icon = ExtResource("8_h4yar")
 expand_icon = true
 
-[node name="Demolish" type="Button" parent="Popup/V/BuildOptions"]
+[node name="Demolish" type="Button" parent="Popup/JobsBox/BuildOptions"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 icon = ExtResource("9_la14e")
