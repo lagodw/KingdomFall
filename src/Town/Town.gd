@@ -3,7 +3,7 @@ extends Control
 
 @onready var building_scene = preload("uid://2e28fvpdufxt")
 @onready var upgrade_button = preload("uid://7iyrp623m11p")
-@onready var building_grid: GridContainer = $ScrollContainer/GridContainer
+@onready var building_grid: GridContainer = $Buildings/BuildingGrid
 @onready var upgrade_option_box: HBoxContainer = %UpgradeOptions
 
 var upgrade_buttons: Array[Button]
@@ -24,7 +24,8 @@ func night_fall():
 	#await get_tree().create_timer(1).timeout
 	var population: int = Bus.deck.get_units().size()
 	Bus.food -= population
-	check_for_upgrades()
+	if not check_for_upgrades():
+		start_combat()
 
 func start_combat():
 	kf.load_scene("uid://dvld0lyuo33oq")

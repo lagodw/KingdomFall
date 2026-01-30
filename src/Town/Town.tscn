@@ -145,14 +145,14 @@ Fall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="Buildings" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_left = 278.0
 offset_top = 108.0
 offset_right = 1673.0
 offset_bottom = 664.0
 
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+[node name="BuildingGrid" type="GridContainer" parent="Buildings"]
 layout_mode = 2
 columns = 5
 

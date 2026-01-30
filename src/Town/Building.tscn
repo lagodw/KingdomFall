@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://2e28fvpdufxt"]
+[gd_scene load_steps=12 format=3 uid="uid://2e28fvpdufxt"]
 
 [ext_resource type="Texture2D" uid="uid://c5vuv1nmcxxf4" path="res://assets/Buildings/Farm.png" id="1_286lr"]
 [ext_resource type="Script" uid="uid://h2ihf5bt4qi8" path="res://src/Town/Building.gd" id="1_p6hl2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bqpfca8014vtm" path="res://assets/Town/Construction.png" id="7_55514"]
 [ext_resource type="Texture2D" uid="uid://b6qclnwqj7vy4" path="res://assets/Town/Upgrade.png" id="8_h4yar"]
 [ext_resource type="Texture2D" uid="uid://d3ljyqot8354n" path="res://assets/Town/Demolish.png" id="9_la14e"]
+[ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="11_2xmfc"]
 
 [node name="Building" type="Control"]
 custom_minimum_size = Vector2(270, 410)
@@ -112,25 +113,27 @@ visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 285.0
-offset_right = 707.0
-offset_bottom = 250.0
+offset_right = 635.0
+offset_bottom = 240.0
 mouse_filter = 0
 texture = ExtResource("4_lsdw1")
 expand_mode = 1
 
-[node name="Paper" type="TextureRect" parent="Popup"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = 120.0
-grow_horizontal = 2
+[node name="V" type="VBoxContainer" parent="Popup"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 340.0
+offset_bottom = 230.0
+theme_override_constants/separation = 20
+
+[node name="Paper" type="TextureRect" parent="Popup/V"]
+custom_minimum_size = Vector2(280, 100)
+layout_mode = 2
 texture = ExtResource("5_x61nd")
 expand_mode = 1
 
-[node name="Description" type="RichTextLabel" parent="Popup/Paper"]
+[node name="Description" type="RichTextLabel" parent="Popup/V/Paper"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -147,25 +150,40 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
-text = "This is the building description"
+text = "Provides occupants 1 T"
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 130.0
-offset_right = 310.0
-offset_bottom = 230.0
+[node name="Requirements" type="HBoxContainer" parent="Popup/V"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="BuildOptions" type="HBoxContainer" parent="Popup/V"]
+layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Upgrade" type="Button" parent="Popup/HBoxContainer"]
+[node name="Upgrade" type="Button" parent="Popup/V/BuildOptions"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 icon = ExtResource("8_h4yar")
 expand_icon = true
 
-[node name="Demolish" type="Button" parent="Popup/HBoxContainer"]
+[node name="Demolish" type="Button" parent="Popup/V/BuildOptions"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 icon = ExtResource("9_la14e")
 expand_icon = true
+
+[node name="Border" type="NinePatchRect" parent="Popup"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 8.0
+anchor_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("11_2xmfc")
+patch_margin_left = 48
+patch_margin_top = 47
+patch_margin_right = 48
+patch_margin_bottom = 46

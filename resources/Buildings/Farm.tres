@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=18 format=3 uid="uid://bnu4cowv70yck"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=19 format=3 uid="uid://bnu4cowv70yck"]
 
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_1ycp7"]
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_ivoxv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_5csmk"]
 [ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="6_ow12q"]
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="7_axed2"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="8_4rdbb"]
 
 [sub_resource type="Resource" id="Resource_4rdbb"]
 script = ExtResource("3_4rdbb")
@@ -135,4 +136,6 @@ construction_cost = 3
 current_construction = 0
 description = "Provides 3 [b]Food[/b] per [b]Productivity[/b]"
 effects = Array[ExtResource("1_1ycp7")]([SubResource("Resource_rjv0g")])
+requirements = Array[ExtResource("8_4rdbb")]([])
+progress = Array[ExtResource("8_4rdbb")]([])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

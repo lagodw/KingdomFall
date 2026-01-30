@@ -2,9 +2,11 @@ class_name Building
 extends Control
 
 @onready var slot_scene = preload("uid://cshkmwknv7s5g")
+@onready var progress_scene = preload("uid://bpxp4s2o7n5ef")
 @onready var highlight: ReferenceRect = $Button/Highlight
 @onready var token_grid: GridContainer = %TokenGrid
 @onready var popup: TextureRect = $Popup
+@onready var popup_v: VBoxContainer = $Popup/V
 
 @export var resource: BuildingResource
 
@@ -29,6 +31,7 @@ func setup():
 		capacity = construction_left
 		$Button/UnderConstruction.visible = true
 		$Button/UnderConstruction/ConstructionAmt.text = str(construction_left)
+	update_progress()
 	%Description.text = kf.replace_skill_icons(resource.description)
 	remove_child(popup)
 	get_tree().current_scene.call_deferred("add_child", popup)
@@ -91,6 +94,7 @@ func toggle_popup():
 	set_popup_position()
 
 func set_popup_position():
+	popup.size = popup_v.size + Vector2(20, 20)
 	if popup.global_position.x >= get_viewport_rect().size.x - popup.size.x:
 		popup.global_position.x = global_position.x - popup.size.x - 10
 	else:
@@ -127,3 +131,21 @@ func get_occupants() -> Array[CardToken]:
 	
 func get_worker_count() -> int:
 	return(get_occupants().size())
+
+func update_progress():
+	if resource.requirements.size() == 0 or under_construction:
+		%Requirements.visible = false
+		return
+	else:
+		%Requirements.visible = true
+	for requirement in resource.requirements:
+		var skill: UnitSkill.Skill = requirement.skill
+		var current_progress: int = 0
+		for progress in resource.progress:
+			if skill == progress.skill:
+				current_progress += progress.amount
+		var scene = progress_scene.instantiate()
+		scene.skill = skill
+		scene.progress = current_progress
+		scene.required = requirement.amount
+		%Requirements.add_child(scene)

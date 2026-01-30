@@ -3,3 +3,7 @@ extends Resource
 
 @export var skill: UnitSkill.Skill
 @export var amount: int
+
+func dupe() -> UpgradeRequirement:
+	var duped: UpgradeRequirement = self.duplicate(true)
+	return(duped)
