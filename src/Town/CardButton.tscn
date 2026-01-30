@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://7iyrp623m11p"]
+[gd_scene load_steps=4 format=3 uid="uid://7iyrp623m11p"]
 
-[ext_resource type="Script" uid="uid://cf7gtm8pckwyh" path="res://src/Town/UpgradeButton.gd" id="1_1fcsc"]
+[ext_resource type="Script" uid="uid://cf7gtm8pckwyh" path="res://src/Town/CardButton.gd" id="1_axq4o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axq4o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6asb"]
 draw_center = false
@@ -14,12 +16,13 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="UpgradeButton" type="Button"]
+[node name="CardButton" type="Button"]
 custom_minimum_size = Vector2(204, 304)
 offset_right = 204.0
 offset_bottom = 304.0
 mouse_filter = 1
-script = ExtResource("1_1fcsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_axq4o")
+script = ExtResource("1_axq4o")
 
 [node name="Highlight" type="Panel" parent="."]
 visible = false

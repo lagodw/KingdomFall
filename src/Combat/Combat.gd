@@ -1,6 +1,7 @@
 class_name Combat
 extends Control
 
+@onready var card_button = preload("uid://7iyrp623m11p")
 @onready var draw_pile: Pile = $Draw
 @onready var discard_pile: Pile = $Discard
 @onready var energy_txt: Label = $Energy/EnergyText
@@ -8,19 +9,36 @@ extends Control
 var turn_counter: int = 0
 var combat_happening: bool = false
 var combat_over: bool = false
-var army: Array[CardResource]
+var selected_cards: Array[Button]
 
 func _ready() -> void:
 	Bus.Board = self
 	Bus.draw = draw_pile
 	Bus.discard = discard_pile
-	$ArmyChoice/RestPanel.load_units(Bus.deck.cards)
 	$EndTurn.pressed.connect(end_turn)
 	Bus.energy_changed.connect(update_energy)
 	Bus.energy = 3
-	$%ConfirmArmy.pressed.connect(start_combat)
+	$%ConfirmDeck.pressed.connect(begin_combat)
+	add_deck_choice()
 	get_tree().paused = true
-	$ArmyChoice.visible = true
+	$DeckChoice.visible = true
+
+func add_deck_choice():
+	for resource in Bus.deck.cards:
+		var card = kf.create_card(resource)
+		var button = card_button.instantiate()
+		button.card = card
+		button.add_child(card)
+		button.pressed.connect(select_card.bind(button))
+		%DeckChoiceGrid.add_child(button)
+		
+func select_card(button: Button):
+	if selected_cards.has(button):
+		selected_cards.erase(button)
+		button.selected = false
+	else:
+		selected_cards.append(button)
+		button.selected = true
 
 func end_turn():
 	await Bus.Grid.start_combat()
@@ -39,21 +57,16 @@ func game_over():
 	combat_over = true
 	$GameOver.appear()
 
-func start_combat():
-	var non_units: Array[CardResource]
-	for resource in Bus.deck.cards:
-		if resource is not UnitResource:
-			non_units.append(resource)
-	draw_pile.load_deck(non_units)
-	for card: Card in $ArmyChoice/FightPanel.box.get_children():
-		army.append(card.card_resource)
+func begin_combat():
+	for button: Button in selected_cards:
+		var card: Card = button.card
 		var old_pos: Vector2 = card.global_position
 		card.get_parent().remove_child(card)
 		add_child(card)
 		card.global_position = old_pos
 		card.move_to(draw_pile.cards)
 	
-	$ArmyChoice.visible = false
+	$DeckChoice.visible = false
 	get_tree().paused = false
 		
 	await get_tree().create_timer(kf.tween_time * 1.5).timeout
@@ -61,6 +74,8 @@ func start_combat():
 	end_turn()
 
 func combat_won():
+	for card in Bus.hand.get_children():
+		card.queue_free()
 	get_tree().paused = true
 	combat_over = true
 	$CombatWon.visible = true

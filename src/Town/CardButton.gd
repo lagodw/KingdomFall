@@ -2,7 +2,7 @@ extends Button
 
 @onready var highlight: Panel = $Highlight
 
-var card: Unit
+var card: Card
 var selected: bool = false
 
 func _ready() -> void:
