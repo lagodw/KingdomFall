@@ -52,12 +52,8 @@ func update_previews() -> void:
 	for file: UnitFile in get_children():
 		file.update_previews()
 
-func get_units(card_owner: String = "All") -> Array[CardToken]:
+func get_units(unit_owner: String = "All") -> Array[CardToken]:
 	var units: Array[CardToken]
-	for file in get_children():
-		for slot: TokenSlot in file.box.get_children():
-			if slot.occupied_unit:
-				var unit = slot.occupied_unit
-				if unit.card_owner == card_owner or card_owner == "All":
-					units.append(slot.occupied_unit)
+	for file: UnitFile in get_children():
+		units.append_array(file.get_units(unit_owner))
 	return(units)

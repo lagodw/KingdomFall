@@ -19,8 +19,14 @@ func add_slot(slot_type: TokenSlot.SlotType):
 	slot.file = self
 	box.add_child(slot)
 	
-func get_units(_unit_owner: String) -> Array[CardToken]:
-	return([])
+func get_units(unit_owner: String = "All") -> Array[CardToken]:
+	var units: Array[CardToken]
+	for slot: TokenSlot in box.get_children():
+		if slot.occupied_unit:
+			var unit = slot.occupied_unit
+			if unit.card_owner == unit_owner or unit_owner == "All":
+				units.append(unit)
+	return(units)
 	
 func add_enemy_unit(unit: Unit) -> void:
 	var slots = box.get_children()
@@ -55,13 +61,43 @@ func find_next_target(attacker: CardToken = null, real: bool = true) -> CardToke
 	return(null)
 
 func combat(real: bool = true):
-	for slot: TokenSlot in box.get_children():
-		if not slot.occupied_unit:
-			continue
-		var unit: CardToken = slot.occupied_unit
+	var health_var = "current_health" if real else "remaining_life"
+	var unit_dicts: Array[Dictionary] = []
+
+	unit_dicts.append_array(get_unit_dict())
+
+	# 3. Sort by: Speed (Highest First) -> Rank (Frontmost First) -> Side (Enemy First)
+	unit_dicts.sort_custom(sort_combat)
+	
+	# 4. Execute combat sequence
+	for entry in unit_dicts:
+		if Bus.gate.get(health_var) <= 0:
+			return
 			
-		await _process_unit_combat(unit, real)
-		if real and Bus.Board.combat_over: return
+		await _process_unit_combat(entry.unit, real)
+		
+		if real and Bus.Board.combat_over:
+			return
+
+func get_unit_dict() -> Array[Dictionary]:
+	var units: Array[Dictionary]
+	for unit: CardToken in get_units("All"):
+		var rank_idx = unit.current_slot.get_index()
+		units.append({
+			"unit": unit,
+			"speed": unit.current_speed,
+			"rank": rank_idx,
+		})
+	return(units)
+
+func sort_combat(unitA: Dictionary, unitB: Dictionary) -> bool:
+	if unitA.speed != unitB.speed:
+		return unitA.speed > unitB.speed
+		
+	if unitA.rank != unitB.rank:
+		return unitA.rank < unitB.rank
+	
+	return false
 
 # Helper to process a unit's full attack sequence (until exhausted or dead)
 func _process_unit_combat(unit: CardToken, real: bool) -> void:

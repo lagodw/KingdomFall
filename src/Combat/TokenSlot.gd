@@ -71,6 +71,12 @@ func show_highlight(highlight: bool = true):
 	border.visible = highlight
 	
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	if data is CardToken:
+		if slot_type != SlotType.Enemy and data.can_act:
+			show_highlight(true)
+			return(true)
+		else:
+			return(false)
 	if slot_type == SlotType.Player and not occupied_unit and data.current_activation <= Bus.energy:
 		show_highlight(true)
 		return(true)

@@ -81,8 +81,9 @@ func discard():
 			card.queue_free()
 	discarded_cards.reverse()
 	for card in discarded_cards:
-		card.move_to(Bus.discard.cards)
-		await get_tree().create_timer(.05).timeout
+		if is_instance_valid(card) and not card.is_queued_for_deletion():
+			card.move_to(Bus.discard.cards)
+			await get_tree().create_timer(.05).timeout
 	await get_tree().create_timer(kf.tween_time*1.25).timeout
 
 func set_card_focus(card: Card, is_focused: bool) -> void:
