@@ -57,3 +57,8 @@ func get_units(unit_owner: String = "All") -> Array[CardToken]:
 	for file: UnitFile in get_children():
 		units.append_array(file.get_units(unit_owner))
 	return(units)
+
+func get_slot_distance(slot1: TokenSlot, slot2: TokenSlot) -> int:
+	var slot_distance = abs(slot1.get_index() - slot2.get_index())
+	var file_distance = abs(slot1.file.get_index() - slot2.file.get_index())
+	return(slot_distance + file_distance)

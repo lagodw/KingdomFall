@@ -119,7 +119,7 @@ func _process(_delta):
 	else:
 		mouse_filter = Control.MOUSE_FILTER_STOP
 		
-func on_turn_start():
+func on_turn_start(_turn_num: int):
 	if not current_slot or current_health <= 0: return
 	set_act(true)
 	if max_shield > 0:
@@ -221,6 +221,7 @@ func move_to(target: Control, animation: bool = true, mouse_pos: bool = false):
 		await tween.finished
 	ee.emit_signal("move", self)
 	position = Vector2.ZERO
+	can_act = false
 	
 ## card sets stats to max value, token to current value
 func compare_stat(property: String, current_value: int, max_value: int):

@@ -72,7 +72,8 @@ func show_highlight(highlight: bool = true):
 	
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is CardToken:
-		if slot_type != SlotType.Enemy and data.can_act:
+		if slot_type != SlotType.Enemy and data.can_act and (
+			Bus.Grid.get_slot_distance(data.current_slot, self) <= 1):
 			show_highlight(true)
 			return(true)
 		else:

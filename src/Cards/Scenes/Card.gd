@@ -69,13 +69,13 @@ func common_setup():
 	for effect in card_resource.effects:
 		effects.append(effect.dupe())
 	Bus.trigger_occurred.connect(on_trigger_occurred)
-	Bus.turn_starting.connect(on_turn_start)
+	ee.start_turn.connect(on_turn_start)
 	mouse_entered.connect(_on_mouse_enter)
 	mouse_exited.connect(_on_mouse_exit)
 	Bus.take_snapshot.connect(take_snapshot)
 	Bus.restart_turn.connect(revert_to_snapshot)
 	
-func on_turn_start():
+func on_turn_start(_turn_num: int):
 	set_act(true)
 	
 func on_currency_change(currency: String, _old_amt: int, _change: int):

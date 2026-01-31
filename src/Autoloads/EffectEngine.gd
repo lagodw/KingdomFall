@@ -39,7 +39,7 @@ var method_args := {}
 
 func _ready():
 	Bus.trigger_occurred.connect(on_trigger)
-	Bus.turn_starting.connect(on_turn_start)
+	start_turn.connect(on_turn_start)
 	Bus.scene_changed.connect(reset)
 	Bus.restart_turn.connect(restart_turn)
 	# pull args from functions to know which ones to use in callable
@@ -100,7 +100,7 @@ func on_trigger(trigger_signal: String, trigger_card: Control):
 			
 	apply_effects()
 	
-func on_turn_start():
+func on_turn_start(_turn_num: int):
 	this_turn_effects = []
 		
 func apply_effects() -> void:
