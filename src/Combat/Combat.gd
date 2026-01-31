@@ -5,6 +5,7 @@ extends Control
 @onready var draw_pile: Pile = $Draw
 @onready var discard_pile: Pile = $Discard
 @onready var energy_txt: Label = $Energy/EnergyText
+@onready var deck_count: Label = %DeckCount
 
 var turn_counter: int = 0
 var combat_happening: bool = false
@@ -39,6 +40,7 @@ func select_card(button: Button):
 	else:
 		selected_cards.append(button)
 		button.selected = true
+	%DeckCount.text = str(selected_cards.size())
 
 func end_turn():
 	await Bus.Grid.start_combat()

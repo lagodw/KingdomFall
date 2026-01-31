@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=25 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -20,7 +20,9 @@
 [ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="16_whu61"]
 [ext_resource type="PackedScene" uid="uid://dhlijfvm4rjj5" path="res://src/Combat/Gate.tscn" id="17_whu61"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="18_7vgw0"]
+[ext_resource type="Texture2D" uid="uid://cverjpfc2bevk" path="res://assets/UI/Deck_Icon.png" id="18_60py1"]
 [ext_resource type="PackedScene" uid="uid://cngo42s45sirp" path="res://src/Combat/GameOver.tscn" id="18_wbuvy"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="19_rlcqg"]
 [ext_resource type="PackedScene" uid="uid://ddu14f5y2d8sj" path="res://src/Combat/CombatWon.tscn" id="23_vywh8"]
 
 [node name="Combat" type="Control"]
@@ -201,6 +203,37 @@ layout_mode = 2
 theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 25
 columns = 6
+
+[node name="DeckIcon" type="TextureRect" parent="DeckChoice"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 23.0
+offset_right = -131.0
+offset_bottom = 112.0
+grow_horizontal = 0
+texture = ExtResource("18_60py1")
+expand_mode = 1
+
+[node name="DeckCount" type="Label" parent="DeckChoice/DeckIcon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -41.5
+offset_right = 115.0
+offset_bottom = 42.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("19_rlcqg")
+theme_override_font_sizes/font_size = 64
+text = "0"
 
 [node name="Enemy" type="Control" parent="."]
 anchors_preset = 0
