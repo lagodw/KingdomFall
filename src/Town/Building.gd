@@ -17,6 +17,7 @@ var job_containers: Array[JobContainer]
 func _ready() -> void:
 	popup = $Popup
 	$Button.pressed.connect(toggle_popup)
+	%Demolish.pressed.connect(demolish)
 	mouse_exited.connect(_on_mouse_exit)
 	Bus.new_scene_loaded.connect(setup)
 	add_to_group("Buildings")
@@ -126,3 +127,10 @@ func setup_capacity_panels():
 			var cap = capacity_panel.instantiate()
 			capacity_grid.add_child(cap)
 			cap.set_panel(false, under_construction)
+
+func demolish():
+	for token in get_occupants():
+		Bus.town.reset_token(token)
+	Bus.player.town.buildings.erase(resource)
+	popup.queue_free()
+	queue_free()

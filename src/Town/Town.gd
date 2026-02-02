@@ -92,3 +92,6 @@ func upgrade_unit(unit: Unit, upgrade: Unit):
 	unit.get_parent().queue_free()
 	for button in upgrade_option_box.get_children():
 		button.queue_free()
+
+func reset_token(token: CardToken):
+	$Bottom/UnitPanel.add_token(token)
