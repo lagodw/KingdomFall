@@ -85,7 +85,7 @@ func class_setup():
 	setup_fatigue()
 	has_support = card_resource.has_support
 	if self is not CardToken:
-		%UpgradeBox.add_tags()
+		%SkillBox.add_tags()
 
 func setup_stats():
 	for stat in ['health', 'damage', 'shield', 'activation', 'attack_range', 'speed']:
@@ -134,6 +134,7 @@ func play_token(target: TokenSlot, animation: bool = true):
 	disabled = true
 	$Area2D/CollisionShape2D.disabled = true
 	rotation = 0
+	z_index = 15
 	position = Vector2(Bus.token_size.x + 10, -(Bus.card_size.y - Bus.token_size.y) / 2)
 	if label:
 		label.global_position = token.global_position

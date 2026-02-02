@@ -16,10 +16,12 @@ func add_tags():
 				add_icon(load(path))
 		var space: Control = Control.new()
 		space.custom_minimum_size.x = 20
+		space.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(space)
 
 func add_icon(texture: Texture):
 	var rect = TextureRect.new()
 	rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH
 	rect.texture = texture
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(rect)

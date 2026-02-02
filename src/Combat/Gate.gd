@@ -7,6 +7,7 @@ func _ready() -> void:
 	current_health = 50
 	remaining_life = 50
 	Bus.gate = self
+	add_to_group("Tokens")
 #
 #func update_damage_preview() -> void:
 	#var incoming_damage = current_health - remaining_life

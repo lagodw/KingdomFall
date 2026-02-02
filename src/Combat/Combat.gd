@@ -16,6 +16,8 @@ func _ready() -> void:
 	Bus.Board = self
 	Bus.draw = draw_pile
 	Bus.discard = discard_pile
+	Bus.PlayerGraveyard = $PlayerGraveyard
+	Bus.EnemyGraveyard = $EnemyGraveyard
 	$EndTurn.pressed.connect(end_turn)
 	Bus.energy_changed.connect(update_energy)
 	Bus.energy = 3
@@ -23,6 +25,7 @@ func _ready() -> void:
 	add_deck_choice()
 	get_tree().paused = true
 	$DeckChoice.visible = true
+	Bus.emit_signal("board_loaded")
 
 func add_deck_choice():
 	for resource in Bus.deck.cards:
@@ -43,7 +46,9 @@ func select_card(button: Button):
 	%DeckCount.text = str(selected_cards.size())
 
 func end_turn():
+	combat_happening = true
 	await Bus.Grid.start_combat()
+	combat_happening = false
 	$Enemy.on_turn_start(turn_counter)
 	await Bus.hand.discard()
 	draw_pile.draw_cards(5)

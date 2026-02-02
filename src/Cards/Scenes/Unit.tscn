@@ -19,7 +19,7 @@ script = ExtResource("2_my6ub")
 offset_top = -175.0
 offset_bottom = 425.0
 
-[node name="UpgradeBox" type="HBoxContainer" parent="Front" index="5"]
+[node name="SkillBox" type="HBoxContainer" parent="Front" index="5"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 48.0

@@ -109,7 +109,7 @@ func update_bg_color():
 	%Frame.texture = load(frame)
 		
 func _process(_delta):
-	z_index = 0
+	#z_index = 0
 	if kf.dragging == self:
 		z_index = 10
 		rotation = 0
@@ -137,6 +137,7 @@ func turn_to_label() -> CardLabel:
 	return(label)
 	
 func turn_to_card() -> Unit:
+	var parent = get_parent()
 	if card.get_parent():
 		card.get_parent().remove_child(card)
 	if get_parent():
@@ -146,6 +147,7 @@ func turn_to_card() -> Unit:
 	visible = false
 	card.add_child(self)
 	position = Vector2.ZERO
+	parent.add_child(card)
 	return(card)
 	
 func discard():
@@ -155,7 +157,13 @@ func discard():
 			current_slot.occupied_unit = null
 		current_slot = null
 	Audio.play_sfx("Death")
-	super.discard()
+	#super.discard()
+	ee.emit_signal("discard", self)
+	# prevent arrow from targeting as card is being discarded
+	disabled = true
+	turn_to_card()
+	#card.move_to(Bus.get("%sGraveyard"%card_owner).cards)
+	Bus.get("%sGraveyard"%card_owner).add_card(card)
 	
 func take_damage(dmg = 0, damaging_card: Card = null, blocked_by_shield: bool = true):
 	if disabled:
@@ -221,8 +229,6 @@ func move_to(target: Control, animation: bool = true, mouse_pos: bool = false):
 		await tween.finished
 	ee.emit_signal("move", self)
 	position = Vector2.ZERO
-	if Bus.Board:
-		can_act = false
 	
 ## card sets stats to max value, token to current value
 func compare_stat(property: String, current_value: int, max_value: int):

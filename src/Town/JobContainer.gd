@@ -46,7 +46,7 @@ func setup_slots():
 		var slot: TokenSlot = slot_scene.instantiate()
 		slot.job = self
 		if bldg.under_construction:
-			slot.slot_type = TokenSlot.SlotType.Neutral
+			slot.slot_type = TokenSlot.SlotType.Support
 		token_grid.add_child(slot)
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:

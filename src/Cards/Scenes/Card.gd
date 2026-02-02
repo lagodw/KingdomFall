@@ -331,11 +331,6 @@ func get_bg_color() -> String:
 	if not can_act:
 		color_name = "NoAct"
 	else:
-		if card_type == "Unit":
-			if card_owner == "Player":
-				return("Blue")
-			else:
-				return("Red")
 		color_name = card_type
 	return(kf.color_map[color_name])
 

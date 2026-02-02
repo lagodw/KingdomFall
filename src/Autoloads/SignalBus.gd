@@ -71,6 +71,8 @@ var draw: Pile
 var hand: Hand
 var Grid: UnitGrid
 var discard: Pile
+var PlayerGraveyard: Pile
+var EnemyGraveyard: Pile
 var gate: Gate
 var energy: int:
 	set(val):

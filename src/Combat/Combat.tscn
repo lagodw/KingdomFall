@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=27 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b307r73bvmxl0" path="res://src/Combat/UnitGrid.tscn" id="2_m70ga"]
 [ext_resource type="PackedScene" uid="uid://b8a6fsekofwdm" path="res://src/Combat/Hand.tscn" id="4_1dph2"]
 [ext_resource type="PackedScene" uid="uid://cahuyqwtqssxu" path="res://src/Combat/Pile.tscn" id="6_nthc5"]
+[ext_resource type="Texture2D" uid="uid://dwmvkbkwnjymf" path="res://assets/Card/Icons/Discard.png" id="7_rlcqg"]
 [ext_resource type="Texture2D" uid="uid://oxmwne2ge5mt" path="res://assets/Combat/EndTurn/EndTurn.png" id="7_yxnwc"]
 [ext_resource type="Texture2D" uid="uid://cialou463k85i" path="res://assets/Combat/EndTurn/EndTurn_Clicked.png" id="8_dyjub"]
+[ext_resource type="Texture2D" uid="uid://cj1m8aroronnd" path="res://assets/Card/Backs/CardBack_Red.png" id="8_fs6sf"]
 [ext_resource type="Texture2D" uid="uid://dbsx8ecfe07wd" path="res://assets/Combat/EndTurn/EndTurn_Hovered.png" id="9_55i6c"]
 [ext_resource type="Texture2D" uid="uid://bnaxe2ykiimtm" path="res://assets/Combat/EndTurn/EndTurn_Text.png" id="10_duo21"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="11_dyjub"]
@@ -56,11 +58,10 @@ expand_mode = 1
 
 [node name="UnitGrid" parent="." instance=ExtResource("2_m70ga")]
 layout_mode = 0
-offset_left = 1078.0
+offset_left = 1158.0
 offset_top = 186.0
-offset_right = 1503.0
+offset_right = 1498.0
 offset_bottom = 886.0
-num_neutral_slots = 1
 
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
 layout_mode = 1
@@ -80,6 +81,53 @@ offset_left = 1676.0
 offset_top = 609.0
 offset_right = 1880.0
 offset_bottom = 913.0
+
+[node name="PlayerGraveyard" parent="." instance=ExtResource("6_nthc5")]
+offset_left = 1676.0
+offset_top = 153.0
+offset_right = 1880.0
+offset_bottom = 457.0
+
+[node name="TextureRect" type="TextureRect" parent="PlayerGraveyard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -77.0
+offset_right = 73.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_rlcqg")
+expand_mode = 1
+
+[node name="EnemyGraveyard" parent="." instance=ExtResource("6_nthc5")]
+offset_left = 52.0
+offset_top = 209.0
+offset_right = 256.0
+offset_bottom = 513.0
+
+[node name="CardBack" parent="EnemyGraveyard" index="0"]
+texture = ExtResource("8_fs6sf")
+
+[node name="TextureRect" type="TextureRect" parent="EnemyGraveyard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -77.0
+offset_right = 73.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_rlcqg")
+expand_mode = 1
 
 [node name="EndTurn" type="TextureButton" parent="."]
 layout_mode = 0
@@ -258,3 +306,15 @@ offset_left = 491.0
 offset_top = 40.0
 offset_right = -323.0
 offset_bottom = -39.0
+
+[node name="EnemyCards" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 289.0
+offset_top = 47.0
+offset_right = 889.0
+offset_bottom = 797.0
+mouse_filter = 2
+theme_override_constants/separation = -150
+
+[editable path="EnemyGraveyard"]

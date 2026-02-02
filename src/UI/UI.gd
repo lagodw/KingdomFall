@@ -58,7 +58,8 @@ func update_population():
 	population.text = str(Bus.player.deck.get_units().size())
 	
 func on_combat() -> void:
-	$DropButton.visible = false
+	#$DropButton.visible = false
+	pass
 
 #func add_boons() -> void:
 	#for boon in Bus.player.boons:

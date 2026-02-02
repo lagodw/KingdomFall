@@ -9,7 +9,13 @@ func load_deck(resources: Array[CardResource]):
 		add_card(card)
 	shuffle()
 
-func add_card(card: Card):
+#func add_card(card: Card):
+	#cards.add_child(card)
+
+func add_card(card: Card, animation: bool = true):
+	if animation:
+		await card.move_to(self)
+	card.get_parent().remove_child(card)
 	cards.add_child(card)
 
 func shuffle():
