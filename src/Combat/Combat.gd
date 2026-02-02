@@ -27,8 +27,8 @@ func _ready() -> void:
 	$DeckChoice.visible = true
 	Bus.emit_signal("board_loaded")
 	
-	$DeckChoice.visible = false
-	combat_won()
+	#$DeckChoice.visible = false
+	#combat_won()
 
 func add_deck_choice():
 	for resource in Bus.deck.cards:
@@ -52,12 +52,12 @@ func end_turn():
 	combat_happening = true
 	await Bus.Grid.start_combat()
 	combat_happening = false
-	$Enemy.on_turn_start(turn_counter)
 	await Bus.hand.discard()
 	draw_pile.draw_cards(5)
 	Bus.energy = 3
 	update_energy()
 	ee.emit_signal("start_turn", turn_counter)
+	$Enemy.on_turn_start(turn_counter)
 	turn_counter += 1
 
 func update_energy():
