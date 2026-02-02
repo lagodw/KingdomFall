@@ -1,23 +1,196 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyai8rsp8py54"]
+[gd_scene load_steps=9 format=3 uid="uid://bw1l202axfrki"]
 
-[ext_resource type="Script" uid="uid://d0cha6pd2ikew" path="res://src/Scenes/MainMenu.gd" id="1_814sq"]
-[ext_resource type="Texture2D" uid="uid://un3wo8x1ag3a" path="res://assets/Theme/title_background.png" id="2_ftic1"]
+[ext_resource type="Texture2D" uid="uid://un3wo8x1ag3a" path="res://assets/Theme/title_background.png" id="1_uu2sl"]
+[ext_resource type="Script" uid="uid://d0cha6pd2ikew" path="res://src/Scenes/MainMenu.gd" id="1_yed10"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_oyadd"]
+[ext_resource type="Texture2D" uid="uid://cillgd574uyps" path="res://assets/Theme/RedButtons/Special_button_middle_Fr.png" id="8_2nr6f"]
+[ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="8_2wbjs"]
+[ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="9_han5j"]
+[ext_resource type="PackedScene" uid="uid://dgfnwmx31wba3" path="res://src/UI/SettingsMenu.tscn" id="9_xqe5u"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xqe5u"]
+texture = ExtResource("8_2wbjs")
+
+[node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_814sq")
+script = ExtResource("1_yed10")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_uu2sl")
+expand_mode = 5
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 812.0
+offset_top = 459.0
+offset_right = 1138.0
+offset_bottom = 831.0
+mouse_filter = 2
+theme = ExtResource("6_oyadd")
+theme_override_constants/separation = 10
+
+[node name="New" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "New Game"
+
+[node name="TextureRect" type="TextureRect" parent="Menu/New"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ftic1")
+texture = ExtResource("8_2nr6f")
 expand_mode = 1
+
+[node name="Load" type="Button" parent="Menu"]
+visible = false
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Load Game"
+
+[node name="TextureRect" type="TextureRect" parent="Menu/Load"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_2nr6f")
+expand_mode = 1
+
+[node name="Cosmetics" type="Button" parent="Menu"]
+visible = false
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Card Library"
+
+[node name="TextureRect" type="TextureRect" parent="Menu/Cosmetics"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_2nr6f")
+expand_mode = 1
+
+[node name="Settings" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Settings"
+
+[node name="TextureRect" type="TextureRect" parent="Menu/Settings"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_2nr6f")
+expand_mode = 1
+
+[node name="Quit" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="Menu/Quit"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_2nr6f")
+expand_mode = 1
+
+[node name="Cheat" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 0
+offset_left = 1365.0
+offset_top = 980.0
+offset_right = 1657.0
+offset_bottom = 1055.0
+theme = ExtResource("6_oyadd")
+text = "Cheat"
+
+[node name="TextureRect" type="TextureRect" parent="Cheat"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_2nr6f")
+expand_mode = 1
+
+[node name="LoadScreen" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_uu2sl")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="LoadScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.5
+offset_top = -52.0
+offset_right = 223.5
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_oyadd")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_xqe5u")
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Border" type="NinePatchRect" parent="LoadScreen/Label"]
+layout_mode = 0
+offset_top = -9.0
+offset_right = 1820.0
+offset_bottom = 479.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_han5j")
+patch_margin_left = 48
+patch_margin_top = 47
+patch_margin_right = 48
+patch_margin_bottom = 46
+
+[node name="Settings" parent="." instance=ExtResource("9_xqe5u")]
+visible = false
+
+[node name="AudioTimer" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+autostart = true

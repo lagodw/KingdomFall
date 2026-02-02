@@ -1,13 +1,17 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cujbvn4cbvnf2"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cujbvn4cbvnf2"]
 
+[ext_resource type="Texture2D" uid="uid://ce4unav622sjb" path="res://assets/Theme/RectangleButtons/Rectangle_button_red_hover.png" id="1_7ek63"]
 [ext_resource type="FontFile" uid="uid://sl4aux616nss" path="res://assets/Theme/Century.ttf" id="2_l44co"]
+[ext_resource type="Texture2D" uid="uid://c2by8r0dqwc8x" path="res://assets/Theme/RectangleButtons/Rectangle_button_red_normal.png" id="2_oxgay"]
 [ext_resource type="FontFile" uid="uid://drhnex2wa7hn8" path="res://assets/Theme/Century Bold.ttf" id="4_oxgay"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ek63"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxgay"]
+texture = ExtResource("1_7ek63")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ek63"]
+texture = ExtResource("2_oxgay")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hynj8"]
 

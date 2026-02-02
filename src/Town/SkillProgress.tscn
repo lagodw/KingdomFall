@@ -1,23 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpxp4s2o7n5ef"]
+[gd_scene load_steps=6 format=3 uid="uid://bpxp4s2o7n5ef"]
 
 [ext_resource type="Script" uid="uid://cshs4jvg7auab" path="res://src/Town/SkillProgress.gd" id="1_gayk7"]
 [ext_resource type="Texture2D" uid="uid://cmkvt8pxj5saf" path="res://assets/Card/Icons/Training.png" id="2_vxa73"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="3_ukjnw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxa73"]
+bg_color = Color(0.0361009, 0.0361009, 0.0361008, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gayk7"]
+bg_color = Color(0.988235, 0.886275, 0.729412, 1)
+
 [node name="SkillProgress" type="HBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(0, 60)
+offset_right = 271.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
 script = ExtResource("1_gayk7")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_vxa73")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gayk7")
+max_value = 5.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Icon" type="TextureRect" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = -29.5
+offset_right = 29.5
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_vxa73")
 expand_mode = 2
 
+[node name="Label2" type="Label" parent="ProgressBar/Icon"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1.0
+offset_right = 61.0
+offset_bottom = 59.0
+grow_horizontal = 0
+theme = ExtResource("3_ukjnw")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "1"
+vertical_alignment = 1
+
 [node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme = ExtResource("3_ukjnw")
 theme_override_font_sizes/font_size = 48
-text = "0 / 6"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1

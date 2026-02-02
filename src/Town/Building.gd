@@ -28,7 +28,8 @@ func setup():
 		if job.description == "Construction":
 			under_construction = true
 			var requirement = job.requirements[0]
-			capacity = requirement.amount - requirement.progress
+			job.capacity = requirement.amount - requirement.progress
+			capacity = job.capacity
 			$Button/UnderConstruction.visible = true
 		var container: JobContainer = job_container.instantiate()
 		container.job = job

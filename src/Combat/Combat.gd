@@ -26,6 +26,9 @@ func _ready() -> void:
 	get_tree().paused = true
 	$DeckChoice.visible = true
 	Bus.emit_signal("board_loaded")
+	
+	$DeckChoice.visible = false
+	combat_won()
 
 func add_deck_choice():
 	for resource in Bus.deck.cards:

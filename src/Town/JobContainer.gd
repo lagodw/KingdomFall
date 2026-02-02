@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 func set_control_size():
 	custom_minimum_size = $V.size
-	custom_minimum_size.y += job.requirements.size() * 60
+	custom_minimum_size.y += job.requirements.size() * 80
 
 func update_progress():
 	if job.requirements.size() == 0:
