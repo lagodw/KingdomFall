@@ -7,7 +7,7 @@ func _ready() -> void:
 	else:
 		await get_tree().process_frame
 		start_game()
-	$VBoxContainer/NewGame.pressed.connect(start_game)
+	$Menu/New.pressed.connect(start_game)
 	$Menu/Settings.pressed.connect(show_settings)
 	$Menu/Quit.pressed.connect(quit)
 	

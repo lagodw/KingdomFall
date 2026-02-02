@@ -130,6 +130,7 @@ func play_token(target: TokenSlot, animation: bool = true):
 	visible = false
 	var mouse_position: bool = (card_owner == "Player")
 	token.move_to(target, animation, mouse_position)
+	token.can_act = false
 	ee.emit_signal("play", token)
 	disabled = true
 	$Area2D/CollisionShape2D.disabled = true
