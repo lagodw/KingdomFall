@@ -17,6 +17,7 @@ func _ready() -> void:
 	var construction = load("uid://df7bb45nih6i8").instantiate()
 	building_grid.add_child(construction)
 	$UnitUpgrades/Done.pressed.connect(start_combat)
+	Bus.town = self
 	
 func night_fall():
 	for building in building_grid.get_children():

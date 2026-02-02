@@ -221,7 +221,8 @@ func move_to(target: Control, animation: bool = true, mouse_pos: bool = false):
 		await tween.finished
 	ee.emit_signal("move", self)
 	position = Vector2.ZERO
-	can_act = false
+	if Bus.Board:
+		can_act = false
 	
 ## card sets stats to max value, token to current value
 func compare_stat(property: String, current_value: int, max_value: int):

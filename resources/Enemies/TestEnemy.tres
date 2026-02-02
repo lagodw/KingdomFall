@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_ew62s"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="1_r7yer"]
 [ext_resource type="Script" uid="uid://bue1g4huq61xk" path="res://src/Combat/EnemyResource.gd" id="2_5037s"]
-[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Cards/Units/Starter/Peasant.tres" id="3_kv0bd"]
-[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Cards/Units/Starter/Footman.tres" id="4_oklh0"]
-[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Cards/Units/Starter/Archer.tres" id="5_i55qu"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Cards/Units/Workers/Peasant.tres" id="3_kv0bd"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Cards/Units/Fighting/Footman.tres" id="4_oklh0"]
+[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Cards/Units/Fighting/Archer.tres" id="5_i55qu"]
 
 [sub_resource type="Resource" id="Resource_8bv8s"]
 script = ExtResource("1_ew62s")

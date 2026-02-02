@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=14 format=3 uid="uid://cywtfroq4868q"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=15 format=3 uid="uid://cywtfroq4868q"]
 
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_jjufs"]
 [ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_lswtt"]
@@ -7,13 +7,19 @@
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_lswtt"]
 [ext_resource type="Script" uid="uid://bihbbwvlj5n5b" path="res://src/Cards/ResourceTypes/UnitUpgrade.gd" id="6_wtxgu"]
 [ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="7_wwmfs"]
-[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Cards/Units/Starter/Footman.tres" id="8_uxv66"]
-[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Cards/Units/Starter/Archer.tres" id="9_l5kmr"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Cards/Units/Fighting/Footman.tres" id="8_uxv66"]
+[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Cards/Units/Fighting/Archer.tres" id="9_l5kmr"]
+
+[sub_resource type="Resource" id="Resource_wtxgu"]
+script = ExtResource("5_lswtt")
+skill_type = 2
+amount = 1
+metadata/_custom_type_script = "uid://bn2lsa6d725jx"
 
 [sub_resource type="Resource" id="Resource_md7on"]
 script = ExtResource("7_wwmfs")
 skill = 0
-amount = 1
+amount = 2
 metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [sub_resource type="Resource" id="Resource_d0nvg"]
@@ -25,7 +31,7 @@ metadata/_custom_type_script = "uid://bihbbwvlj5n5b"
 [sub_resource type="Resource" id="Resource_m18q8"]
 script = ExtResource("7_wwmfs")
 skill = 0
-amount = 1
+amount = 2
 metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [sub_resource type="Resource" id="Resource_hoey7"]
@@ -48,7 +54,7 @@ has_support = false
 combat_modifiers = Array[ExtResource("1_jjufs")]([])
 default_animation = "sword"
 curses = Array[ExtResource("2_lswtt")]([])
-skills = Array[ExtResource("5_lswtt")]([])
+skills = Array[ExtResource("5_lswtt")]([SubResource("Resource_wtxgu")])
 upgrade_options = Array[ExtResource("6_wtxgu")]([SubResource("Resource_d0nvg"), SubResource("Resource_hoey7")])
 box_priority = "Hybrid"
 target = "none_needed"

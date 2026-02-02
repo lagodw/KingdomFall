@@ -44,4 +44,4 @@ func on_trigger(trigger: String, trigger_card: Control):
 			for unit: CardToken in Bus.Grid.get_units():
 				if unit.card_owner == "Enemy":
 					return
-		Bus.Board.combat_won()
+			Bus.Board.combat_won()

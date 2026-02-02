@@ -1,0 +1,174 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=22 format=3 uid="uid://b6xjie2d1huam"]
+
+[ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_mt7yt"]
+[ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_miig1"]
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="3_qodyx"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_anyvh"]
+[ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="4_dlmbv"]
+[ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="5_f14yg"]
+[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_lh2b5"]
+[ext_resource type="Script" uid="uid://bihbbwvlj5n5b" path="res://src/Cards/ResourceTypes/UnitUpgrade.gd" id="6_dlmbv"]
+[ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="6_ixgq1"]
+[ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="7_k0c5s"]
+[ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="8_dlg6e"]
+
+[sub_resource type="Resource" id="Resource_dlmbv"]
+script = ExtResource("4_dlmbv")
+value_type = "skill"
+affected_by_spell_power = false
+which_card = "trigger"
+what_skill = 2
+whos_stat = "subject"
+negative = false
+chain_value = false
+metadata/_custom_type_script = "uid://cwhy1oww3agal"
+
+[sub_resource type="Resource" id="Resource_2rgcb"]
+script = ExtResource("5_f14yg")
+require_trigger = false
+required_slots = Array[int]([])
+require_building_name = "Farm"
+require_act = false
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+
+[sub_resource type="Resource" id="Resource_481mi"]
+script = ExtResource("6_ixgq1")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_adxb2"]
+script = ExtResource("6_ixgq1")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_ti0px"]
+script = ExtResource("4_dlmbv")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_tdgwh"]
+script = ExtResource("8_dlg6e")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_ti0px")
+
+[sub_resource type="Resource" id="Resource_ftift"]
+script = ExtResource("4_dlmbv")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_jsaby"]
+script = ExtResource("8_dlg6e")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_ftift")
+
+[sub_resource type="Resource" id="Resource_ch8fp"]
+script = ExtResource("3_qodyx")
+function_script = ExtResource("7_k0c5s")
+function = "change_bus_var"
+trigger_signal = "end_day"
+subject = "call_card"
+conditions_calling = SubResource("Resource_2rgcb")
+conditions_trigger = SubResource("Resource_adxb2")
+conditions_subject = SubResource("Resource_481mi")
+if_calling_card = SubResource("Resource_tdgwh")
+if_subject = SubResource("Resource_jsaby")
+animation = "none"
+bus_var = "food"
+bus_var_change = SubResource("Resource_dlmbv")
+metadata/_custom_type_script = "uid://c1s3857yqcx8q"
+
+[sub_resource type="Resource" id="Resource_f14yg"]
+script = ExtResource("5_lh2b5")
+skill_type = 2
+amount = 2
+metadata/_custom_type_script = "uid://bn2lsa6d725jx"
+
+[resource]
+script = ExtResource("4_anyvh")
+fatigue = 0
+damage = 4
+health = 8
+shield = 0
+attack_range = 1
+speed = 5
+attack_type = 0
+armor_type = 0
+has_support = false
+combat_modifiers = Array[ExtResource("1_mt7yt")]([])
+default_animation = "sword"
+curses = Array[ExtResource("2_miig1")]([])
+skills = Array[ExtResource("5_lh2b5")]([SubResource("Resource_f14yg")])
+upgrade_options = Array[ExtResource("6_dlmbv")]([])
+box_priority = "Hybrid"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+card_name = "Farmer"
+card_type = "Unit"
+activation = 1
+tags = Array[int]([])
+text = "Produces 1 extra [b]Food[/b] per [b]Productivity[/b] at Farms"
+effects = Array[ExtResource("3_qodyx")]([SubResource("Resource_ch8fp")])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

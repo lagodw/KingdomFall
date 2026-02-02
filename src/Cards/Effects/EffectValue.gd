@@ -2,13 +2,14 @@
 class_name EffectValue
 extends Resource
 
-@export_enum("number", "stat", "count", "effect_value") var value_type: String = "number":
+@export_enum("number", "stat", "skill", "count", "effect_value") var value_type: String = "number":
 	set(val):
 		value_type = val
 		notify_property_list_changed()
 @export var affected_by_spell_power: bool = false
 var number: int
 var what_stat: String = "damage"
+var what_skill: UnitSkill.Skill
 var whos_stat: String = "subject"
 var negative: bool = false
 var count_what: String = "units":
@@ -140,6 +141,17 @@ func get_count_log(trigger_card: Card) -> int:
 					count += 1
 	return(count)
 	
+func get_skill(subject: Control, card: Control, _effect_dict: Dictionary) -> int:
+	var skill_owner: Unit = get_stat_owner(subject, card)
+	var amount: int = 0
+	for skill: UnitSkill in skill_owner.card_resource.skills:
+		if skill.skill_type == what_skill:
+			amount += skill.amount
+	if negative:
+		return(-amount)
+	else:
+		return(amount)
+	
 func apply_filter_tag(units: Array[Unit]) -> Array[Unit]:
 	var filtered_units: Array[Unit] = []
 	for unit in units:
@@ -182,6 +194,12 @@ func _get_property_list() -> Array:
 			'stat':
 				list.append(string_enum_hint("which_card", "trigger,calling"))
 				list.append(string_enum_hint("what_stat", "damage,health,shield"))
+				list.append(string_enum_hint("whos_stat", "subject,trigger,target"))
+				list.append(type_hint("negative", TYPE_BOOL))
+			
+			'skill':
+				list.append(string_enum_hint("which_card", "trigger,calling"))
+				list.append(skill_hint("what_skill"))
 				list.append(string_enum_hint("whos_stat", "subject,trigger,target"))
 				list.append(type_hint("negative", TYPE_BOOL))
 			
@@ -283,6 +301,16 @@ func resource_hint(property_name: String, resource_type: String) -> Dictionary:
 	"hint": PROPERTY_HINT_RESOURCE_TYPE,
 	"hint_string": resource_type, 
 	"usage": 4102
+	})
+	
+func skill_hint(property_name: String) -> Dictionary:
+	return({
+		"name": property_name, 
+		"class_name": &"uid://bn2lsa6d725jx.Skill", 
+		"type": TYPE_INT, 
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": "Training:0,Education:1,Productivity:2",
+		"usage": 69638
 	})
 	
 func dupe() -> EffectValue:

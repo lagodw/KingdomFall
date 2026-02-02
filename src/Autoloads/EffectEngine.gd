@@ -131,7 +131,7 @@ func apply_effects() -> void:
 ######################################
 ## only evaluating whether trigger conditions are valid
 ## does not check subjects
-func check_conditions_calling(call_card: Card, trigger_card: Control, conditions: EffectConditionCalling) -> bool:
+func check_conditions_calling(call_card: Control, trigger_card: Control, conditions: EffectConditionCalling) -> bool:
 	for condition_type in condition_list_calling:
 		var condition_callable = Callable(self, condition_type)
 		# second trigger_card arg is not needed but some functions require 2 args
@@ -300,6 +300,17 @@ func required_slots(subject: Control, _trigger_card: Control, types_required: Ar
 	if not subject.current_slot:
 		return(false)
 	return(types_required.has(subject.current_slot.slot_type))
+
+func require_building_name(subject: Control, _trigger_card: Control, required_building: String) -> bool:
+	if not required_building:
+		return(true)
+	if not subject.current_slot:
+		return(false)
+	if not subject.current_slot.job:
+		return(false)
+	if subject.current_slot.job.bldg.resource.building_name != required_building:
+		return(false)
+	return(true)
 
 func require_card_type(subject: Control, _trigger_card: Control, required_types: Array) -> bool:
 	if required_types.size() == 0 or (subject is not Card and subject is not CardLabel):

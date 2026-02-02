@@ -246,6 +246,7 @@ func on_card_added_to_deck(card: CardResource):
 	}
 	apply_effect(dict)
 func on_end_day():
+	trigger_card = Bus.town
 	apply_effect({})
 	
 func _get_property_list() -> Array:

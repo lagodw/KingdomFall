@@ -3,6 +3,7 @@ extends Resource
 
 @export var require_trigger: bool = false
 @export var required_slots: Array[TokenSlot.SlotType] = []
+@export var require_building_name: String
 @export var require_act: bool = false
 @export var minimum_damage: int = 0
 ## remaining_life > 0

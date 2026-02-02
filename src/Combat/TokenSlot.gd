@@ -13,28 +13,9 @@ enum SlotType {
 @onready var border: TextureRect = $Border
 
 @export var slot_type: SlotType
-var occupied_unit: CardToken = null:
-	set(value):
-		occupied_unit = value
-		
-		# Auto-Revert Logic:
-		# If this slot becomes empty (value == null), and we have a unit 
-		# that was temporarily bumped from here, bring it back.
-		# We check 'current_mouse_zone == "None"' to ensure we are not the 
-		# active slot being hovered (the active slot handles its own revert via mouse exit).
-		if occupied_unit == null and temporary_bumped_unit and current_mouse_zone == "None":
-			temporary_bumped_unit.move_to(self, false)
-			temporary_bumped_unit = null
+var occupied_unit: CardToken = null
 var file: UnitFile
 var job: JobContainer
-var current_mouse_zone: String = "None":
-	set(new_zone):
-		# If zone changes, we might need to revert a temporary bump
-		if temporary_bumped_unit and new_zone != current_mouse_zone:
-			temporary_bumped_unit.move_to(self, false)
-			temporary_bumped_unit = null
-		current_mouse_zone = new_zone
-var temporary_bumped_unit: CardToken
 
 func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exit)
@@ -72,12 +53,15 @@ func show_highlight(highlight: bool = true):
 	
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is CardToken:
-		if slot_type != SlotType.Enemy and data.can_act and (
-			Bus.Grid.get_slot_distance(data.current_slot, self) <= 1):
-			show_highlight(true)
-			return(true)
+		if Bus.Board:
+			if slot_type != SlotType.Enemy and data.can_act and (
+				Bus.Grid.get_slot_distance(data.current_slot, self) <= 1):
+				show_highlight(true)
+				return(true)
+			else:
+				return(false)
 		else:
-			return(false)
+			return(true)
 	if slot_type == SlotType.Player and not occupied_unit and data.current_activation <= Bus.energy:
 		show_highlight(true)
 		return(true)
