@@ -64,11 +64,14 @@ func on_trigger(trigger: String, trigger_card: Control):
 	# Check if no enemy units left
 	if trigger == "discard":
 		if trigger_card.card_owner == "Enemy":
-			if enemy_dupe.ranks.size() > 0:
-				return
-			for unit: CardToken in Bus.Grid.get_units():
+			await get_tree().process_frame
+			for unit: CardToken in Bus.Grid.get_units("Enemy"):
 				if unit.card_owner == "Enemy":
 					return
+			for box: HBoxContainer in card_grid.get_children():
+				for child in box.get_children():
+					if child is Card:
+						return
 			Bus.Board.combat_won()
 
 func sort_by_attack_ratio(unit1: Unit, unit2: Unit) -> bool:

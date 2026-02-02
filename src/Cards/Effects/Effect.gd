@@ -124,7 +124,7 @@ func apply_effect(new_dict: Dictionary):
 			filtered_subjects.append(a_subject)
 	effect_dict['subjects'] = filtered_subjects
 	#print("effect passed conditions: %s for function %s with args %s"%[
-			#calling_card.card_name, function, effect_dict])
+			#calling_card, function, effect_dict])
 	
 	var func_methods = function_script.get_script_method_list()
 	var func_args: Array[String]
@@ -245,7 +245,7 @@ func on_card_added_to_deck(card: CardResource):
 		"card": card
 	}
 	apply_effect(dict)
-func on_end_day():
+func on_night_fall():
 	trigger_card = Bus.town
 	apply_effect({})
 	

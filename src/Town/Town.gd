@@ -14,8 +14,9 @@ func _ready() -> void:
 		add_building(building)
 	$Bottom/UnitPanel.load_units(Bus.deck.cards)
 	$Bottom/EndTurn.pressed.connect(night_fall)
-	var construction = load("uid://df7bb45nih6i8").instantiate()
-	building_grid.add_child(construction)
+	if Bus.player.town.buildings.size() < Bus.player.town.building_spots:
+		var construction = load("uid://df7bb45nih6i8").instantiate()
+		building_grid.add_child(construction)
 	$UnitUpgrades/Done.pressed.connect(start_combat)
 	Bus.town = self
 	
@@ -25,7 +26,7 @@ func night_fall():
 		if building is Building:
 			building.show_popup(false)
 	get_tree().call_group("Buildings", "end_day")
-	ee.emit_signal("end_day")
+	ee.emit_signal("night_fall")
 	#await get_tree().create_timer(1).timeout
 	var population: int = Bus.deck.get_units().size()
 	Bus.food -= population

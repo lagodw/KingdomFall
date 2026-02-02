@@ -154,7 +154,7 @@ offset_bottom = 664.0
 
 [node name="BuildingGrid" type="GridContainer" parent="Buildings"]
 layout_mode = 2
-columns = 5
+columns = 7
 
 [node name="UI" parent="." instance=ExtResource("2_lk6hu")]
 layout_mode = 0

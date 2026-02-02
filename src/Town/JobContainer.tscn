@@ -13,6 +13,7 @@ offset_bottom = 240.0
 script = ExtResource("1_slvd5")
 
 [node name="V" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 445.0
 offset_bottom = 250.0
 theme_override_constants/separation = 10

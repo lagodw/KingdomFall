@@ -54,7 +54,7 @@ func update_previews() -> void:
 	for file: UnitFile in get_children():
 		file.update_previews()
 
-func get_units(unit_owner: String = "All") -> Array[CardToken]:
+func get_units(unit_owner: String) -> Array[CardToken]:
 	var units: Array[CardToken]
 	for file: UnitFile in get_children():
 		units.append_array(file.get_units(unit_owner))

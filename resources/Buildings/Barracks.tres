@@ -15,6 +15,7 @@
 script = ExtResource("2_s0l2h")
 require_trigger = false
 required_slots = Array[int]([])
+require_building_name = null
 require_act = false
 minimum_damage = 0
 require_alive = false
@@ -118,7 +119,7 @@ amount = 1
 script = ExtResource("1_6xi5p")
 function_script = ExtResource("4_j8dq3")
 function = "add_skill"
-trigger_signal = "end_day"
+trigger_signal = "night_fall"
 subject = "job_occupants"
 conditions_calling = SubResource("Resource_xwpur")
 conditions_trigger = SubResource("Resource_co15f")

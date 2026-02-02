@@ -8,6 +8,7 @@ extends Control
 
 var job: Job
 var bldg: Building
+var disabled: bool = false
 
 func _ready() -> void:
 	%Description.text = kf.replace_skill_icons(job.description)
@@ -17,25 +18,23 @@ func _ready() -> void:
 		effect.connect_signal(self)
 	mouse_exited.connect(show_highlight.bind(false))
 	call_deferred("set_control_size")
+	ee.night_fall.connect(on_night_fall)
 	
 func set_control_size():
 	custom_minimum_size = $V.size
+	custom_minimum_size.y += job.requirements.size() * 60
 
 func update_progress():
-	if job.requirements.size() == 0 or bldg.under_construction:
+	if job.requirements.size() == 0:
 		%Requirements.visible = false
 		return
 	else:
 		%Requirements.visible = true
 	for requirement in job.requirements:
 		var skill: UnitSkill.Skill = requirement.skill
-		var current_progress: int = 0
-		for progress in job.progress:
-			if skill == progress.skill:
-				current_progress += progress.amount
 		var scene = progress_scene.instantiate()
 		scene.skill = skill
-		scene.progress = current_progress
+		scene.progress = requirement.progress
 		scene.required = requirement.amount
 		%Requirements.add_child(scene)
 
@@ -45,12 +44,14 @@ func setup_slots():
 	for i in job.capacity:
 		var slot: TokenSlot = slot_scene.instantiate()
 		slot.job = self
-		if bldg.under_construction:
-			slot.slot_type = TokenSlot.SlotType.Support
+		if disabled:
+			slot.card_owner = "Enemy"
+		else:
+			slot.card_owner = "Player"
 		token_grid.add_child(slot)
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	if find_first_slot():
+	if find_first_slot() and not disabled:
 		show_highlight(true)
 		return(true)
 	return(false)
@@ -99,3 +100,19 @@ func get_occupants() -> Array[CardToken]:
 		if slot.occupied_unit:
 			units.append(slot.occupied_unit)
 	return(units)
+
+func on_night_fall():
+	if job.requirements.size() == 0:
+		return
+	for requirement in job.requirements:
+		for slot: TokenSlot in token_grid.get_children():
+			if slot.occupied_unit:
+				for skill: UnitSkill in slot.occupied_unit.card_resource.skills:
+					if skill.skill_type == requirement.skill:
+						requirement.progress += skill.amount
+	while job.check_if_done():
+		for requirement in job.requirements:
+			requirement.progress -= requirement.amount
+		for effect in job.effects:
+			effect.apply_effect({"trigger_card": bldg})
+			

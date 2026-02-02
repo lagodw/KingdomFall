@@ -1,6 +1,7 @@
 class_name TownResource
 extends Resource
 
+@export var building_spots: int = 10
 @export var buildings: Array[BuildingResource]
 
 func dupe() -> TownResource:

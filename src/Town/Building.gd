@@ -24,21 +24,22 @@ func _ready() -> void:
 func setup():
 	if get_tree().current_scene is not Town:
 		return
-	var construction_left: int = resource.construction_cost - resource.current_construction
-	if construction_left <= 0:
-		for job in resource.jobs:
-			capacity += job.capacity
-	else:
-		under_construction = true
-		capacity = construction_left
-		$Button/UnderConstruction.visible = true
-		$Button/UnderConstruction/ConstructionAmt.text = str(construction_left)
 	for job in resource.jobs:
+		if job.description == "Construction":
+			under_construction = true
+			var requirement = job.requirements[0]
+			capacity = requirement.amount - requirement.progress
+			$Button/UnderConstruction.visible = true
 		var container: JobContainer = job_container.instantiate()
 		container.job = job
 		container.bldg = self
+		if under_construction and job.description != "Construction":
+			container.disabled = true
 		jobs_box.add_child(container)
 		job_containers.append(container)
+	if not under_construction:
+		for job in resource.jobs:
+			capacity += job.capacity
 	jobs_box.move_child($Popup/JobsBox/BuildOptions, -1)
 	remove_child(popup)
 	get_tree().current_scene.call_deferred("add_child", popup)
@@ -106,8 +107,6 @@ func set_popup_position():
 func end_day():
 	for token in get_occupants():
 		token.card_resource.fatigue += 5
-	if resource.current_construction < resource.construction_cost:
-		resource.current_construction += get_worker_count()
 
 func get_occupants() -> Array[CardToken]:
 	var units: Array[CardToken]
@@ -119,8 +118,10 @@ func get_worker_count() -> int:
 	return(get_occupants().size())
 
 func setup_capacity_panels():
-	for job in resource.jobs:
-		for i in job.capacity:
+	for job in job_containers:
+		if job.disabled:
+			continue
+		for i in job.job.capacity:
 			var cap = capacity_panel.instantiate()
 			capacity_grid.add_child(cap)
 			cap.set_panel(false, under_construction)

@@ -4,7 +4,6 @@ extends Resource
 @export var building_name: String
 @export var building_description: String
 @export var construction_cost: int = 5
-@export var current_construction: int = 0
 @export var jobs: Array[Job]
 
 

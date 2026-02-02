@@ -23,7 +23,7 @@ signal unit_killed(killed_unit: CardToken, killing_card: Card)
 signal play(played_unit: Unit)
 signal consume_used(consume: Consume)
 signal card_added_to_deck(card: CardResource)
-signal end_day
+signal night_fall
 # for automatically pulling signals
 signal BREAK_HERE
 

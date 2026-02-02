@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="Deck" load_steps=9 format=3 uid="uid://daukdeewyd6ke"]
+[gd_resource type="Resource" script_class="Deck" load_steps=8 format=3 uid="uid://daukdeewyd6ke"]
 
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="1_dxewv"]
 [ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Cards/Units/Workers/Peasant.tres" id="2_0re8o"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Cards/Units/Fighting/Footman.tres" id="3_1cset"]
 [ext_resource type="Script" uid="uid://d3cbj7orsdpk2" path="res://src/Player/Deck.gd" id="3_xc5uk"]
 [ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Cards/Units/Fighting/Archer.tres" id="4_nd6rd"]
-[ext_resource type="Resource" uid="uid://drogiujdpv3sn" path="res://resources/Cards/Consumables/Javelins.tres" id="5_u0dii"]
-[ext_resource type="Resource" uid="uid://b7n3opvwiyt8c" path="res://resources/Cards/Spells/IceTomb.tres" id="6_qcspe"]
+[ext_resource type="Resource" uid="uid://yahxnoap5urw" path="res://resources/Cards/Spells/Bladestorm.tres" id="6_qcspe"]
 [ext_resource type="Resource" uid="uid://b6xjie2d1huam" path="res://resources/Cards/Units/Workers/Farmer.tres" id="7_edw0l"]
 
 [resource]
 script = ExtResource("3_xc5uk")
 sort_deck = false
-cards = Array[ExtResource("1_dxewv")]([ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("3_1cset"), ExtResource("3_1cset"), ExtResource("4_nd6rd"), ExtResource("5_u0dii"), ExtResource("6_qcspe"), ExtResource("7_edw0l")])
+cards = Array[ExtResource("1_dxewv")]([ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("2_0re8o"), ExtResource("3_1cset"), ExtResource("3_1cset"), ExtResource("4_nd6rd"), ExtResource("7_edw0l"), ExtResource("6_qcspe")])
 graveyard = Array[ExtResource("1_dxewv")]([])
 metadata/_custom_type_script = "uid://d3cbj7orsdpk2"

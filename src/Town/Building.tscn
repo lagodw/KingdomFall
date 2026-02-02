@@ -51,11 +51,12 @@ texture = ExtResource("7_55514")
 expand_mode = 1
 
 [node name="ConstructionAmt" type="Label" parent="Button/UnderConstruction"]
+visible = false
 layout_mode = 0
-offset_left = 115.0
-offset_top = 102.0
-offset_right = 170.0
-offset_bottom = 186.0
+offset_left = 80.0
+offset_top = 71.0
+offset_right = 135.0
+offset_bottom = 155.0
 theme = ExtResource("2_mcgxq")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64

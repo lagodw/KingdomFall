@@ -1,6 +1,7 @@
 extends Button
 
 @onready var choice_scene = preload("uid://ky4h0wpdmvoj")
+@onready var construction_job = preload("uid://cm852y2erusux")
 @onready var panel: TextureRect = $ConstructionPanel
 
 func _ready() -> void:
@@ -10,6 +11,12 @@ func _ready() -> void:
 	pressed.connect(show_panel)
 	$ConstructionPanel/Cancel.pressed.connect(cancel)
 	Bus.new_scene_loaded.connect(move_panel)
+	
+func _input(event):
+	if event is InputEventKey and panel.visible:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			panel.visible = false
+			get_viewport().set_input_as_handled()
 	
 func move_panel():
 	if get_tree().current_scene is not Town:
@@ -27,10 +34,16 @@ func setup_choices(choices: Array):
 		button.pressed.connect(choose.bind(choice))
 		
 func choose(building: BuildingResource):
-	var duped = building.duplicate(true)
+	var duped: BuildingResource = building.duplicate(true)
+	var job: Job = construction_job.dupe()
+	job.capacity = building.construction_cost
+	job.requirements[0].amount = building.construction_cost
+	duped.jobs.push_front(job)
 	get_tree().current_scene.add_building(duped)
 	Bus.player.town.buildings.append(duped)
 	panel.visible = false
+	if Bus.player.town.buildings.size() == Bus.player.town.building_spots:
+		visible = false
 	
 func cancel():
 	panel.visible = false

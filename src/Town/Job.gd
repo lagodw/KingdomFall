@@ -7,6 +7,11 @@ extends Resource
 @export var requirements: Array[UpgradeRequirement]
 @export var progress: Array[UpgradeRequirement]
 
+func check_if_done() -> bool:
+	for requirement in requirements:
+		if requirement.progress < requirement.amount:
+			return(false)
+	return(true)
 
 func dupe() -> Job:
 	var duped: Job = duplicate(true)
