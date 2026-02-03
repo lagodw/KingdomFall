@@ -156,16 +156,15 @@ offset_bottom = 664.0
 layout_mode = 2
 columns = 7
 
+[node name="Escape" parent="." instance=ExtResource("12_0seve")]
+visible = false
+
 [node name="UI" parent="." instance=ExtResource("2_lk6hu")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
-offset_left = 0.0
 offset_right = 1920.0
 grow_horizontal = 1
-
-[node name="Escape" parent="." instance=ExtResource("12_0seve")]
-visible = false
 
 [node name="UnitUpgrades" type="TextureRect" parent="."]
 visible = false

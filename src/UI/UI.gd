@@ -1,5 +1,5 @@
 class_name UI
-extends TextureRect
+extends Control
 
 #@onready var boon_tooltip = preload("uid://cffwny47g72jv")
 
@@ -14,6 +14,7 @@ func _ready() -> void:
 	Bus.currency_changed.connect(update_currency)
 	Bus.board_loaded.connect(on_combat)
 	Bus.update_amounts.connect(update_amounts)
+	ee.card_added_to_deck.connect(update_population)
 	update_amounts()
 	#add_boons()
 	setup_tooltips()
@@ -23,6 +24,7 @@ func update_amounts():
 	set_mana_text(Bus.mana)
 	set_spell_power_text(Bus.spell_power)
 	set_food_text(Bus.food)
+	update_population()
 	
 func update_currency(currency: String, new_amt: int, change: int) -> void:
 	if change == 0:
@@ -74,7 +76,7 @@ func toggle_deck():
 	$ToggleDeck/Deck/EyeClosed.visible = not deck_visible
 
 func setup_tooltips():
-	for stat in ["Mana", "Power", "Gold"]:
+	for stat in ["Mana", "Power", "Gold", "Food", "Population"]:
 		get_node("Tooltips/%sArea"%stat).mouse_entered.connect(show_tooltip.bind(stat))
 		get_node("Tooltips/%sArea"%stat).mouse_exited.connect(hide_tooltip.bind(stat))
 		get_node("Tooltips/%s_tip"%stat).setup()
