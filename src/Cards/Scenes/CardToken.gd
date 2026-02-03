@@ -68,7 +68,7 @@ func type_only_setup():
 		effect.connect_signal(self)
 	
 func setup_fatigue():
-	pass
+	fatigue = card_resource.fatigue
 	
 func set_art(override: String = ""):
 	card_art = card_name
@@ -280,7 +280,7 @@ func on_effects_finished():
 	if max_shield < shield_damage_taken:
 		_cached_shield_damage_taken = shield_damage_taken
 		
-	current_damage = max_damage
+	current_damage = adjust_for_fatigue(max_damage)
 	max_activation = base_stats['activation']
 	current_activation = base_stats['activation']
 	
@@ -304,10 +304,10 @@ func calculate_max_bonus() -> int:
 	return total_bonus
 	
 func reset_remaining():
-	current_bonus_damage = calculate_max_bonus()
+	current_bonus_damage = adjust_for_fatigue(calculate_max_bonus())
 	remaining_bonus_damage = current_bonus_damage
 	remaining_base_damage = current_damage
-	remaining_life = current_health + current_shield
+	remaining_life = current_health
 	
 func update_damage_preview() -> void:
 	var incoming_damage = current_health + current_shield - remaining_life
@@ -434,45 +434,6 @@ func attack_animation(target: CardToken) -> void:
 	$Animation.visible = false
 	z_index = 0
 	player.speed_scale = 1.0
-	
-func take_snapshot() -> void:
-	snapshot_can_act = can_act
-	snapshot_parent = get_parent()
-	snapshot_visible = visible
-	snapshot_disabled = disabled
-	snapshot_max_damage = max_damage
-	snapshot_current_damage = current_damage
-	snapshot_max_health = max_health
-	snapshot_current_health = current_health
-	snapshot_max_shield = max_shield
-	snapshot_current_shield = current_shield
-	snapshot_poison = poison
-	snapshot_vulnerable = vulnerable
-	snapshot_feeble = feeble
-	
-func revert_to_snapshot() -> void:
-	can_act = snapshot_can_act
-	visible = snapshot_visible
-	act_disabled = snapshot_act_disabled
-	disabled = snapshot_disabled
-	if snapshot_parent != get_parent():
-		get_parent().remove_child(self)
-		snapshot_parent.add_child(self)
-	if get_parent() is TokenSlot:
-		current_slot = get_parent()
-	max_damage = snapshot_max_damage
-	current_damage = snapshot_current_damage
-	max_health = snapshot_max_health
-	current_health = snapshot_current_health
-	max_shield = snapshot_max_shield
-	current_shield = snapshot_current_shield
-	remaining_base_damage = current_damage
-	remaining_life = current_health + current_shield
-	poison = snapshot_poison
-	for item in items:
-		if item.get_parent() != self:
-			items.erase(item)
-	update_damage_preview()
 
 func set_act(status: bool):
 	if act_disabled:
@@ -501,3 +462,6 @@ func move_card():
 	if card.get_parent():
 		card.get_parent().remove_child(card)
 	get_tree().current_scene.call_deferred("add_child", card)
+
+func adjust_for_fatigue(num: int) -> int:
+	return(int((10.0 - fatigue) / 10.0 * num))

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=20 format=3 uid="uid://bnu4cowv70yck"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=21 format=3 uid="uid://bnu4cowv70yck"]
 
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_1ycp7"]
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_ivoxv"]
@@ -10,12 +10,25 @@
 [ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="8_4rdbb"]
 [ext_resource type="Script" uid="uid://druilahufs03l" path="res://src/Town/Job.gd" id="8_x82ne"]
 
-[sub_resource type="Resource" id="Resource_4rdbb"]
+[sub_resource type="Resource" id="Resource_adsqm"]
 script = ExtResource("2_axed2")
 value_type = "number"
 affected_by_spell_power = false
 number = 3
 chain_value = false
+metadata/_custom_type_script = "uid://cwhy1oww3agal"
+
+[sub_resource type="Resource" id="Resource_4rdbb"]
+script = ExtResource("2_axed2")
+value_type = "skill"
+affected_by_spell_power = false
+which_card = "trigger"
+what_skill = 2
+whos_stat = "subject"
+negative = false
+chain_value = true
+next_value = SubResource("Resource_adsqm")
+mult_next_value = true
 
 [sub_resource type="Resource" id="Resource_x82ne"]
 script = ExtResource("3_4rdbb")
@@ -146,6 +159,5 @@ script = ExtResource("1_ivoxv")
 building_name = "Farm"
 building_description = "Provides 3 [b]Food[/b] per [b]Productivity[/b]"
 construction_cost = 3
-current_construction = 0
 jobs = Array[ExtResource("8_x82ne")]([SubResource("Resource_3hdu0")])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

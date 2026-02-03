@@ -11,6 +11,7 @@ var turn_counter: int = 0
 var combat_happening: bool = false
 var combat_over: bool = false
 var selected_cards: Array[Button]
+var selected_unit_resources: Array[UnitResource]
 
 func _ready() -> void:
 	Bus.Board = self
@@ -27,8 +28,8 @@ func _ready() -> void:
 	$DeckChoice.visible = true
 	Bus.emit_signal("board_loaded")
 	
-	$DeckChoice.visible = false
-	combat_won()
+	#$DeckChoice.visible = false
+	#combat_won()
 
 func add_deck_choice():
 	for resource in Bus.deck.cards:
@@ -70,6 +71,8 @@ func game_over():
 func begin_combat():
 	for button: Button in selected_cards:
 		var card: Card = button.card
+		if card.card_resource is UnitResource:
+			selected_unit_resources.append(card.card_resource)
 		var old_pos: Vector2 = card.global_position
 		card.get_parent().remove_child(card)
 		add_child(card)
@@ -86,6 +89,11 @@ func begin_combat():
 func combat_won():
 	for card in Bus.hand.get_children():
 		card.queue_free()
+	for unit in Bus.deck.get_units():
+		if selected_unit_resources.has(unit):
+			unit.fatigue += 5
+		else:
+			unit.fatigue -= 5
 	get_tree().paused = true
 	combat_over = true
 	$CombatWon.visible = true

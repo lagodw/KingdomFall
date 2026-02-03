@@ -16,6 +16,7 @@ func start_game():
 	Bus.deck = Bus.player.deck.dupe()
 	var town: TownResource = load("uid://bmwj3jl3o8tm4").dupe()
 	Bus.player.town = town
+	Bus.player.gate = load("uid://jppyriltnkdf").dupe()
 	#kf.load_scene("uid://dvld0lyuo33oq")
 	kf.load_scene("uid://djtcf3x2wg721")
 

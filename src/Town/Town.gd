@@ -25,11 +25,12 @@ func night_fall():
 		# exclude construction
 		if building is Building:
 			building.show_popup(false)
-	get_tree().call_group("Buildings", "end_day")
 	ee.emit_signal("night_fall")
-	#await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.1).timeout
 	var population: int = Bus.deck.get_units().size()
 	Bus.food -= population
+	for unit in $Bottom/UnitPanel.get_units():
+		unit.card_resource.fatigue -= 5
 	if not check_for_upgrades():
 		start_combat()
 

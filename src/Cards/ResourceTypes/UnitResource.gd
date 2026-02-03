@@ -1,7 +1,9 @@
 class_name UnitResource
 extends CardResource
 
-@export var fatigue: int = 0
+@export var fatigue: int = 0:
+	set(val):
+		fatigue = clamp(val, 0, 10)
 @export var damage: int = 1
 @export var health: int = 1
 @export var shield: int = 0

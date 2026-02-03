@@ -41,3 +41,10 @@ func add_token(token: CardToken):
 func add_card(card: Unit):
 	card.visible = true
 	card.move_to(box, false)
+
+## Returns all of the Unit Cards
+func get_units() -> Array[Unit]:
+	var units: Array[Unit]
+	for unit in box.get_children():
+		units.append(unit)
+	return(units)

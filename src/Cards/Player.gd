@@ -3,6 +3,7 @@ extends UnitResource
 
 @export var deck: Deck = load("uid://daukdeewyd6ke")
 @export var town: TownResource = load("uid://bmwj3jl3o8tm4")
+@export var gate: UnitResource = load("uid://jppyriltnkdf")
 @export var gold: int = 0
 @export var food: int = 20
 @export var current_health: int = 80:

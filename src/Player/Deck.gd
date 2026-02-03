@@ -56,6 +56,7 @@ func sort_resources(data_a: CardResource, data_b: CardResource) -> bool:
 		return(true)
 	return(false)
 
+## Returns unit resources of all units in deck
 func get_units() -> Array[UnitResource]:
 	var units: Array[UnitResource]
 	for card in cards:

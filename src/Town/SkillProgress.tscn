@@ -24,7 +24,7 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_vxa73")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gayk7")
 max_value = 5.0
-step = 1.0
+step = 0.1
 value = 1.0
 show_percentage = false
 

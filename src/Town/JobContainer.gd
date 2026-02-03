@@ -102,17 +102,18 @@ func get_occupants() -> Array[CardToken]:
 	return(units)
 
 func on_night_fall():
-	if job.requirements.size() == 0:
-		return
-	for requirement in job.requirements:
-		for slot: TokenSlot in token_grid.get_children():
-			if slot.occupied_unit:
-				for skill: UnitSkill in slot.occupied_unit.card_resource.skills:
-					if skill.skill_type == requirement.skill:
-						requirement.progress += skill.amount
-	while job.check_if_done():
+	if job.requirements.size() > 0:
 		for requirement in job.requirements:
-			requirement.progress -= requirement.amount
-		for effect in job.effects:
-			effect.apply_effect({"trigger_card": bldg})
-			
+			for slot: TokenSlot in token_grid.get_children():
+				if slot.occupied_unit:
+					var unit: CardToken = slot.occupied_unit
+					for skill: UnitSkill in unit.card_resource.skills:
+						if skill.skill_type == requirement.skill:
+							requirement.progress += skill.amount * (10.0 - unit.card_resource.fatigue) / 10
+		while job.check_if_done():
+			for requirement in job.requirements:
+				requirement.progress -= requirement.amount
+			for effect in job.effects:
+				effect.apply_effect({"trigger_card": bldg})
+	for token in get_occupants():
+		token.card_resource.fatigue += 5

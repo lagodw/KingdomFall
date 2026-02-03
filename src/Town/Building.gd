@@ -106,10 +106,6 @@ func set_popup_position():
 	popup.global_position.y = min(global_position.y,
 		get_viewport_rect().size.y - popup.size.y)
 
-func end_day():
-	for token in get_occupants():
-		token.card_resource.fatigue += 5
-
 func get_occupants() -> Array[CardToken]:
 	var units: Array[CardToken]
 	for container in job_containers:

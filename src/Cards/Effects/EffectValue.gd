@@ -58,10 +58,10 @@ func get_value(subject: Control, trigger_card: Control, calling_card: Control,
 			value += next_val
 	return(value)
 	
-func get_number(_subject: Control, _card: Control, _effect_dict: Dictionary) -> int:
+func get_number(_subject: Control, _card: Control, _effect_dict: Dictionary) -> float:
 	return(number)
 	
-func get_stat(subject: Control, card: Control, _effect_dict: Dictionary) -> int:
+func get_stat(subject: Control, card: Control, _effect_dict: Dictionary) -> float:
 	var stat_owner: Unit = get_stat_owner(subject, card)
 	var stat: int = stat_owner.get("current_%s"%what_stat)
 	if negative:
@@ -69,7 +69,7 @@ func get_stat(subject: Control, card: Control, _effect_dict: Dictionary) -> int:
 	else:
 		return(stat)
 
-func get_count(_subject: Control, card: Control, _effect_dict: Dictionary) -> int:
+func get_count(_subject: Control, card: Control, _effect_dict: Dictionary) -> float:
 	match count_what:
 		"units":
 			var units: Array[Unit] = get_count_units(card)
@@ -117,8 +117,8 @@ func get_count_units(trigger_card: Control) -> Array[Unit]:
 						units.append(unit)
 	return(units)
 	
-func get_count_log(trigger_card: Card) -> int:
-	var count: int = 0
+func get_count_log(trigger_card: Card) -> float:
+	var count: float = 0.0
 	var current_turn = Bus.Board.turn_counter
 	
 	var target_turn: int
@@ -141,12 +141,12 @@ func get_count_log(trigger_card: Card) -> int:
 					count += 1
 	return(count)
 	
-func get_skill(subject: Control, card: Control, _effect_dict: Dictionary) -> int:
+func get_skill(subject: Control, card: Control, _effect_dict: Dictionary) -> float:
 	var skill_owner: Unit = get_stat_owner(subject, card)
-	var amount: int = 0
+	var amount: float = 0.0
 	for skill: UnitSkill in skill_owner.card_resource.skills:
 		if skill.skill_type == what_skill:
-			amount += skill.amount
+			amount += skill.amount * (10.0 - skill_owner.card_resource.fatigue) / 10.0
 	if negative:
 		return(-amount)
 	else:
