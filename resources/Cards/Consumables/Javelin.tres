@@ -1,17 +1,18 @@
 [gd_resource type="Resource" script_class="ConsumeResource" load_steps=17 format=3 uid="uid://drogiujdpv3sn"]
 
-[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_kdh3a"]
-[ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="2_q7s0y"]
-[ext_resource type="Script" uid="uid://cjmgvah8070i" path="res://src/Cards/ResourceTypes/ConsumeResource.gd" id="2_xgk45"]
-[ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="3_0r34q"]
-[ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="4_510bm"]
-[ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_jwqks"]
-[ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="6_a12lg"]
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_25qob"]
+[ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="2_sgsoe"]
+[ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="3_tqt24"]
+[ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="4_eofs7"]
+[ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_vrui1"]
+[ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="6_pax4p"]
+[ext_resource type="Script" uid="uid://cjmgvah8070i" path="res://src/Cards/ResourceTypes/ConsumeResource.gd" id="7_om01x"]
 
 [sub_resource type="Resource" id="Resource_1i5jk"]
-script = ExtResource("2_q7s0y")
+script = ExtResource("2_sgsoe")
 require_trigger = true
 required_slots = Array[int]([])
+require_building_name = ""
 require_act = false
 minimum_damage = 0
 require_alive = false
@@ -19,7 +20,7 @@ require_owner = "Either"
 require_turn = -1
 
 [sub_resource type="Resource" id="Resource_oclc3"]
-script = ExtResource("3_0r34q")
+script = ExtResource("3_tqt24")
 require_allied = false
 require_enemies = true
 exclude_trigger = false
@@ -47,7 +48,7 @@ maximum_activation = 99
 require_name = ""
 
 [sub_resource type="Resource" id="Resource_0gw30"]
-script = ExtResource("3_0r34q")
+script = ExtResource("3_tqt24")
 require_allied = false
 require_enemies = false
 exclude_trigger = false
@@ -75,21 +76,21 @@ maximum_activation = 99
 require_name = ""
 
 [sub_resource type="Resource" id="Resource_yq68d"]
-script = ExtResource("4_510bm")
+script = ExtResource("4_eofs7")
 value_type = "number"
 affected_by_spell_power = false
-number = 99
+number = 2
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_0xdg3"]
-script = ExtResource("4_510bm")
+script = ExtResource("4_eofs7")
 value_type = "number"
 affected_by_spell_power = false
 number = 0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_mwra6"]
-script = ExtResource("6_a12lg")
+script = ExtResource("6_pax4p")
 time_frame = "now"
 who = "Owner"
 what = "value"
@@ -98,14 +99,14 @@ maximum = 999
 value = SubResource("Resource_0xdg3")
 
 [sub_resource type="Resource" id="Resource_ypl2p"]
-script = ExtResource("4_510bm")
+script = ExtResource("4_eofs7")
 value_type = "number"
 affected_by_spell_power = false
 number = 0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_22gbt"]
-script = ExtResource("6_a12lg")
+script = ExtResource("6_pax4p")
 time_frame = "now"
 who = "Owner"
 what = "value"
@@ -114,28 +115,30 @@ maximum = 999
 value = SubResource("Resource_ypl2p")
 
 [sub_resource type="Resource" id="Resource_e0m64"]
-script = ExtResource("1_kdh3a")
-function_script = ExtResource("5_jwqks")
+script = ExtResource("1_25qob")
+function_script = ExtResource("5_vrui1")
 function = "damage"
-trigger_signal = "consume_used"
-subject = "Board"
+trigger_signal = "target"
+target_type = "Unit"
+subject = "target"
 conditions_calling = SubResource("Resource_1i5jk")
 conditions_trigger = SubResource("Resource_0gw30")
 conditions_subject = SubResource("Resource_oclc3")
 if_calling_card = SubResource("Resource_mwra6")
 if_subject = SubResource("Resource_22gbt")
-animation = "cast"
+animation = "discard"
 damage_amt = SubResource("Resource_yq68d")
 blocked_by_shield = true
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [resource]
-script = ExtResource("2_xgk45")
-card_name = "Javelins"
+script = ExtResource("7_om01x")
+uses = 5
+card_name = "Javelin"
 card_type = "Consume"
 activation = 1
 tags = Array[int]([])
-text = "Deal damage to an enemy unit"
-effects = Array[ExtResource("1_kdh3a")]([SubResource("Resource_e0m64")])
+text = "Deal 2 damage to an enemy unit"
+effects = Array[ExtResource("1_25qob")]([SubResource("Resource_e0m64")])
 card_art_path = ""
 metadata/_custom_type_script = "uid://cjmgvah8070i"

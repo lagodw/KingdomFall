@@ -1,0 +1,148 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=17 format=3 uid="uid://g8y81ddtdekk"]
+
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_wnqm8"]
+[ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="2_sx4h5"]
+[ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="3_vfn84"]
+[ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="4_28och"]
+[ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_e4y6c"]
+[ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="6_5xieu"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="7_qfdjk"]
+
+[sub_resource type="Resource" id="Resource_gu7l6"]
+script = ExtResource("2_sx4h5")
+require_trigger = true
+required_slots = Array[int]([])
+require_building_name = ""
+require_act = false
+minimum_damage = 0
+require_alive = false
+require_owner = "Either"
+require_turn = -1
+
+[sub_resource type="Resource" id="Resource_3e4gk"]
+script = ExtResource("3_vfn84")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_3useh"]
+script = ExtResource("3_vfn84")
+require_allied = false
+require_enemies = false
+exclude_trigger = false
+require_act = false
+exclude_act = false
+require_act_disabled = false
+exclude_act_disabled = false
+exclude_faces = true
+require_activated = true
+require_same_file = false
+require_same_rank = false
+require_tags = Array[int]([])
+exclude_tags = Array[int]([])
+require_attack_type = Array[int]([0, 1, 2])
+require_armor_type = Array[int]([0, 1])
+exclude_item_type_equipped = Array[int]([])
+required_slots = Array[int]([])
+require_card_type = Array[String]([])
+minimum_damage = 0
+minimum_shield = 0
+require_missing_health = false
+require_alive = false
+minimum_activation = 0
+maximum_activation = 99
+require_name = ""
+
+[sub_resource type="Resource" id="Resource_khxmm"]
+script = ExtResource("4_28och")
+value_type = "stat"
+affected_by_spell_power = false
+which_card = "trigger"
+what_stat = "fatigue"
+whos_stat = "subject"
+negative = true
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_pbcth"]
+script = ExtResource("4_28och")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_rvxy1"]
+script = ExtResource("6_5xieu")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_pbcth")
+
+[sub_resource type="Resource" id="Resource_ehc24"]
+script = ExtResource("4_28och")
+value_type = "number"
+affected_by_spell_power = false
+number = 0
+chain_value = false
+
+[sub_resource type="Resource" id="Resource_fkmb7"]
+script = ExtResource("6_5xieu")
+time_frame = "now"
+who = "Owner"
+what = "value"
+minimum = 0
+maximum = 999
+value = SubResource("Resource_ehc24")
+
+[sub_resource type="Resource" id="Resource_8oe50"]
+script = ExtResource("1_wnqm8")
+function_script = ExtResource("5_e4y6c")
+function = "change_fatigue"
+trigger_signal = "target"
+target_type = "Unit"
+subject = "target"
+conditions_calling = SubResource("Resource_gu7l6")
+conditions_trigger = SubResource("Resource_3useh")
+conditions_subject = SubResource("Resource_3e4gk")
+if_calling_card = SubResource("Resource_rvxy1")
+if_subject = SubResource("Resource_fkmb7")
+animation = "discard"
+fatigue_change = SubResource("Resource_khxmm")
+affect_max = false
+metadata/_custom_type_script = "uid://c1s3857yqcx8q"
+
+[resource]
+script = ExtResource("7_qfdjk")
+mana_cost = 1
+target = "none_needed"
+card_name = "Invigorate"
+card_type = "Spell"
+activation = 1
+tags = Array[int]([])
+text = "Remove a unit's fatigue for this combat only"
+effects = Array[ExtResource("1_wnqm8")]([SubResource("Resource_8oe50")])
+card_art_path = ""
+metadata/_custom_type_script = "uid://cg0darnb2y3ae"

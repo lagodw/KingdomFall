@@ -1,7 +1,7 @@
 class_name EffectConditionCalling
 extends Resource
 
-@export var require_trigger: bool = false
+@export var require_trigger: bool = true
 @export var required_slots: Array[TokenSlot.SlotType] = []
 @export var require_building_name: String
 @export var require_act: bool = false

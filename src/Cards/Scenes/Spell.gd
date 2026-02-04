@@ -16,7 +16,7 @@ func on_currency_changed(currency: String, _new_amt: int, _change: int):
 		check_castable_spell()
 
 func _input(event):
-	if not can_act or Bus.mana < mana_cost: 
+	if not can_act or Bus.mana < mana_cost or Bus.energy < card_resource.activation: 
 		return
 	# right click = target or cast spell
 	if event is InputEventMouseButton and card_owner == "Player":
@@ -31,8 +31,10 @@ func _input(event):
 				var result = targeting_arrow.complete_targeting()
 				if result:
 					Bus.mana -= mana_cost
+					Bus.energy -= card_resource.activation
 			elif highlighted:
 				Bus.mana -= mana_cost
+				Bus.energy -= card_resource.activation
 				ee.emit_signal("cast", self, mana_cost)
 			set_highlight(false)
 			

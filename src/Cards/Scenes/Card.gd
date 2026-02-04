@@ -309,13 +309,7 @@ func board_effect(dest):
 func discard():
 	# signal has to be here since effect could be tied to card
 	ee.emit_signal("discard", self)
-	# prevent arrow from targeting as card is being discarded
-	disabled = true
-	# could already be turned to label if board effect
-	#if get_parent() != label:
-		#turn_to_label()
-	#label.discard()
-	queue_free()
+	Bus.discard.add_card(self)
 	
 ## reset a card's act ability
 ## used in spells to gray out non castable

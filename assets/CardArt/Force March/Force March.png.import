@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xf1dli8p58hb"
-path="res://.godot/imported/Javelins.png-54107b16d9fd3f26bc01d2f155574ede.ctex"
+uid="uid://dqjp6nygp6mv1"
+path="res://.godot/imported/Force March.png-b694bc7704f1165c7a827ca6c3ff03c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CardArt/Consumables/Javelins.png"
-dest_files=["res://.godot/imported/Javelins.png-54107b16d9fd3f26bc01d2f155574ede.ctex"]
+source_file="res://assets/CardArt/Force March/Force March.png"
+dest_files=["res://.godot/imported/Force March.png-b694bc7704f1165c7a827ca6c3ff03c5.ctex"]
 
 [params]
 

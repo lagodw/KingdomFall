@@ -73,6 +73,7 @@ var target_type: String = "Unit"
 var cost_change: EffectValue = EffectValue.new()
 var max_activation_change: EffectValue = EffectValue.new()
 var skill: UnitSkill = UnitSkill.new()
+var fatigue_change: EffectValue = EffectValue.new()
 
 var host_card: CardToken
 var effect_dict: Dictionary = {}
@@ -157,7 +158,7 @@ func apply_effect(new_dict: Dictionary):
 			'PlayerEffects', 'EnemyEffects':
 				var dest = Bus.get(animation)
 				calling_card.board_effect(dest)
-			'cast':
+			'discard':
 				calling_card.set_scale(Vector2(1, 1))
 				calling_card.discard()
 	
@@ -293,7 +294,7 @@ func _get_property_list() -> Array:
 		list.append(resource_hint("if_calling_card", "EffectIf"))
 		list.append(resource_hint("if_subject", "EffectIf"))
 		
-		list.append(string_enum_hint("animation", "none,cast,PlayerEffects,EnemyEffects"))
+		list.append(string_enum_hint("animation", "none,discard,PlayerEffects,EnemyEffects"))
 		
 		match function:
 			'add_activation_slots':
@@ -368,9 +369,12 @@ func _get_property_list() -> Array:
 				list.append(type_hint("persistent_effect", TYPE_BOOL))
 			'add_skill':
 				list.append(resource_hint("skill", "UnitSkill"))
+			'change_fatigue':
+				list.append(resource_hint("fatigue_change", "EffectValue"))
+				list.append(type_hint("affect_max", TYPE_BOOL))
 			
 		if trigger_signal == "consume_used":
-			animation = "cast"
+			animation = "discard"
 	else:
 		match function:
 			# these functions are always instantaneous

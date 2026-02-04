@@ -67,9 +67,6 @@ func type_only_setup():
 	for effect in effects:
 		effect.connect_signal(self)
 	
-func setup_fatigue():
-	fatigue = card_resource.fatigue
-	
 func set_art(override: String = ""):
 	card_art = card_name
 	if override != "":
@@ -464,4 +461,4 @@ func move_card():
 	get_tree().current_scene.call_deferred("add_child", card)
 
 func adjust_for_fatigue(num: int) -> int:
-	return(int((10.0 - fatigue) / 10.0 * num))
+	return(int((10.0 - current_fatigue) / 10.0 * num))

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://d2op0py23nj42"]
+
+[ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_xksu3"]
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="2_wmaqn"]
+[ext_resource type="Script" uid="uid://hat3dgsvixk8" path="res://src/Cards/ResourceTypes/ItemResource.gd" id="3_ljavy"]
+
+[resource]
+script = ExtResource("3_ljavy")
+item_type = 0
+attack_type = 0
+armor_type = 0
+damage = 3
+health = 0
+shield = 0
+max_durability = 5
+current_durability = 5
+cost = 0
+combat_modifiers = Array[ExtResource("1_xksu3")]([])
+target = "ally"
+card_name = "Sword"
+card_type = "Item"
+activation = 1
+tags = Array[int]([])
+text = ""
+effects = Array[ExtResource("2_wmaqn")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://hat3dgsvixk8"

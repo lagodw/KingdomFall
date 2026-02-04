@@ -11,6 +11,7 @@
 script = ExtResource("1_feb5c")
 require_trigger = true
 required_slots = Array[int]([])
+require_building_name = ""
 require_act = true
 minimum_damage = 0
 require_alive = false

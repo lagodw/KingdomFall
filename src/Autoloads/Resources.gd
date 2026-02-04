@@ -70,7 +70,7 @@ const RESOURCE_MAP = {
 	"item": "uid://snfirkvlfltv",
 	#"burden": "uid://bldvkx4hqe5yh",
 	"token": "uid://64ksoqa1gi7w",
-	#"equip_item": "uid://bvghc6u3bwmci",
+	"equip_item": "uid://c4kym3v6bax52",
 	"consume": "uid://cs22w1p7m5pn3",
 
 	"loading_scene": "uid://bfoyg5g1vd7mh",

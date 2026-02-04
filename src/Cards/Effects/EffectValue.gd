@@ -193,7 +193,7 @@ func _get_property_list() -> Array:
 			
 			'stat':
 				list.append(string_enum_hint("which_card", "trigger,calling"))
-				list.append(string_enum_hint("what_stat", "damage,health,shield"))
+				list.append(string_enum_hint("what_stat", "damage,health,shield,fatigue"))
 				list.append(string_enum_hint("whos_stat", "subject,trigger,target"))
 				list.append(type_hint("negative", TYPE_BOOL))
 			

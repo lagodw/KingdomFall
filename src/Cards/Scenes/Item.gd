@@ -1,8 +1,7 @@
 class_name Item
 extends Card
 
-#@onready var buff_effect = preload("uid://bj6tpdie6ictm")
-var buff_effect
+@onready var buff_effect = preload("uid://3wr4lk38bv1y")
 
 var damage: int:
 	set(val):

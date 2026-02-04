@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qyvmn4b5y0xw"
-path="res://.godot/imported/Longbow.png-fc530ef87926bae0645e768faccc2637.ctex"
+uid="uid://bhrya0umvsqf8"
+path="res://.godot/imported/Bandages.png-c688b3ca5af093346932dbb8ff3432b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CardArt/Items/Longbow.png"
-dest_files=["res://.godot/imported/Longbow.png-fc530ef87926bae0645e768faccc2637.ctex"]
+source_file="res://assets/CardArt/Bandages/Bandages.png"
+dest_files=["res://.godot/imported/Bandages.png-c688b3ca5af093346932dbb8ff3432b6.ctex"]
 
 [params]
 

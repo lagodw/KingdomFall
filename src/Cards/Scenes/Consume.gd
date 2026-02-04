@@ -1,6 +1,15 @@
 class_name Consume
 extends Card
 
+var uses: int:
+	set(val):
+		uses = val
+		card_resource.uses = val
+		%CostText.text = str(uses)
+		if uses <= 0:
+			Bus.deck.remove_card(card_resource)
+			queue_free()
+
 func _input(event):
 	# right click = target or cast spell
 	if event is InputEventMouseButton and card_owner == "Player":
@@ -13,22 +22,13 @@ func _input(event):
 			if $TargetLine.is_targeting:
 				kf.mouse_disabled = false
 				targeting_arrow.complete_targeting()
+				uses -= 1
 			elif highlighted:
 				ee.emit_signal("consume_used", self)
+				uses -= 1
 			set_highlight(false)
 
 func class_setup():
+	uses = card_resource.uses
 	for effect in effects:
 		effect.connect_signal(self)
-
-func set_art(override: String = ""):
-	card_art = card_name
-	if override != "":
-		card_art = override
-	elif card_resource.card_art_path:
-		card_art = card_resource.card_art_path
-	#elif Settings:
-		#if Settings.card_art.has(card_name):
-			#card_art = Settings.card_art[card_name]
-	var art_path = "res://assets/CardArt/Consumables/" + card_art + ".png"
-	%CardArt.texture = load(art_path)

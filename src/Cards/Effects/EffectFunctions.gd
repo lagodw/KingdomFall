@@ -221,3 +221,12 @@ func add_skill(subjects: Array, calling_card: Control, trigger_card: Control,
 					trigger_card, calling_card, effect_dict)
 			skill.amount = amt
 		subject.card_resource.skills.append(skill)
+
+## affect_max determines whether the change is applied to the card resource
+func change_fatigue(subjects: Array, calling_card: Control, trigger_card: Control,
+		fatigue_change: EffectValue, affect_max: bool, effect_dict: Dictionary):
+	for subject: Unit in subjects:
+		var amt = fatigue_change.get_value(subject, trigger_card, calling_card, effect_dict)
+		subject.current_fatigue += amt
+		if affect_max:
+			subject.card_resource.fatigue += amt

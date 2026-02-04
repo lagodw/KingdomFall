@@ -19,6 +19,7 @@ func _ready() -> void:
 		building_grid.add_child(construction)
 	$UnitUpgrades/Done.pressed.connect(start_combat)
 	Bus.town = self
+	Bus.mana = Bus.max_mana
 	
 func night_fall():
 	for building in building_grid.get_children():

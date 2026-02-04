@@ -4,6 +4,7 @@ extends Node
 ## force the order of loading classes to avoid errors
 var force_load_subject: EffectConditionSubject
 var force_load_calling: EffectConditionCalling
+var force_load_if: EffectIf
 
 enum Tag {Creature, Taunt, Resistant, Magic, Stealth, Mounted, Flying,
 		Physical, Undead, Fairie, Giant, Immortal, Indestructible, Volley}

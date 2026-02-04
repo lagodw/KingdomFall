@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dgwsiadewfm20" path="res://assets/Card/Frames/CardFrame_Gold.png" id="3_37nkc"]
 [ext_resource type="Texture2D" uid="uid://c1im8hbycsryc" path="res://assets/CardArt/Consumables/Mana Potion.png" id="4_ejlr3"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="6_b7et4"]
-[ext_resource type="Texture2D" uid="uid://dbr0f8hb1g31b" path="res://assets/Card/Icons/Upkeep.png" id="7_5vvns"]
+[ext_resource type="Texture2D" uid="uid://dkteqdm5uvadh" path="res://assets/Card/Icons/Durability.png" id="6_ejlr3"]
 
 [node name="Consume" instance=ExtResource("1_r8j7y")]
 script = ExtResource("2_etsci")
@@ -22,14 +22,13 @@ texture = ExtResource("4_ejlr3")
 texture = ExtResource("3_37nkc")
 
 [node name="Cost" type="TextureRect" parent="." index="6"]
-visible = false
 layout_mode = 0
 offset_left = 7.0
 offset_top = 5.0
 offset_right = 33.0
 offset_bottom = 31.0
 theme = ExtResource("6_b7et4")
-texture = ExtResource("7_5vvns")
+texture = ExtResource("6_ejlr3")
 expand_mode = 1
 
 [node name="CostText" type="Label" parent="Cost" index="0"]
