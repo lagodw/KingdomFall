@@ -1,7 +1,7 @@
 extends Control
 
 func _ready() -> void:
-	add_card_choices()
+	#add_card_choices()
 	$Confirm.pressed.connect(confirm)
 
 func add_card_choices():

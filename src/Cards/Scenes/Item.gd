@@ -57,7 +57,7 @@ func set_art(override: String = ""):
 	%CardArt.texture = load(art_path)
 
 func _input(event):
-	if event is InputEventMouseButton and card_owner == "Player":
+	if event is InputEventMouseButton and card_owner == "Player" and Bus.energy >= card_resource.activation:
 		if event.is_pressed() and event.get_button_index() == 2 and highlighted:
 			var target_effects = get_trigger_effects("target")
 			if target_effects:
@@ -65,6 +65,7 @@ func _input(event):
 		elif not event.is_pressed() and event.get_button_index() == 2:
 			if $TargetLine.is_targeting:
 				var _result = targeting_arrow.complete_targeting()
+				Bus.energy -= card_resource.activation
 			set_highlight(false)
 
 func change_durability(change: int = 0):

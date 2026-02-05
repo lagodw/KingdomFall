@@ -248,11 +248,11 @@ metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [resource]
 script = ExtResource("2_bt5as")
-mana_cost = 0
+mana_cost = 1
 target = "none_needed"
 card_name = "Force March"
 card_type = "Spell"
-activation = 1
+activation = 0
 tags = Array[int]([])
 text = "Reset a friendly unit's action but give it 2 fatigue"
 effects = Array[ExtResource("1_m8egt")]([SubResource("Resource_rln3i"), SubResource("Resource_65tut")])

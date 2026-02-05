@@ -39,3 +39,16 @@ func shuffle_discard():
 		card.move_to(Bus.draw.cards, false)
 	await get_tree().process_frame
 	await get_tree().process_frame
+
+func get_cards() -> Array[Card]:
+	var card_array: Array[Card]
+	for child in cards.get_children():
+		card_array.append(child)
+	return(card_array)
+	
+func get_units() -> Array[Unit]:
+	var units: Array[Unit]
+	for child in cards.get_children():
+		if child is Unit:
+			units.append(child)
+	return(units)

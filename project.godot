@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Kingdom Fall"
-run/main_scene="uid://dyai8rsp8py54"
+run/main_scene="uid://bw1l202axfrki"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://cj1m8aroronnd"
 

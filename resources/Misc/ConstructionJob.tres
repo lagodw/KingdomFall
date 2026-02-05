@@ -126,7 +126,7 @@ metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 script = ExtResource("2_klufr")
 skill = 2
 amount = 1
-progress = 0
+progress = 0.0
 metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [resource]

@@ -87,6 +87,9 @@ func begin_combat():
 	end_turn()
 
 func combat_won():
+	# wait for last units to tween
+	# TODO: hide remaining cards instead
+	await get_tree().create_timer(kf.tween_time*1.5).timeout
 	for card in Bus.hand.get_children():
 		card.queue_free()
 	for unit in Bus.deck.get_units():
@@ -94,6 +97,8 @@ func combat_won():
 			unit.fatigue += 5
 		else:
 			unit.fatigue -= 5
+	for card in Bus.PlayerGraveyard.get_units():
+		card.card_resource.fatigue += 10
 	get_tree().paused = true
 	combat_over = true
 	$CombatWon.visible = true

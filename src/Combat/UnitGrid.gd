@@ -1,7 +1,7 @@
 class_name UnitGrid
 extends VBoxContainer
 
-@onready var file_scene: PackedScene = preload("uid://bsp0fgo7c1qcn")
+@onready var file_scene: PackedScene = preload("uid://c57mvcvwryv6f")
 
 @export var num_files: int = 5
 @export var num_enemy_slots: int = 2

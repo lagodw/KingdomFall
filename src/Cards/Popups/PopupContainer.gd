@@ -36,7 +36,7 @@ const text_dict: Dictionary[String, String] = {
 		"[b]Support[/b]": "Has effect when unit is in Support box",
 		"[b]Target[/b]": "When unit is in Support box, right click to target a unit",
 		"[b]Death[/b]": "Occurs when the unit dies",
-		"[b]Start of Turn[/b]": "Occurs at the start of each turn",
+		#"[b]Start of Turn[/b]": "Occurs at the start of each turn",
 		"[b]Combat End[/b]": "Occurs at the start of each turn",
 		"[b]Dormant[/b]": "Cannot act until awakend",
 		"[b]Shield[/b]": "Absorbs damage and regenerates at the start of each turn",
@@ -81,10 +81,10 @@ func create_popups() -> void:
 		create_tag_popup(tag)
 	for key in text_dict:
 		if key.is_subsequence_of(owner.get_node("%CardText").text):
-			var paths = R.art.get_matching_paths(["**/" + Utils.strip_bold(key) + ".png"])
+			#var paths = R.art.get_matching_paths(["**/" + Utils.strip_bold(key) + ".png"])
 			var path: String = ""
-			if paths.size() == 1:
-				path = paths[0]
+			#if paths.size() == 1:
+				#path = paths[0]
 			create_popup(key, text_dict[key], path)
 	visible = false
 	

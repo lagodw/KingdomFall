@@ -75,7 +75,7 @@ func select_upgrade_unit(chosen_button: Button):
 		unit.queue_free()
 	var resource: UnitResource = chosen_button.card.card_resource
 	for upgrade: UnitUpgrade in resource.get_eligible_upgrades():
-		var new_resource: UnitResource = upgrade.unit
+		var new_resource: UnitResource = upgrade.unit.dupe()
 		new_resource.skills = resource.skills
 		new_resource.fatigue = resource.fatigue
 		new_resource.curses = resource.curses
