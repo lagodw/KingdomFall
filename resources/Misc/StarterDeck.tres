@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Deck" load_steps=13 format=3 uid="uid://daukdeewyd6ke"]
+[gd_resource type="Resource" script_class="Deck" load_steps=14 format=3 uid="uid://daukdeewyd6ke"]
 
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="1_dxewv"]
 [ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="2_rqv0j"]
@@ -12,10 +12,11 @@
 [ext_resource type="Resource" uid="uid://g8y81ddtdekk" path="res://resources/Spells/Invigorate.tres" id="9_3ndqr"]
 [ext_resource type="Resource" uid="uid://ehvswbup3i7a" path="res://resources/Spells/ForceMarch.tres" id="10_ubhrb"]
 [ext_resource type="Resource" uid="uid://clxlpqlwy25lg" path="res://resources/Spells/HandsofLight.tres" id="11_rqv0j"]
+[ext_resource type="Resource" uid="uid://6vuvbg6hyk7d" path="res://resources/Units/Workers/Mason.tres" id="12_wxvyb"]
 
 [resource]
 script = ExtResource("3_xc5uk")
 sort_deck = false
-cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("4_6q125"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t"), ExtResource("8_ssu5k"), ExtResource("9_3ndqr"), ExtResource("10_ubhrb"), ExtResource("11_rqv0j")])
+cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("4_6q125"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t"), ExtResource("8_ssu5k"), ExtResource("9_3ndqr"), ExtResource("10_ubhrb"), ExtResource("11_rqv0j"), ExtResource("12_wxvyb")])
 graveyard = Array[ExtResource("1_dxewv")]([])
 metadata/_custom_type_script = "uid://d3cbj7orsdpk2"

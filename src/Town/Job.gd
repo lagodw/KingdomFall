@@ -5,13 +5,17 @@ extends Resource
 @export var capacity: int = 1
 @export var effects: Array[Effect]
 @export var requirements: Array[UpgradeRequirement]
-@export var progress: Array[UpgradeRequirement]
 
 func check_if_done() -> bool:
 	for requirement in requirements:
 		if requirement.progress < requirement.amount:
 			return(false)
 	return(true)
+	
+func advance_progress(skill: UnitSkill.Skill, amt: float):
+	for requirement in requirements:
+		if requirement.skill == skill:
+			requirement.progress += amt
 
 func dupe() -> Job:
 	var duped: Job = duplicate(true)
@@ -23,8 +27,4 @@ func dupe() -> Job:
 	for requirement in requirements:
 		duped_requirements.append(requirement.dupe())
 	duped.requirements = duped_requirements
-	var duped_progress: Array[UpgradeRequirement]
-	for current_progress in progress:
-		duped_progress.append(current_progress.dupe())
-	duped.progress = duped_progress
 	return(duped)

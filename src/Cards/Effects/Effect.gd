@@ -74,6 +74,8 @@ var cost_change: EffectValue = EffectValue.new()
 var max_activation_change: EffectValue = EffectValue.new()
 var skill: UnitSkill = UnitSkill.new()
 var fatigue_change: EffectValue = EffectValue.new()
+var progress_skill: UnitSkill.Skill
+var progress_change: EffectValue = EffectValue.new()
 
 var host_card: CardToken
 var effect_dict: Dictionary = {}
@@ -373,6 +375,9 @@ func _get_property_list() -> Array:
 			'change_fatigue':
 				list.append(resource_hint("fatigue_change", "EffectValue"))
 				list.append(type_hint("affect_max", TYPE_BOOL))
+			'change_job_progress':
+				list.append(skill_hint("progress_skill"))
+				list.append(resource_hint("progress_change", "EffectValue"))
 			
 		if trigger_signal == "consume_used":
 			animation = "discard"
@@ -436,6 +441,16 @@ func string_array_hint(property_name: String, string_enums: String) -> Dictionar
 		"hint": PROPERTY_HINT_TYPE_STRING,
 		"hint_string": "4/2:%s"%string_enums,
 		"usage": 4102
+	})
+	
+func skill_hint(property_name: String) -> Dictionary:
+	return({
+		"name": property_name, 
+		"class_name": &"uid://bn2lsa6d725jx.Skill", 
+		"type": TYPE_INT, 
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": "Training:0,Education:1,Productivity:2",
+		"usage": 69638
 	})
 	
 func dupe() -> Effect:

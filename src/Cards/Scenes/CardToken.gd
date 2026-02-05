@@ -2,6 +2,7 @@ class_name CardToken
 extends Unit
 
 var card: Unit
+var current_job: Job
 var discarded: bool = false
 var effect_buffs: Array = []
 var combat_modifiers: Array[CombatModifier] = []

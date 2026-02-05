@@ -230,3 +230,13 @@ func change_fatigue(subjects: Array, calling_card: Control, trigger_card: Contro
 		subject.current_fatigue += amt
 		if affect_max:
 			subject.card_resource.fatigue += amt
+
+func change_job_progress(subjects: Array, calling_card: Control, trigger_card: Control,
+		progress_skill: UnitSkill.Skill, progress_change: EffectValue, effect_dict: Dictionary):
+	for subject in subjects:
+		if subject is not CardToken:
+			continue
+		if not subject.current_job:
+			continue
+		var amt = progress_change.get_value(subject, trigger_card, calling_card, effect_dict)
+		subject.current_job.advance_progress(progress_skill, amt)

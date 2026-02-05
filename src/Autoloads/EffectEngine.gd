@@ -142,7 +142,7 @@ func check_conditions_calling(call_card: Control, trigger_card: Control, conditi
 		var result = condition_callable.call(call_card, trigger_card, conditions.get(condition_type))
 		# result is true if condition is passed
 		if not result:
-			#print('%s failed calling condition: %s'%[call_card.card_name, condition_type])
+			print('%s failed calling condition: %s'%[call_card.card_name, condition_type])
 			return(result)
 	return(true)
 
@@ -155,7 +155,7 @@ func check_conditions_subject(subject: Control, call_card: Control,
 		var result = condition_callable.call(subject, call_card, conditions.get(condition_type))
 		# result is true if condition is passed
 		if not result:
-			#print('%s failed subject condition: %s'%[subject.get_path(), condition_type])
+			print('%s failed subject condition: %s'%[subject.get_path(), condition_type])
 			return(result)
 	return(true)
 	
@@ -311,6 +311,13 @@ func require_building_name(subject: Control, _trigger_card: Control, required_bu
 	if subject.current_slot.job.bldg.resource.building_name != required_building:
 		return(false)
 	return(true)
+	
+func require_job_name(subject: Control, _trigger_card: Control, required_job: String) -> bool:
+	if subject is not CardToken or required_job == "":
+		return(true)
+	if not subject.current_job:
+		return(false)
+	return(subject.current_job.description == required_job)
 
 func require_card_type(subject: Control, _trigger_card: Control, required_types: Array) -> bool:
 	if required_types.size() == 0 or (subject is not Card and subject is not CardLabel):

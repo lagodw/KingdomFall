@@ -76,6 +76,9 @@ func add_unit(unit: Unit):
 	if unit is not CardToken:
 		await get_tree().process_frame
 		unit.token.move_card()
+		unit.token.current_job = job
+	else:
+		unit.current_job = job
 
 func move_tokens_up():
 	for i in range(token_grid.get_child_count() - 1):
@@ -88,6 +91,7 @@ func move_tokens_up():
 
 func release_unit(token: CardToken):
 	token.current_slot.occupied_unit = null
+	token.current_job = null
 	move_tokens_up()
 	bldg.empty_capacity_slot()
 	
