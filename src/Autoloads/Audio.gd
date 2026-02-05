@@ -28,22 +28,23 @@ func _ready() -> void:
 	Bus.new_scene_loaded.connect(_on_new_scene_loaded)
 
 func _on_new_scene_loaded() -> void:
-	if Bus.map:
-		var event_data = Bus.map.current_location
-		var event_scene_path = event_data.scene_path
-		
-		# 1. Resolve UID string to a standard 'res://' path for comparison
-		if event_scene_path.begins_with("uid://"):
-			# Convert the "uid://..." string to an integer ID, then to a path
-			var uid_id = ResourceUID.text_to_id(event_scene_path)
-			event_scene_path = ResourceUID.get_id_path(uid_id)
-		
-		# 2. Compare the resolved path with the current scene file path
-		if get_tree().current_scene.scene_file_path == event_scene_path:
-			# allow some events to skip music to play within script (combat)
-			if event_data.music == "":
-				return
-			play_music(event_data.music)
+	pass
+	#if Bus.map:
+		#var event_data = Bus.map.current_location
+		#var event_scene_path = event_data.scene_path
+		#
+		## 1. Resolve UID string to a standard 'res://' path for comparison
+		#if event_scene_path.begins_with("uid://"):
+			## Convert the "uid://..." string to an integer ID, then to a path
+			#var uid_id = ResourceUID.text_to_id(event_scene_path)
+			#event_scene_path = ResourceUID.get_id_path(uid_id)
+		#
+		## 2. Compare the resolved path with the current scene file path
+		#if get_tree().current_scene.scene_file_path == event_scene_path:
+			## allow some events to skip music to play within script (combat)
+			#if event_data.music == "":
+				#return
+			#play_music(event_data.music)
 
 func play_music(track_name: String, fade_time: float = 1.0) -> void:
 	var stream = R.music.get_matching_resource(["%s.**"%track_name])[0]

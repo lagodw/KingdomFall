@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=26 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bnaxe2ykiimtm" path="res://assets/Combat/EndTurn/EndTurn_Text.png" id="10_duo21"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="11_dyjub"]
 [ext_resource type="Script" uid="uid://02o7a8o8wjjd" path="res://src/Combat/Enemy.gd" id="12_55i6c"]
-[ext_resource type="Resource" uid="uid://d3024l3wyhs5m" path="res://resources/Enemies/TestEnemy.tres" id="13_duo21"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="14_bx2u5"]
 [ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="15_1c8jx"]
 [ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Icons/Activation.png" id="15_3cf12"]
@@ -290,7 +289,6 @@ offset_top = 482.0
 offset_right = 1019.0
 offset_bottom = 482.0
 script = ExtResource("12_55i6c")
-res = ExtResource("13_duo21")
 
 [node name="Escape" parent="." instance=ExtResource("14_bx2u5")]
 visible = false

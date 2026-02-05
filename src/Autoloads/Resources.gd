@@ -48,7 +48,7 @@ const RESOURCE_MAP = {
 	"card_resources": "uid://bjdqhsddp1rxj",
 	"buildings": "uid://6uwynbbqo5fm",
 	"building_art": "uid://vioxwkbn4m3u",
-	#"enemies": "uid://byhybgpfms51e",
+	"enemies": "uid://dgrrs481y3qnk",
 	#"events": "uid://d4kf5b3g5m4gm",
 	#"curses": "uid://drd4qppsgxfuh",
 	#"blessings": "uid://7ajnftyruss2",
@@ -62,7 +62,7 @@ const RESOURCE_MAP = {
 	#"burdens": "uid://b0clwu8e66uyx",
 	"music": "uid://bqbk7cku2sx87",
 	"sfx": "uid://cngvxc5tp7l8r",
-	#
+	
 	#"card_label": "uid://bfbt12injyh4a",
 	"card": "uid://cd28vo6umqhig",
 	"unit": "uid://cpnsgrt8hjbre",

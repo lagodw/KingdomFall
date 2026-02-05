@@ -265,7 +265,7 @@ func attach_to_card(target: CardToken):
 	if self is Item:
 		target.combat_modifiers.append_array(card_resource.combat_modifiers)
 		target.items.append(self)
-	discard()
+	#discard()
 	ee.emit_signal("attach", self, target)
 	
 func register_cost_modifier(amount: int):

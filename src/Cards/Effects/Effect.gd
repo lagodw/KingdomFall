@@ -161,7 +161,8 @@ func apply_effect(new_dict: Dictionary):
 			'discard':
 				calling_card.set_scale(Vector2(1, 1))
 				calling_card.discard()
-	
+			'graveyard':
+				Bus.get("%sGraveyard"%calling_card.card_owner).add_card(calling_card)
 	if persistent_effect and not ee.effect_list.has(self):
 		ee.effect_list.append(self)
 		ee.apply_effects()
@@ -294,7 +295,7 @@ func _get_property_list() -> Array:
 		list.append(resource_hint("if_calling_card", "EffectIf"))
 		list.append(resource_hint("if_subject", "EffectIf"))
 		
-		list.append(string_enum_hint("animation", "none,discard,PlayerEffects,EnemyEffects"))
+		list.append(string_enum_hint("animation", "none,discard,graveyard,PlayerEffects,EnemyEffects"))
 		
 		match function:
 			'add_activation_slots':

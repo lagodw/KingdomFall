@@ -120,4 +120,4 @@ conditions_trigger = SubResource("Resource_1cjoa")
 conditions_subject = SubResource("Resource_0fr61")
 if_calling_card = SubResource("Resource_xvwn3")
 if_subject = SubResource("Resource_qhti5")
-animation = "none"
+animation = "graveyard"

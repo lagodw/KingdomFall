@@ -1,11 +1,11 @@
 class_name Enemy
 extends Control
 
-@export var res: EnemyResource
 var enemy_dupe: EnemyResource
 var card_grid: VBoxContainer
 
 func _ready() -> void:
+	var res: EnemyResource = Bus.map.night_enemies.pop_front()
 	enemy_dupe = res.dupe()
 	Bus.trigger_occurred.connect(on_trigger)
 	Bus.board_loaded.connect(add_cards)
