@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://djtcf3x2wg721"]
 
 [ext_resource type="Script" uid="uid://bewt2iotlx4sw" path="res://src/Town/Town.gd" id="1_lk6hu"]
+[ext_resource type="Texture2D" uid="uid://c04jnoy5ak277" path="res://assets/Combat/Castle.png" id="2_0seve"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="2_lk6hu"]
 [ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_n1enq"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="5_upyly"]
-[ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="5_whka0"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_70d4t"]
 [ext_resource type="Texture2D" uid="uid://oxmwne2ge5mt" path="res://assets/Combat/EndTurn/EndTurn.png" id="7_8p5a6"]
 [ext_resource type="Texture2D" uid="uid://bqaqhsh05lktm" path="res://assets/UI/paper.png" id="7_n1enq"]
@@ -32,14 +32,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Castle" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -221.0
-offset_top = -54.0
-offset_right = 2166.0
-offset_bottom = 751.0
-texture = ExtResource("5_whka0")
-expand_mode = 1
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 50.0
+offset_right = 1920.0
+offset_bottom = 726.0
+
+[node name="Castle" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 4.0
+anchor_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0seve")
+patch_margin_left = 300
+patch_margin_top = 300
+patch_margin_right = 300
+patch_margin_bottom = 300
 
 [node name="Bottom" type="Control" parent="."]
 layout_mode = 1
@@ -62,10 +73,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lk6hu")
 
 [node name="UnitPanel" parent="Bottom" instance=ExtResource("3_n1enq")]
 layout_mode = 0
-offset_left = 304.0
-offset_top = 13.0
-offset_right = 1657.0
-offset_bottom = 343.0
+offset_left = 287.0
+offset_top = 1.0
+offset_right = 1666.0
+offset_bottom = 352.0
 
 [node name="Filters" type="VBoxContainer" parent="Bottom"]
 layout_mode = 0
@@ -147,14 +158,14 @@ vertical_alignment = 1
 
 [node name="Buildings" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 278.0
-offset_top = 108.0
-offset_right = 1673.0
+offset_left = 150.0
+offset_top = 114.0
+offset_right = 1750.0
 offset_bottom = 664.0
 
 [node name="BuildingGrid" type="GridContainer" parent="Buildings"]
 layout_mode = 2
-columns = 7
+columns = 8
 
 [node name="Escape" parent="." instance=ExtResource("12_0seve")]
 visible = false

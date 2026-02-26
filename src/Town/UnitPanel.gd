@@ -1,4 +1,4 @@
-extends TextureRect
+extends Control
 
 @onready var highlight: ReferenceRect = $Highlight
 @onready var box: HBoxContainer = $%CardsBox

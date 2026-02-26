@@ -40,6 +40,7 @@ script = ExtResource("1_uu1y4")
 require_trigger = false
 required_slots = Array[int]([])
 require_building_name = ""
+require_job_name = ""
 require_act = true
 minimum_damage = 0
 require_alive = false

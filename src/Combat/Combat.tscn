@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=27 format=3 uid="uid://dvld0lyuo33oq"]
 
-[ext_resource type="Texture2D" uid="uid://eiftqiqui6cf" path="res://assets/Combat/CombatCastle.png" id="1_ewkg0"]
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
 [ext_resource type="Texture2D" uid="uid://cc6bmnrsfqlpa" path="res://assets/Combat/CombatBoard.png" id="2_jkim7"]
 [ext_resource type="PackedScene" uid="uid://b307r73bvmxl0" path="res://src/Combat/UnitGrid.tscn" id="2_m70ga"]
+[ext_resource type="Texture2D" uid="uid://c04jnoy5ak277" path="res://assets/Combat/Castle.png" id="3_rlcqg"]
 [ext_resource type="PackedScene" uid="uid://b8a6fsekofwdm" path="res://src/Combat/Hand.tscn" id="4_1dph2"]
 [ext_resource type="PackedScene" uid="uid://cahuyqwtqssxu" path="res://src/Combat/Pile.tscn" id="6_nthc5"]
 [ext_resource type="Texture2D" uid="uid://dwmvkbkwnjymf" path="res://assets/Card/Icons/Discard.png" id="7_rlcqg"]
@@ -15,11 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="11_dyjub"]
 [ext_resource type="Script" uid="uid://02o7a8o8wjjd" path="res://src/Combat/Enemy.gd" id="12_55i6c"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="14_bx2u5"]
-[ext_resource type="Texture2D" uid="uid://504456ik8kox" path="res://assets/UI/Wood_background.png" id="15_1c8jx"]
 [ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Icons/Activation.png" id="15_3cf12"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="16_7vgw0"]
 [ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="16_whu61"]
+[ext_resource type="Texture2D" uid="uid://docmg4uihkhbg" path="res://assets/NewUI/Panel.png" id="17_fs6sf"]
 [ext_resource type="PackedScene" uid="uid://dhlijfvm4rjj5" path="res://src/Combat/Gate.tscn" id="17_whu61"]
+[ext_resource type="Texture2D" uid="uid://d3g3488ppbb23" path="res://assets/NewUI/Corners.png" id="18_1vl0l"]
 [ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="18_7vgw0"]
 [ext_resource type="Texture2D" uid="uid://cverjpfc2bevk" path="res://assets/UI/Deck_Icon.png" id="18_60py1"]
 [ext_resource type="PackedScene" uid="uid://cngo42s45sirp" path="res://src/Combat/GameOver.tscn" id="18_wbuvy"]
@@ -47,12 +48,12 @@ expand_mode = 1
 
 [node name="Castle" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 2813.0
-offset_top = -51.0
-offset_right = 4013.0
-offset_bottom = 1235.0
+offset_left = 2535.0
+offset_top = 66.0
+offset_right = 3535.0
+offset_bottom = 1066.0
 rotation = 1.5708
-texture = ExtResource("1_ewkg0")
+texture = ExtResource("3_rlcqg")
 expand_mode = 1
 
 [node name="UnitGrid" parent="." instance=ExtResource("2_m70ga")]
@@ -152,6 +153,7 @@ texture = ExtResource("10_duo21")
 expand_mode = 1
 
 [node name="Energy" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 266.0
 offset_top = 823.0
@@ -189,17 +191,46 @@ anchor_right = 0.0
 offset_right = 1920.0
 grow_horizontal = 1
 
-[node name="DeckChoice" type="TextureRect" parent="."]
+[node name="DeckChoice" type="Control" parent="."]
 process_mode = 3
 visible = false
 z_index = 2
-layout_mode = 0
+anchors_preset = 0
 offset_left = 300.0
 offset_top = 52.0
 offset_right = 1773.0
 offset_bottom = 1029.0
-texture = ExtResource("15_1c8jx")
+
+[node name="MarginContainer" type="MarginContainer" parent="DeckChoice"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 6
+
+[node name="TextureRect" type="TextureRect" parent="DeckChoice/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("17_fs6sf")
 expand_mode = 1
+
+[node name="Border" type="NinePatchRect" parent="DeckChoice"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_1vl0l")
+patch_margin_left = 300
+patch_margin_top = 300
+patch_margin_right = 300
+patch_margin_bottom = 300
 
 [node name="Label" type="Label" parent="DeckChoice"]
 layout_mode = 1

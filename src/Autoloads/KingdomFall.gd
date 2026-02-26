@@ -48,6 +48,7 @@ func copy_deck(deck: Deck) -> Deck:
 	
 func create_card(card_resource: CardResource, card_owner: String = "Player") -> Card:
 	var newcard: Card
+	card_resource.activation = 0
 	if card_resource is UnitResource:
 		newcard = R.unit.instantiate()
 	elif card_resource is ItemResource:
