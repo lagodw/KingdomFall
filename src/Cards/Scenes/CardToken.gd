@@ -308,13 +308,10 @@ func reset_remaining():
 	remaining_life = current_health
 	
 func update_damage_preview() -> void:
-	var incoming_damage = current_health + current_shield - remaining_life
-	var shield_damage = min(current_shield, incoming_damage)
-	var health_damage = incoming_damage - shield_damage + poison
+	var incoming_damage = current_health - remaining_life
+	var health_damage = incoming_damage + poison
 	%HealthPreviewText.text = "-%s"%health_damage
 	%HealthPreview.visible = (health_damage > 0 and remaining_life - poison > 0)
-	%ShieldPreviewText.text = "-%s"%shield_damage
-	%ShieldPreview.visible = (shield_damage > 0 and remaining_life > 0)
 	
 	if health_damage >= current_health:
 		%Skull.visible = true

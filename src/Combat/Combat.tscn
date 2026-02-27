@@ -56,14 +56,6 @@ rotation = 1.5708
 texture = ExtResource("3_rlcqg")
 expand_mode = 1
 
-[node name="UnitGrid" parent="." instance=ExtResource("2_m70ga")]
-layout_mode = 0
-offset_left = 1158.0
-offset_top = 186.0
-offset_right = 1498.0
-offset_bottom = 886.0
-alignment = 1
-
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
 layout_mode = 1
 offset_left = 528.0
@@ -208,6 +200,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 2
@@ -215,6 +208,7 @@ theme_override_constants/margin_bottom = 6
 
 [node name="TextureRect" type="TextureRect" parent="DeckChoice/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("17_fs6sf")
 expand_mode = 1
 
@@ -336,14 +330,21 @@ offset_top = 40.0
 offset_right = -323.0
 offset_bottom = -39.0
 
-[node name="EnemyCards" type="VBoxContainer" parent="."]
+[node name="EnemyCards" type="Control" parent="."]
 visible = false
-layout_mode = 0
+anchors_preset = 0
 offset_left = 289.0
 offset_top = 47.0
 offset_right = 889.0
 offset_bottom = 797.0
 mouse_filter = 2
-theme_override_constants/separation = -150
+
+[node name="UnitGrid" parent="." instance=ExtResource("2_m70ga")]
+visible = false
+layout_mode = 0
+offset_left = 887.0
+offset_top = 73.0
+offset_right = 1487.0
+offset_bottom = 773.0
 
 [editable path="EnemyGraveyard"]

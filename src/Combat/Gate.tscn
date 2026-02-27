@@ -47,31 +47,25 @@ offset_right = 4.0
 offset_bottom = 33.0
 theme_override_font_sizes/font_size = 42
 
-[node name="Skull" parent="Frame" index="1"]
-offset_left = -60.0
-offset_top = -60.0
-offset_right = 51.0
-offset_bottom = 51.0
-
 [node name="Shadow" parent="Frame/HBoxContainer" index="0"]
 visible = false
 
-[node name="TopBox" parent="Frame" index="3"]
-visible = false
-
-[node name="BottomBox" parent="Frame" index="4"]
+[node name="BottomBox" parent="Frame" index="2"]
 offset_left = -6.0
 offset_top = -77.0
 offset_right = -14.0
 offset_bottom = -27.0
 
-[node name="Damage" parent="Frame/BottomBox" index="0"]
+[node name="Fatigue" parent="Frame/BottomBox" index="0"]
 visible = false
 
-[node name="Shield" parent="Frame/BottomBox" index="2"]
+[node name="Damage" parent="Frame/BottomBox" index="2"]
 visible = false
 
-[node name="Health" parent="Frame/BottomBox" index="3"]
+[node name="Shield" parent="Frame/BottomBox" index="3"]
+visible = false
+
+[node name="Health" parent="Frame/BottomBox" index="4"]
 custom_minimum_size = Vector2(87, 50)
 
 [node name="TextureRect" parent="Frame/BottomBox/Health" index="0"]

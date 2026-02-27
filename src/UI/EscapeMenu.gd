@@ -36,7 +36,7 @@ func main_menu():
 	get_tree().paused = false
 	close_tutorials()
 	Bus.reset_vars()
-	kf.load_scene("uid://dyai8rsp8py54")
+	kf.load_scene("uid://bw1l202axfrki")
 	
 func settings():
 	$Settings.show()

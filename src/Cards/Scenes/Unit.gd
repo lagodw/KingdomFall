@@ -8,8 +8,6 @@ var base_health: int
 var base_damage: int
 var base_shield: int
 var base_activation: int
-var base_attack_range: int
-var base_speed: int
 var current_health: int:
 	set(val):
 		current_health = clamp(val, 0, max_health)
@@ -35,27 +33,7 @@ var current_shield: int:
 var max_shield: int:
 	set(val):
 		max_shield = max(0, val)
-		if max_shield > 0:
-			show_shield(true)
-		else:
-			show_shield(false)
 		compare_stat("Shield", current_shield, max_shield)
-var current_attack_range: int:
-	set(val):
-		current_attack_range = clamp(val, 0, max_attack_range)
-		compare_stat("Attack_Range", current_attack_range, max_attack_range)
-var max_attack_range: int:
-	set(val):
-		max_attack_range = max(0, val)
-		compare_stat("Attack_Range", current_attack_range, max_attack_range)
-var current_speed: int:
-	set(val):
-		current_speed = clamp(val, 0, max_speed)
-		compare_stat("Speed", current_speed, max_speed)
-var max_speed: int:
-	set(val):
-		max_speed = max(0, val)
-		compare_stat("Speed", current_speed, max_speed)
 var current_activation: int:
 	set(val):
 		current_activation = clamp(val, 0, max_activation)
@@ -87,7 +65,7 @@ func class_setup():
 		%SkillBox.add_tags()
 
 func setup_stats():
-	for stat in ['health', 'damage', 'shield', 'activation', 'attack_range', 'speed']:
+	for stat in ['health', 'damage', 'shield', 'activation']:
 		set("base_%s"%stat, card_resource.get(stat))
 		set("max_%s"%stat, card_resource.get(stat))
 		set("current_%s"%stat, card_resource.get(stat))
@@ -125,8 +103,6 @@ func play_token(target: TokenSlot, animation: bool = true):
 	visible = false
 	var mouse_position: bool = (card_owner == "Player")
 	token.move_to(target, animation, mouse_position)
-	if get_tree().current_scene is Combat:
-		token.can_act = false
 	ee.emit_signal("play", token)
 	disabled = true
 	$Area2D/CollisionShape2D.disabled = true
@@ -144,7 +120,7 @@ func tween_text(property: String, new_amt: int):
 	var text_label: Label = get_node("%" + "%sText"%property)
 	if not setup_complete:
 		text_label.text = str(new_amt)
-		if property == "Activation":
+		if property == "Fatigue" and self is not CardToken:
 			text_label.set("theme_override_colors/font_color", Color.BLACK)
 		else:
 			text_label.set("theme_override_colors/font_color", Color.WHITE)
@@ -160,7 +136,7 @@ func tween_text(property: String, new_amt: int):
 	var text_tween = create_tween()
 	text_tween.tween_method(callable, start_amt, new_amt, kf.tween_time)
 	await text_tween.finished
-	if property == "Activation":
+	if property == "Fatigue" and self is not CardToken:
 		text_label.set("theme_override_colors/font_color", Color.BLACK)
 	else:
 		text_label.set("theme_override_colors/font_color", Color.WHITE)
@@ -174,12 +150,6 @@ func set_Damage_text(value: int) -> void:
 func set_Shield_text(value: int) -> void:
 	%ShieldText.text = str(value)
 	
-func set_Attack_Range_text(value: int) -> void:
-	%RangeText.text = str(value)
-	
-func set_Speed_text(value: int) -> void:
-	%SpeedText.text = str(value)
-	
 func set_Activation_text(value: int) -> void:
 	%ActivationText.text = str(value)
 	
@@ -190,22 +160,11 @@ func refresh_stats_labels():
 	compare_stat("Health", current_health, max_health)
 	compare_stat("Damage", current_damage, max_damage)
 	compare_stat("Shield", current_shield, max_shield)
-	compare_stat("Speed", current_speed, max_speed)
-	compare_stat("Attack_Range", current_attack_range, max_attack_range)
 	compare_stat("Fatigue", current_fatigue, current_fatigue)
-	if max_shield == 0:
-		show_shield(false)
-	else:
-		show_shield(true)
 
 	compare_stat("Activation", current_activation, max_activation)
 	check_act()
 	
-func show_shield(value):
-	%Shield.visible = value
-	%ShieldSpacing.visible = not value
-	$%ShieldSpacing2.visible = not value
-		
 func check_act():
 	return(can_act)
 
@@ -256,7 +215,7 @@ func _get_drag_data(_at_position: Vector2):
 		preview = token.duplicate(false)
 	preview.visible = true
 	preview.get_node("Frame/Previews").visible = false
-	preview.get_node("Frame/Skull").visible = false
+	preview.get_node("CardArt/Skull").visible = false
 	control.add_child(preview)
 	control.z_index = 999
 	preview.position = -0.5 * preview.size

@@ -1,28 +1,18 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=10 format=3 uid="uid://d3024l3wyhs5m"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://d3024l3wyhs5m"]
 
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_cxahr"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_fwov5"]
 [ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="3_wnerq"]
-[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="4_tavvl"]
-[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="5_1s86m"]
 [ext_resource type="Script" uid="uid://bue1g4huq61xk" path="res://src/Combat/EnemyResource.gd" id="6_mqt4l"]
 
-[sub_resource type="Resource" id="Resource_8bv8s"]
+[sub_resource type="Resource" id="Resource_cxahr"]
 script = ExtResource("1_cxahr")
 units = Array[ExtResource("2_fwov5")]([ExtResource("3_wnerq"), ExtResource("3_wnerq")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
-[sub_resource type="Resource" id="Resource_cx1at"]
-script = ExtResource("1_cxahr")
-units = Array[ExtResource("2_fwov5")]([ExtResource("4_tavvl"), ExtResource("5_1s86m")])
-metadata/_custom_type_script = "uid://jdj8k4tksnow"
-
-[sub_resource type="Resource" id="Resource_ew62s"]
-script = ExtResource("1_cxahr")
-units = Array[ExtResource("2_fwov5")]([ExtResource("3_wnerq"), ExtResource("3_wnerq"), ExtResource("3_wnerq")])
-metadata/_custom_type_script = "uid://jdj8k4tksnow"
-
 [resource]
 script = ExtResource("6_mqt4l")
-ranks = Array[ExtResource("1_cxahr")]([SubResource("Resource_8bv8s"), SubResource("Resource_cx1at"), SubResource("Resource_ew62s")])
+ranks = Dictionary[int, ExtResource("1_cxahr")]({
+1: SubResource("Resource_cxahr")
+})
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

@@ -1,157 +1,120 @@
 class_name UnitGrid
-extends VBoxContainer
+extends HBoxContainer
 
-@onready var file_scene: PackedScene = preload("uid://c57mvcvwryv6f")
-
-@export var num_files: int = 5
-@export var num_enemy_slots: int = 2
-@export var num_player_slots: int = 2
-var files: Array[UnitFile]
+@export var player_front: UnitBox
+@export var player_back: UnitBox
+@export var enemy_front: UnitBox
+@export var enemy_back: UnitBox
 
 func _ready() -> void:
 	Bus.Grid = self
-	for i in num_files:
-		add_file()
 	Bus.trigger_occurred.connect(on_trigger)
 
-func on_trigger(trigger: String, _trigger_card: Control):
+func on_trigger(trigger: String, _trigger_card: Control) -> void:
 	if trigger in ['target', 'cast', 'discard', 'attach', 'move', 'consume_used']:
-		perform_maintenance()
 		await get_tree().process_frame
 		update_previews()
-		
-func add_file():
-	var file: UnitFile = file_scene.instantiate()
-	add_child(file)
-	file.create_slots(num_player_slots, num_enemy_slots)
-	files.append(file)
 
-func deploy_enemy_rank(rank: EnemyRank):
-	var lane_num: int = 0
-	for res in rank.units:
-		var unit: Unit = kf.create_card(res, "Enemy")
-		Bus.Board.get_node("Enemy").add_child(unit)
-		get_child(lane_num).add_enemy_unit(unit)
-		await get_tree().process_frame
-		lane_num += 1
-	
-func calculate_slot_distance(slot1: TokenSlot, slot2: TokenSlot) -> int:
-	if slot1.file == slot2.file:
-		return(abs(slot1.get_index() - slot2.get_index()))
+func get_units(unit_owner: String) -> Array:
+	var units: Array = []
+	if unit_owner == "Player":
+		units.append_array(player_front.get_units())
+		units.append_array(player_back.get_units())
 	else:
-		return(abs(slot1.file.get_index() - slot2.file.get_index()))
+		units.append_array(enemy_front.get_units())
+		units.append_array(enemy_back.get_units())
+	return units
 
-func start_combat():
-	for file: UnitFile in get_children():
-		await file.start_attacks()
-
-func reset_previews() -> void:
-	get_tree().call_group("Tokens", "reset_remaining")
-	
 func update_previews() -> void:
-	reset_previews()
+	get_tree().call_group("Tokens", "reset_remaining")
 	await get_tree().process_frame
-	for file: UnitFile in get_children():
-		file.update_previews()
+	
+	player_front.update_preview()
+	player_back.update_preview()
+	enemy_front.update_preview()
+	enemy_back.update_preview()
+	
+	execute_combat(false)
 
-func get_units(unit_owner: String) -> Array[CardToken]:
-	var units: Array[CardToken]
-	for file: UnitFile in get_children():
-		units.append_array(file.get_units(unit_owner))
-	return(units)
+func start_combat() -> void:
+	await execute_combat(true)
 
-func get_slot_distance(slot1: TokenSlot, slot2: TokenSlot) -> int:
-	var slot_distance = abs(slot1.get_index() - slot2.get_index())
-	var file_distance = abs(slot1.file.get_index() - slot2.file.get_index())
-	return(slot_distance + file_distance)
-
-func bump_units_sideways(selected_slot: TokenSlot, direction: String) -> TokenSlot:
-	if not selected_slot.occupied_unit:
-		if selected_slot.temporary_bumped_unit:
-			selected_slot.temporary_bumped_unit.move_to(selected_slot)
-			selected_slot.temporary_bumped_unit = null
-		return(null)
-		
-	var selected_box: UnitBox = selected_slot.box
-	var file_index: int = files.find(selected_box.file)
-	var slot_index: int = selected_slot.get_index()
+func execute_combat(real: bool) -> void:
+	# 1. ENEMY GOES FIRST: Calculate Enemy Attack vs Player Shield
+	var enemy_back_dmg = enemy_back.get_pooled_damage(real)
+	var player_front_shield = player_front.get_pooled_shield(real)
+	var enemy_overflow = enemy_back_dmg - player_front_shield
 	
-	var dir_int: int = 0
-	if direction == "Left":
-		dir_int = -1
-	elif direction == "Right":
-		dir_int = 1
-	else:
-		return null
-		
-	# 1. Find the target file (the first one with an empty slot)
-	var target_file_index: int = -1
-	var check_index: int = file_index + dir_int
+	# 2. Distribute Enemy Overflow -> Player Side
+	if enemy_overflow > 0:
+		if real:
+			await distribute_overflow_damage(enemy_overflow, "Player", true)
+		else:
+			distribute_overflow_damage(enemy_overflow, "Player", false)
 	
-	while check_index >= 0 and check_index < files.size():
-		var box_to_check: UnitBox = files[check_index].PlayerBox
-		if slot_index < box_to_check.box.get_child_count():
-			var slot_to_check: TokenSlot = box_to_check.box.get_child(slot_index)
-			if not slot_to_check.occupied_unit:
-				target_file_index = check_index
-				break
-		check_index += dir_int
-		
-	if target_file_index == -1:
-		return null
-		
-	# 2. Cascade Move
-	# We iterate backwards from the empty target slot to the selected slot.
-	# For each step, we move the unit AND store it as a temporary bump.
-	var current_dest_file_index: int = target_file_index
-	
-	while current_dest_file_index != file_index:
-		var source_file_index: int = current_dest_file_index - dir_int
-		
-		var dest_box: UnitBox = files[current_dest_file_index].PlayerBox
-		var dest_slot: TokenSlot = dest_box.box.get_child(slot_index)
-		
-		var source_box: UnitBox = files[source_file_index].PlayerBox
-		var source_slot: TokenSlot = source_box.box.get_child(slot_index)
-		
-		# Move the unit
-		var unit_moving = source_slot.occupied_unit
-		if unit_moving:
-			unit_moving.move_to(dest_slot, false)
-			# Tell the source slot it is temporarily missing this unit.
-			# We do this AFTER the move so the slot doesn't fight us.
-			source_slot.temporary_bumped_unit = unit_moving
-				
-		current_dest_file_index = source_file_index
-		
-	return selected_slot
-
-func show_rank_highlight(selected_slot: TokenSlot):
-	$RankHighlight.global_position.y = selected_slot.global_position.y
-	$RankHighlight.visible = true
-	
-func hide_rank_highlight():
-	$RankHighlight.visible = false
-	
-func perform_maintenance() -> void:
-	if kf.dragging != null or Bus.Board.combat_happening:
+	# If this is a real combat and the player died/lost during the enemy phase, stop here
+	if real and Bus.Board.combat_over:
 		return
-		
-	for file in files:
-		if file.PlayerBox:
-			for slot in file.PlayerBox.all_slots:
-				slot.validate_state()
-			file.PlayerBox.move_units_up()
-				
-		if file.EnemyBox:
-			for slot in file.EnemyBox.all_slots:
-				slot.validate_state()
-			file.EnemyBox.move_units_up()
+	
+	# 3. PLAYER GOES SECOND: Calculate Player Attack (using surviving units) vs Enemy Shield
+	var player_back_dmg = player_back.get_pooled_damage(real)
+	var enemy_front_shield = enemy_front.get_pooled_shield(real)
+	var player_overflow = player_back_dmg - enemy_front_shield
+	
+	# 4. Distribute Player Overflow -> Enemy Side
+	if player_overflow > 0:
+		if real:
+			await distribute_overflow_damage(player_overflow, "Enemy", true)
+		else:
+			distribute_overflow_damage(player_overflow, "Enemy", false)
 
-func get_next_open_slot(slot_type: TokenSlot.SlotType, slot_owner: String = "Enemy") -> TokenSlot:
-	for file in files:
-		var box: UnitBox = file.get("%sBox"%slot_owner)
-		for slot: TokenSlot in box.all_slots:
-			if slot.slot_type == slot_type and not slot.occupied_unit:
-				return(slot)
-	return(null)
+func distribute_overflow_damage(amount: int, target_owner: String, real: bool) -> void:
+	var remaining_damage = amount
+	var all_target_units = get_units(target_owner)
+	
+	# Filter valid targets based on whether this is real or a preview
+	var valid_targets = []
+	for unit in all_target_units:
+		var hp = unit.current_health if real else unit.remaining_life
+		if hp > 0:
+			valid_targets.append(unit)
+			
+	# Sort by the dynamic ratio
+	valid_targets.sort_custom(func(a, b): return _sort_by_attack_ratio(a, b, real))
+	
+	# Apply damage
+	for unit in valid_targets:
+		if remaining_damage <= 0:
+			break
+			
+		var hp = unit.current_health if real else unit.remaining_life
+		var health_dmg = min(remaining_damage, hp)
+		
+		if real:
+			unit.current_health -= health_dmg
+			remaining_damage -= health_dmg
+			
+			if typeof(get_tree()) != TYPE_NIL:
+				# Using 0.25 here for pacing; replace with kf.tween_time if applicable
+				await get_tree().create_timer(0.25).timeout 
+		else:
+			# Modifying remaining_life automatically updates the preview UI in CardToken.gd
+			unit.remaining_life -= health_dmg
+			remaining_damage -= health_dmg
+			
+	# Hit the gate if real combat overflows past all units
+	if remaining_damage > 0 and target_owner == "Player":
+		if Bus.gate and real:
+			Bus.gate.current_health -= remaining_damage
+
+func _sort_by_attack_ratio(a, b, real: bool) -> bool:
+	var hp_a = a.current_health if real else a.remaining_life
+	var hp_b = b.current_health if real else b.remaining_life
+	
+	var dmg_a = a.current_damage if real else a.remaining_base_damage
+	var dmg_b = b.current_damage if real else b.remaining_base_damage
+	
+	var ratio_a = float(dmg_a) / float(hp_a) if hp_a > 0 else 0.0
+	var ratio_b = float(dmg_b) / float(hp_b) if hp_b > 0 else 0.0
+	
+	return ratio_a > ratio_b

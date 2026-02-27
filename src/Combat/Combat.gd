@@ -58,7 +58,6 @@ func end_turn():
 	Bus.energy = 3
 	update_energy()
 	ee.emit_signal("start_turn", turn_counter)
-	$Enemy.on_turn_start(turn_counter)
 	turn_counter += 1
 
 func update_energy():
@@ -69,6 +68,7 @@ func game_over():
 	$GameOver.appear()
 
 func begin_combat():
+	$UnitGrid.visible = true
 	for button: Button in selected_cards:
 		var card: Card = button.card
 		if card.card_resource is UnitResource:
