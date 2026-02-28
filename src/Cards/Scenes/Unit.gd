@@ -44,10 +44,7 @@ var max_activation: int:
 		compare_stat("Activation", current_activation, max_activation)
 		if label:
 			label.max_activation = max_activation
-var current_fatigue: int:
-	set(val):
-		current_fatigue = clamp(val, 0, 10)
-		compare_stat("Fatigue", current_fatigue, current_fatigue)
+var current_fatigue: int: set = set_fatigue
 var items: Array[Item]
 var snapshot_max_damage: int
 var snapshot_current_damage: int
@@ -56,6 +53,10 @@ var snapshot_current_health: int
 var snapshot_max_shield: int
 var snapshot_current_shield: int
 var setup_complete: bool = false
+
+func set_fatigue(val):
+	current_fatigue = clamp(val, 0, 10)
+	compare_stat("Fatigue", current_fatigue, current_fatigue)
 
 func class_setup():
 	add_to_group("Units")

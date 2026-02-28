@@ -80,6 +80,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	add_card(card)
 	ee.emit_signal("move", data)
 	show_highlight(false)
+	data.current_health = data.max_health
 
 func show_highlight(to_show: bool):
 	$Highlight.visible = to_show

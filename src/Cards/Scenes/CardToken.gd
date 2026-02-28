@@ -50,6 +50,13 @@ var _cached_damage_taken: int = -1
 var _cached_shield_damage_taken: int = -1
 var assigned_breach_damage: int = 0
 
+func set_fatigue(val):
+	current_fatigue = clamp(val, 0, 10)
+	if card:
+		card.current_fatigue = current_fatigue
+	card_resource.fatigue = current_fatigue
+	compare_stat("Fatigue", current_fatigue, current_fatigue)
+
 func type_only_setup():
 	add_to_group("Tokens")
 	reset_remaining()
@@ -159,13 +166,16 @@ func discard():
 			current_slot.occupied_unit = null
 		current_slot = null
 	Audio.play_sfx("Death")
-	#super.discard()
 	ee.emit_signal("discard", self)
 	# prevent arrow from targeting as card is being discarded
 	disabled = true
 	turn_to_card()
-	#card.move_to(Bus.get("%sGraveyard"%card_owner).cards)
-	Bus.get("%sGraveyard"%card_owner).add_card(card)
+	if card_owner == "Enemy":
+		Bus.get("%sGraveyard"%card_owner).add_card(card)
+	else:
+		current_health = max_health
+		current_fatigue += 5
+		Bus.discard.add_card(card)
 	
 func take_damage(dmg = 0, damaging_card: Card = null, blocked_by_shield: bool = true):
 	if disabled:

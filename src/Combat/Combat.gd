@@ -53,7 +53,7 @@ func select_card(button: Button):
 
 func end_turn():
 	combat_happening = true
-	await Bus.Grid.start_combat()
+	Bus.Grid.start_combat()
 	combat_happening = false
 	await Bus.hand.discard()
 	draw_pile.draw_cards(5)
@@ -94,13 +94,13 @@ func combat_won():
 	await get_tree().create_timer(kf.tween_time*1.5).timeout
 	for card in Bus.hand.get_children():
 		card.queue_free()
-	for unit in Bus.deck.get_units():
-		if selected_unit_resources.has(unit):
-			unit.fatigue += 5
-		else:
-			unit.fatigue -= 5
-	for card in Bus.PlayerGraveyard.get_units():
-		card.card_resource.fatigue += 10
+	#for unit in Bus.deck.get_units():
+		#if selected_unit_resources.has(unit):
+			#unit.fatigue += 5
+		#else:
+			#unit.fatigue -= 5
+	#for card in Bus.PlayerGraveyard.get_units():
+		#card.card_resource.fatigue += 10
 	get_tree().paused = true
 	combat_over = true
 	$CombatWon.visible = true
