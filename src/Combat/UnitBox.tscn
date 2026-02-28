@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://butr5cp6lgmmp"]
+[gd_scene load_steps=6 format=3 uid="uid://butr5cp6lgmmp"]
 
 [ext_resource type="Script" uid="uid://dfcbc8jhiydbj" path="res://src/Combat/UnitBox.gd" id="1_p4du4"]
 [ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="2_1yb0v"]
 [ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="2_p3cov"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="3_p3cov"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3cov"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.761806, 0.105934, 0.0185581, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="UnitBox" type="Control"]
 layout_mode = 3
@@ -92,3 +104,14 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BreachHighlight" type="Panel" parent="TextureRect"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p3cov")

@@ -37,7 +37,7 @@ func update_previews() -> void:
 	execute_combat(false)
 
 func start_combat() -> void:
-	await execute_combat(true)
+	execute_combat(true)
 
 func execute_combat(real: bool) -> void:
 	# 1. ENEMY GOES FIRST: Calculate Enemy Attack vs Player Shield
@@ -47,10 +47,13 @@ func execute_combat(real: bool) -> void:
 	
 	# 2. Distribute Enemy Overflow -> Player Side
 	if enemy_overflow > 0:
+		set_breach_preview("Player", true)
 		if real:
-			await distribute_overflow_damage(enemy_overflow, "Player", true)
+			distribute_overflow_damage(enemy_overflow, "Player", true)
 		else:
 			distribute_overflow_damage(enemy_overflow, "Player", false)
+	else:
+		set_breach_preview("Player", false)
 	
 	# If this is a real combat and the player died/lost during the enemy phase, stop here
 	if real and Bus.Board.combat_over:
@@ -63,10 +66,49 @@ func execute_combat(real: bool) -> void:
 	
 	# 4. Distribute Player Overflow -> Enemy Side
 	if player_overflow > 0:
+		set_breach_preview("Enemy", true)
 		if real:
-			await distribute_overflow_damage(player_overflow, "Enemy", true)
+			apply_breach_damage()
 		else:
-			distribute_overflow_damage(player_overflow, "Enemy", false)
+			Bus.Board.is_breached = true
+			
+			# Find all enemy tokens
+			var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
+			
+			# Sum up all currently assigned breach damage
+			var total_assigned = 0
+			for enemy in enemies:
+				total_assigned += enemy.assigned_breach_damage
+				
+			# Check if we still have enough overflow to cover the existing assignments
+			if player_overflow >= total_assigned:
+				Bus.Board.breach_amount = player_overflow - total_assigned
+				
+				# Re-apply assigned damage to remaining_life since reset_remaining() cleared it
+				for enemy in enemies:
+					if enemy.assigned_breach_damage > 0:
+						# Safety check: if an enemy's health decreased (e.g. from a spell), refund excess
+						var excess = enemy.assigned_breach_damage - enemy.remaining_life
+						if excess > 0:
+							enemy.assigned_breach_damage -= excess
+							Bus.Board.breach_amount += excess
+							
+						enemy.remaining_life -= enemy.assigned_breach_damage
+			else:
+				# Overflow decreased below what was assigned, reset all assignments
+				Bus.Board.breach_amount = player_overflow
+				for enemy in enemies:
+					enemy.assigned_breach_damage = 0
+	else:
+		set_breach_preview("Enemy", false)
+		Bus.Board.is_breached = false
+		Bus.Board.breach_amount = 0
+		
+		# Reset all assignments since we have no overflow
+		if not real:
+			var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
+			for enemy in enemies:
+				enemy.assigned_breach_damage = 0
 
 func distribute_overflow_damage(amount: int, target_owner: String, real: bool) -> void:
 	var remaining_damage = amount
@@ -94,9 +136,6 @@ func distribute_overflow_damage(amount: int, target_owner: String, real: bool) -
 			unit.current_health -= health_dmg
 			remaining_damage -= health_dmg
 			
-			if typeof(get_tree()) != TYPE_NIL:
-				# Using 0.25 here for pacing; replace with kf.tween_time if applicable
-				await get_tree().create_timer(0.25).timeout 
 		else:
 			# Modifying remaining_life automatically updates the preview UI in CardToken.gd
 			unit.remaining_life -= health_dmg
@@ -118,3 +157,22 @@ func _sort_by_attack_ratio(a, b, real: bool) -> bool:
 	var ratio_b = float(dmg_b) / float(hp_b) if hp_b > 0 else 0.0
 	
 	return ratio_a > ratio_b
+
+func apply_breach_damage():
+	# Find all enemy tokens on the board
+	var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
+	
+	for enemy in enemies:
+		if enemy.assigned_breach_damage > 0:
+			# Apply the real damage. 
+			# Pass 'self' or null for the damaging_card depending on your setup
+			enemy.take_damage(enemy.assigned_breach_damage, null, false) 
+			enemy.assigned_breach_damage = 0
+			
+	# Reset state
+	Bus.Board.is_breached = false
+	Bus.Board.breach_amount = 0
+
+func set_breach_preview(who_breached: String, is_breached: bool):
+	get("%s_front"%who_breached.to_lower()).set_breach(is_breached)
+	

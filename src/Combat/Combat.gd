@@ -12,6 +12,8 @@ var combat_happening: bool = false
 var combat_over: bool = false
 var selected_cards: Array[Button]
 var selected_unit_resources: Array[UnitResource]
+var is_breached: bool = false
+var breach_amount: int = 0
 
 func _ready() -> void:
 	Bus.Board = self

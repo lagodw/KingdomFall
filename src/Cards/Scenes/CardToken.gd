@@ -48,6 +48,7 @@ var attacked_this_turn: bool = false
 var recalculating_stats: bool = false
 var _cached_damage_taken: int = -1
 var _cached_shield_damage_taken: int = -1
+var assigned_breach_damage: int = 0
 
 func type_only_setup():
 	add_to_group("Tokens")
@@ -195,10 +196,17 @@ func show_popups(value: bool = true, _left_side: bool = false):
 		card.visible = value
 		card.show_popups(value)
 	
-func _input(event):
-	if disabled or card_owner == "Enemy": 
+func _gui_input(event):
+	if disabled: 
 		return
 	if event is InputEventMouseButton:
+		if card_owner == "Enemy" and event.is_pressed() and event.get_button_index() == MOUSE_BUTTON_LEFT:
+			if Bus.Board.is_breached:
+				if remaining_life <= 0 and assigned_breach_damage > 0:
+					_remove_breach_damage()
+				elif remaining_life > 0:
+					_assign_breach_damage()
+			return
 		if event.is_pressed() and event.get_button_index() == 2 and highlighted and can_act:
 			var target_effects = get_trigger_effects("target")
 			if target_effects:
@@ -460,3 +468,22 @@ func move_card():
 
 func adjust_for_fatigue(num: int) -> int:
 	return(int((10.0 - current_fatigue) / 10.0 * num))
+
+func _assign_breach_damage():
+	if remaining_life <= 0 or Bus.Board.breach_amount <= 0: 
+		return
+		
+	var amount_to_assign = min(Bus.Board.breach_amount, remaining_life)
+	
+	assigned_breach_damage += amount_to_assign
+	Bus.Board.breach_amount -= amount_to_assign
+	remaining_life -= amount_to_assign 
+
+# New function to undo damage assignment
+func _remove_breach_damage():
+	if assigned_breach_damage <= 0:
+		return
+		
+	Bus.Board.breach_amount += assigned_breach_damage
+	remaining_life += assigned_breach_damage 
+	assigned_breach_damage = 0

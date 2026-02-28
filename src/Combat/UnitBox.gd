@@ -98,3 +98,11 @@ func clear_all_highlights():
 	if current_highlight:
 		current_highlight.show_highlight(false)
 		current_highlight = null
+
+func set_breach(breached: bool):
+	if breached:
+		%StatsPreview.set("theme_override_colors/font_color", Color.DARK_RED)
+		%BreachHighlight.visible = true
+	else:
+		%StatsPreview.set("theme_override_colors/font_color", Color.WHITE)
+		%BreachHighlight.visible = false
