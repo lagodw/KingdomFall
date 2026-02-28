@@ -64,18 +64,20 @@ offset_right = -907.0
 offset_bottom = -30.0
 
 [node name="Draw" parent="." instance=ExtResource("6_nthc5")]
-offset_left = 37.0
-offset_top = 750.0
-offset_right = 241.0
-offset_bottom = 1054.0
+offset_left = 35.0
+offset_top = 568.0
+offset_right = 239.0
+offset_bottom = 872.0
 
 [node name="Discard" parent="." instance=ExtResource("6_nthc5")]
 offset_left = 1676.0
 offset_top = 609.0
 offset_right = 1880.0
 offset_bottom = 913.0
+type = 1
 
 [node name="PlayerGraveyard" parent="." instance=ExtResource("6_nthc5")]
+visible = false
 offset_left = 1676.0
 offset_top = 153.0
 offset_right = 1880.0
@@ -98,10 +100,12 @@ texture = ExtResource("7_rlcqg")
 expand_mode = 1
 
 [node name="EnemyGraveyard" parent="." instance=ExtResource("6_nthc5")]
-offset_left = 52.0
-offset_top = 209.0
-offset_right = 256.0
-offset_bottom = 513.0
+offset_left = 36.0
+offset_top = 206.0
+offset_right = 240.0
+offset_bottom = 510.0
+type = 1
+player_pile = false
 
 [node name="CardBack" parent="EnemyGraveyard" index="0"]
 texture = ExtResource("8_fs6sf")

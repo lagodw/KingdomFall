@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cahuyqwtqssxu"]
+[gd_scene load_steps=4 format=3 uid="uid://cahuyqwtqssxu"]
 
 [ext_resource type="Script" uid="uid://ifvbm2gjls" path="res://src/Combat/Pile.gd" id="1_j4tm0"]
 [ext_resource type="Texture2D" uid="uid://5yiy2mmps51" path="res://assets/Card/Backs/CardBack_Blue.png" id="2_h5fcg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5fcg"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.810293, 0.845018, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="CardPile" type="Control"]
 layout_mode = 3
@@ -24,3 +36,14 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Highlight" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h5fcg")

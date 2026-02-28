@@ -1,16 +1,21 @@
 class_name Pile
 extends Control
 
+enum PileType {DRAW, DISCARD}
+
+@export var type: PileType = PileType.DRAW
+@export var player_pile: bool = true
+
 @onready var cards: Control = $Cards
+
+func _ready() -> void:
+	mouse_exited.connect(show_highlight.bind(false))
 
 func load_deck(resources: Array[CardResource]):
 	for resource in resources:
 		var card = kf.create_card(resource)
 		add_card(card)
 	shuffle()
-
-#func add_card(card: Card):
-	#cards.add_child(card)
 
 func add_card(card: Card, animation: bool = true):
 	if animation:
@@ -52,3 +57,29 @@ func get_units() -> Array[Unit]:
 		if child is Unit:
 			units.append(child)
 	return(units)
+
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	# 1. Ensure this pile is actually the Discard pile
+	if not player_pile or type != PileType.DISCARD:
+		return false
+		
+	# 2. Check if the dragged data is a token
+	if data is not CardToken:
+		return(false)
+	
+	# 3. Only allow dropping if it's a valid token and belongs to the Player
+	if data.card_owner == "Player":
+		show_highlight(true)
+		return true
+		
+	return false
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var card = data.turn_to_card()
+	await get_tree().process_frame
+	add_card(card)
+	ee.emit_signal("move", data)
+	show_highlight(false)
+
+func show_highlight(to_show: bool):
+	$Highlight.visible = to_show

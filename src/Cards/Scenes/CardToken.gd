@@ -136,6 +136,9 @@ func turn_to_label() -> CardLabel:
 	return(label)
 	
 func turn_to_card() -> Unit:
+	if current_slot:
+		current_slot.occupied_unit = null
+		current_slot = null
 	var parent = get_parent()
 	if card.get_parent():
 		card.get_parent().remove_child(card)
