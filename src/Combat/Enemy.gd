@@ -23,13 +23,17 @@ func on_turn_start(turn_num: int):
 
 ## Spawn units into the deploy queue if the current turn dictates it
 func add_cards_for_turn(turn_num: int):
+	var ranks_to_remove: Array
 	for rank in enemy_dupe.ranks:
 		if rank.turn == turn_num:
+			ranks_to_remove.append(rank)
 			# Generate the cards and add them to the staging queue
 			while rank.units.size() > 0:
 				var unit = rank.units.pop_front()
 				var card = kf.create_card(unit, "Enemy")
 				card_grid.add_child(card)
+	for rank in ranks_to_remove:
+		enemy_dupe.ranks.erase(rank)
 
 func deploy_units():
 	var units: Array = []
@@ -93,6 +97,8 @@ func deploy_units():
 			unit.move_to(slot)
 
 func on_trigger(trigger: String, trigger_card: Control):
+	if enemy_dupe.ranks.size() > 0:
+		return
 	# Check if no enemy units left to trigger combat win
 	if trigger == "discard" and trigger_card.card_owner == "Enemy":
 		await get_tree().process_frame

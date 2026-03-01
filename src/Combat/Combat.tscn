@@ -328,6 +328,7 @@ visible = false
 
 [node name="CombatWon" parent="." instance=ExtResource("23_vywh8")]
 visible = false
+z_index = 5
 layout_mode = 1
 offset_left = 491.0
 offset_top = 40.0
