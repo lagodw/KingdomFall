@@ -128,7 +128,7 @@ func distribute_overflow_damage(amount: int, target_owner: String, real: bool) -
 			valid_targets.append(unit)
 			
 	# Sort by the dynamic ratio
-	valid_targets.sort_custom(func(a, b): return _sort_by_attack_ratio(a, b, real))
+	valid_targets.sort_custom(func(a, b): return _sort_by_threat(a, b, real, remaining_damage))
 	
 	# Apply damage
 	for unit in valid_targets:
@@ -163,6 +163,42 @@ func _sort_by_attack_ratio(a, b, real: bool) -> bool:
 	var ratio_b = float(dmg_b) / float(hp_b) if hp_b > 0 else 0.0
 	
 	return ratio_a > ratio_b
+	
+func _sort_by_threat(a, b, real: bool, available_damage: int) -> bool:
+	# 1. Get HP values
+	var hp_a = a.current_health if real else a.remaining_life
+	var hp_b = b.current_health if real else b.remaining_life
+	
+	# 2. Get Damage values
+	var dmg_a = a.current_damage if real else a.remaining_base_damage
+	var dmg_b = b.current_damage if real else b.remaining_base_damage
+	
+	# 3. Get Block/Shield values 
+	var block_a = a.current_shield
+	var block_b = b.current_shield
+	
+	# Weights (Adjust these to tweak AI behavior)
+	var damage_weight = 1.0
+	var block_weight = 1.0
+	
+	# 4. Calculate Base Threat (Take the MAX of their offensive or defensive potential)
+	var primary_threat_a = max(dmg_a * damage_weight, block_a * block_weight)
+	var primary_threat_b = max(dmg_b * damage_weight, block_b * block_weight)
+	
+	# Divide by HP to find the most efficient target
+	var threat_a = float(primary_threat_a) / float(hp_a) if hp_a > 0 else 0.0
+	var threat_b = float(primary_threat_b) / float(hp_b) if hp_b > 0 else 0.0
+	
+	# 5. Lethality Check: Massive priority to units we can kill
+	var kill_bonus = 100.0
+	
+	if available_damage >= hp_a:
+		threat_a += kill_bonus
+	if available_damage >= hp_b:
+		threat_b += kill_bonus
+		
+	# Sort descending (highest threat first)
+	return threat_a > threat_b
 
 func apply_breach_damage():
 	# Find all enemy tokens on the board
