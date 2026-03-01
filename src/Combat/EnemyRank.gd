@@ -1,6 +1,7 @@
 class_name EnemyRank
 extends Resource
 
+@export var turn: int
 @export var units: Array[UnitResource]
 
 func dupe() -> EnemyRank:

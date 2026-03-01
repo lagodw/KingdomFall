@@ -23,14 +23,13 @@ func on_turn_start(turn_num: int):
 
 ## Spawn units into the deploy queue if the current turn dictates it
 func add_cards_for_turn(turn_num: int):
-	if enemy_dupe.ranks.has(turn_num):
-		var rank: EnemyRank = enemy_dupe.ranks[turn_num]
-		
-		# Generate the cards and add them to the staging queue
-		while rank.units.size() > 0:
-			var unit = rank.units.pop_front()
-			var card = kf.create_card(unit, "Enemy")
-			card_grid.add_child(card)
+	for rank in enemy_dupe.ranks:
+		if rank.turn == turn_num:
+			# Generate the cards and add them to the staging queue
+			while rank.units.size() > 0:
+				var unit = rank.units.pop_front()
+				var card = kf.create_card(unit, "Enemy")
+				card_grid.add_child(card)
 
 func deploy_units():
 	var units: Array = []
