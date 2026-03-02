@@ -5,6 +5,8 @@ extends UnitResource
 @export var town: TownResource = load("uid://bmwj3jl3o8tm4")
 @export var gate: UnitResource = load("uid://jppyriltnkdf")
 @export var gold: int = 0
+@export var wood: int = 10
+@export var stone: int = 10
 @export var food: int = 20
 @export var current_health: int = 80:
 	set(val):

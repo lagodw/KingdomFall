@@ -72,8 +72,6 @@ func setup_stats():
 		set("current_%s"%stat, card_resource.get(stat))
 	current_fatigue = card_resource.fatigue
 	refresh_stats_labels()
-	if current_shield > 0 and pop:
-		pop.create_keyword_popup("Shield")
 	setup_complete = true
 	
 func move_to(target: Control, animation: bool = true):
@@ -89,7 +87,8 @@ func play_token(target: TokenSlot, animation: bool = true):
 	if card_owner == "Player":
 		if (current_activation > Bus.energy and get_tree().current_scene is Combat):
 			return
-		Audio.play_sfx("TrumpetCall")
+		if get_tree().current_scene is Combat:
+			Audio.play_sfx("TrumpetCall")
 		Bus.energy -= current_activation
 	set_flip_card(true)
 	scale = Vector2.ONE

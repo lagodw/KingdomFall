@@ -3,7 +3,7 @@ extends Panel
 var full: bool = false
 
 func set_panel(filled: bool = false, under_construction: bool = false):
-	var color: Color = Color.DARK_GREEN
+	var color: Color = Color("004f86")
 	if under_construction:
 		color = Color.GRAY
 	var box: StyleBoxFlat = get_theme_stylebox("panel").duplicate()

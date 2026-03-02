@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dglfstjlbuudi"]
+[gd_scene load_steps=11 format=3 uid="uid://dglfstjlbuudi"]
 
 [ext_resource type="Texture2D" uid="uid://danyynv1feqo2" path="res://assets/UI/UIBar.png" id="1_48qpi"]
 [ext_resource type="Script" uid="uid://cyecs3huva81k" path="res://src/UI/UI.gd" id="2_c5ut5"]
 [ext_resource type="Texture2D" uid="uid://dcfqun6y306nf" path="res://assets/UI/population.png" id="3_48qpi"]
 [ext_resource type="Texture2D" uid="uid://bithkfa0yaj55" path="res://assets/Card/Icons/Mana.png" id="3_dyal0"]
 [ext_resource type="Texture2D" uid="uid://b5cdi4ovi55qk" path="res://assets/Card/Icons/SpellPower.png" id="3_hdn2o"]
+[ext_resource type="Texture2D" uid="uid://d1q5uhkg0mssk" path="res://assets/Town/Wood.png" id="4_dhqo1"]
 [ext_resource type="Texture2D" uid="uid://dir6jcwcaephg" path="res://assets/UI/food.png" id="4_f5lgd"]
+[ext_resource type="Texture2D" uid="uid://7pyqgwlmaabj" path="res://assets/Town/Stone.png" id="5_8upts"]
 [ext_resource type="Texture2D" uid="uid://dkud1ngvb85db" path="res://assets/UI/money.png" id="7_l34ye"]
 [ext_resource type="PackedScene" uid="uid://2gd3eej6fvla" path="res://src/UI/Tooltip.tscn" id="14_l34ye"]
 
@@ -60,17 +62,45 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="PopulationIcon" type="TextureRect" parent="Stats"]
+[node name="GoldIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
-texture = ExtResource("3_48qpi")
+texture = ExtResource("7_l34ye")
 expand_mode = 3
 
-[node name="PopulationAmt" type="Label" parent="Stats"]
+[node name="goldAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "10"
+text = "100"
+
+[node name="WoodIcon" type="TextureRect" parent="Stats"]
+layout_mode = 2
+texture = ExtResource("4_dhqo1")
+expand_mode = 3
+
+[node name="woodAmt" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="StoneIcon" type="TextureRect" parent="Stats"]
+layout_mode = 2
+texture = ExtResource("5_8upts")
+expand_mode = 3
+
+[node name="stoneAmt" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="Space" type="Control" parent="Stats"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
 [node name="FoodIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
@@ -83,6 +113,22 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "15"
+
+[node name="PopulationIcon" type="TextureRect" parent="Stats"]
+layout_mode = 2
+texture = ExtResource("3_48qpi")
+expand_mode = 3
+
+[node name="PopulationAmt" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "10"
+
+[node name="Space2" type="Control" parent="Stats"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
 [node name="ManaIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
@@ -108,36 +154,24 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0"
 
-[node name="GoldIcon" type="TextureRect" parent="Stats"]
-layout_mode = 2
-texture = ExtResource("7_l34ye")
-expand_mode = 3
-
-[node name="goldAmt" type="Label" parent="Stats"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "100"
-
 [node name="Tooltips" type="Control" parent="."]
 anchors_preset = 0
 
 [node name="Mana_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
 visible = false
-offset_left = 1527.0
+offset_left = 1564.0
 offset_top = 55.0
-offset_right = 1727.0
+offset_right = 1799.0
 offset_bottom = 125.0
 icon_path = "uid://bithkfa0yaj55"
 title = "Mana"
-description = "Required to cast spells. Replenishes after each combat"
+description = "Required to cast spells. Replenishes each morning"
 
 [node name="Power_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
 visible = false
-offset_left = 1663.0
+offset_left = 1679.0
 offset_top = 55.0
-offset_right = 1863.0
+offset_right = 1879.0
 offset_bottom = 125.0
 icon_path = "uid://b5cdi4ovi55qk"
 title = "Spell Power"
@@ -145,19 +179,39 @@ description = "Increases spell damage"
 
 [node name="Gold_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
 visible = false
-offset_left = 1716.0
+offset_left = 1020.0
 offset_top = 55.0
-offset_right = 1916.0
+offset_right = 1220.0
 offset_bottom = 125.0
 icon_path = "uid://k4fhlip7l4rd"
 title = "Gold"
 description = "Can be used to buy stuff."
 
+[node name="Wood_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
+visible = false
+offset_left = 1124.0
+offset_top = 55.0
+offset_right = 1324.0
+offset_bottom = 125.0
+icon_path = "uid://d1q5uhkg0mssk"
+title = "Wood"
+description = "Needed for construction and crafting"
+
+[node name="Stone_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
+visible = false
+offset_left = 1236.0
+offset_top = 55.0
+offset_right = 1436.0
+offset_bottom = 125.0
+icon_path = "uid://7pyqgwlmaabj"
+title = "Stone"
+description = "Needed for construction and crafting"
+
 [node name="Food_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
 visible = false
-offset_left = 1431.0
+offset_left = 1407.0
 offset_top = 55.0
-offset_right = 1631.0
+offset_right = 1619.0
 offset_bottom = 125.0
 icon_path = "uid://dir6jcwcaephg"
 title = "Food"
@@ -165,9 +219,9 @@ description = "Produced at farms, needed to feed your population"
 
 [node name="Population_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
 visible = false
-offset_left = 1335.0
+offset_left = 1503.0
 offset_top = 55.0
-offset_right = 1535.0
+offset_right = 1703.0
 offset_bottom = 125.0
 icon_path = "uid://dcfqun6y306nf"
 title = "Population"
@@ -175,31 +229,43 @@ description = "You will need to feed all these mouths"
 
 [node name="PowerArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1666.0
-offset_right = 1736.0
+offset_left = 1797.0
+offset_right = 1882.0
 offset_bottom = 50.0
 
 [node name="ManaArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1529.0
-offset_right = 1655.0
+offset_left = 1664.0
+offset_right = 1792.0
 offset_bottom = 50.0
 
 [node name="FoodArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1434.0
+offset_left = 1407.0
 offset_top = 1.0
-offset_right = 1518.0
+offset_right = 1491.0
 offset_bottom = 51.0
 
 [node name="PopulationArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1333.0
-offset_right = 1414.0
+offset_left = 1505.0
+offset_right = 1590.0
 offset_bottom = 50.0
 
 [node name="GoldArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1754.0
-offset_right = 1852.0
+offset_left = 1016.0
+offset_right = 1114.0
+offset_bottom = 50.0
+
+[node name="WoodArea" type="Control" parent="Tooltips"]
+anchors_preset = 0
+offset_left = 1120.0
+offset_right = 1218.0
+offset_bottom = 50.0
+
+[node name="StoneArea" type="Control" parent="Tooltips"]
+anchors_preset = 0
+offset_left = 1224.0
+offset_right = 1322.0
 offset_bottom = 50.0

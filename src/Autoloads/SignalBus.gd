@@ -32,6 +32,20 @@ var gold: int:
 		emit_signal("currency_changed", "gold", player.gold, change)
 	get():
 		return(player.gold)
+var wood: int:
+	set(val):
+		var change = max(0, val) - player.wood
+		player.wood = max(0, val)
+		emit_signal("currency_changed", "wood", player.wood, change)
+	get():
+		return(player.wood)
+var stone: int:
+	set(val):
+		var change = max(0, val) - player.stone
+		player.stone = max(0, val)
+		emit_signal("currency_changed", "stone", player.stone, change)
+	get():
+		return(player.stone)
 var food: int:
 	set(val):
 		var change = max(0, val) - player.food
