@@ -22,8 +22,8 @@ metadata/_custom_type_script = "uid://bn2lsa6d725jx"
 [resource]
 script = ExtResource("4_t0rs8")
 fatigue = 0
-damage = 5
-health = 5
+damage = 3
+health = 3
 shield = 5
 attack_type = 0
 armor_type = 0

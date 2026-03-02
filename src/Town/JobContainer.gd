@@ -1,5 +1,5 @@
 class_name JobContainer
-extends Control
+extends MarginContainer
 
 @onready var slot_scene = preload("uid://cshkmwknv7s5g")
 @onready var progress_scene = preload("uid://bpxp4s2o7n5ef")
@@ -21,7 +21,7 @@ func _ready() -> void:
 	ee.night_fall.connect(on_night_fall)
 	
 func set_control_size():
-	custom_minimum_size = $V.size
+	#custom_minimum_size = $V.size
 	custom_minimum_size.y += job.requirements.size() * 80
 
 func update_progress():
@@ -41,6 +41,8 @@ func update_progress():
 func setup_slots():
 	for child in token_grid.get_children():
 		child.queue_free()
+	if job.capacity > %TokenGrid.columns:
+		$V/ScrollContainer.custom_minimum_size.y += Bus.token_size.y
 	for i in job.capacity:
 		var slot: TokenSlot = slot_scene.instantiate()
 		slot.job = self

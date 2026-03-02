@@ -10,19 +10,19 @@
 [sub_resource type="Resource" id="Resource_wnerq"]
 script = ExtResource("1_cxahr")
 turn = 0
-units = Array[ExtResource("2_dmbx7")]([ExtResource("3_2dxpg"), ExtResource("3_2dxpg")])
+units = Array[ExtResource("2_dmbx7")]([ExtResource("3_2dxpg"), ExtResource("4_cxahr")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [sub_resource type="Resource" id="Resource_tavvl"]
 script = ExtResource("1_cxahr")
 turn = 1
-units = Array[ExtResource("2_dmbx7")]([ExtResource("3_2dxpg"), ExtResource("4_cxahr")])
+units = Array[ExtResource("2_dmbx7")]([ExtResource("4_cxahr"), ExtResource("4_cxahr")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [sub_resource type="Resource" id="Resource_1s86m"]
 script = ExtResource("1_cxahr")
 turn = 3
-units = Array[ExtResource("2_dmbx7")]([ExtResource("4_cxahr"), ExtResource("5_fwov5")])
+units = Array[ExtResource("2_dmbx7")]([ExtResource("4_cxahr"), ExtResource("5_fwov5"), ExtResource("4_cxahr"), ExtResource("5_fwov5")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [resource]

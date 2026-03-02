@@ -31,12 +31,12 @@ func show_highlight(value: bool):
 	highlight.visible = value
 	
 func add_token(token: CardToken):
+	token.current_slot.job.release_unit(token)
+	token.current_slot = null
 	var card = token.turn_to_card()
 	if card.get_parent():
 		card.get_parent().remove_child(card)
 	box.add_child(card)
-	token.current_slot.job.release_unit(token)
-	token.current_slot = null
 
 func add_card(card: Unit):
 	card.visible = true

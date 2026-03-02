@@ -5,17 +5,14 @@
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="2_opam0"]
 [ext_resource type="Theme" uid="uid://cn6xijpm0jdg2" path="res://assets/Theme/ScrollBar.tres" id="3_wj12n"]
 
-[node name="JobContainer" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 445.0
+[node name="JobContainer" type="MarginContainer"]
+custom_minimum_size = Vector2(510, 0)
+offset_right = 500.0
 offset_bottom = 240.0
 script = ExtResource("1_slvd5")
 
 [node name="V" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 445.0
-offset_bottom = 250.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Paper" type="TextureRect" parent="V"]
@@ -51,7 +48,7 @@ visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="V"]
-custom_minimum_size = Vector2(0, 140)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme = ExtResource("3_wj12n")
 
@@ -60,17 +57,12 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 5
-columns = 5
+columns = 4
 
 [node name="Highlight" type="ReferenceRect" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 mouse_filter = 1
 border_color = Color(0.219608, 0.431373, 0.235294, 1)
-border_width = 2.0
+border_width = 4.0
 editor_only = false

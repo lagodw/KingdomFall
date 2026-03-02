@@ -94,12 +94,12 @@ func show_popup(value: bool):
 	popup.visible = value
 
 func toggle_popup():
-	popup.visible = not popup.visible
 	set_popup_position()
+	popup.visible = not popup.visible
 
 func set_popup_position():
 	popup.size = jobs_box.size + Vector2(20, 20)
-	if popup.global_position.x >= get_viewport_rect().size.x - popup.size.x:
+	if global_position.x + size.x >= get_viewport_rect().size.x - popup.size.x:
 		popup.global_position.x = global_position.x - popup.size.x - 10
 	else:
 		popup.global_position.x = global_position.x + size.x + 10
