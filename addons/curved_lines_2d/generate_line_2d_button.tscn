@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://blutsrlth6qlb"]
+
+[ext_resource type="Script" uid="uid://bi07su5q03nap" path="res://addons/curved_lines_2d/generate_line_2d_button.gd" id="1_7u2km"]
+
+[node name="GenerateLine2dButton" type="Button"]
+text = "Generate New Line2D"
+script = ExtResource("1_7u2km")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -28,7 +28,7 @@ var mouse_disabled := false
 var dragging: Unit = null
 var highlighted_slot: TokenSlot
 
-var fog: bool = true
+var fog: bool = false
 	
 func _ready() -> void:
 	#user = load("res://src/Autoloads/UserSettings.gd").new()

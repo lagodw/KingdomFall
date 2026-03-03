@@ -13,6 +13,7 @@ script = ExtResource("2_sgsoe")
 require_trigger = true
 required_slots = Array[int]([])
 require_building_name = ""
+require_job_name = ""
 require_act = false
 minimum_damage = 0
 require_alive = false
@@ -128,7 +129,7 @@ if_calling_card = SubResource("Resource_mwra6")
 if_subject = SubResource("Resource_22gbt")
 animation = "discard"
 damage_amt = SubResource("Resource_yq68d")
-blocked_by_shield = true
+blocked_by_shield = false
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [resource]

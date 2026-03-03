@@ -34,7 +34,8 @@ func night_fall():
 	for unit in $Bottom/UnitPanel.get_units():
 		unit.card_resource.fatigue -= 5
 	if not check_for_upgrades():
-		start_combat()
+		#start_combat()
+		kf.change_scene_to_packed(load("res://src/Map/MapScene.tscn"))
 
 func start_combat():
 	kf.load_scene("uid://dvld0lyuo33oq")

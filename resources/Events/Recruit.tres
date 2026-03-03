@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Event" load_steps=6 format=3 uid="uid://c1enwdobam10u"]
+
+[ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_n87o7"]
+[ext_resource type="Script" uid="uid://hat3dgsvixk8" path="res://src/Cards/ResourceTypes/ItemResource.gd" id="2_lu162"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="3_rfed8"]
+[ext_resource type="Script" uid="uid://npjl5q4abl4n" path="res://src/Map/Event.gd" id="4_5184j"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="5_1xcqb"]
+
+[resource]
+script = ExtResource("4_5184j")
+icon_path = "uid://dxamvil06ru0o"
+scene_path = ""
+event_name = "Recruit"
+signpost_description = "Recruit units to join your kingdom"
+num_reward_options = 5
+num_reward_choices = 2
+music = "Hearthsong at the Oakwood Inn"
+spot = Vector2(0, 0)
+recruit_options = Array[ExtResource("3_rfed8")]([])
+spell_options = Array[ExtResource("5_1xcqb")]([])
+item_options = Array[ExtResource("2_lu162")]([])
+building_options = Array[ExtResource("1_n87o7")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"

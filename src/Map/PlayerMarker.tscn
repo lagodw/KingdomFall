@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2r8bu6augcib"]
+
+[ext_resource type="Texture2D" uid="uid://3cc6yfe0kgwq" path="res://assets/Map/KnightMarker.png" id="2_tgwv4"]
+
+[node name="PlayerMarker" type="Control"]
+z_index = 4
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -225.0
+offset_top = -292.0
+offset_right = -75.0
+offset_bottom = -142.0
+scale = Vector2(3, 3)
+mouse_filter = 2
+texture = ExtResource("2_tgwv4")
+expand_mode = 1

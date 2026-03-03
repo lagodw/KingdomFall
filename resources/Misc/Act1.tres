@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="Act" load_steps=10 format=3 uid="uid://hnvrwusray14"]
+
+[ext_resource type="Script" uid="uid://npjl5q4abl4n" path="res://src/Map/Event.gd" id="1_bsh7t"]
+[ext_resource type="Script" uid="uid://bq1yfk2ebmeq0" path="res://src/Map/Act.gd" id="1_nr237"]
+[ext_resource type="Script" uid="uid://xuvplrw1mym0" path="res://src/Map/Path.gd" id="2_duchc"]
+[ext_resource type="Resource" uid="uid://bka1cinml3y5h" path="res://resources/Events/Combat.tres" id="2_ujbl3"]
+[ext_resource type="Resource" uid="uid://c1enwdobam10u" path="res://resources/Events/Recruit.tres" id="3_aipha"]
+
+[sub_resource type="Resource" id="Resource_ujbl3"]
+script = ExtResource("2_duchc")
+forward_direction = Vector2(1, 0)
+length = 5
+max_width = 3
+events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
+event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
+connection_dict = Dictionary[Vector2, Array]({})
+metadata/_custom_type_script = "uid://xuvplrw1mym0"
+
+[sub_resource type="Resource" id="Resource_aipha"]
+script = ExtResource("2_duchc")
+forward_direction = Vector2(0, 1)
+length = 5
+max_width = 3
+events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
+event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
+connection_dict = Dictionary[Vector2, Array]({})
+metadata/_custom_type_script = "uid://xuvplrw1mym0"
+
+[sub_resource type="Resource" id="Resource_uujht"]
+script = ExtResource("2_duchc")
+forward_direction = Vector2(-1, 0)
+length = 5
+max_width = 3
+events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
+event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
+connection_dict = Dictionary[Vector2, Array]({})
+metadata/_custom_type_script = "uid://xuvplrw1mym0"
+
+[sub_resource type="Resource" id="Resource_6ihth"]
+script = ExtResource("2_duchc")
+forward_direction = Vector2(0, -1)
+length = 5
+max_width = 3
+events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
+event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
+connection_dict = Dictionary[Vector2, Array]({})
+metadata/_custom_type_script = "uid://xuvplrw1mym0"
+
+[resource]
+script = ExtResource("1_nr237")
+paths = Dictionary[String, Object]({
+"E": SubResource("Resource_aipha"),
+"N": SubResource("Resource_ujbl3"),
+"S": SubResource("Resource_uujht"),
+"W": SubResource("Resource_6ihth")
+})
+revealed_spots = Array[Vector2]([])
+spots_done = Array[Vector2]([])
+events = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
+connection_dict = Dictionary[Vector2, Array]({})
+metadata/_custom_type_script = "uid://bq1yfk2ebmeq0"

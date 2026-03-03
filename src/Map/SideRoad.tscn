@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://0g4jfxi1jd1w"]
+
+[ext_resource type="Script" uid="uid://brqrlfnreboqp" path="res://addons/curved_lines_2d/drawable_path_2d.gd" id="1_kus6c"]
+[ext_resource type="Texture2D" uid="uid://btow3tlne7gc7" path="res://assets/Map/Dirt_road.png" id="2_kus6c"]
+
+[sub_resource type="Curve2D" id="Curve2D_vhp4k"]
+resource_local_to_scene = true
+
+[node name="DrawablePath2D" type="Path2D" node_paths=PackedStringArray("line")]
+curve = SubResource("Curve2D_vhp4k")
+script = ExtResource("1_kus6c")
+line = NodePath("Line2D")
+update_curve_at_runtime = true
+metadata/_custom_type_script = "uid://brqrlfnreboqp"
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(900, 97)
+width = 20.0
+texture = ExtResource("2_kus6c")
+texture_mode = 1
+metadata/_edit_lock_ = true

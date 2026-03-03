@@ -3,9 +3,12 @@ extends Resource
 
 @export var day_counter: int = 0
 @export var night_enemies: Array[EnemyResource]
+@export var act: Act
 
 func setup() -> void:
 	choose_night_enemies()
+	act = load("uid://hnvrwusray14").duplicate(true)
+	act.setup()
 
 func choose_night_enemies() -> void:
 	for night in range(1, 4):

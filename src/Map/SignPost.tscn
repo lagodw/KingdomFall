@@ -1,0 +1,163 @@
+[gd_scene load_steps=7 format=3 uid="uid://dapbgl6me51m"]
+
+[ext_resource type="Script" uid="uid://wcvto6fjekpb" path="res://src/Map/SignPost.gd" id="1_21yva"]
+[ext_resource type="Texture2D" uid="uid://csuqux0t0t637" path="res://assets/Map/sign_top.png" id="2_qwp40"]
+[ext_resource type="Texture2D" uid="uid://ui4je14oj3jy" path="res://assets/Map/sign_board.png" id="3_j4e6s"]
+[ext_resource type="Texture2D" uid="uid://rrjtjiw3e3n3" path="res://assets/Map/EventMarkers/Blessing.png" id="4_12s47"]
+[ext_resource type="Texture2D" uid="uid://bcj3ff1a55h71" path="res://assets/Map/sign_post.png" id="5_sfipi"]
+[ext_resource type="PackedScene" uid="uid://2gd3eej6fvla" path="res://src/UI/Tooltip.tscn" id="6_e3i2y"]
+
+[node name="SignPost" type="Control"]
+z_index = 3
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_21yva")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 60.0
+theme_override_constants/separation = 0
+
+[node name="PostTop" type="Control" parent="V"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Top" type="TextureRect" parent="V/PostTop"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 60.0
+grow_horizontal = 2
+texture = ExtResource("2_qwp40")
+expand_mode = 4
+
+[node name="Board0" type="TextureRect" parent="V"]
+visible = false
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+texture = ExtResource("3_j4e6s")
+expand_mode = 1
+
+[node name="BG" type="TextureRect" parent="V/Board0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="V/Board0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 1.0
+offset_right = -7.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_12s47")
+expand_mode = 1
+
+[node name="Board1" type="TextureRect" parent="V"]
+visible = false
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+texture = ExtResource("3_j4e6s")
+expand_mode = 1
+
+[node name="BG" type="TextureRect" parent="V/Board1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="V/Board1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 1.0
+offset_right = -7.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_12s47")
+expand_mode = 1
+
+[node name="Board2" type="TextureRect" parent="V"]
+visible = false
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+texture = ExtResource("3_j4e6s")
+expand_mode = 1
+
+[node name="BG" type="TextureRect" parent="V/Board2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="V/Board2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 1.0
+offset_right = -7.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_12s47")
+expand_mode = 1
+
+[node name="PostControl" type="Control" parent="V"]
+layout_mode = 2
+
+[node name="Post" type="TextureRect" parent="V/PostControl"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = ExtResource("5_sfipi")
+expand_mode = 1
+
+[node name="Tooltips" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 67.0
+offset_top = 41.0
+offset_right = 267.0
+offset_bottom = 112.0
+mouse_filter = 2
+
+[node name="Tooltip0" parent="Tooltips" instance=ExtResource("6_e3i2y")]
+visible = false
+layout_mode = 2
+
+[node name="Tooltip1" parent="Tooltips" instance=ExtResource("6_e3i2y")]
+visible = false
+layout_mode = 2
+
+[node name="Tooltip2" parent="Tooltips" instance=ExtResource("6_e3i2y")]
+visible = false
+layout_mode = 2
