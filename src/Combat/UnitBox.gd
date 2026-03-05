@@ -27,6 +27,7 @@ func _ready():
 		all_slots.append(slot)
 	
 	Bus.trigger_occurred.connect(on_trigger)
+	mouse_exited.connect(show_highlight.bind(false))
 
 func on_trigger(trigger: String, _trigger_card: Control):
 	if Bus.Board and Bus.Board.combat_happening:
@@ -67,33 +68,6 @@ func update_preview():
 func _on_slot_exited(_slot_exited):
 	clear_all_highlights()
 
-func can_drop_on_slot(slot_queried: TokenSlot, unit: Unit, _direction: String = "Back") -> bool:
-	clear_all_highlights()
-	if is_drop_valid(slot_queried, unit):
-		slot_queried.show_highlight(true)
-		current_highlight = slot_queried
-		return true
-	return false
-
-func drop_unit_on_slot(slot_dropped_on: TokenSlot, unit: Unit):
-	if is_drop_valid(slot_dropped_on, unit):
-		slot_dropped_on.set_unit(unit)
-	
-	kf.dragging = null
-	clear_all_highlights()
-	update_preview()
-	Bus.Grid.update_previews()
-
-func is_drop_valid(target_slot: TokenSlot, unit: Unit) -> bool:
-	if box_owner != "Player": 
-		return false
-	if target_slot.occupied_unit:
-		return false
-	# Optional: Enforce Support units to Backline only
-	if box_type == BoxType.FRONTLINE and unit.has_support:
-		return false
-	return true
-
 func clear_all_highlights():
 	if current_highlight:
 		current_highlight.show_highlight(false)
@@ -106,3 +80,59 @@ func set_breach(breached: bool):
 	else:
 		%StatsPreview.set("theme_override_colors/font_color", Color.WHITE)
 		%BreachHighlight.visible = false
+
+# Called automatically by Godot when dragging over the UnitBox Control
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	if is_drop_valid(data):
+		show_highlight(true)
+		return true
+	return false
+
+# Called automatically by Godot when dropping onto the UnitBox Control
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	drop_unit(data)
+
+func drop_unit(unit: Unit) -> void:
+	var target_slot = get_first_unoccupied_slot()
+	if target_slot:
+		target_slot.set_unit(unit)
+	
+	kf.dragging = null
+	show_highlight(false)
+	update_preview()
+	Bus.Grid.update_previews()
+
+func is_drop_valid(unit: Unit) -> bool:
+	if box_owner != "Player": 
+		return false
+	# Enforce Support units to Backline only
+	if box_type == BoxType.FRONTLINE and unit.has_support:
+		return false
+	# Make sure there is room in the box
+	if get_first_unoccupied_slot() == null:
+		return false
+	return true
+
+func get_first_unoccupied_slot() -> TokenSlot:
+	for slot in all_slots:
+		if slot.occupied_unit == null:
+			return slot
+	return null
+
+func show_highlight(highlight: bool) -> void:
+	$Outline.visible = highlight
+	
+func shift_units() -> void:
+	# 1. Gather all currently placed units in order
+	var current_units = get_units()
+	
+	# 2. Temporarily clear all slots to prevent assignment conflicts
+	for slot in all_slots:
+		slot.occupied_unit = null
+		
+	# 3. Reassign the units to the slots sequentially
+	for i in range(current_units.size()):
+		all_slots[i].set_unit(current_units[i])
+		
+	# Update the aggregate stats preview just in case
+	update_preview()

@@ -144,7 +144,7 @@ func turn_to_label() -> CardLabel:
 	
 func turn_to_card() -> Unit:
 	if current_slot:
-		current_slot.occupied_unit = null
+		current_slot.clear_unit()
 		current_slot = null
 	var parent = get_parent()
 	if card.get_parent():
@@ -163,7 +163,7 @@ func discard():
 	discarded = true
 	if current_slot:
 		if current_slot.occupied_unit == self:
-			current_slot.occupied_unit = null
+			current_slot.clear_unit()
 		current_slot = null
 	Audio.play_sfx("Death")
 	ee.emit_signal("discard", self)

@@ -205,7 +205,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	if current_slot:
 		if current_slot.occupied_unit:
 			if current_slot.occupied_unit == self:
-				current_slot.occupied_unit = null
+				current_slot.clear_unit()
 
 	var control = Control.new()
 	var preview: Control

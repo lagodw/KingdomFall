@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://butr5cp6lgmmp"]
+[gd_scene load_steps=7 format=3 uid="uid://butr5cp6lgmmp"]
 
 [ext_resource type="Script" uid="uid://dfcbc8jhiydbj" path="res://src/Combat/UnitBox.gd" id="1_p4du4"]
 [ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="2_1yb0v"]
 [ext_resource type="Texture2D" uid="uid://d3w6axjot7q2w" path="res://assets/Card/Icons/icon_box.png" id="2_p3cov"]
+[ext_resource type="Texture2D" uid="uid://do80ypiwidhxi" path="res://assets/Combat/Castle_floor_border.png" id="2_pabcn"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="3_p3cov"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3cov"]
@@ -25,7 +26,6 @@ offset_right = 775.0
 offset_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 2
 script = ExtResource("1_p4du4")
 
 [node name="Box" type="HBoxContainer" parent="."]
@@ -51,18 +51,24 @@ mouse_filter = 2
 border_width = 2.0
 editor_only = false
 
-[node name="Outline" type="ReferenceRect" parent="."]
+[node name="Outline" type="NinePatchRect" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 10.0
+anchor_bottom = 10.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 100.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-border_color = Color(0.384402, 0.374436, 0.384177, 1)
-border_width = 4.0
-editor_only = false
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_pabcn")
+patch_margin_left = 68
+patch_margin_top = 68
+patch_margin_right = 68
+patch_margin_bottom = 68
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
