@@ -328,12 +328,6 @@ visible = false
 
 [node name="CombatWon" parent="." instance=ExtResource("23_vywh8")]
 visible = false
-z_index = 5
-layout_mode = 1
-offset_left = 491.0
-offset_top = 40.0
-offset_right = -323.0
-offset_bottom = -39.0
 
 [node name="EnemyCards" type="Control" parent="."]
 visible = false
@@ -351,5 +345,14 @@ offset_left = 887.0
 offset_top = 73.0
 offset_right = 1487.0
 offset_bottom = 773.0
+
+[node name="Cheat" type="Button" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_left = 62.0
+offset_top = 76.0
+offset_right = 237.0
+offset_bottom = 165.0
+text = "Cheat"
 
 [editable path="EnemyGraveyard"]

@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://7iyrp623m11p"]
+[gd_scene load_steps=8 format=3 uid="uid://7iyrp623m11p"]
 
 [ext_resource type="Script" uid="uid://cf7gtm8pckwyh" path="res://src/Town/CardButton.gd" id="1_axq4o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axq4o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7g4vn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f27pp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pntgj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5l7v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6asb"]
 draw_center = false
@@ -22,6 +30,10 @@ offset_right = 204.0
 offset_bottom = 304.0
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_axq4o")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7g4vn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f27pp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pntgj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d5l7v")
 script = ExtResource("1_axq4o")
 
 [node name="Highlight" type="Panel" parent="."]

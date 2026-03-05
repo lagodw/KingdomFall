@@ -4,6 +4,7 @@ extends Resource
 @export var day_counter: int = 0
 @export var night_enemies: Array[EnemyResource]
 @export var act: Act
+@export var current_location: Event
 
 func setup() -> void:
 	choose_night_enemies()

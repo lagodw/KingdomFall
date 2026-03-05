@@ -10,7 +10,9 @@ var initial_loaded: bool = false:
 var loading_requests = {} # { path: { "name": "card", "status": 0 } }
 
 ##### RESOURCE GROUPS #####
-var card_resources: ResourceGroup
+var units: ResourceGroup
+var spells: ResourceGroup
+var items: ResourceGroup
 var buildings: ResourceGroup
 var building_art: ResourceGroup
 var enemies: ResourceGroup
@@ -45,7 +47,9 @@ var tooltip: PackedScene
 
 const RESOURCE_MAP = {
 	###### resource groups #####
-	"card_resources": "uid://bjdqhsddp1rxj",
+	"units": "uid://b1blybyboklhn",
+	"spells": "uid://g3myl08c8l1b",
+	"items": "uid://sy0vt7rxm8qe",
 	"buildings": "uid://6uwynbbqo5fm",
 	"building_art": "uid://vioxwkbn4m3u",
 	"enemies": "uid://dgrrs481y3qnk",
@@ -147,7 +151,9 @@ func _process(_delta: float) -> void:
 		load_resource_groups()
 
 func load_resource_groups() -> void:
-	card_resources.load_paths()
+	units.load_paths()
+	spells.load_paths()
+	items.load_paths()
 	#enemies.load_paths()
 	#events.load_paths()
 	#curses.load_paths()

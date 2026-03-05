@@ -1,0 +1,83 @@
+[gd_scene load_steps=15 format=3 uid="uid://dq3csefpupvgr"]
+
+[ext_resource type="Texture2D" uid="uid://cnldf12bv6qwo" path="res://assets/NewUI/Button_Disabled.png" id="1_q1lfh"]
+[ext_resource type="Texture2D" uid="uid://b2fnhotg8tbqc" path="res://assets/NewUI/Button_Hover.png" id="2_pejo5"]
+[ext_resource type="Texture2D" uid="uid://dmslgk8es8lla" path="res://assets/NewUI/Button_Pressed.png" id="3_872c3"]
+[ext_resource type="Texture2D" uid="uid://c7h0uubfxrgqf" path="res://assets/NewUI/Button_Normal.png" id="4_x1jq0"]
+[ext_resource type="Texture2D" uid="uid://k4fhlip7l4rd" path="res://assets/UI/gold.png" id="5_lnu1o"]
+[ext_resource type="Script" uid="uid://7afcjbqd8r31" path="res://src/Combat/CurrencyButton.gd" id="5_pejo5"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="6_o1nek"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6v50w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kbcsn"]
+texture = ExtResource("1_q1lfh")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4r5d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6atot"]
+texture = ExtResource("2_pejo5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlp8h"]
+texture = ExtResource("3_872c3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gupow"]
+texture = ExtResource("4_x1jq0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8g0ei"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.819494, 0.848384, 7.70092e-07, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="CurrencyButton" type="Button"]
+custom_minimum_size = Vector2(150, 75)
+offset_right = 66.0
+offset_bottom = 33.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6v50w")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_kbcsn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_v4r5d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6atot")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qlp8h")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gupow")
+script = ExtResource("5_pejo5")
+
+[node name="Highlight" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8g0ei")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 145.0
+offset_bottom = 69.0
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_lnu1o")
+expand_mode = 2
+
+[node name="Amount" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("6_o1nek")
+theme_override_font_sizes/font_size = 48
+text = "10"
+horizontal_alignment = 1

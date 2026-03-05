@@ -24,14 +24,15 @@ func _ready() -> void:
 	$EndTurn.pressed.connect(end_turn)
 	Bus.energy_changed.connect(update_energy)
 	Bus.energy = 3
-	$%ConfirmDeck.pressed.connect(begin_combat)
+	%ConfirmDeck.pressed.connect(begin_combat)
+	$CombatWon.choices = Bus.map.current_location.unit_options
+	$CombatWon.setup()
 	add_deck_choice()
 	get_tree().paused = true
 	$DeckChoice.visible = true
 	Bus.emit_signal("board_loaded")
 	
-	#$DeckChoice.visible = false
-	#combat_won()
+	$Cheat.pressed.connect(combat_won)
 
 func add_deck_choice():
 	for resource in Bus.deck.cards:

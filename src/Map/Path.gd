@@ -11,5 +11,13 @@ extends Resource
 
 func setup():
 	for i in length:
-		event_dict[forward_direction * (i + 1)] = events[i]
+		place_event(forward_direction * (i + 1), events[i])
 		connection_dict[forward_direction * (i)] = [forward_direction * (i + 1)]
+
+func place_event(point: Vector2, specific_event: Event = null) -> void:
+	var event: Event
+	if specific_event:
+		event = specific_event.dupe()
+	event.spot = point
+	event.setup()
+	event_dict[point] = event

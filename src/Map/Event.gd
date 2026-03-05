@@ -12,7 +12,7 @@ extends Resource
 @export_category("Internal")
 @export var spot: Vector2
 @export var enemy: EnemyResource
-@export var recruit_options: Array[UnitResource]
+@export var unit_options: Array[UnitResource]
 @export var spell_options: Array[SpellResource]
 @export var item_options: Array[ItemResource]
 @export var building_options: Array[BuildingResource]
@@ -22,12 +22,19 @@ extends Resource
 ## true is good outcome
 @export var bool_outcome: bool
 
+func dupe() -> Event:
+	var new = self.duplicate(true)
+	new.unit_options = unit_options.duplicate(true)
+	new.spell_options = spell_options.duplicate(true)
+	new.item_options = item_options.duplicate(true)
+	new.building_options = building_options.duplicate(true)
+	return(new)
+
 func generate_unit_options(num_options: int):
 	for i in num_options:
-		var options = R.card_resources.get_matching_resource(
-				["Units/**"])
+		var options = R.units.get_matching_resource(["**"])
 		var option = options.pick_random()
-		recruit_options.append(option.dupe())
+		unit_options.append(option.dupe())
 	
 func generate_spell_options(num_options: int):
 	# don't duplicate until after to check for repeats
@@ -70,8 +77,9 @@ func setup_Combat():
 		var tier: float = spot.x + abs(spot.y) / 10
 		var enemies = R.enemies.get_matching_resource(["Tier%s/**.tres"%tier])
 		enemy = enemies.pick_random().duplicate(true)
-	enemy.add_cards()
 	gold_amt = randi_range(12, 20)
+	wood_amt = randi_range(3, 6)
+	stone_amt = randi_range(3, 6)
 	generate_unit_options(3)
 	
 func setup_Recruit():
