@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=10 format=3 uid="uid://mvl4eayy5h4c"]
+
+[ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_jl3hv"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_p4pxr"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="3_oakrk"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="4_cahkq"]
+[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="5_mhctb"]
+[ext_resource type="Script" uid="uid://bue1g4huq61xk" path="res://src/Combat/EnemyResource.gd" id="6_w3uk6"]
+
+[sub_resource type="Resource" id="Resource_wnerq"]
+script = ExtResource("1_jl3hv")
+turn = 0
+units = Array[ExtResource("2_p4pxr")]([ExtResource("3_oakrk"), ExtResource("3_oakrk")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_tavvl"]
+script = ExtResource("1_jl3hv")
+turn = 1
+units = Array[ExtResource("2_p4pxr")]([ExtResource("3_oakrk"), ExtResource("4_cahkq")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_1s86m"]
+script = ExtResource("1_jl3hv")
+turn = 3
+units = Array[ExtResource("2_p4pxr")]([ExtResource("4_cahkq"), ExtResource("5_mhctb")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[resource]
+script = ExtResource("6_w3uk6")
+ranks = Array[ExtResource("1_jl3hv")]([SubResource("Resource_wnerq"), SubResource("Resource_tavvl"), SubResource("Resource_1s86m")])
+is_night_enemy = true
+metadata/_custom_type_script = "uid://bue1g4huq61xk"

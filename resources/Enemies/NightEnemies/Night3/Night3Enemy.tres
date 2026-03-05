@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://b61agxylit14y"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=10 format=3 uid="uid://b61agxylit14y"]
 
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_tfjf7"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_v3woy"]
@@ -9,6 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_wnerq"]
 script = ExtResource("1_tfjf7")
+turn = 0
 units = Array[ExtResource("2_v3woy")]([ExtResource("3_1un83"), ExtResource("3_1un83")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
@@ -27,4 +28,5 @@ metadata/_custom_type_script = "uid://jdj8k4tksnow"
 [resource]
 script = ExtResource("6_elvn7")
 ranks = Array[ExtResource("1_tfjf7")]([SubResource("Resource_wnerq"), SubResource("Resource_tavvl"), SubResource("Resource_1s86m")])
+is_night_enemy = true
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

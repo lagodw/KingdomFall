@@ -15,7 +15,7 @@ var world: Control
 
 func _ready():
 	Audio.play_music("Embers Before the Storm")
-	#Bus.mana = Bus.max_mana
+	$NightFall.pressed.connect(night_fall)
 	#kf.add_player_deck(self)
 	place_act(Bus.map.act)
 	
@@ -110,3 +110,7 @@ func connect_points(point1: Vector2, point2: Vector2, marker_position: Vector2,
 	curve.curve.add_point(Vector2(0, 0), Vector2(0, 0), curve_point)
 	curve.curve.add_point(end_point, Vector2(0, 0), Vector2(0, 0))
 	curve.get_node("Line2D").points = curve.curve.tessellate(10)
+
+func night_fall():
+	Bus.map.current_location = Bus.map.act.night_combat[Bus.map.day_counter]
+	kf.load_scene("uid://dvld0lyuo33oq")

@@ -1,10 +1,168 @@
-[gd_resource type="Resource" script_class="Act" load_steps=10 format=3 uid="uid://hnvrwusray14"]
+[gd_resource type="Resource" script_class="Act" load_steps=28 format=3 uid="uid://hnvrwusray14"]
 
 [ext_resource type="Script" uid="uid://npjl5q4abl4n" path="res://src/Map/Event.gd" id="1_bsh7t"]
 [ext_resource type="Script" uid="uid://bq1yfk2ebmeq0" path="res://src/Map/Act.gd" id="1_nr237"]
 [ext_resource type="Script" uid="uid://xuvplrw1mym0" path="res://src/Map/Path.gd" id="2_duchc"]
+[ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="2_kd8nf"]
 [ext_resource type="Resource" uid="uid://bka1cinml3y5h" path="res://resources/Events/Combat.tres" id="2_ujbl3"]
 [ext_resource type="Resource" uid="uid://c1enwdobam10u" path="res://resources/Events/Recruit.tres" id="3_aipha"]
+[ext_resource type="Resource" uid="uid://d3024l3wyhs5m" path="res://resources/Enemies/NightEnemies/Night1/Night1Enemy.tres" id="3_touhe"]
+[ext_resource type="Script" uid="uid://hat3dgsvixk8" path="res://src/Cards/ResourceTypes/ItemResource.gd" id="4_lyjab"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="5_edvu8"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="6_gsojp"]
+[ext_resource type="Resource" uid="uid://dp1q60332um1i" path="res://resources/Enemies/NightEnemies/Night2/Night2Enemy.tres" id="7_esk16"]
+[ext_resource type="Resource" uid="uid://b61agxylit14y" path="res://resources/Enemies/NightEnemies/Night3/Night3Enemy.tres" id="8_ltkti"]
+[ext_resource type="Resource" uid="uid://ri2gayuxrhwh" path="res://resources/Enemies/NightEnemies/Night4/Night4Enemy.tres" id="9_u0god"]
+[ext_resource type="Resource" uid="uid://dgv4hth2d7a7l" path="res://resources/Enemies/NightEnemies/Night5/Night5Enemy.tres" id="10_dqkuh"]
+[ext_resource type="Resource" uid="uid://bjbg1mes54rvk" path="res://resources/Enemies/NightEnemies/Night6/Night6Enemy.tres" id="11_kfvqn"]
+[ext_resource type="Resource" uid="uid://mvl4eayy5h4c" path="res://resources/Enemies/NightEnemies/Night7/Night7Enemy.tres" id="12_mm4lf"]
+
+[sub_resource type="Resource" id="Resource_qa35n"]
+script = ExtResource("1_bsh7t")
+icon_path = "uid://dhrcu4v7y40o7"
+scene_path = "uid://dvld0lyuo33oq"
+event_name = "Combat"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Blades Before Dawn"
+spot = Vector2(0, 0)
+enemy = ExtResource("3_touhe")
+unit_options = Array[ExtResource("6_gsojp")]([])
+spell_options = Array[ExtResource("5_edvu8")]([])
+item_options = Array[ExtResource("4_lyjab")]([])
+building_options = Array[ExtResource("2_kd8nf")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"
+
+[sub_resource type="Resource" id="Resource_uu51w"]
+script = ExtResource("1_bsh7t")
+icon_path = "uid://dhrcu4v7y40o7"
+scene_path = "uid://dvld0lyuo33oq"
+event_name = "Combat"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Blades Before Dawn"
+spot = Vector2(0, 0)
+enemy = ExtResource("7_esk16")
+unit_options = Array[ExtResource("6_gsojp")]([])
+spell_options = Array[ExtResource("5_edvu8")]([])
+item_options = Array[ExtResource("4_lyjab")]([])
+building_options = Array[ExtResource("2_kd8nf")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"
+
+[sub_resource type="Resource" id="Resource_vnf7u"]
+script = ExtResource("1_bsh7t")
+icon_path = "uid://dhrcu4v7y40o7"
+scene_path = "uid://dvld0lyuo33oq"
+event_name = "Combat"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Blades Before Dawn"
+spot = Vector2(0, 0)
+enemy = ExtResource("8_ltkti")
+unit_options = Array[ExtResource("6_gsojp")]([])
+spell_options = Array[ExtResource("5_edvu8")]([])
+item_options = Array[ExtResource("4_lyjab")]([])
+building_options = Array[ExtResource("2_kd8nf")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"
+
+[sub_resource type="Resource" id="Resource_keb62"]
+script = ExtResource("1_bsh7t")
+icon_path = "uid://dhrcu4v7y40o7"
+scene_path = "uid://dvld0lyuo33oq"
+event_name = "Combat"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Blades Before Dawn"
+spot = Vector2(0, 0)
+enemy = ExtResource("9_u0god")
+unit_options = Array[ExtResource("6_gsojp")]([])
+spell_options = Array[ExtResource("5_edvu8")]([])
+item_options = Array[ExtResource("4_lyjab")]([])
+building_options = Array[ExtResource("2_kd8nf")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"
+
+[sub_resource type="Resource" id="Resource_od8pk"]
+script = ExtResource("1_bsh7t")
+icon_path = "uid://dhrcu4v7y40o7"
+scene_path = "uid://dvld0lyuo33oq"
+event_name = "Combat"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Blades Before Dawn"
+spot = Vector2(0, 0)
+enemy = ExtResource("10_dqkuh")
+unit_options = Array[ExtResource("6_gsojp")]([])
+spell_options = Array[ExtResource("5_edvu8")]([])
+item_options = Array[ExtResource("4_lyjab")]([])
+building_options = Array[ExtResource("2_kd8nf")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"
+
+[sub_resource type="Resource" id="Resource_c0uvk"]
+script = ExtResource("1_bsh7t")
+icon_path = "uid://dhrcu4v7y40o7"
+scene_path = "uid://dvld0lyuo33oq"
+event_name = "Combat"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Blades Before Dawn"
+spot = Vector2(0, 0)
+enemy = ExtResource("11_kfvqn")
+unit_options = Array[ExtResource("6_gsojp")]([])
+spell_options = Array[ExtResource("5_edvu8")]([])
+item_options = Array[ExtResource("4_lyjab")]([])
+building_options = Array[ExtResource("2_kd8nf")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"
+
+[sub_resource type="Resource" id="Resource_4vcs2"]
+script = ExtResource("1_bsh7t")
+icon_path = "uid://dhrcu4v7y40o7"
+scene_path = "uid://dvld0lyuo33oq"
+event_name = "Combat"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Blades Before Dawn"
+spot = Vector2(0, 0)
+enemy = ExtResource("12_mm4lf")
+unit_options = Array[ExtResource("6_gsojp")]([])
+spell_options = Array[ExtResource("5_edvu8")]([])
+item_options = Array[ExtResource("4_lyjab")]([])
+building_options = Array[ExtResource("2_kd8nf")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"
 
 [sub_resource type="Resource" id="Resource_ujbl3"]
 script = ExtResource("2_duchc")
@@ -54,6 +212,7 @@ paths = Dictionary[String, Object]({
 "S": SubResource("Resource_uujht"),
 "W": SubResource("Resource_6ihth")
 })
+night_combat = Array[ExtResource("1_bsh7t")]([SubResource("Resource_qa35n"), SubResource("Resource_uu51w"), SubResource("Resource_vnf7u"), SubResource("Resource_keb62"), SubResource("Resource_od8pk"), SubResource("Resource_c0uvk"), SubResource("Resource_4vcs2")])
 revealed_spots = Array[Vector2]([])
 spots_done = Array[Vector2]([])
 events = Dictionary[Vector2, ExtResource("1_bsh7t")]({})

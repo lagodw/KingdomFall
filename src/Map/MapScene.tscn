@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh5c0lqir8g3a"]
+[gd_scene load_steps=9 format=3 uid="uid://bh5c0lqir8g3a"]
 
 [ext_resource type="Script" uid="uid://cfriiew73i2k2" path="res://src/Map/MapScene.gd" id="1_mvoho"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="2_76ksa"]
 [ext_resource type="Script" uid="uid://d2cihf7cw4xfy" path="res://src/Map/MapScroll.gd" id="4_0agki"]
 [ext_resource type="Texture2D" uid="uid://td12h5hh4hyj" path="res://assets/Map/MapPaper.png" id="4_8nlgn"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="5_0bupb"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="5_vuvkq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4mha"]
@@ -94,6 +95,15 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_8nlgn")
 expand_mode = 1
+
+[node name="NightFall" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1588.0
+offset_top = 909.0
+offset_right = 1845.0
+offset_bottom = 1009.0
+theme = ExtResource("5_0bupb")
+text = "Night Fall"
 
 [node name="Escape" parent="." instance=ExtResource("5_vuvkq")]
 visible = false

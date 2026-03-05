@@ -14,15 +14,15 @@ func _ready() -> void:
 	for building in Bus.player.town.buildings:
 		add_building(building)
 	$Bottom/UnitPanel.load_units(Bus.deck.cards)
-	$Bottom/EndTurn.pressed.connect(night_fall)
+	$Bottom/EndTurn.pressed.connect(explore)
 	if Bus.player.town.buildings.size() < Bus.player.town.building_spots:
 		var construction = load("uid://df7bb45nih6i8").instantiate()
 		building_grid.add_child(construction)
-	$UnitUpgrades/Done.pressed.connect(start_combat)
+	$UnitUpgrades/Done.pressed.connect(leave)
 	Bus.town = self
 	Bus.mana = Bus.max_mana
 	
-func night_fall():
+func explore():
 	for building in building_grid.get_children():
 		# exclude construction
 		if building is Building:
@@ -34,11 +34,10 @@ func night_fall():
 	for unit in $Bottom/UnitPanel.get_units():
 		unit.card_resource.fatigue -= 5
 	if not check_for_upgrades():
-		#start_combat()
-		kf.change_scene_to_packed(load("res://src/Map/MapScene.tscn"))
+		leave()
 
-func start_combat():
-	kf.load_scene("uid://dvld0lyuo33oq")
+func leave():
+	kf.load_map()
 
 func add_building(resource: BuildingResource):
 	var building = building_scene.instantiate()

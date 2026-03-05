@@ -21,8 +21,13 @@ func setup() -> void:
 func confirm():
 	visible = false
 	get_tree().paused = false
-	Bus.deck.add_card(card_option_selected.card.card_resource)
-	kf.load_scene("uid://djtcf3x2wg721")
+	if card_option_selected:
+		Bus.deck.add_card(card_option_selected.card.card_resource)
+	if Bus.map.current_location.enemy.is_night_enemy:
+		kf.load_scene("uid://djtcf3x2wg721")
+	else:
+		Bus.map.act.spots_done.append(Bus.map.current_location.spot)
+		kf.load_map()
 
 func create_cards() -> void:
 	for option in choices:

@@ -5,7 +5,7 @@ var enemy_dupe: EnemyResource
 var card_grid: Control
 
 func _ready() -> void:
-	var res: EnemyResource = Bus.map.night_enemies.pop_front()
+	var res: EnemyResource = Bus.map.current_location.enemy
 	enemy_dupe = res.dupe()
 	Bus.trigger_occurred.connect(on_trigger)
 	Bus.board_loaded.connect(init_card_grid)
