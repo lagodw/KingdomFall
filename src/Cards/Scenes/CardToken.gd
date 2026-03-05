@@ -480,7 +480,7 @@ func move_card():
 	get_tree().current_scene.call_deferred("add_child", card)
 
 func adjust_for_fatigue(num: int) -> int:
-	return(int((10.0 - current_fatigue) / 10.0 * num))
+	return(int((20.0 - current_fatigue) / 20.0 * num))
 
 func _assign_breach_damage():
 	if remaining_life <= 0 or Bus.Board.breach_amount <= 0: 
