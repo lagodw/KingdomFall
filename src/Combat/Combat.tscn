@@ -48,20 +48,22 @@ expand_mode = 1
 
 [node name="Castle" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 2535.0
-offset_top = 66.0
-offset_right = 3535.0
-offset_bottom = 1066.0
+offset_left = 1648.0
+offset_top = 668.0
+offset_right = 2322.0
+offset_bottom = 2065.0
 rotation = 1.5708
 texture = ExtResource("3_rlcqg")
 expand_mode = 1
 
 [node name="Hand" parent="." instance=ExtResource("4_1dph2")]
 layout_mode = 1
-offset_left = 528.0
+offset_left = 404.0
 offset_top = 750.0
-offset_right = -907.0
+offset_right = -400.0
 offset_bottom = -30.0
+theme_override_constants/separation = 0
+alignment = 1
 
 [node name="Draw" parent="." instance=ExtResource("6_nthc5")]
 offset_left = 35.0
@@ -175,10 +177,10 @@ vertical_alignment = 1
 [node name="Gate" parent="." instance=ExtResource("17_whu61")]
 custom_minimum_size = Vector2(85, 120)
 layout_mode = 1
-offset_left = 1511.0
-offset_top = 395.0
-offset_right = 1661.0
-offset_bottom = 695.0
+offset_left = 832.0
+offset_top = 575.0
+offset_right = 982.0
+offset_bottom = 875.0
 
 [node name="UI" parent="." instance=ExtResource("11_dyjub")]
 layout_mode = 0
@@ -319,16 +321,6 @@ offset_right = 1019.0
 offset_bottom = 482.0
 script = ExtResource("12_55i6c")
 
-[node name="Escape" parent="." instance=ExtResource("14_bx2u5")]
-visible = false
-
-[node name="GameOver" parent="." instance=ExtResource("18_wbuvy")]
-layer = 128
-visible = false
-
-[node name="CombatWon" parent="." instance=ExtResource("23_vywh8")]
-visible = false
-
 [node name="EnemyCards" type="Control" parent="."]
 visible = false
 anchors_preset = 0
@@ -341,10 +333,10 @@ mouse_filter = 2
 [node name="UnitGrid" parent="." instance=ExtResource("2_m70ga")]
 visible = false
 layout_mode = 0
-offset_left = 887.0
-offset_top = 73.0
-offset_right = 1487.0
-offset_bottom = 773.0
+offset_left = 648.0
+offset_top = 70.0
+offset_right = 1423.0
+offset_bottom = 590.0
 
 [node name="Cheat" type="Button" parent="."]
 process_mode = 3
@@ -354,5 +346,15 @@ offset_top = 76.0
 offset_right = 237.0
 offset_bottom = 165.0
 text = "Cheat"
+
+[node name="Escape" parent="." instance=ExtResource("14_bx2u5")]
+visible = false
+
+[node name="GameOver" parent="." instance=ExtResource("18_wbuvy")]
+layer = 128
+visible = false
+
+[node name="CombatWon" parent="." instance=ExtResource("23_vywh8")]
+visible = false
 
 [editable path="EnemyGraveyard"]

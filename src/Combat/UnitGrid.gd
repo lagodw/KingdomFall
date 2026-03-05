@@ -1,5 +1,5 @@
 class_name UnitGrid
-extends HBoxContainer
+extends VBoxContainer
 
 @export var player_front: UnitBox
 @export var player_back: UnitBox

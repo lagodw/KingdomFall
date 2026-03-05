@@ -185,7 +185,7 @@ func revert_to_snapshot() -> void:
 	max_shield = token.snapshot_max_shield
 	current_shield = token.snapshot_current_shield
 
-func _get_drag_data(_at_position: Vector2):
+func _get_drag_data(_at_position: Vector2) -> Variant:
 	if card_owner == "Enemy" or not can_act or disabled:
 		return null
 	if (get_tree().current_scene is Combat and current_activation > Bus.energy

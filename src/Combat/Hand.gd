@@ -1,7 +1,7 @@
 class_name Hand
 extends HBoxContainer
 
-@export var max_x_size: float = 525.0
+@export var max_x_size: float = 1000.0
 
 var focused_card: Card = null
 

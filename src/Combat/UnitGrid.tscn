@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://bx7s3uj5vtumm" path="res://src/Combat/UnitGrid.gd" id="1_gcvdu"]
 [ext_resource type="PackedScene" uid="uid://butr5cp6lgmmp" path="res://src/Combat/UnitBox.tscn" id="2_6r7g3"]
 
-[node name="UnitGrid" type="HBoxContainer" node_paths=PackedStringArray("player_front", "player_back", "enemy_front", "enemy_back")]
-offset_right = 620.0
-offset_bottom = 700.0
+[node name="UnitGrid" type="VBoxContainer" node_paths=PackedStringArray("player_front", "player_back", "enemy_front", "enemy_back")]
+offset_right = 775.0
+offset_bottom = 520.0
 mouse_filter = 2
 theme_override_constants/separation = 100
 script = ExtResource("1_gcvdu")
@@ -14,7 +14,7 @@ player_back = NodePath("Player/PlayerBack")
 enemy_front = NodePath("Enemy/EnemyFront")
 enemy_back = NodePath("Enemy/EnemyBack")
 
-[node name="Enemy" type="HBoxContainer" parent="."]
+[node name="Enemy" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -31,7 +31,7 @@ layout_mode = 2
 box_owner = "Enemy"
 num_slots = 5
 
-[node name="Player" type="HBoxContainer" parent="."]
+[node name="Player" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2

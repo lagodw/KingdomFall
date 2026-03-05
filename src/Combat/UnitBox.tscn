@@ -18,25 +18,21 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="UnitBox" type="Control"]
+custom_minimum_size = Vector2(775, 100)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 125.0
-offset_bottom = 700.0
+offset_right = 775.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_p4du4")
 
-[node name="Box" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 106.0
-offset_right = -7.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Box" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 775.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
@@ -49,10 +45,6 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = -2.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -61,9 +53,12 @@ editor_only = false
 
 [node name="Outline" type="ReferenceRect" parent="."]
 visible = false
-layout_mode = 0
-offset_right = 340.0
-offset_bottom = 120.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 border_color = Color(0.384402, 0.374436, 0.384177, 1)
 border_width = 4.0
@@ -71,10 +66,8 @@ editor_only = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 90.0
-grow_horizontal = 2
+offset_right = 125.0
+offset_bottom = 100.0
 mouse_filter = 2
 texture = ExtResource("2_p3cov")
 expand_mode = 1
@@ -82,9 +75,9 @@ expand_mode = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 12.0
+offset_top = 17.0
 offset_right = 122.0
-offset_bottom = 75.0
+offset_bottom = 80.0
 mouse_filter = 2
 theme_override_constants/separation = 0
 

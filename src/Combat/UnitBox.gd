@@ -9,7 +9,7 @@ enum BoxType { FRONTLINE, BACKLINE }
 @export var box_type: BoxType = BoxType.FRONTLINE
 @export var num_slots: int = 4
 
-@onready var box: VBoxContainer = $Box
+@onready var box: HBoxContainer = $Box
 @onready var stats_preview: Label = %StatsPreview
 
 var all_slots: Array[TokenSlot] = []
