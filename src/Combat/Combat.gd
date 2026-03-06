@@ -90,6 +90,9 @@ func begin_combat():
 	end_turn()
 
 func combat_won():
+	if Bus.map.current_location.enemy.is_final_enemy:
+		kf.load_scene("uid://b5u1o6v1y4j3i")
+		return
 	# wait for last units to tween
 	# TODO: hide remaining cards instead
 	await get_tree().create_timer(kf.tween_time*1.5).timeout

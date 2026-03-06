@@ -4,6 +4,7 @@ extends Resource
 ## key denotes what turn number the rank will be deployed on
 @export var ranks: Array[EnemyRank]
 @export var is_night_enemy: bool = false
+@export var is_final_enemy: bool = false
 
 func dupe() -> EnemyResource:
 	var duped: EnemyResource = duplicate(true)

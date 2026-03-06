@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5u1o6v1y4j3i"]
+
+[ext_resource type="Script" uid="uid://bshl8ad3ttc6" path="res://src/Scenes/VictoryScene.gd" id="1_mxw3u"]
+[ext_resource type="Texture2D" uid="uid://un3wo8x1ag3a" path="res://assets/Theme/title_background.png" id="2_mxw3u"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="3_11en3"]
+[ext_resource type="Texture2D" uid="uid://docmg4uihkhbg" path="res://assets/NewUI/Panel.png" id="3_38v00"]
+[ext_resource type="Texture2D" uid="uid://d3g3488ppbb23" path="res://assets/NewUI/Corners.png" id="4_ek3vw"]
+[ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="6_renas"]
+
+[node name="VictoryScreen" type="Control"]
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mxw3u")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_mxw3u")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -411.5
+offset_top = -307.0
+offset_right = 411.5
+offset_bottom = 307.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_38v00")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_ek3vw")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -415.5
+offset_top = 72.0
+offset_right = 415.5
+offset_bottom = 131.0
+grow_horizontal = 2
+theme = ExtResource("3_11en3")
+theme_override_font_sizes/font_size = 84
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="MainMenu" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -171.5
+offset_top = -175.0
+offset_right = 171.5
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("6_renas")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
