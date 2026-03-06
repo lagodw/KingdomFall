@@ -11,6 +11,7 @@ extends Resource
 
 @export_category("Internal")
 @export var spot: Vector2
+@export var tier: int
 @export var enemy: EnemyResource
 @export var unit_options: Array[UnitResource]
 @export var spell_options: Array[SpellResource]
@@ -74,7 +75,6 @@ func setup() -> void:
 	
 func setup_Combat():
 	if not enemy:
-		var tier: float = spot.x + abs(spot.y) / 10
 		var enemies = R.enemies.get_matching_resource(["Tier%s/**.tres"%tier])
 		enemy = enemies.pick_random().duplicate(true)
 	gold_amt = randi_range(12, 20)

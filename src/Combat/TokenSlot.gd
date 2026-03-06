@@ -96,10 +96,8 @@ func set_unit(unit: Unit) -> void:
 # Called when dragging *from* this slot
 func clear_unit() -> void:
 	occupied_unit = null
-	print('clear')
 	# Tell the parent box to collapse any gaps left behind
 	if box and box.has_method("shift_units"):
-		print('shift')
 		# Use call_deferred to ensure the shift happens after the current 
 		# drag/remove operation finishes processing
 		box.call_deferred("shift_units")
