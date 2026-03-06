@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://dglfstjlbuudi"]
+[gd_scene load_steps=13 format=3 uid="uid://dglfstjlbuudi"]
 
 [ext_resource type="Texture2D" uid="uid://danyynv1feqo2" path="res://assets/UI/UIBar.png" id="1_48qpi"]
 [ext_resource type="Script" uid="uid://cyecs3huva81k" path="res://src/UI/UI.gd" id="2_c5ut5"]
 [ext_resource type="Texture2D" uid="uid://dcfqun6y306nf" path="res://assets/UI/population.png" id="3_48qpi"]
+[ext_resource type="Texture2D" uid="uid://k4fhlip7l4rd" path="res://assets/UI/gold.png" id="3_dhqo1"]
 [ext_resource type="Texture2D" uid="uid://bithkfa0yaj55" path="res://assets/Card/Icons/Mana.png" id="3_dyal0"]
 [ext_resource type="Texture2D" uid="uid://b5cdi4ovi55qk" path="res://assets/Card/Icons/SpellPower.png" id="3_hdn2o"]
 [ext_resource type="Texture2D" uid="uid://d1q5uhkg0mssk" path="res://assets/Town/Wood.png" id="4_dhqo1"]
 [ext_resource type="Texture2D" uid="uid://dir6jcwcaephg" path="res://assets/UI/food.png" id="4_f5lgd"]
 [ext_resource type="Texture2D" uid="uid://7pyqgwlmaabj" path="res://assets/Town/Stone.png" id="5_8upts"]
-[ext_resource type="Texture2D" uid="uid://dkud1ngvb85db" path="res://assets/UI/money.png" id="7_l34ye"]
+[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="11_tojqf"]
+[ext_resource type="Texture2D" uid="uid://dvvln4sqkien" path="res://assets/UI/Sun.png" id="12_tvvq8"]
 [ext_resource type="PackedScene" uid="uid://2gd3eej6fvla" path="res://src/UI/Tooltip.tscn" id="14_l34ye"]
 
 [node name="UI" type="Control"]
@@ -64,14 +66,14 @@ alignment = 1
 
 [node name="GoldIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
-texture = ExtResource("7_l34ye")
+texture = ExtResource("3_dhqo1")
 expand_mode = 3
 
 [node name="goldAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "100"
 
 [node name="WoodIcon" type="TextureRect" parent="Stats"]
@@ -83,7 +85,7 @@ expand_mode = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "0"
 
 [node name="StoneIcon" type="TextureRect" parent="Stats"]
@@ -95,7 +97,7 @@ expand_mode = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "0"
 
 [node name="Space" type="Control" parent="Stats"]
@@ -111,7 +113,7 @@ expand_mode = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "15"
 
 [node name="PopulationIcon" type="TextureRect" parent="Stats"]
@@ -123,7 +125,7 @@ expand_mode = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "10"
 
 [node name="Space2" type="Control" parent="Stats"]
@@ -139,7 +141,7 @@ expand_mode = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "10 / 10"
 
 [node name="SpellPowerIcon" type="TextureRect" parent="Stats"]
@@ -151,7 +153,7 @@ expand_mode = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "0"
 
 [node name="Tooltips" type="Control" parent="."]
@@ -235,37 +237,58 @@ offset_bottom = 50.0
 
 [node name="ManaArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1664.0
+offset_left = 1629.0
 offset_right = 1792.0
 offset_bottom = 50.0
 
 [node name="FoodArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1407.0
+offset_left = 1367.0
 offset_top = 1.0
-offset_right = 1491.0
+offset_right = 1459.0
 offset_bottom = 51.0
 
 [node name="PopulationArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1505.0
-offset_right = 1590.0
+offset_left = 1467.0
+offset_right = 1566.0
 offset_bottom = 50.0
 
 [node name="GoldArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1016.0
-offset_right = 1114.0
+offset_left = 955.0
+offset_right = 1069.0
 offset_bottom = 50.0
 
 [node name="WoodArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1120.0
-offset_right = 1218.0
+offset_left = 1072.0
+offset_right = 1162.0
 offset_bottom = 50.0
 
 [node name="StoneArea" type="Control" parent="Tooltips"]
 anchors_preset = 0
-offset_left = 1224.0
-offset_right = 1322.0
+offset_left = 1180.0
+offset_right = 1274.0
 offset_bottom = 50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 5.0
+offset_right = 112.0
+offset_bottom = 47.0
+theme = ExtResource("11_tojqf")
+theme_override_constants/separation = 10
+
+[node name="Sun" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_tvvq8")
+expand_mode = 2
+
+[node name="DayCount" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "1"

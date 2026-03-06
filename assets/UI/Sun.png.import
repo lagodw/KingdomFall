@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkud1ngvb85db"
-path="res://.godot/imported/money.png-13ea6c9d5ec7f8b29104c690a10ef656.ctex"
+uid="uid://dvvln4sqkien"
+path="res://.godot/imported/Sun.png-d37f870e822659509c4f59be263ef579.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/money.png"
-dest_files=["res://.godot/imported/money.png-13ea6c9d5ec7f8b29104c690a10ef656.ctex"]
+source_file="res://assets/UI/Sun.png"
+dest_files=["res://.godot/imported/Sun.png-d37f870e822659509c4f59be263ef579.ctex"]
 
 [params]
 

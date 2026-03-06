@@ -17,6 +17,7 @@ func _ready() -> void:
 	Bus.board_loaded.connect(on_combat)
 	Bus.update_amounts.connect(update_amounts)
 	ee.card_added_to_deck.connect(update_population)
+	%DayCount.text = str(Bus.map.day_counter)
 	update_amounts()
 	#add_boons()
 	setup_tooltips()
