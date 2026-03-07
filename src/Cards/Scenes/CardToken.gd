@@ -129,8 +129,8 @@ func on_turn_start(_turn_num: int, turn_owner: String):
 	if not current_slot or current_health <= 0: return
 	if card_owner == turn_owner:
 		set_act(true)
-	if max_shield > 0:
-		current_shield = max_shield
+	#if max_shield > 0:
+		#current_shield = max_shield
 	remaining_base_damage = current_damage
 	attacked_this_turn = false
 	
@@ -301,6 +301,7 @@ func on_effects_finished():
 		_cached_shield_damage_taken = shield_damage_taken
 		
 	current_damage = adjust_for_fatigue(max_damage)
+	current_shield = adjust_for_fatigue(max_shield)
 	max_activation = base_stats['activation']
 	current_activation = base_stats['activation']
 	
@@ -481,7 +482,7 @@ func move_card():
 	get_tree().current_scene.call_deferred("add_child", card)
 
 func adjust_for_fatigue(num: int) -> int:
-	return(int((20.0 - current_fatigue) / 20.0 * num))
+	return(roundi((20.0 - current_fatigue) / 20.0 * num))
 
 func _assign_breach_damage():
 	if remaining_life <= 0 or Bus.Board.breach_amount <= 0: 

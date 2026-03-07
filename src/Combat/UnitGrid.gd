@@ -9,12 +9,6 @@ extends VBoxContainer
 func _ready() -> void:
 	Bus.Grid = self
 	Bus.trigger_occurred.connect(on_trigger)
-	
-func on_turn_start(_turn_num: int):
-	for unit in player_front.get_units():
-		unit.current_fatigue += 1
-	for unit in player_back.get_units():
-		unit.current_fatigue += 1
 
 func on_trigger(trigger: String, _trigger_card: Control) -> void:
 	if trigger in ['target', 'cast', 'discard', 'attach', 'move', 'consume_used']:
@@ -127,6 +121,11 @@ func execute_player_attack(real: bool) -> void:
 		if not real:
 			for enemy in enemies:
 				enemy.assigned_breach_damage = 0
+	if real:
+		for unit in player_front.get_units():
+			unit.current_fatigue += 1
+		for unit in player_back.get_units():
+			unit.current_fatigue += 1
 
 func distribute_overflow_damage(amount: int, target_owner: String, real: bool) -> void:
 	var remaining_damage = amount

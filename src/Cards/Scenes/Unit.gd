@@ -129,7 +129,9 @@ func tween_text(property: String, new_amt: int):
 	if start_amt == new_amt:
 		return
 	var color: Color = Color.FIREBRICK
-	if start_amt < new_amt:
+	if start_amt < new_amt and property != "Fatigue":
+		color = Color.SEA_GREEN
+	elif start_amt > new_amt and property == "Fatigue":
 		color = Color.SEA_GREEN
 	text_label.set("theme_override_colors/font_color", color)
 	var callable = Callable.create(self, "set_%s_text" % property)
