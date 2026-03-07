@@ -47,7 +47,8 @@ func get_pooled_damage(real: bool = true) -> int:
 	var total = 0
 	var dmg_var = "current_damage" if real else "current_damage"
 	for unit in get_units():
-		if unit.can_act and (unit.remaining_life > 0 or box_owner == "Enemy"):
+		var hp = unit.current_health if real else unit.remaining_life
+		if unit.can_act and hp > 0:
 			total += unit.get(dmg_var)
 	return total
 
@@ -55,7 +56,9 @@ func get_pooled_shield(real: bool = true) -> int:
 	var total = 0
 	var shield_var = "current_shield" if real else "current_shield"
 	for unit in get_units():
-		total += unit.get(shield_var)
+		var hp = unit.current_health if real else unit.remaining_life
+		if hp > 0:
+			total += unit.get(shield_var)
 	return total
 
 func update_preview():

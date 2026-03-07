@@ -10,13 +10,13 @@
 [sub_resource type="Resource" id="Resource_wnerq"]
 script = ExtResource("1_1me7o")
 turn = 0
-units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn"), ExtResource("4_puk2q")])
+units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [sub_resource type="Resource" id="Resource_tavvl"]
 script = ExtResource("1_1me7o")
 turn = 1
-units = Array[ExtResource("2_g58sq")]([ExtResource("4_puk2q"), ExtResource("4_puk2q")])
+units = Array[ExtResource("2_g58sq")]([ExtResource("4_puk2q"), ExtResource("3_gfgjn")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [sub_resource type="Resource" id="Resource_1s86m"]
@@ -29,4 +29,5 @@ metadata/_custom_type_script = "uid://jdj8k4tksnow"
 script = ExtResource("6_tiw8i")
 ranks = Array[ExtResource("1_1me7o")]([SubResource("Resource_wnerq"), SubResource("Resource_tavvl"), SubResource("Resource_1s86m")])
 is_night_enemy = false
+is_final_enemy = false
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

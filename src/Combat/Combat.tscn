@@ -341,10 +341,10 @@ offset_bottom = 590.0
 [node name="Cheat" type="Button" parent="."]
 process_mode = 3
 layout_mode = 0
-offset_left = 62.0
-offset_top = 76.0
-offset_right = 237.0
-offset_bottom = 165.0
+offset_left = 79.0
+offset_top = 922.0
+offset_right = 254.0
+offset_bottom = 1011.0
 text = "Cheat"
 
 [node name="Escape" parent="." instance=ExtResource("14_bx2u5")]
@@ -356,5 +356,14 @@ visible = false
 
 [node name="CombatWon" parent="." instance=ExtResource("23_vywh8")]
 visible = false
+
+[node name="Phase" type="Label" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 91.0
+offset_right = 454.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 48
+text = "Phase"
 
 [editable path="EnemyGraveyard"]

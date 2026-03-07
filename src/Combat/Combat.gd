@@ -15,6 +15,19 @@ var selected_unit_resources: Array[UnitResource]
 var is_breached: bool = false
 var breach_amount: int = 0
 
+enum TurnPhase {
+	ENEMY_ATTACK,
+	ENEMY_ACTION,
+	PLAYER_ATTACK,
+	BREACH_CONFIRM,
+	PLAYER_ACTION
+}
+var current_phase: TurnPhase = TurnPhase.ENEMY_ACTION:
+	set(val):
+		current_phase = val
+		$Phase.text = TurnPhase.keys()[val]
+
+
 func _ready() -> void:
 	Bus.Board = self
 	Bus.draw = draw_pile
@@ -53,15 +66,80 @@ func select_card(button: Button):
 	%DeckCount.text = str(selected_cards.size())
 
 func end_turn():
+	if current_phase == TurnPhase.PLAYER_ACTION:
+		run_enemy_attack()
+	elif current_phase == TurnPhase.BREACH_CONFIRM:
+		# Player confirmed breach targets
+		Bus.Grid.apply_breach_damage()
+		run_player_action()
+
+func run_enemy_attack():
+	current_phase = TurnPhase.ENEMY_ATTACK
+	
+	# Skip attack phase entirely if there's no breach (damage <= shield)
+	var enemy_dmg = Bus.Grid.enemy_back.get_pooled_damage(false)
+	var player_shield = Bus.Grid.player_front.get_pooled_shield(false)
+	
+	if enemy_dmg <= player_shield:
+		run_enemy_action()
+		return
+		
 	combat_happening = true
-	Bus.Grid.start_combat()
+	Bus.Grid.execute_enemy_attack(true)
 	combat_happening = false
+	
+	if combat_over:
+		return
+		
+	# Wait for attack animations to finish before enemy rearranges
+	await get_tree().create_timer(kf.tween_time * 2).timeout 
+	run_enemy_action()
+
+func run_enemy_action():
+	current_phase = TurnPhase.ENEMY_ACTION
+	ee.emit_signal("start_turn", turn_counter) # Triggers Enemy to add and deploy units
+	
+	# Wait for deployment animations
+	await get_tree().create_timer(kf.tween_time * 2).timeout
+	run_player_attack()
+
+func run_player_attack():
+	current_phase = TurnPhase.PLAYER_ATTACK
+	
+	# Skip attack phase entirely if there's no breach (damage <= shield)
+	var player_dmg = Bus.Grid.player_back.get_pooled_damage(false)
+	var enemy_shield = Bus.Grid.enemy_front.get_pooled_shield(false)
+	
+	if player_dmg <= enemy_shield:
+		run_player_action()
+		return
+		
+	combat_happening = true
+	Bus.Grid.execute_player_attack(true)
+	combat_happening = false
+	
+	if combat_over:
+		return
+		
+	# Wait for attack animations
+	#await get_tree().create_timer(kf.tween_time * 2).timeout
+	
+	if is_breached:
+		current_phase = TurnPhase.BREACH_CONFIRM
+		# UI waits for player to distribute breach damage and click End Turn again
+	else:
+		run_player_action()
+
+func run_player_action():
+	current_phase = TurnPhase.PLAYER_ACTION
 	await Bus.hand.discard()
 	draw_pile.draw_cards(5)
 	Bus.energy = 3
 	update_energy()
-	ee.emit_signal("start_turn", turn_counter)
 	turn_counter += 1
+	# Note: We triggered "start_turn" during ENEMY_ACTION, so we don't do it again here.
+	# Next up, player can act, then clicks End Turn to loop back to ENEMY_ATTACK.
+
 
 func update_energy():
 	energy_txt.text = str(Bus.energy)
@@ -87,7 +165,9 @@ func begin_combat():
 		
 	await get_tree().create_timer(kf.tween_time * 1.5).timeout
 	draw_pile.shuffle()
-	end_turn()
+	
+	# Kick off combat loop by calling the first phase
+	run_enemy_action()
 
 func combat_won():
 	if Bus.map.current_location.enemy.is_final_enemy:

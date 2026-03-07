@@ -214,7 +214,7 @@ func _gui_input(event):
 		return
 	if event is InputEventMouseButton:
 		if card_owner == "Enemy" and event.is_pressed() and event.get_button_index() == MOUSE_BUTTON_LEFT:
-			if Bus.Board.is_breached:
+			if Bus.Board.is_breached and Bus.Board.current_phase == Combat.TurnPhase.BREACH_CONFIRM:
 				if remaining_life <= 0 and assigned_breach_damage > 0:
 					_remove_breach_damage()
 				elif remaining_life > 0:

@@ -35,17 +35,11 @@ func update_previews() -> void:
 	get_tree().call_group("Tokens", "reset_remaining")
 	await get_tree().process_frame
 	
-	player_front.update_preview()
-	player_back.update_preview()
-	enemy_front.update_preview()
-	enemy_back.update_preview()
-	
-	execute_combat(false)
+	# Simulate combat phases sequentially to accurately determine remaining_life
+	execute_enemy_attack(false)
+	execute_player_attack(false)
 
-func start_combat() -> void:
-	execute_combat(true)
-
-func execute_combat(real: bool) -> void:
+func execute_enemy_attack(real: bool) -> void:
 	# 1. ENEMY GOES FIRST: Calculate Enemy Attack vs Player Shield
 	var enemy_back_dmg = enemy_back.get_pooled_damage(real)
 	var player_front_shield = player_front.get_pooled_shield(real)
@@ -60,11 +54,8 @@ func execute_combat(real: bool) -> void:
 			distribute_overflow_damage(enemy_overflow, "Player", false)
 	else:
 		set_breach_preview("Player", false)
-	
-	# If this is a real combat and the player died/lost during the enemy phase, stop here
-	if real and Bus.Board.combat_over:
-		return
-	
+		
+func execute_player_attack(real: bool) -> void:
 	# 3. PLAYER GOES SECOND: Calculate Player Attack (using surviving units) vs Enemy Shield
 	var player_back_dmg = player_back.get_pooled_damage(real)
 	var enemy_front_shield = enemy_front.get_pooled_shield(real)
@@ -73,38 +64,35 @@ func execute_combat(real: bool) -> void:
 	# 4. Distribute Player Overflow -> Enemy Side
 	if player_overflow > 0:
 		set_breach_preview("Enemy", true)
-		if real:
-			apply_breach_damage()
-		else:
-			Bus.Board.is_breached = true
+		Bus.Board.is_breached = true
+		
+		# Find all enemy tokens
+		var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
+		
+		# Sum up all currently assigned breach damage
+		var total_assigned = 0
+		for enemy in enemies:
+			total_assigned += enemy.assigned_breach_damage
 			
-			# Find all enemy tokens
-			var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
+		# Check if we still have enough overflow to cover the existing assignments
+		if player_overflow >= total_assigned:
+			Bus.Board.breach_amount = player_overflow - total_assigned
 			
-			# Sum up all currently assigned breach damage
-			var total_assigned = 0
+			# Re-apply assigned damage to remaining_life since reset_remaining() cleared it
 			for enemy in enemies:
-				total_assigned += enemy.assigned_breach_damage
-				
-			# Check if we still have enough overflow to cover the existing assignments
-			if player_overflow >= total_assigned:
-				Bus.Board.breach_amount = player_overflow - total_assigned
-				
-				# Re-apply assigned damage to remaining_life since reset_remaining() cleared it
-				for enemy in enemies:
-					if enemy.assigned_breach_damage > 0:
-						# Safety check: if an enemy's health decreased (e.g. from a spell), refund excess
-						var excess = enemy.assigned_breach_damage - enemy.remaining_life
-						if excess > 0:
-							enemy.assigned_breach_damage -= excess
-							Bus.Board.breach_amount += excess
-							
-						enemy.remaining_life -= enemy.assigned_breach_damage
-			else:
-				# Overflow decreased below what was assigned, reset all assignments
-				Bus.Board.breach_amount = player_overflow
-				for enemy in enemies:
-					enemy.assigned_breach_damage = 0
+				if enemy.assigned_breach_damage > 0:
+					# Safety check: if an enemy's health decreased (e.g. from a spell), refund excess
+					var excess = enemy.assigned_breach_damage - enemy.remaining_life
+					if excess > 0:
+						enemy.assigned_breach_damage -= excess
+						Bus.Board.breach_amount += excess
+						
+					enemy.remaining_life -= enemy.assigned_breach_damage
+		else:
+			# Overflow decreased below what was assigned, reset all assignments
+			Bus.Board.breach_amount = player_overflow
+			for enemy in enemies:
+				enemy.assigned_breach_damage = 0
 	else:
 		set_breach_preview("Enemy", false)
 		Bus.Board.is_breached = false

@@ -56,41 +56,53 @@ func deploy_units():
 			units.append(deploy_card)
 			if grid_units.has(deploy_card):
 				grid_units.erase(deploy_card)
-		#else:
-			#deploy_card.queue_free()
 			
 	if units.is_empty():
 		return
 		
-	# 4. Sort by attack ratio (highest ratio first)
-	units.sort_custom(sort_by_attack_ratio)
-	
 	var backline_units: Array = []
 	var frontline_units: Array = []
 	
-	# 5. Divide in half. Highest attack units go to backline.
-	var target_back_size = min(max_back, ceil(units.size() / 2.0))
+	# 4. Assess incoming damage
+	# Get the base damage the player *would* deal this turn
+	var incoming_damage = Bus.Grid.player_back.get_pooled_damage(true)
+	var pooled_block = 0
 	
+	# 5. Sort units by block efficiency to find the best blockers first
+	var block_candidates = units.duplicate()
+	block_candidates.sort_custom(sort_by_block_efficiency)
+	
+	# 6. Assign frontline blockers until incoming damage is blocked (or we run out of space)
+	for unit in block_candidates:
+		if incoming_damage > 0 and pooled_block < incoming_damage and frontline_units.size() < max_front:
+			frontline_units.append(unit)
+			pooled_block += unit.current_shield + unit.current_health # Assuming they block with their body as well
+			units.erase(unit)
+	
+	# 7. Sort remaining units by attack efficiency for the backline
+	units.sort_custom(sort_by_attack_ratio)
+	
+	# 8. Fill the rest of the board with the remaining units
 	for unit in units:
-		if backline_units.size() < target_back_size:
+		if backline_units.size() < max_back:
 			backline_units.append(unit)
 		elif frontline_units.size() < max_front:
 			frontline_units.append(unit)
 		else:
-			# Fallback in case frontline filled up but backline still has room
+			# If both are full, mathematically shouldn't happen based on total_capacity but just in case
 			if backline_units.size() < max_back:
 				backline_units.append(unit)
 			
 	var back_slots = Bus.Grid.enemy_back.all_slots.duplicate()
 	var front_slots = Bus.Grid.enemy_front.all_slots.duplicate()
 	
-	# 6. Move backline units to slots
+	# 9. Move backline units to slots
 	for unit in backline_units:
 		if not back_slots.is_empty():
 			var slot = back_slots.pop_front()
 			unit.move_to(slot)
 			
-	# 7. Move frontline units to slots
+	# 10. Move frontline units to slots
 	for unit in frontline_units:
 		if not front_slots.is_empty():
 			var slot = front_slots.pop_front()
@@ -130,4 +142,22 @@ func sort_by_attack_ratio(unit1, unit2) -> bool:
 	# Higher ratio goes first
 	if r1 > r2: return true
 	if r1 == r2: return unit1.current_damage >= unit2.current_damage
+	return false
+
+func sort_by_block_efficiency(unit1, unit2) -> bool:
+	# Prioritize units with high block and health vs low attack
+	var get_ratio = func(u):
+		var block_val = float(u.current_shield + u.current_health)
+		var dmg_val = float(u.current_damage)
+		
+		if dmg_val == 0:
+			return block_val * 10.0 # High priority for pure blockers
+		return block_val / dmg_val
+		
+	var r1 = get_ratio.call(unit1)
+	var r2 = get_ratio.call(unit2)
+	
+	# Higher block ratio goes first
+	if r1 > r2: return true
+	if r1 == r2: return (unit1.current_shield + unit1.current_health) >= (unit2.current_shield + unit2.current_health)
 	return false
