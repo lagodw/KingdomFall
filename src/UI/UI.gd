@@ -16,6 +16,8 @@ extends Control
 @onready var stone_chg = %stoneChange
 @onready var food_chg = %foodChange
 
+@onready var card_grid: GridContainer = %CardsBox
+
 var gold_change: int:
 	set(val):
 		gold_change = val
@@ -70,6 +72,8 @@ func _ready() -> void:
 	Bus.board_loaded.connect(on_combat)
 	Bus.update_amounts.connect(update_amounts)
 	ee.card_added_to_deck.connect(update_population)
+	%CloseCards.pressed.connect(close_preview)
+	%ViewDeck.pressed.connect(view_deck)
 	%DayCount.text = str(Bus.map.day_counter)
 	update_amounts()
 	gold_change = Bus.gold_change
@@ -153,3 +157,21 @@ func hide_tooltip(stat: String):
 
 func set_font_color(node: Control, color: Color):
 	node.set("theme_override_colors/font_color", color)
+
+func load_cards_preview(cards: Array[CardResource]):
+	for resource in cards:
+		var card = kf.create_card(resource)
+		card.disabled = true
+		card_grid.add_child(card)
+	$PilePreview.visible = true
+		
+func close_preview():
+	$PilePreview.visible = false
+	for card in card_grid.get_children():
+		card.queue_free()
+
+func view_deck():
+	if $PilePreview.visible:
+		close_preview()
+	else:
+		load_cards_preview(Bus.deck.cards)

@@ -9,6 +9,7 @@ enum PileType {DRAW, DISCARD}
 @onready var cards: Control = $Cards
 
 func _ready() -> void:
+	$View.pressed.connect(preview_cards)
 	mouse_exited.connect(show_highlight.bind(false))
 
 func load_deck(resources: Array[CardResource]):
@@ -84,3 +85,9 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 
 func show_highlight(to_show: bool):
 	$Highlight.visible = to_show
+
+func preview_cards():
+	var resources: Array[CardResource]
+	for card in cards.get_children():
+		resources.append(card.card_resource)
+	Bus.ui.load_cards_preview(resources)
