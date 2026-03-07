@@ -61,7 +61,7 @@ offset_right = -40.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="GoldIcon" type="TextureRect" parent="Stats"]
@@ -74,7 +74,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "100"
+text = "0"
+
+[node name="goldChange" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "(+99)"
 
 [node name="WoodIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
@@ -86,7 +93,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "0"
+text = "99"
+
+[node name="woodChange" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "(+99)"
 
 [node name="StoneIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
@@ -98,23 +112,18 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "0"
+text = "99"
+
+[node name="stoneChange" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "(+99)"
 
 [node name="Space" type="Control" parent="Stats"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-
-[node name="FoodIcon" type="TextureRect" parent="Stats"]
-layout_mode = 2
-texture = ExtResource("4_f5lgd")
-expand_mode = 3
-
-[node name="foodAmt" type="Label" parent="Stats"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "15"
 
 [node name="PopulationIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
@@ -127,6 +136,25 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "10"
+
+[node name="FoodIcon" type="TextureRect" parent="Stats"]
+layout_mode = 2
+texture = ExtResource("4_f5lgd")
+expand_mode = 3
+
+[node name="foodAmt" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "20"
+
+[node name="foodChange" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "(+99)"
 
 [node name="Space2" type="Control" parent="Stats"]
 custom_minimum_size = Vector2(50, 0)
@@ -157,6 +185,7 @@ theme_override_font_sizes/font_size = 32
 text = "0"
 
 [node name="Tooltips" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 
 [node name="Mana_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]

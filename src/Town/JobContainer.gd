@@ -79,8 +79,10 @@ func add_unit(unit: Unit):
 		await get_tree().process_frame
 		unit.token.move_card()
 		unit.token.current_job = job
+		update_currency_preview(unit.token, true)
 	else:
 		unit.current_job = job
+		update_currency_preview(unit, true)
 
 func move_tokens_up():
 	for i in range(token_grid.get_child_count() - 1):
@@ -96,9 +98,22 @@ func release_unit(token: CardToken):
 	token.current_job = null
 	move_tokens_up()
 	bldg.empty_capacity_slot()
+	update_currency_preview(token, false)
 	
 func show_highlight(value: bool):
 	highlight.visible = value
+
+func update_currency_preview(unit: Unit, is_adding: bool):
+	if not job or not job.effects:
+		return
+	for effect in job.effects:
+		if effect.function == "change_bus_var" and effect.bus_var in ["gold", "wood", "stone", "food"]:
+			var amt = effect.bus_var_change.get_value(unit, bldg, unit, {"trigger_card": bldg})
+			var var_name = effect.bus_var + "_change"
+			if is_adding:
+				Bus.set(var_name, Bus.get(var_name) + amt)
+			else:
+				Bus.set(var_name, Bus.get(var_name) - amt)
 
 func get_occupants() -> Array[CardToken]:
 	var units: Array[CardToken]

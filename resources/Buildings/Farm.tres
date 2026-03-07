@@ -35,6 +35,7 @@ script = ExtResource("3_4rdbb")
 require_trigger = false
 required_slots = Array[int]([])
 require_building_name = null
+require_job_name = ""
 require_act = false
 minimum_damage = 0
 require_alive = false
@@ -151,7 +152,6 @@ description = "Provides 3 [b]Food[/b] per [b]Productivity[/b]"
 capacity = 1
 effects = Array[ExtResource("1_1ycp7")]([SubResource("Resource_rjv0g")])
 requirements = Array[ExtResource("8_4rdbb")]([])
-progress = Array[ExtResource("8_4rdbb")]([])
 metadata/_custom_type_script = "uid://druilahufs03l"
 
 [resource]

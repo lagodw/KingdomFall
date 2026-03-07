@@ -11,6 +11,10 @@ var selected_upgrade_button: Button
 
 func _ready() -> void:
 	Bus.map.day_counter += 1
+	Bus.food_change = -Bus.player.deck.get_units().size()
+	Bus.gold_change = 0
+	Bus.wood_change = 0
+	Bus.stone_change = 0
 	for building in Bus.player.town.buildings:
 		add_building(building)
 	$Bottom/UnitPanel.load_units(Bus.deck.cards)

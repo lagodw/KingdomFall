@@ -358,7 +358,7 @@ func _get_property_list() -> Array:
 				list.append(resource_hint("debuff_amount", "EffectValue"))
 			'change_bus_var':
 				list.append(type_hint("bus_var", TYPE_STRING, PROPERTY_HINT_ENUM,
-						"mana,gold,spell_power,food"))
+						"mana,gold,spell_power,wood,stone,food"))
 				list.append(resource_hint("bus_var_change", "EffectValue"))
 			'permanent_buff':
 				list.append(resource_hint("perm_damage", "EffectValue"))

@@ -72,6 +72,28 @@ var spell_power: int = 0:
 		emit_signal("currency_changed", "spell_power", spell_power, change)
 	get():
 		return(player.spell_power)
+
+var gold_change: int:
+	set(val):
+		if ui:
+			gold_change = val
+			ui.gold_change = val
+var wood_change: int:
+	set(val):
+		if ui:
+			wood_change = val
+			ui.wood_change = val
+var stone_change: int:
+	set(val):
+		if ui:
+			stone_change = val
+			ui.stone_change = val
+var food_change: int:
+	set(val):
+		if ui:
+			food_change = val
+			ui.food_change = val
+
 var snapshot_spell_power: int
 var snapshot_mana: int
 var snapshot_gold: int
