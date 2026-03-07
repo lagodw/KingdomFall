@@ -62,8 +62,8 @@ func deploy_units():
 	if units.is_empty():
 		return
 		
-	var backline_units: Array = []
-	var frontline_units: Array = []
+	var backline_units: Array[Unit] = []
+	var frontline_units: Array[Unit] = []
 	
 	# 4. Assess incoming damage
 	# Get the base damage the player *would* deal this turn
@@ -100,15 +100,23 @@ func deploy_units():
 	
 	# 9. Move backline units to slots
 	for unit in backline_units:
-		if not back_slots.is_empty():
-			var slot = back_slots.pop_front()
-			unit.move_to(slot)
+		if back_slots.is_empty():
+			continue
+		if unit.current_slot:
+			if unit.current_slot.box == Bus.Grid.enemy_back:
+				continue
+		var slot = back_slots.pop_front()
+		unit.move_to(slot)
 			
 	# 10. Move frontline units to slots
 	for unit in frontline_units:
-		if not front_slots.is_empty():
-			var slot = front_slots.pop_front()
-			unit.move_to(slot)
+		if front_slots.is_empty():
+			continue
+		if unit.current_slot:
+			if unit.current_slot.box == Bus.Grid.enemy_front:
+				continue
+		var slot = front_slots.pop_front()
+		unit.move_to(slot)
 
 func on_trigger(trigger: String, trigger_card: Control):
 	if enemy_dupe.ranks.size() > 0:

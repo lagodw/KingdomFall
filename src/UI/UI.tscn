@@ -69,6 +69,24 @@ layout_mode = 2
 texture = ExtResource("3_dhqo1")
 expand_mode = 3
 
+[node name="GoldArea" type="Control" parent="Stats/GoldIcon"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_top = -2.5
+offset_right = 101.0
+offset_bottom = 47.5
+
+[node name="Gold_tip" parent="Stats/GoldIcon" instance=ExtResource("14_l34ye")]
+unique_name_in_owner = true
+visible = false
+offset_left = 1.0
+offset_top = 52.5
+offset_right = 201.0
+offset_bottom = 122.5
+icon_path = "uid://k4fhlip7l4rd"
+title = "Gold"
+description = "Can be used to buy stuff."
+
 [node name="goldAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
@@ -87,6 +105,25 @@ text = "(+99)"
 layout_mode = 2
 texture = ExtResource("4_dhqo1")
 expand_mode = 3
+
+[node name="WoodArea" type="Control" parent="Stats/WoodIcon"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -2.0
+offset_top = -2.5
+offset_right = 93.0
+offset_bottom = 47.5
+
+[node name="Wood_tip" parent="Stats/WoodIcon" instance=ExtResource("14_l34ye")]
+unique_name_in_owner = true
+visible = false
+offset_left = -6.0
+offset_top = 52.5
+offset_right = 194.0
+offset_bottom = 122.5
+icon_path = "uid://d1q5uhkg0mssk"
+title = "Wood"
+description = "Needed for construction and crafting"
 
 [node name="woodAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
@@ -107,6 +144,22 @@ layout_mode = 2
 texture = ExtResource("5_8upts")
 expand_mode = 3
 
+[node name="StoneArea" type="Control" parent="Stats/StoneIcon"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_top = -2.5
+offset_right = 94.0
+offset_bottom = 47.5
+
+[node name="Stone_tip" parent="Stats/StoneIcon" instance=ExtResource("14_l34ye")]
+unique_name_in_owner = true
+visible = false
+offset_top = 52.5
+offset_bottom = 122.5
+icon_path = "uid://7pyqgwlmaabj"
+title = "Stone"
+description = "Needed for construction and crafting"
+
 [node name="stoneAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
@@ -122,25 +175,32 @@ theme_override_font_sizes/font_size = 24
 text = "(+99)"
 
 [node name="Space" type="Control" parent="Stats"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-
-[node name="PopulationIcon" type="TextureRect" parent="Stats"]
-layout_mode = 2
-texture = ExtResource("3_48qpi")
-expand_mode = 3
-
-[node name="PopulationAmt" type="Label" parent="Stats"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "10"
 
 [node name="FoodIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
 texture = ExtResource("4_f5lgd")
 expand_mode = 3
+
+[node name="FoodArea" type="Control" parent="Stats/FoodIcon"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 2.0
+offset_top = -1.5
+offset_right = 94.0
+offset_bottom = 48.5
+
+[node name="Food_tip" parent="Stats/FoodIcon" instance=ExtResource("14_l34ye")]
+unique_name_in_owner = true
+visible = false
+offset_left = 2.0
+offset_top = 52.5
+offset_right = 214.0
+offset_bottom = 122.5
+icon_path = "uid://dir6jcwcaephg"
+title = "Food"
+description = "Produced at farms, needed to feed your population"
 
 [node name="foodAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
@@ -156,14 +216,64 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "(+99)"
 
+[node name="PopulationIcon" type="TextureRect" parent="Stats"]
+layout_mode = 2
+texture = ExtResource("3_48qpi")
+expand_mode = 3
+
+[node name="PopulationArea" type="Control" parent="Stats/PopulationIcon"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -2.0
+offset_top = -2.5
+offset_right = 97.0
+offset_bottom = 47.5
+
+[node name="Population_tip" parent="Stats/PopulationIcon" instance=ExtResource("14_l34ye")]
+unique_name_in_owner = true
+visible = false
+offset_left = 2.0
+offset_top = 52.5
+offset_right = 202.0
+offset_bottom = 122.5
+icon_path = "uid://dcfqun6y306nf"
+title = "Population"
+description = "You will need to feed all these mouths"
+
+[node name="PopulationAmt" type="Label" parent="Stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "10"
+
 [node name="Space2" type="Control" parent="Stats"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
 [node name="ManaIcon" type="TextureRect" parent="Stats"]
 layout_mode = 2
 texture = ExtResource("3_dyal0")
 expand_mode = 3
+
+[node name="ManaArea" type="Control" parent="Stats/ManaIcon"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -14.0
+offset_top = -2.5
+offset_right = 149.0
+offset_bottom = 47.5
+
+[node name="Mana_tip" parent="Stats/ManaIcon" instance=ExtResource("14_l34ye")]
+unique_name_in_owner = true
+visible = false
+offset_left = 1.0
+offset_top = 52.5
+offset_right = 236.0
+offset_bottom = 122.5
+icon_path = "uid://bithkfa0yaj55"
+title = "Mana"
+description = "Required to cast spells. Replenishes each morning"
 
 [node name="manaAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
@@ -177,129 +287,31 @@ layout_mode = 2
 texture = ExtResource("3_hdn2o")
 expand_mode = 3
 
+[node name="PowerArea" type="Control" parent="Stats/SpellPowerIcon"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -3.0
+offset_top = -2.5
+offset_right = 82.0
+offset_bottom = 47.5
+
+[node name="Power_tip" parent="Stats/SpellPowerIcon" instance=ExtResource("14_l34ye")]
+unique_name_in_owner = true
+visible = false
+offset_left = -105.0
+offset_top = 52.5
+offset_right = 95.0
+offset_bottom = 122.5
+icon_path = "uid://b5cdi4ovi55qk"
+title = "Spell Power"
+description = "Increases spell damage"
+
 [node name="spell_powerAmt" type="Label" parent="Stats"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
-
-[node name="Tooltips" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-
-[node name="Mana_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1564.0
-offset_top = 55.0
-offset_right = 1799.0
-offset_bottom = 125.0
-icon_path = "uid://bithkfa0yaj55"
-title = "Mana"
-description = "Required to cast spells. Replenishes each morning"
-
-[node name="Power_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1679.0
-offset_top = 55.0
-offset_right = 1879.0
-offset_bottom = 125.0
-icon_path = "uid://b5cdi4ovi55qk"
-title = "Spell Power"
-description = "Increases spell damage"
-
-[node name="Gold_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1020.0
-offset_top = 55.0
-offset_right = 1220.0
-offset_bottom = 125.0
-icon_path = "uid://k4fhlip7l4rd"
-title = "Gold"
-description = "Can be used to buy stuff."
-
-[node name="Wood_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1124.0
-offset_top = 55.0
-offset_right = 1324.0
-offset_bottom = 125.0
-icon_path = "uid://d1q5uhkg0mssk"
-title = "Wood"
-description = "Needed for construction and crafting"
-
-[node name="Stone_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1236.0
-offset_top = 55.0
-offset_right = 1436.0
-offset_bottom = 125.0
-icon_path = "uid://7pyqgwlmaabj"
-title = "Stone"
-description = "Needed for construction and crafting"
-
-[node name="Food_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1407.0
-offset_top = 55.0
-offset_right = 1619.0
-offset_bottom = 125.0
-icon_path = "uid://dir6jcwcaephg"
-title = "Food"
-description = "Produced at farms, needed to feed your population"
-
-[node name="Population_tip" parent="Tooltips" instance=ExtResource("14_l34ye")]
-visible = false
-offset_left = 1503.0
-offset_top = 55.0
-offset_right = 1703.0
-offset_bottom = 125.0
-icon_path = "uid://dcfqun6y306nf"
-title = "Population"
-description = "You will need to feed all these mouths"
-
-[node name="PowerArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 1797.0
-offset_right = 1882.0
-offset_bottom = 50.0
-
-[node name="ManaArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 1629.0
-offset_right = 1792.0
-offset_bottom = 50.0
-
-[node name="FoodArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 1367.0
-offset_top = 1.0
-offset_right = 1459.0
-offset_bottom = 51.0
-
-[node name="PopulationArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 1467.0
-offset_right = 1566.0
-offset_bottom = 50.0
-
-[node name="GoldArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 955.0
-offset_right = 1069.0
-offset_bottom = 50.0
-
-[node name="WoodArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 1072.0
-offset_right = 1162.0
-offset_bottom = 50.0
-
-[node name="StoneArea" type="Control" parent="Tooltips"]
-anchors_preset = 0
-offset_left = 1180.0
-offset_right = 1274.0
-offset_bottom = 50.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0

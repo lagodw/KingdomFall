@@ -72,6 +72,10 @@ func _ready() -> void:
 	ee.card_added_to_deck.connect(update_population)
 	%DayCount.text = str(Bus.map.day_counter)
 	update_amounts()
+	gold_change = Bus.gold_change
+	wood_change = Bus.wood_change
+	stone_change = Bus.stone_change
+	food_change = Bus.food_change
 	#add_boons()
 	setup_tooltips()
 	
@@ -137,15 +141,15 @@ func toggle_deck():
 
 func setup_tooltips():
 	for stat in ["Mana", "Power", "Gold", "Wood", "Stone", "Food", "Population"]:
-		get_node("Tooltips/%sArea"%stat).mouse_entered.connect(show_tooltip.bind(stat))
-		get_node("Tooltips/%sArea"%stat).mouse_exited.connect(hide_tooltip.bind(stat))
-		get_node("Tooltips/%s_tip"%stat).setup()
+		get_node("%" + "%sArea"%stat).mouse_entered.connect(show_tooltip.bind(stat))
+		get_node("%" + "%sArea"%stat).mouse_exited.connect(hide_tooltip.bind(stat))
+		get_node("%" + "%s_tip"%stat).setup()
 		
 func show_tooltip(stat: String):
-	get_node("Tooltips/%s_tip"%stat).visible = true
+	get_node("%" + "%s_tip"%stat).visible = true
 	
 func hide_tooltip(stat: String):
-	get_node("Tooltips/%s_tip"%stat).visible = false
+	get_node("%" + "%s_tip"%stat).visible = false
 
 func set_font_color(node: Control, color: Color):
 	node.set("theme_override_colors/font_color", color)
