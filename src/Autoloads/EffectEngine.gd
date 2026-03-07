@@ -9,7 +9,7 @@ signal discard(discarded_card: Card)
 signal attach(attaching_card: Card, host: Card)
 signal activate(activating_label: CardLabel)
 signal move(moving_unit: Unit)
-signal start_turn(turn_num: int)
+signal start_turn(turn_num: int, turn_owner: String)
 signal combat_start
 signal combat_end
 signal damage_taken(damaged_unit: CardToken, damage_taken: int)
@@ -100,7 +100,7 @@ func on_trigger(trigger_signal: String, trigger_card: Control):
 			
 	apply_effects()
 	
-func on_turn_start(_turn_num: int):
+func on_turn_start(_turn_num: int, _turn_owner: String):
 	this_turn_effects = []
 		
 func apply_effects() -> void:
@@ -383,7 +383,7 @@ func on_activate(activated_label: CardLabel):
 	Bus.emit_signal("trigger_occurred", "activate", activated_label)
 func on_move(moving_unit: Unit):
 	Bus.emit_signal("trigger_occurred", "move", moving_unit)
-func on_start_turn(_turn_num: int):
+func on_start_turn(_turn_num: int, _turn_owner: String):
 	Bus.emit_signal("trigger_occurred", "start_turn", Bus.Board)
 func on_combat_start():
 	Bus.emit_signal("trigger_occurred", "combat_start", Bus.Board)

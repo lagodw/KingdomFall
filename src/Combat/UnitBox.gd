@@ -9,15 +9,20 @@ enum BoxType { FRONTLINE, BACKLINE }
 @export var box_type: BoxType = BoxType.FRONTLINE
 @export var num_slots: int = 4
 
+@onready var shield_icon = preload("uid://b6lm11rvw7ni3")
+@onready var broken_shield_icon = preload("uid://b1odsqq1346uc")
 @onready var box: HBoxContainer = $Box
 @onready var stats_preview: Label = %StatsPreview
+@onready var stat_icon: TextureRect = %StatIcon
+@onready var shield_mat: ShaderMaterial = %StatIcon.material
 
 var all_slots: Array[TokenSlot] = []
 var current_highlight: TokenSlot = null
+var is_breached: bool = false
 
 func _ready():
 	if box_type == BoxType.FRONTLINE:
-		%StatIcon.texture = load("uid://b6lm11rvw7ni3")
+		stat_icon.texture = load("uid://b6lm11rvw7ni3")
 	for i in num_slots:
 		var slot = TOKEN_SLOT_SCENE.instantiate()
 		slot.slot_exited.connect(_on_slot_exited)
@@ -26,8 +31,15 @@ func _ready():
 		box.add_child(slot)
 		all_slots.append(slot)
 	
+	ee.start_turn.connect(on_start_turn)
 	Bus.trigger_occurred.connect(on_trigger)
 	mouse_exited.connect(show_highlight.bind(false))
+
+func on_start_turn(_turn_num: int, _turn_owner: String):
+	is_breached = false
+	if box_type == BoxType.FRONTLINE:
+		stat_icon.texture = shield_icon
+	$AnimationPlayer.play("RESET")
 
 func on_trigger(trigger: String, _trigger_card: Control):
 	if Bus.Board and Bus.Board.combat_happening:
@@ -47,8 +59,7 @@ func get_pooled_damage(real: bool = true) -> int:
 	var total = 0
 	var dmg_var = "current_damage" if real else "current_damage"
 	for unit in get_units():
-		var hp = unit.current_health if real else unit.remaining_life
-		if unit.can_act and hp > 0:
+		if unit.can_act and (unit.remaining_life > 0 or real):
 			total += unit.get(dmg_var)
 	return total
 
@@ -56,8 +67,7 @@ func get_pooled_shield(real: bool = true) -> int:
 	var total = 0
 	var shield_var = "current_shield" if real else "current_shield"
 	for unit in get_units():
-		var hp = unit.current_health if real else unit.remaining_life
-		if hp > 0:
+		if unit.can_act:
 			total += unit.get(shield_var)
 	return total
 
@@ -139,3 +149,24 @@ func shift_units() -> void:
 		
 	# Update the aggregate stats preview just in case
 	update_preview()
+
+func sword_animation():
+	$AnimationPlayer.play("Slash_%s"%box_owner)
+	await $AnimationPlayer.animation_finished
+
+func send_block_animation():
+	var defender_box: UnitBox = Bus.Grid.get("%s_front"%kf.invert_owner(box_owner).to_lower())
+	defender_box.block_animation()
+
+func block_animation():
+	if not is_breached:
+		$AnimationPlayer.play("Block")
+		
+	var flash_color = Color.FIREBRICK if is_breached else Color.WHITE
+	shield_mat.set_shader_parameter("gleam_color", flash_color)
+	# Tween the progress parameter from -0.5 (left) to 1.5 (right)
+	var gleam_tween = create_tween()
+	gleam_tween.tween_property(shield_mat, "shader_parameter/progress", 1.5, 0.5).from(-0.5)
+	await gleam_tween.finished
+	if is_breached:
+		stat_icon.texture = broken_shield_icon

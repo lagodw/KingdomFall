@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://butr5cp6lgmmp"]
+[gd_scene load_steps=14 format=3 uid="uid://butr5cp6lgmmp"]
 
 [ext_resource type="Script" uid="uid://dfcbc8jhiydbj" path="res://src/Combat/UnitBox.gd" id="1_p4du4"]
 [ext_resource type="Texture2D" uid="uid://cma2bjntli0av" path="res://assets/Card/Icons/Damage.png" id="2_1yb0v"]
@@ -17,6 +17,259 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="Shader" id="Shader_pabcn"]
+code = "shader_type canvas_item;
+
+// The color of the gleam (we will change this from code)
+uniform vec4 gleam_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// Controls the position of the gleam. Tween this from -0.5 to 1.5 to sweep across.
+uniform float progress : hint_range(-0.5, 1.5) = -0.5;
+
+// How wide the gleam is
+uniform float width : hint_range(0.0, 1.0) = 0.2;
+
+// The angle of the gleam line
+uniform float angle : hint_range(0.0, 90.0) = 45.0;
+
+void fragment() {
+	// 1. Get the original texture color
+	vec4 tex_color = texture(TEXTURE, UV);
+
+	// 2. Calculate the angled coordinates
+	float rad = radians(angle);
+	float x = UV.x * cos(rad) - UV.y * sin(rad);
+
+	// 3. Calculate how close the current pixel is to the 'progress' line
+	float dist = abs(x - progress);
+
+	// 4. Create a smooth gradient for the gleam band
+	float gleam_intensity = smoothstep(width, 0.0, dist);
+
+	// 5. Add the gleam to the original color, multiplied by the original alpha
+	// to ensure it skips transparent pixels smoothly!
+	COLOR.rgb = tex_color.rgb + (gleam_color.rgb * gleam_intensity * gleam_color.a);
+	COLOR.a = tex_color.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sjyih"]
+resource_local_to_scene = true
+shader = SubResource("Shader_pabcn")
+shader_parameter/gleam_color = Color(1, 1, 1, 1)
+shader_parameter/progress = -0.5
+shader_parameter/width = 0.2
+shader_parameter/angle = 0.0
+
+[sub_resource type="Animation" id="Animation_sjyih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IconPositioning/StatIcon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconPositioning/StatIcon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconPositioning:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IconPositioning/StatIcon:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_pabcn"]
+resource_name = "Slash_Player"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IconPositioning/StatIcon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4, 0.65, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, -1.5708, -0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconPositioning/StatIcon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.65, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconPositioning:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -230), Vector2(0, -230), Vector2(0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"send_block_animation"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IconPositioning/StatIcon:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ww661"]
+resource_name = "Slash_Enemy"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IconPositioning/StatIcon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4, 0.65, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 1.5708, 3.14159, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IconPositioning/StatIcon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.65, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IconPositioning:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 230), Vector2(0, 230), Vector2(0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"send_block_animation"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IconPositioning/StatIcon:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ltpsl"]
+resource_name = "Block"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IconPositioning/StatIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ww661"]
+_data = {
+&"Block": SubResource("Animation_ltpsl"),
+&"RESET": SubResource("Animation_sjyih"),
+&"Slash_Enemy": SubResource("Animation_ww661"),
+&"Slash_Player": SubResource("Animation_pabcn")
+}
 
 [node name="UnitBox" type="Control"]
 custom_minimum_size = Vector2(775, 100)
@@ -78,32 +331,6 @@ mouse_filter = 2
 texture = ExtResource("2_p3cov")
 expand_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 17.0
-offset_right = 122.0
-offset_bottom = 80.0
-mouse_filter = 2
-theme_override_constants/separation = 0
-
-[node name="StatIcon" type="TextureRect" parent="TextureRect/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_1yb0v")
-expand_mode = 3
-
-[node name="StatsPreview" type="Label" parent="TextureRect/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("3_p3cov")
-theme_override_font_sizes/font_size = 48
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BreachHighlight" type="Panel" parent="TextureRect"]
 unique_name_in_owner = true
 visible = false
@@ -114,3 +341,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p3cov")
+
+[node name="StatsPreview" type="Label" parent="TextureRect"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 71.0
+offset_top = 17.0
+offset_right = 122.0
+offset_bottom = 80.0
+size_flags_horizontal = 3
+theme = ExtResource("3_p3cov")
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IconPositioning" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="StatIcon" type="TextureRect" parent="IconPositioning"]
+unique_name_in_owner = true
+z_index = 3
+material = SubResource("ShaderMaterial_sjyih")
+layout_mode = 0
+offset_left = 7.0
+offset_top = 17.0
+offset_right = 71.0
+offset_bottom = 81.0
+pivot_offset = Vector2(20, 45)
+texture = ExtResource("2_1yb0v")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ww661")
+}

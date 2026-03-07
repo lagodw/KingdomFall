@@ -14,7 +14,9 @@ func _ready() -> void:
 func init_card_grid():
 	card_grid = Bus.Board.get_node("EnemyCards")
 
-func on_turn_start(turn_num: int):
+func on_turn_start(turn_num: int, turn_owner: String):
+	if turn_owner != "Enemy":
+		return
 	# 1. Check if the current turn has an enemy wave scheduled
 	add_cards_for_turn(turn_num)
 	await get_tree().process_frame
@@ -76,7 +78,7 @@ func deploy_units():
 	for unit in block_candidates:
 		if incoming_damage > 0 and pooled_block < incoming_damage and frontline_units.size() < max_front:
 			frontline_units.append(unit)
-			pooled_block += unit.current_shield + unit.current_health # Assuming they block with their body as well
+			pooled_block += unit.current_shield
 			units.erase(unit)
 	
 	# 7. Sort remaining units by attack efficiency for the backline

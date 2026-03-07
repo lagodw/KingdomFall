@@ -195,9 +195,10 @@ func on_activate(triggering_card: Control):
 func on_move(triggering_card: Control):
 	trigger_card = triggering_card
 	apply_effect({})
-func on_start_turn(turn_num: int):
+func on_start_turn(turn_num: int, turn_owner: String):
 	apply_effect({
-		"turn_num": turn_num
+		"turn_num": turn_num,
+		"turn_owner": turn_owner
 	})
 func on_combat_start():
 	trigger_card = Bus.Board

@@ -45,13 +45,28 @@ func execute_enemy_attack(real: bool) -> void:
 	var player_front_shield = player_front.get_pooled_shield(real)
 	var enemy_overflow = enemy_back_dmg - player_front_shield
 	
+	if real:
+		var damaged_units = []
+		if enemy_overflow > 0:
+			# Predict which units will take damage so we can animate them sequentially
+			var temp_damage = enemy_overflow
+			var valid_targets = get_units("Player").filter(func(u): return u.current_health > 0)
+			
+			# Use your existing threat logic to sort the targets
+			valid_targets.sort_custom(func(a, b): return _sort_by_threat(a, b, true, temp_damage))
+			
+			for unit in valid_targets:
+				if temp_damage <= 0: break
+				damaged_units.append(unit)
+				temp_damage -= unit.current_health # It's okay if this goes negative
+				
+		await play_combat_animation(enemy_back, player_front, enemy_overflow > 0, damaged_units)
+
 	# 2. Distribute Enemy Overflow -> Player Side
 	if enemy_overflow > 0:
 		set_breach_preview("Player", true)
-		if real:
-			distribute_overflow_damage(enemy_overflow, "Player", true)
-		else:
-			distribute_overflow_damage(enemy_overflow, "Player", false)
+		# Cleaned up the if/else since 'real' handles the boolean directly
+		distribute_overflow_damage(enemy_overflow, "Player", real) 
 	else:
 		set_breach_preview("Player", false)
 		
@@ -61,13 +76,23 @@ func execute_player_attack(real: bool) -> void:
 	var enemy_front_shield = enemy_front.get_pooled_shield(real)
 	var player_overflow = player_back_dmg - enemy_front_shield
 	
+	# Find all enemy tokens
+	var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
+	
+	if real:
+		var damaged_units = []
+		if player_overflow > 0:
+			for enemy in enemies:
+				# Find all units the player assigned damage to
+				if enemy.assigned_breach_damage > 0: 
+					damaged_units.append(enemy)
+					
+		await play_combat_animation(player_back, enemy_front, player_overflow > 0, damaged_units)
+	
 	# 4. Distribute Player Overflow -> Enemy Side
 	if player_overflow > 0:
 		set_breach_preview("Enemy", true)
 		Bus.Board.is_breached = true
-		
-		# Find all enemy tokens
-		var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
 		
 		# Sum up all currently assigned breach damage
 		var total_assigned = 0
@@ -100,7 +125,6 @@ func execute_player_attack(real: bool) -> void:
 		
 		# Reset all assignments since we have no overflow
 		if not real:
-			var enemies = get_tree().get_nodes_in_group("Tokens").filter(func(t): return t.card_owner == "Enemy")
 			for enemy in enemies:
 				enemy.assigned_breach_damage = 0
 
@@ -206,3 +230,6 @@ func apply_breach_damage():
 func set_breach_preview(who_breached: String, is_breached: bool):
 	get("%s_front"%who_breached.to_lower()).set_breach(is_breached)
 	
+func play_combat_animation(attacker_box: UnitBox, defender_box: UnitBox, is_breached: bool, _damaged_units: Array) -> void:
+	defender_box.is_breached = is_breached
+	await attacker_box.sword_animation()

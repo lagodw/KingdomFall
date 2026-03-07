@@ -76,28 +76,24 @@ func end_turn():
 func run_enemy_attack():
 	current_phase = TurnPhase.ENEMY_ATTACK
 	
-	# Skip attack phase entirely if there's no breach (damage <= shield)
-	var enemy_dmg = Bus.Grid.enemy_back.get_pooled_damage(false)
-	var player_shield = Bus.Grid.player_front.get_pooled_shield(false)
-	
-	if enemy_dmg <= player_shield:
+	# Skip attack phase entirely if there's no damage
+	var enemy_dmg = Bus.Grid.enemy_back.get_pooled_damage(true)
+	if enemy_dmg <= 0:
 		run_enemy_action()
 		return
 		
 	combat_happening = true
-	Bus.Grid.execute_enemy_attack(true)
+	await Bus.Grid.execute_enemy_attack(true)
 	combat_happening = false
 	
 	if combat_over:
 		return
 		
-	# Wait for attack animations to finish before enemy rearranges
-	await get_tree().create_timer(kf.tween_time * 2).timeout 
 	run_enemy_action()
 
 func run_enemy_action():
 	current_phase = TurnPhase.ENEMY_ACTION
-	ee.emit_signal("start_turn", turn_counter) # Triggers Enemy to add and deploy units
+	ee.emit_signal("start_turn", turn_counter, "Enemy") # Triggers Enemy to add and deploy units
 	
 	# Wait for deployment animations
 	await get_tree().create_timer(kf.tween_time * 2).timeout
@@ -106,23 +102,18 @@ func run_enemy_action():
 func run_player_attack():
 	current_phase = TurnPhase.PLAYER_ATTACK
 	
-	# Skip attack phase entirely if there's no breach (damage <= shield)
-	var player_dmg = Bus.Grid.player_back.get_pooled_damage(false)
-	var enemy_shield = Bus.Grid.enemy_front.get_pooled_shield(false)
-	
-	if player_dmg <= enemy_shield:
+	# Skip attack phase entirely if there's no damage
+	var player_dmg = Bus.Grid.player_back.get_pooled_damage(true)
+	if player_dmg <= 0:
 		run_player_action()
 		return
 		
 	combat_happening = true
-	Bus.Grid.execute_player_attack(true)
+	await Bus.Grid.execute_player_attack(true)
 	combat_happening = false
 	
 	if combat_over:
 		return
-		
-	# Wait for attack animations
-	#await get_tree().create_timer(kf.tween_time * 2).timeout
 	
 	if is_breached:
 		current_phase = TurnPhase.BREACH_CONFIRM
@@ -132,14 +123,12 @@ func run_player_attack():
 
 func run_player_action():
 	current_phase = TurnPhase.PLAYER_ACTION
+	ee.emit_signal("start_turn", turn_counter, "Player")
 	await Bus.hand.discard()
 	draw_pile.draw_cards(5)
 	Bus.energy = 3
 	update_energy()
 	turn_counter += 1
-	# Note: We triggered "start_turn" during ENEMY_ACTION, so we don't do it again here.
-	# Next up, player can act, then clicks End Turn to loop back to ENEMY_ATTACK.
-
 
 func update_energy():
 	energy_txt.text = str(Bus.energy)

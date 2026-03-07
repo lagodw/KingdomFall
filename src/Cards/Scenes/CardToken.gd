@@ -125,9 +125,10 @@ func _process(_delta):
 	else:
 		mouse_filter = Control.MOUSE_FILTER_STOP
 		
-func on_turn_start(_turn_num: int):
+func on_turn_start(_turn_num: int, turn_owner: String):
 	if not current_slot or current_health <= 0: return
-	set_act(true)
+	if card_owner == turn_owner:
+		set_act(true)
 	if max_shield > 0:
 		current_shield = max_shield
 	remaining_base_damage = current_damage

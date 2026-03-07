@@ -6,7 +6,8 @@
 
 [node name="Gate" instance=ExtResource("1_vypth")]
 offset_right = 150.0
-offset_bottom = 300.0
+offset_bottom = 200.0
+mouse_filter = 2
 script = ExtResource("1_iijvo")
 
 [node name="CardArt" parent="." index="0"]
@@ -53,10 +54,10 @@ theme_override_font_sizes/font_size = 42
 visible = false
 
 [node name="BottomBox" parent="Frame" index="2"]
-offset_left = 157.0
-offset_top = -180.0
-offset_right = 97.0
-offset_bottom = -130.0
+offset_left = 105.0
+offset_top = -85.0
+offset_right = 45.0
+offset_bottom = -35.0
 
 [node name="Fatigue" parent="Frame/BottomBox" index="0"]
 visible = false

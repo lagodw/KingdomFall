@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://jdj8k4tksnow"
 [sub_resource type="Resource" id="Resource_1s86m"]
 script = ExtResource("1_1me7o")
 turn = 3
-units = Array[ExtResource("2_g58sq")]([ExtResource("4_puk2q"), ExtResource("5_60waj"), ExtResource("4_puk2q"), ExtResource("5_60waj")])
+units = Array[ExtResource("2_g58sq")]([ExtResource("4_puk2q"), ExtResource("5_60waj")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [resource]
