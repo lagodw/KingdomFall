@@ -12,15 +12,10 @@ func _ready() -> void:
 	$Menu/Quit.pressed.connect(quit)
 	
 func start_game():
-	Bus.player = Player.new()
-	Bus.deck = Bus.player.deck.dupe()
-	var town: TownResource = load("uid://bmwj3jl3o8tm4").dupe()
-	Bus.player.town = town
-	Bus.player.gate = load("uid://jppyriltnkdf").dupe()
+	Bus.player = load("uid://db7yf88j38mhe").dupe()
 	var map: Map = Map.new()
 	map.setup()
 	Bus.map = map
-	#kf.load_scene("uid://dvld0lyuo33oq")
 	kf.load_scene("uid://djtcf3x2wg721")
 
 func show_settings():

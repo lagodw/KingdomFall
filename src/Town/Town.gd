@@ -78,12 +78,12 @@ func select_upgrade_unit(chosen_button: Button):
 	for unit in upgrade_option_box.get_children():
 		unit.queue_free()
 	var resource: UnitResource = chosen_button.card.card_resource
-	for upgrade: UnitUpgrade in resource.get_eligible_upgrades():
-		var new_resource: UnitResource = upgrade.unit.dupe()
+	for upgrade: UnitResource in resource.get_eligible_upgrades():
+		var new_resource: UnitResource = upgrade.dupe()
 		new_resource.skills = resource.skills
 		new_resource.fatigue = resource.fatigue
 		new_resource.curses = resource.curses
-		var card = kf.create_card(upgrade.unit)
+		var card = kf.create_card(upgrade)
 		var button = upgrade_button.instantiate()
 		button.card = card
 		button.add_child(card)

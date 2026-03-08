@@ -26,7 +26,6 @@ func confirm():
 	if Bus.map.current_location.enemy.is_night_enemy:
 		kf.load_scene("uid://djtcf3x2wg721")
 	else:
-		Bus.map.act.spots_done.append(Bus.map.current_location.spot)
 		kf.load_map()
 
 func create_cards() -> void:

@@ -1,0 +1,135 @@
+[gd_scene load_steps=9 format=3 uid="uid://dowba0pffhlkj"]
+
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="1_rju7o"]
+[ext_resource type="Script" uid="uid://dg1cg3s3temw7" path="res://src/Map/Charter.gd" id="2_rju7o"]
+[ext_resource type="Texture2D" uid="uid://cscrq7yjuyvkm" path="res://assets/UI/Popup_window_paper.png" id="2_wjgu2"]
+[ext_resource type="Texture2D" uid="uid://dw5pd3smalbuk" path="res://assets/UI/Bar_separator.png" id="4_hgfen"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rju7o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rju7o"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.780685, 0.704287, 1.54018e-06, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_27wfo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wjgu2"]
+
+[node name="Charter" type="Control"]
+custom_minimum_size = Vector2(215, 265)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1705.0
+offset_bottom = -815.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rju7o")
+script = ExtResource("2_rju7o")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 10.0
+anchor_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_wjgu2")
+patch_margin_left = 263
+patch_margin_top = 290
+patch_margin_right = 287
+patch_margin_bottom = 236
+
+[node name="TokenSpot" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 45.0
+offset_top = 32.0
+offset_right = 45.0
+offset_bottom = 32.0
+
+[node name="Description" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 27.0
+offset_top = 138.0
+offset_right = 184.0
+offset_bottom = 189.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+
+[node name="Requires" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.5
+offset_top = -63.0
+offset_right = 79.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Requires "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Separator" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 26.0
+offset_top = 56.5
+offset_right = -27.0
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_hgfen")
+expand_mode = 1
+
+[node name="Requirements" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -45.0
+offset_right = -30.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -10
+alignment = 1
+
+[node name="Choose" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rju7o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rju7o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_27wfo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wjgu2")

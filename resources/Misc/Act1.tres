@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Act" load_steps=28 format=3 uid="uid://hnvrwusray14"]
+[gd_resource type="Resource" script_class="Act" load_steps=29 format=3 uid="uid://hnvrwusray14"]
 
 [ext_resource type="Script" uid="uid://npjl5q4abl4n" path="res://src/Map/Event.gd" id="1_bsh7t"]
 [ext_resource type="Script" uid="uid://bq1yfk2ebmeq0" path="res://src/Map/Act.gd" id="1_nr237"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://dgv4hth2d7a7l" path="res://resources/Enemies/NightEnemies/Night5/Night5Enemy.tres" id="10_dqkuh"]
 [ext_resource type="Resource" uid="uid://bjbg1mes54rvk" path="res://resources/Enemies/NightEnemies/Night6/Night6Enemy.tres" id="11_kfvqn"]
 [ext_resource type="Resource" uid="uid://mvl4eayy5h4c" path="res://resources/Enemies/NightEnemies/Night7/Night7Enemy.tres" id="12_mm4lf"]
+[ext_resource type="Resource" uid="uid://c1f4w5nyu48hy" path="res://resources/Events/Charter.tres" id="16_touhe"]
 
 [sub_resource type="Resource" id="Resource_qa35n"]
 script = ExtResource("1_bsh7t")
@@ -171,9 +172,9 @@ stone_amt = 0
 bool_outcome = false
 metadata/_custom_type_script = "uid://npjl5q4abl4n"
 
-[sub_resource type="Resource" id="Resource_ujbl3"]
+[sub_resource type="Resource" id="Resource_aipha"]
 script = ExtResource("2_duchc")
-forward_direction = Vector2(1, 0)
+forward_direction = Vector2(0, 1)
 length = 5
 max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
@@ -181,12 +182,12 @@ event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
 metadata/_custom_type_script = "uid://xuvplrw1mym0"
 
-[sub_resource type="Resource" id="Resource_aipha"]
+[sub_resource type="Resource" id="Resource_ujbl3"]
 script = ExtResource("2_duchc")
-forward_direction = Vector2(0, 1)
+forward_direction = Vector2(1, 0)
 length = 5
 max_width = 3
-events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
+events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("16_touhe"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
 metadata/_custom_type_script = "uid://xuvplrw1mym0"

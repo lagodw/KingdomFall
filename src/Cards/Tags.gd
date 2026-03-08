@@ -8,11 +8,6 @@ func add_tags():
 	for tag in owner.card_resource.tags:
 		add_tag_icon(tag)
 	if owner is Unit:
-		#for upgrade: UnitUpgrade in owner.card_resource.upgrades:
-			## TODO: use resourcegroup
-			#var upgrade_name: String = UnitUpgrade.Upgrade.keys()[upgrade.upgrade_type]
-			#var path = tag_folder + "%s.png"%upgrade_name
-			#add_icon(load(path))
 		add_armor_icon(owner.card_resource.armor_type)
 		add_attack_icon(owner.card_resource.attack_type)
 		var curse_paths: Array[String] = []

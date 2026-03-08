@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="4_dlmbv"]
 [ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="5_f14yg"]
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_lh2b5"]
-[ext_resource type="Script" uid="uid://bihbbwvlj5n5b" path="res://src/Cards/ResourceTypes/UnitUpgrade.gd" id="6_dlmbv"]
 [ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="6_ixgq1"]
 [ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="7_k0c5s"]
 [ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="8_dlg6e"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="11_gigbd"]
 
 [sub_resource type="Resource" id="Resource_dlmbv"]
 script = ExtResource("4_dlmbv")
@@ -158,7 +158,8 @@ combat_modifiers = Array[ExtResource("1_mt7yt")]([])
 default_animation = "sword"
 curses = Array[ExtResource("2_miig1")]([])
 skills = Array[ExtResource("5_lh2b5")]([SubResource("Resource_f14yg")])
-upgrade_options = Array[ExtResource("6_dlmbv")]([])
+upgrade_requirements = Array[ExtResource("11_gigbd")]([])
+upgrade_options = Array[ExtResource("4_anyvh")]([])
 box_priority = "Hybrid"
 target = "none_needed"
 equivalent_damage = 0

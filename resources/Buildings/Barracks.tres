@@ -16,6 +16,7 @@ script = ExtResource("2_s0l2h")
 require_trigger = false
 required_slots = Array[int]([])
 require_building_name = null
+require_job_name = ""
 require_act = false
 minimum_damage = 0
 require_alive = false
@@ -136,7 +137,6 @@ description = "Grants occupants 1 [b]Training[/b]"
 capacity = 2
 effects = Array[ExtResource("1_6xi5p")]([SubResource("Resource_45cqn")])
 requirements = Array[ExtResource("8_t8ery")]([])
-progress = Array[ExtResource("8_t8ery")]([])
 metadata/_custom_type_script = "uid://druilahufs03l"
 
 [resource]
@@ -144,6 +144,5 @@ script = ExtResource("1_c5elr")
 building_name = "Barracks"
 building_description = "Grants occupants 1 [b]Training[/b]"
 construction_cost = 5
-current_construction = 0
 jobs = Array[ExtResource("1_j8dq3")]([SubResource("Resource_sr7s0")])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

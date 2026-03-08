@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Event" load_steps=6 format=3 uid="uid://c1f4w5nyu48hy"]
+
+[ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_tdr3a"]
+[ext_resource type="Script" uid="uid://hat3dgsvixk8" path="res://src/Cards/ResourceTypes/ItemResource.gd" id="2_7ejta"]
+[ext_resource type="Script" uid="uid://npjl5q4abl4n" path="res://src/Map/Event.gd" id="3_0y0tk"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="4_cduao"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="5_0vl8t"]
+
+[resource]
+script = ExtResource("3_0y0tk")
+icon_path = "uid://bao8qryvjblwk"
+scene_path = "uid://dexaru84td4iw"
+event_name = "Charter"
+signpost_description = ""
+num_reward_options = 0
+num_reward_choices = 0
+music = "Hearthsong at the Oakwood Inn"
+spot = Vector2(0, 0)
+tier = 0
+unit_options = Array[ExtResource("5_0vl8t")]([])
+spell_options = Array[ExtResource("4_cduao")]([])
+item_options = Array[ExtResource("2_7ejta")]([])
+building_options = Array[ExtResource("1_tdr3a")]([])
+gold_amt = 0
+wood_amt = 0
+stone_amt = 0
+bool_outcome = false
+metadata/_custom_type_script = "uid://npjl5q4abl4n"

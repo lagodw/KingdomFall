@@ -7,5 +7,6 @@
 
 [resource]
 script = ExtResource("2_b573t")
+building_spots = 10
 buildings = Array[ExtResource("1_gcq3e")]([ExtResource("2_lti62"), ExtResource("2_lti62"), ExtResource("3_f7ulh")])
 metadata/_custom_type_script = "uid://dmrjpysoe3qk2"

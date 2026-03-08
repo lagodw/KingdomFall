@@ -1,28 +1,27 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=7 format=3 uid="uid://jppyriltnkdf"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=7 format=3 uid="uid://cnr0bb4lxr83a"]
 
-[ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_me1of"]
-[ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_fv5r7"]
-[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="3_k6tyw"]
-[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_6jasa"]
-[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_06q2n"]
-[ext_resource type="Script" uid="uid://bihbbwvlj5n5b" path="res://src/Cards/ResourceTypes/UnitUpgrade.gd" id="6_qk5a6"]
+[ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_scfms"]
+[ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_6mttj"]
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="3_n1xj1"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_ct7j7"]
+[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_6piwi"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="6_4cbpy"]
 
 [resource]
-script = ExtResource("4_6jasa")
+script = ExtResource("4_ct7j7")
 fatigue = 0
 damage = 0
 health = 50
 shield = 0
-attack_range = 0
-speed = 0
 attack_type = 0
 armor_type = 2
 has_support = false
-combat_modifiers = Array[ExtResource("1_me1of")]([])
+combat_modifiers = Array[ExtResource("1_scfms")]([])
 default_animation = "sword"
-curses = Array[ExtResource("2_fv5r7")]([])
-skills = Array[ExtResource("5_06q2n")]([])
-upgrade_options = Array[ExtResource("6_qk5a6")]([])
+curses = Array[ExtResource("2_6mttj")]([])
+skills = Array[ExtResource("5_6piwi")]([])
+upgrade_requirements = Array[ExtResource("6_4cbpy")]([])
+upgrade_options = Array[ExtResource("4_ct7j7")]([])
 box_priority = "Hybrid"
 target = "none_needed"
 equivalent_damage = 0
@@ -32,6 +31,6 @@ card_type = "Unit"
 activation = 1
 tags = Array[int]([])
 text = ""
-effects = Array[ExtResource("3_k6tyw")]([])
+effects = Array[ExtResource("3_n1xj1")]([])
 card_art_path = ""
 metadata/_custom_type_script = "uid://fjs70167oea6"

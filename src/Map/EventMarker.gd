@@ -23,6 +23,7 @@ func enable():
 	$Button.mouse_exited.connect(set_color.bind("yellow"))
 	
 func load_event() -> void:
+	Bus.map.act.spots_done.append(spot)
 	Bus.map.current_location = event
 	kf.load_scene(event.scene_path)
 

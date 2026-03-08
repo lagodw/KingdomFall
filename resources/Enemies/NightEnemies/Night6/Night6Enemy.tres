@@ -29,4 +29,5 @@ metadata/_custom_type_script = "uid://jdj8k4tksnow"
 script = ExtResource("6_wa33b")
 ranks = Array[ExtResource("1_d3iqw")]([SubResource("Resource_wnerq"), SubResource("Resource_tavvl"), SubResource("Resource_1s86m")])
 is_night_enemy = true
+is_final_enemy = false
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

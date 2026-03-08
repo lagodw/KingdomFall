@@ -2,8 +2,9 @@ class_name Player
 extends UnitResource
 
 @export var deck: Deck = load("uid://daukdeewyd6ke")
+@export var charters: Array[CardResource]
 @export var town: TownResource = load("uid://bmwj3jl3o8tm4")
-@export var gate: UnitResource = load("uid://jppyriltnkdf")
+@export var gate: UnitResource = load("uid://cnr0bb4lxr83a")
 @export var gold: int = 0
 @export var wood: int = 10
 @export var stone: int = 10
@@ -19,9 +20,15 @@ extends UnitResource
 
 ## hopefully temporary workaround
 ## https://github.com/godotengine/godot/issues/74918
-func dupe() -> Resource:
-	var duped = self.duplicate(true)
+func dupe() -> Player:
+	var duped: Player = self.duplicate(true)
 	duped.deck = deck.dupe()
+	duped.town = town.dupe()
+	duped.gate = gate.dupe()
+	var duped_charters: Array[CardResource]
+	for charter in charters:
+		duped_charters.append(charter.dupe())
+	duped.charters = duped_charters
 	# current_health is getting set to 1 for some reason
 	duped.current_health = health
 	#var new_boons: Array[Boon] = []

@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Player" load_steps=13 format=3 uid="uid://db7yf88j38mhe"]
+
+[ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="1_bif3o"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="2_dvs27"]
+[ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="2_wtifa"]
+[ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="3_qc362"]
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="4_7twsl"]
+[ext_resource type="Script" uid="uid://drdotx584e6fe" path="res://src/Player/Player.gd" id="5_dvs27"]
+[ext_resource type="Resource" uid="uid://daukdeewyd6ke" path="res://resources/Misc/StarterDeck.tres" id="5_u1kbv"]
+[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="6_u1kbv"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="7_32hjy"]
+[ext_resource type="Resource" uid="uid://cnr0bb4lxr83a" path="res://resources/Misc/Gate.tres" id="7_gqjev"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="8_gqjev"]
+[ext_resource type="Resource" uid="uid://bmwj3jl3o8tm4" path="res://resources/Misc/StarterTown.tres" id="10_t7aik"]
+
+[resource]
+script = ExtResource("5_dvs27")
+deck = ExtResource("5_u1kbv")
+charters = Array[ExtResource("1_bif3o")]([ExtResource("2_dvs27")])
+town = ExtResource("10_t7aik")
+gate = ExtResource("7_gqjev")
+gold = 0
+wood = 10
+stone = 10
+food = 20
+current_health = 80
+max_mana = 5
+spell_power = 0
+fatigue = 0
+damage = 1
+health = 1
+shield = 0
+attack_type = 0
+armor_type = 0
+has_support = false
+combat_modifiers = Array[ExtResource("2_wtifa")]([])
+default_animation = "sword"
+curses = Array[ExtResource("3_qc362")]([])
+skills = Array[ExtResource("6_u1kbv")]([])
+upgrade_requirements = Array[ExtResource("8_gqjev")]([])
+upgrade_options = Array[ExtResource("7_32hjy")]([])
+box_priority = "Hybrid"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+card_name = ""
+card_type = ""
+activation = 1
+tags = Array[int]([])
+text = ""
+effects = Array[ExtResource("4_7twsl")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://drdotx584e6fe"

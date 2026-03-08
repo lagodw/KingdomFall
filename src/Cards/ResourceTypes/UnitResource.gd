@@ -14,7 +14,9 @@ extends CardResource
 @export var default_animation: String = "sword"
 @export var curses: Array[Curse]
 @export var skills: Array[UnitSkill]
-@export var upgrade_options: Array[UnitUpgrade]
+## requirements to upgrade to this unit
+@export var upgrade_requirements: Array[UpgradeRequirement]
+@export var upgrade_options: Array[UnitResource]
 
 @export_category("Enemy Behavior")
 @export_enum("Hybrid", "Attack", "Defend", "Support") var box_priority: String = "Hybrid"
@@ -42,14 +44,16 @@ func get_skill_count(check_skill: UnitSkill.Skill) -> int:
 			count += 1
 	return(count)
 
-func check_upgrade_requirements(upgrade: UnitUpgrade) -> bool:
-	for requirement in upgrade.requirements:
+func check_upgrade_requirements(upgrade: UnitResource) -> bool:
+	if not Bus.player.charters.has(upgrade):
+		return(false)
+	for requirement in upgrade.upgrade_requirements:
 		if get_skill_count(requirement.skill) < requirement.amount:
 			return(false)
 	return(true)
 	
-func get_eligible_upgrades() -> Array[UnitUpgrade]:
-	var eligible: Array[UnitUpgrade]
+func get_eligible_upgrades() -> Array[UnitResource]:
+	var eligible: Array[UnitResource]
 	for upgrade in upgrade_options:
 		if check_upgrade_requirements(upgrade):
 			eligible.append(upgrade)

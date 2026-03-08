@@ -84,3 +84,6 @@ func setup_Combat():
 	
 func setup_Recruit():
 	generate_unit_options(num_reward_options)
+
+func setup_Charter():
+	pass
