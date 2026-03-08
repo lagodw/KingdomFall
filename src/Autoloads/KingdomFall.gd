@@ -299,3 +299,27 @@ func replace_skill_icons(text: String, size: int = 32) -> String:
 		text = text.replace("[b]%s[/b]"%skill, "[img=%sx%s]%s[/img]"%[size, size, icon_path])
 	text = text.replace("[b]Food[/b]", "[img=%sx%s]uid://dir6jcwcaephg[/img]"%[size, size])
 	return(text)
+	
+func camera_shake(intensity: float = 15.0, duration: float = 0.3) -> void:
+	# 1. Grab the current active Camera2D in the scene
+	var camera = get_viewport().get_camera_2d()
+		
+	var tween = create_tween()
+	
+	# 2. Calculate how many rapid movements we can fit in the duration
+	var shake_step = 0.04 # How fast each individual jerk is
+	var num_shakes = int(duration / shake_step)
+	
+	# 3. Queue up a series of random offsets
+	for i in num_shakes:
+		var random_x = randf_range(-intensity, intensity)
+		var random_y = randf_range(-intensity, intensity)
+		var random_offset = Vector2(random_x, random_y)
+		
+		# As the shake goes on, decrease the intensity so it fades out naturally
+		intensity *= 0.85 
+		
+		tween.tween_property(camera, "offset", random_offset, shake_step).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
+	# 4. Make sure the camera ALWAYS returns to exactly (0,0) at the end!
+	tween.tween_property(camera, "offset", Vector2.ZERO, shake_step)
