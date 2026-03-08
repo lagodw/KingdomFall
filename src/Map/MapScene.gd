@@ -54,6 +54,7 @@ func place_act(act: Act):
 					#curve_pos = act.curve_points[target]
 				connect_points(point, target, marker_pos, curve_pos)
 	
+	place_castle()
 
 func place_empty(row: int, col: int):
 	var spot = Control.new()
@@ -110,6 +111,12 @@ func connect_points(point1: Vector2, point2: Vector2, marker_position: Vector2,
 	curve.curve.add_point(Vector2(0, 0), Vector2(0, 0), curve_point)
 	curve.curve.add_point(end_point, Vector2(0, 0), Vector2(0, 0))
 	curve.get_node("Line2D").points = curve.curve.tessellate(10)
+
+func place_castle():
+	var castle = $Castle
+	remove_child(castle)
+	node_map[Vector2(0, 0)].add_child(castle)
+	castle.position = Vector2(0, 0)
 
 func night_fall():
 	# day counter incremented in town

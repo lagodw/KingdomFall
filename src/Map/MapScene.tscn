@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh5c0lqir8g3a"]
+[gd_scene load_steps=10 format=3 uid="uid://bh5c0lqir8g3a"]
 
 [ext_resource type="Script" uid="uid://cfriiew73i2k2" path="res://src/Map/MapScene.gd" id="1_mvoho"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="2_76ksa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://td12h5hh4hyj" path="res://assets/Map/MapPaper.png" id="4_8nlgn"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="5_0bupb"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="5_vuvkq"]
+[ext_resource type="Texture2D" uid="uid://byg57h7654sk8" path="res://assets/Map/EventMarkers/Castle.png" id="7_s4mha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4mha"]
 border_width_left = 20
@@ -107,3 +108,13 @@ text = "Night Fall"
 
 [node name="Escape" parent="." instance=ExtResource("5_vuvkq")]
 visible = false
+
+[node name="Castle" type="TextureRect" parent="."]
+z_index = 3
+layout_mode = 0
+offset_left = 749.0
+offset_top = 374.0
+offset_right = 1049.0
+offset_bottom = 674.0
+texture = ExtResource("7_s4mha")
+expand_mode = 1

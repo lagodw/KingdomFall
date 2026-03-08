@@ -1,4 +1,3 @@
-# MapViewport.gd
 extends Control
 
 # --- Configuration & Variables ---
@@ -8,13 +7,6 @@ const DRAG_THRESHOLD: float = 0.05
 var is_holding: bool = false
 var press_start_pos: Vector2 = Vector2.ZERO
 var drag_scrolling_active: bool = false
-var player_marker: Control:
-	set(val):
-		player_marker = val
-		var calculated_pos = get_viewport_rect().size - map_content.global_position - player_marker.global_position
-		calculated_pos.x -= get_viewport_rect().size.x / 2
-		calculated_pos.y -= 200
-		map_content.position = _clamp_content_position(calculated_pos, current_zoom)
 
 @export var drag_speed_multiplier: float = 3.0
 
@@ -51,6 +43,9 @@ func _ready():
 func _initial_setup():
 	unscaled_base_size = map_content.get_size()
 	current_zoom = starting_zoom
+	
+	var center_pos = (self.size - (unscaled_base_size * current_zoom)) / 2.0
+	map_content.position = _clamp_content_position(center_pos, current_zoom)
 
 # --- Helper Function for Centering Zoom ---
 # Calculates the new position needed to keep the point under the mouse stationary.
