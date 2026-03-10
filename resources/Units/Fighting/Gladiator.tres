@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=25 format=3 uid="uid://drx7yt68mtr8c"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=26 format=3 uid="uid://drx7yt68mtr8c"]
 
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_o82vq"]
 [ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_rviir"]
@@ -116,28 +116,43 @@ value = SubResource("Resource_csdpo")
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = -1
 chain_value = false
 
-[sub_resource type="Resource" id="Resource_txa0q"]
+[sub_resource type="Resource" id="Resource_cgcaj"]
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 2
 chain_value = false
+metadata/_custom_type_script = "uid://cwhy1oww3agal"
+
+[sub_resource type="Resource" id="Resource_txa0q"]
+script = ExtResource("8_bi2d1")
+value_type = "count"
+affected_by_spell_power = false
+count_what = "units"
+which_card = "calling"
+count_whos = Array[String](["Opponent"])
+count_where = "Units"
+count_boxes = Array[String](["Front"])
+count_filter = "any"
+chain_value = true
+next_value = SubResource("Resource_cgcaj")
+mult_next_value = true
 
 [sub_resource type="Resource" id="Resource_ym0ur"]
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = -1
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_dap0s"]
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = -1
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_3qmgm"]

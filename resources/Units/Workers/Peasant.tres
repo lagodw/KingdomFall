@@ -16,7 +16,7 @@
 script = ExtResource("4_g136c")
 fatigue = 0
 damage = 2
-health = 3
+health = 4
 shield = 2
 attack_type = 0
 armor_type = 0

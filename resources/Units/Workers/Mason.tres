@@ -146,9 +146,9 @@ metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 [resource]
 script = ExtResource("4_iktod")
 fatigue = 0
-damage = 4
-health = 8
-shield = 0
+damage = 2
+health = 5
+shield = 2
 attack_type = 0
 armor_type = 0
 has_support = false
