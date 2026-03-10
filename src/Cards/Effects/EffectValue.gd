@@ -145,7 +145,7 @@ func get_skill(subject: Control, card: Control, _effect_dict: Dictionary) -> flo
 	var skill_owner: Unit = get_stat_owner(subject, card)
 	var amount: float = 0.0
 	for skill: UnitSkill in skill_owner.card_resource.skills:
-		if skill.skill_type == what_skill:
+		if skill.skill == what_skill:
 			amount += skill.amount * (10.0 - skill_owner.card_resource.fatigue) / 10.0
 	if negative:
 		return(-amount)

@@ -7,11 +7,11 @@ func add_tags():
 		child.queue_free()
 	for skill_type in UnitSkill.Skill.values():
 		for skill: UnitSkill in owner.card_resource.skills:
-			if skill.skill_type != skill_type:
+			if skill.skill != skill_type:
 				continue
 			for i in skill.amount:
 				# TODO: use resourcegroup
-				var skill_name: String = UnitSkill.Skill.keys()[skill.skill_type]
+				var skill_name: String = UnitSkill.Skill.keys()[skill.skill]
 				var path = tag_folder + "%s.png"%skill_name
 				add_icon(load(path))
 		var space: Control = Control.new()

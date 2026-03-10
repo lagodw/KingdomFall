@@ -7,5 +7,5 @@ script = ExtResource("1_nqrgg")
 base_folder = "res://resources/Units"
 includes = Array[String](["**.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://resources/Units/Fighting/Archer.tres", "res://resources/Units/Fighting/Footman.tres", "res://resources/Units/Scholars/Apprentice.tres", "res://resources/Units/Workers/Farmer.tres", "res://resources/Units/Workers/Mason.tres", "res://resources/Units/Workers/Peasant.tres"])
+paths = Array[String](["res://resources/Units/Fighting/Archer.tres", "res://resources/Units/Fighting/Footman.tres", "res://resources/Units/Fighting/Knight.tres", "res://resources/Units/Fighting/Gladiator.tres", "res://resources/Units/Fighting/Pikeman.tres", "res://resources/Units/Fighting/Assassin.tres", "res://resources/Units/Fighting/Blacksmith.tres", "res://resources/Units/Fighting/Berserker.tres", "res://resources/Units/Fighting/Scout.tres", "res://resources/Units/Fighting/Sentry.tres", "res://resources/Units/Scholars/Apprentice.tres", "res://resources/Units/Workers/Farmer.tres", "res://resources/Units/Workers/Mason.tres", "res://resources/Units/Workers/Peasant.tres"])
 metadata/_custom_type_script = "uid://da1l0ib1csn4e"

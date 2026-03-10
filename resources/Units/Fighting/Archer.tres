@@ -1,35 +1,26 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=10 format=3 uid="uid://dacsxay2ixbib"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=11 format=3 uid="uid://dacsxay2ixbib"]
 
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_pph07"]
 [ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_vkjf8"]
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="3_vbydn"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_u41cu"]
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_avqdw"]
+[ext_resource type="Resource" uid="uid://drx7yt68mtr8c" path="res://resources/Units/Fighting/Gladiator.tres" id="6_8yqjm"]
 [ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="6_runfk"]
-
-[sub_resource type="Resource" id="Resource_vfl6u"]
-script = ExtResource("5_avqdw")
-skill_type = 0
-amount = 2
-metadata/_custom_type_script = "uid://bn2lsa6d725jx"
-
-[sub_resource type="Resource" id="Resource_oj501"]
-script = ExtResource("5_avqdw")
-skill_type = 2
-amount = 1
-metadata/_custom_type_script = "uid://bn2lsa6d725jx"
+[ext_resource type="Resource" uid="uid://be1fufkhen0q0" path="res://resources/Units/Fighting/Berserker.tres" id="7_403xi"]
+[ext_resource type="Resource" uid="uid://b22mss2dgba2a" path="res://resources/Units/Fighting/Assassin.tres" id="8_403xi"]
 
 [sub_resource type="Resource" id="Resource_runfk"]
 script = ExtResource("6_runfk")
 skill = 0
-amount = 2.0
+amount = 1.0
 progress = 0.0
 metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [resource]
 script = ExtResource("4_u41cu")
 fatigue = 0
-damage = 6
+damage = 5
 health = 3
 shield = 2
 attack_type = 1
@@ -38,9 +29,9 @@ has_support = false
 combat_modifiers = Array[ExtResource("1_pph07")]([])
 default_animation = "sword"
 curses = Array[ExtResource("2_vkjf8")]([])
-skills = Array[ExtResource("5_avqdw")]([SubResource("Resource_vfl6u"), SubResource("Resource_oj501")])
+skills = Array[ExtResource("5_avqdw")]([])
 upgrade_requirements = Array[ExtResource("6_runfk")]([SubResource("Resource_runfk")])
-upgrade_options = Array[ExtResource("4_u41cu")]([])
+upgrade_options = Array[ExtResource("4_u41cu")]([ExtResource("6_8yqjm"), ExtResource("7_403xi"), ExtResource("8_403xi")])
 box_priority = "Hybrid"
 target = "none_needed"
 equivalent_damage = 0

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=13 format=3 uid="uid://cywtfroq4868q"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=12 format=3 uid="uid://cywtfroq4868q"]
 
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_jrgbc"]
 [ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_5leon"]
@@ -12,12 +12,6 @@
 [ext_resource type="Resource" uid="uid://b6xjie2d1huam" path="res://resources/Units/Workers/Farmer.tres" id="9_6n6ud"]
 [ext_resource type="Resource" uid="uid://6vuvbg6hyk7d" path="res://resources/Units/Workers/Mason.tres" id="10_sqfwj"]
 
-[sub_resource type="Resource" id="Resource_wtxgu"]
-script = ExtResource("5_6n6ud")
-skill_type = 2
-amount = 1
-metadata/_custom_type_script = "uid://bn2lsa6d725jx"
-
 [resource]
 script = ExtResource("4_g136c")
 fatigue = 0
@@ -30,7 +24,7 @@ has_support = false
 combat_modifiers = Array[ExtResource("1_jrgbc")]([])
 default_animation = "sword"
 curses = Array[ExtResource("2_5leon")]([])
-skills = Array[ExtResource("5_6n6ud")]([SubResource("Resource_wtxgu")])
+skills = Array[ExtResource("5_6n6ud")]([])
 upgrade_requirements = Array[ExtResource("7_50x5c")]([])
 upgrade_options = Array[ExtResource("4_g136c")]([ExtResource("6_5leon"), ExtResource("7_wvpiq"), ExtResource("8_g136c"), ExtResource("9_6n6ud"), ExtResource("10_sqfwj")])
 box_priority = "Hybrid"

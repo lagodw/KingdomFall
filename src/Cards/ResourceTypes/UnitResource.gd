@@ -34,13 +34,45 @@ func dupe() -> Resource:
 	var new_effects: Array[Effect] = []
 	for effect in effects:
 		new_effects.append(effect.dupe())
+	var new_requirements: Array[UpgradeRequirement]
+	for requirement in upgrade_requirements:
+		new_requirements.append(requirement)
+	var new_skills: Array[UnitSkill]
+	# populate new units with base requirements
+	# so I don't have to do it manually in inspector
+	if skills.size() == 0:
+		var has_productivity: bool = false
+		for requirement in upgrade_requirements:
+			var new_skill = UnitSkill.new()
+			new_skill.skill = requirement.skill
+			new_skill.amount = requirement.amount
+			new_skills.append(new_skill)
+			if requirement.skill == UnitSkill.Skill.Productivity:
+				has_productivity = true
+		if not has_productivity:
+			var new_skill = UnitSkill.new()
+			new_skill.skill = UnitSkill.Skill.Productivity
+			new_skill.amount = 1
+			new_skills.append(new_skill)
+	else:
+		for skill in skills:
+			new_skills.append(skill.dupe())
+	var new_upgrades: Array[UnitResource]
+	if upgrade_options.size() == 0:
+		new_upgrades = []
+	else:
+		for upgrade in upgrade_options:
+			new_upgrades.append(upgrade.dupe())
 	duped.effects = new_effects
+	duped.upgrade_requirements = new_requirements
+	duped.skills = new_skills
+	duped.upgrade_options = new_upgrades
 	return(duped)
 
 func get_skill_count(check_skill: UnitSkill.Skill) -> int:
 	var count: int = 0
 	for skill in skills:
-		if skill.skill_type == check_skill:
+		if skill.skill == check_skill:
 			count += 1
 	return(count)
 

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=7 format=3 uid="uid://ba02uh2ch7fy4"]
+
+[ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_5cx8x"]
+[ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_i14sl"]
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="3_jrh3i"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_10i7x"]
+[ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_lecue"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="6_gy8x1"]
+
+[resource]
+script = ExtResource("4_10i7x")
+fatigue = 0
+damage = 2
+health = 4
+shield = 5
+attack_type = 0
+armor_type = 0
+has_support = false
+combat_modifiers = Array[ExtResource("1_5cx8x")]([])
+default_animation = "sword"
+curses = Array[ExtResource("2_i14sl")]([])
+skills = Array[ExtResource("5_lecue")]([])
+upgrade_requirements = Array[ExtResource("6_gy8x1")]([])
+upgrade_options = Array[ExtResource("4_10i7x")]([])
+box_priority = "Hybrid"
+target = "none_needed"
+equivalent_damage = 0
+target_face = false
+card_name = "Pikeman"
+card_type = "Unit"
+activation = 1
+tags = Array[int]([])
+text = "Adds half of [b]Damage[/b] when in Frontline"
+effects = Array[ExtResource("3_jrh3i")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://fjs70167oea6"

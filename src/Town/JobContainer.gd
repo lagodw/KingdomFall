@@ -11,7 +11,7 @@ var bldg: Building
 var disabled: bool = false
 
 func _ready() -> void:
-	%Description.text = kf.replace_skill_icons(job.description)
+	%Description.text = kf.replace_text_icons(job.description)
 	update_progress()
 	setup_slots()
 	for effect in job.effects:
@@ -129,7 +129,7 @@ func on_night_fall():
 				if slot.occupied_unit:
 					var unit: CardToken = slot.occupied_unit
 					for skill: UnitSkill in unit.card_resource.skills:
-						if skill.skill_type == requirement.skill:
+						if skill.skill == requirement.skill:
 							requirement.progress += skill.amount * (10.0 - unit.card_resource.fatigue) / 10
 		while job.check_if_done():
 			for requirement in job.requirements:

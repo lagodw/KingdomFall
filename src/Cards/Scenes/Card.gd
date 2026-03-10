@@ -113,7 +113,7 @@ func set_card_text():
 		sp_text = " (+%s)"%Bus.spell_power
 	# might not have loaded yet
 	if has_node("%CardText"):
-		var skill_text = kf.replace_skill_icons(card_resource.text, 16)
+		var skill_text = kf.replace_text_icons(card_resource.text, 16)
 		%CardText.text = skill_text.replace("[+sp]", sp_text)
 
 func add_tag_icons():

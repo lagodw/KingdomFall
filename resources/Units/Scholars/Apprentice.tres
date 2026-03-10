@@ -162,16 +162,18 @@ persistent_effect = false
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [sub_resource type="Resource" id="Resource_f2t3q"]
-script = ExtResource("5_xv6jn")
-skill_type = 2
-amount = 1
-metadata/_custom_type_script = "uid://bn2lsa6d725jx"
+script = ExtResource("11_f2t3q")
+skill = 0
+amount = 1.0
+progress = 0.0
+metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [sub_resource type="Resource" id="Resource_ip1cq"]
-script = ExtResource("5_xv6jn")
-skill_type = 1
-amount = 1
-metadata/_custom_type_script = "uid://bn2lsa6d725jx"
+script = ExtResource("11_f2t3q")
+skill = 1
+amount = 1.0
+progress = 0.0
+metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [resource]
 script = ExtResource("4_i4o3h")
@@ -185,8 +187,8 @@ has_support = false
 combat_modifiers = Array[ExtResource("1_k37ov")]([])
 default_animation = "sword"
 curses = Array[ExtResource("2_ua38y")]([])
-skills = Array[ExtResource("5_xv6jn")]([SubResource("Resource_f2t3q"), SubResource("Resource_ip1cq")])
-upgrade_requirements = Array[ExtResource("11_f2t3q")]([])
+skills = Array[ExtResource("5_xv6jn")]([])
+upgrade_requirements = Array[ExtResource("11_f2t3q")]([SubResource("Resource_f2t3q"), SubResource("Resource_ip1cq")])
 upgrade_options = Array[ExtResource("4_i4o3h")]([])
 box_priority = "Hybrid"
 target = "none_needed"

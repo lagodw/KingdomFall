@@ -16,7 +16,7 @@ func set_description():
 	var sp_text = ""
 	if Bus.spell_power > 0:
 		sp_text = " (+%s)"%Bus.spell_power
-	var skill_text = kf.replace_skill_icons(card_resource.text, 16)
+	var skill_text = kf.replace_text_icons(card_resource.text, 16)
 	%Description.text = skill_text.replace("[+sp]", sp_text)
 
 func set_requirements():

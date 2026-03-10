@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=23 format=3 uid="uid://6vuvbg6hyk7d"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=22 format=3 uid="uid://6vuvbg6hyk7d"]
 
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_gd3na"]
 [ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_4myj5"]
@@ -136,12 +136,6 @@ progress_skill = 2
 progress_change = SubResource("Resource_xqjwh")
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
-[sub_resource type="Resource" id="Resource_kngcd"]
-script = ExtResource("5_mfxab")
-skill_type = 2
-amount = 2
-metadata/_custom_type_script = "uid://bn2lsa6d725jx"
-
 [sub_resource type="Resource" id="Resource_yv8ej"]
 script = ExtResource("11_xqjwh")
 skill = 2
@@ -161,7 +155,7 @@ has_support = false
 combat_modifiers = Array[ExtResource("1_gd3na")]([])
 default_animation = "sword"
 curses = Array[ExtResource("2_4myj5")]([])
-skills = Array[ExtResource("5_mfxab")]([SubResource("Resource_kngcd")])
+skills = Array[ExtResource("5_mfxab")]([])
 upgrade_requirements = Array[ExtResource("11_xqjwh")]([SubResource("Resource_yv8ej")])
 upgrade_options = Array[ExtResource("4_iktod")]([])
 box_priority = "Hybrid"

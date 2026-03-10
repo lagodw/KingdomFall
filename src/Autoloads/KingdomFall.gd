@@ -293,11 +293,19 @@ func load_tutorial_scene(scene_path: String, use_tween: bool = true) -> void:
 	get_tree().root.add_child(instance)
 	return
 
-func replace_skill_icons(text: String, size: int = 32) -> String:
+func replace_text_icons(text: String, size: int = 32) -> String:
 	for skill in UnitSkill.Skill.keys():
 		var icon_path = "res://assets/Card/Icons/%s.png"%skill
 		text = text.replace("[b]%s[/b]"%skill, "[img=%sx%s]%s[/img]"%[size, size, icon_path])
-	text = text.replace("[b]Food[/b]", "[img=%sx%s]uid://dir6jcwcaephg[/img]"%[size, size])
+
+	var icon_dict: Dictionary[String, String] = {
+		"Food": "uid://dir6jcwcaephg",
+		"Damage": "uid://cma2bjntli0av",
+		"Block": "uid://b6lm11rvw7ni3",
+		"Health": "uid://bdurhcqjvqq3e",
+		}
+	for word in icon_dict.keys():
+		text = text.replace("[b]%s[/b]"%word, "[img=%sx%s]%s[/img]"%[size, size, icon_dict[word]])
 	return(text)
 	
 func camera_shake(intensity: float = 15.0, duration: float = 0.3) -> void:
