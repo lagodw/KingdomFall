@@ -59,10 +59,15 @@ func execute_enemy_attack(real: bool) -> void:
 	# 2. Distribute Enemy Overflow -> Player Side
 	if enemy_overflow > 0:
 		set_breach_preview("Player", true)
+		Bus.Board.is_breached = true
 		# Cleaned up the if/else since 'real' handles the boolean directly
 		distribute_overflow_damage(enemy_overflow, "Player", real) 
 	else:
 		set_breach_preview("Player", false)
+		Bus.Board.is_breached = false
+		
+	if real:
+		ee.emit_signal("combat_finished", "Enemy", enemy_overflow > 0)
 		
 func execute_player_attack(real: bool) -> void:
 	# 3. PLAYER GOES SECOND: Calculate Player Attack (using surviving units) vs Enemy Shield
@@ -126,6 +131,7 @@ func execute_player_attack(real: bool) -> void:
 			unit.current_fatigue += 1
 		for unit in player_back.get_units():
 			unit.current_fatigue += 1
+		ee.emit_signal("combat_finished", "Player", player_overflow > 0)
 
 func distribute_overflow_damage(amount: int, target_owner: String, real: bool) -> void:
 	var remaining_damage = amount

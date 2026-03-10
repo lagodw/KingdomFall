@@ -203,9 +203,12 @@ func on_start_turn(turn_num: int, turn_owner: String):
 func on_combat_start():
 	trigger_card = Bus.Board
 	apply_effect({})
-func on_combat_end():
+func on_combat_finished(attacking_side: String, breach: bool):
 	trigger_card = Bus.Board
-	apply_effect({})
+	apply_effect({
+		"attacking_side": attacking_side,
+		"breach": breach
+	})
 func on_damage_taken(triggering_card: Control, damage_taken: int):
 	trigger_card = triggering_card
 	var dict = {
