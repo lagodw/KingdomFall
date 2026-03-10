@@ -98,6 +98,14 @@ func deploy_units():
 	var back_slots = Bus.Grid.enemy_back.all_slots.duplicate()
 	var front_slots = Bus.Grid.enemy_front.all_slots.duplicate()
 	
+	for unit in backline_units:
+		if unit.current_slot and unit.current_slot.box == Bus.Grid.enemy_back:
+			back_slots.erase(unit.current_slot)
+			
+	for unit in frontline_units:
+		if unit.current_slot and unit.current_slot.box == Bus.Grid.enemy_front:
+			front_slots.erase(unit.current_slot)
+	
 	# 9. Move backline units to slots
 	for unit in backline_units:
 		if back_slots.is_empty():

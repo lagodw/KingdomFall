@@ -370,12 +370,12 @@ func require_no_breach(_subject: Control, _trigger_card: Control, no_breach_requ
 func require_turn_phase(_subject: Control, call_card: Control, turn_phase_required: String) -> bool:
 	if turn_phase_required == "Any":
 		return(true)
-	print(turn_phase_required)
+	
 	if Bus.Board:
 		# Determine if it's the player's turn or enemy's turn phase
 		var is_player_turn = Bus.Board.current_phase in [Combat.TurnPhase.PLAYER_ACTION, Combat.TurnPhase.PLAYER_ATTACK, Combat.TurnPhase.BREACH_CONFIRM]
 		var is_owner_player = call_card.card_owner == "Player"
-		printt(is_player_turn, is_owner_player)
+		
 		match turn_phase_required:
 			"Owner": return is_player_turn == is_owner_player
 			"Opponent": return is_player_turn != is_owner_player
