@@ -7,7 +7,7 @@ extends Resource
 		value_type = val
 		notify_property_list_changed()
 @export var affected_by_spell_power: bool = false
-var number: int
+var number: float
 var what_stat: String = "damage"
 var what_skill: UnitSkill.Skill
 var whos_stat: String = "subject"
@@ -41,12 +41,12 @@ var next_value: EffectValue
 var mult_next_value: bool = false
 
 func get_value(subject: Control, trigger_card: Control, calling_card: Control,
-				effect_dict: Dictionary = {}) -> int:
+				effect_dict: Dictionary = {}) -> float:
 	var callable = Callable.create(self, "get_%s"%value_type)
 	var card: Control = trigger_card
 	if which_card == "calling":
 		card = calling_card
-	var value: int = callable.call(subject, card, effect_dict)
+	var value: float = callable.call(subject, card, effect_dict)
 	if affected_by_spell_power:
 		value += Bus.spell_power
 		
@@ -190,7 +190,7 @@ func _get_property_list() -> Array:
 	if Engine.is_editor_hint():
 		match value_type:
 			'number':
-				list.append(type_hint("number", TYPE_INT))
+				list.append(type_hint("number", TYPE_FLOAT))
 			
 			'stat':
 				list.append(string_enum_hint("which_card", "trigger,calling"))

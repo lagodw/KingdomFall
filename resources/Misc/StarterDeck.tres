@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Deck" load_steps=9 format=3 uid="uid://daukdeewyd6ke"]
+[gd_resource type="Resource" script_class="Deck" load_steps=8 format=3 uid="uid://daukdeewyd6ke"]
 
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="1_dxewv"]
 [ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="2_rqv0j"]
@@ -6,12 +6,11 @@
 [ext_resource type="Script" uid="uid://d3cbj7orsdpk2" path="res://src/Player/Deck.gd" id="3_xc5uk"]
 [ext_resource type="Resource" uid="uid://7sln2klfpe2j" path="res://resources/Consumables/Bandages.tres" id="5_s2fhi"]
 [ext_resource type="Resource" uid="uid://drogiujdpv3sn" path="res://resources/Consumables/Javelin.tres" id="6_5jrsl"]
-[ext_resource type="Resource" uid="uid://be1fufkhen0q0" path="res://resources/Units/Fighting/Berserker.tres" id="7_0re8o"]
 [ext_resource type="Resource" uid="uid://d2op0py23nj42" path="res://resources/Items/Sword.tres" id="7_vuv8t"]
 
 [resource]
 script = ExtResource("3_xc5uk")
 sort_deck = false
-cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t"), ExtResource("7_0re8o")])
+cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t")])
 graveyard = Array[ExtResource("1_dxewv")]([])
 metadata/_custom_type_script = "uid://d3cbj7orsdpk2"

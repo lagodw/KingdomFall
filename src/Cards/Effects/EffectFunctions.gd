@@ -240,3 +240,17 @@ func change_job_progress(subjects: Array, calling_card: Control, trigger_card: C
 			continue
 		var amt = progress_change.get_value(subject, trigger_card, calling_card, effect_dict)
 		subject.current_job.advance_progress(progress_skill, amt)
+
+func modify_pooled_stats(subjects: Array, calling_card: Control, trigger_card: Control,
+		is_multiplier: bool, pool_change: EffectValue, effect_dict: Dictionary):
+	for subject in subjects:
+		if subject is not UnitBox:
+			continue
+		
+		var val = pool_change.get_value(calling_card, trigger_card, calling_card, effect_dict)
+		if is_multiplier:
+			var prop_name = "pooled_multiplier"
+			subject.set(prop_name, subject.get(prop_name) + val)
+		else:
+			var prop_name = "pooled_additive"
+			subject.set(prop_name, subject.get(prop_name) + val)

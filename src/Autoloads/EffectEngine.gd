@@ -106,6 +106,7 @@ func on_turn_start(_turn_num: int, _turn_owner: String):
 func apply_effects() -> void:
 	# make sure units reset their stats so effects aren't being double applied
 	get_tree().call_group("Tokens", "reset_effects")
+	get_tree().call_group("UnitBoxes", "reset_effects")
 	var current_effects: Array[Effect] = []
 	# only keep effects where trigger hasn't been queued
 	# can't use effect_list.erase() because it will throw off loop
@@ -318,6 +319,18 @@ func require_job_name(subject: Control, _trigger_card: Control, required_job: St
 	if not subject.current_job:
 		return(false)
 	return(subject.current_job.description == required_job)
+
+func require_line(subject: Control, _trigger_card: Control, line: String) -> bool:
+	if line == "Any" or subject is not CardToken:
+		return(true)
+	if not subject.current_slot:
+		return false
+	if line == "Frontline":
+		return subject.current_slot.box.box_type == UnitBox.BoxType.FRONTLINE
+	elif line == "Backline":
+		return subject.current_slot.box.box_type == UnitBox.BoxType.BACKLINE
+			
+	return(false)
 
 func require_card_type(subject: Control, _trigger_card: Control, required_types: Array) -> bool:
 	if required_types.size() == 0 or (subject is not Card and subject is not CardLabel):

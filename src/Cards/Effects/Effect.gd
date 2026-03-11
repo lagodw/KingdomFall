@@ -76,6 +76,8 @@ var skill: UnitSkill = UnitSkill.new()
 var fatigue_change: EffectValue = EffectValue.new()
 var progress_skill: UnitSkill.Skill
 var progress_change: EffectValue = EffectValue.new()
+var is_multiplier: bool = false
+var pool_change: EffectValue = EffectValue.new()
 
 var host_card: CardToken
 var effect_dict: Dictionary = {}
@@ -167,7 +169,7 @@ func apply_effect(new_dict: Dictionary):
 				Bus.get("%sGraveyard"%calling_card.card_owner).add_card(calling_card)
 	if persistent_effect and not ee.effect_list.has(self):
 		ee.effect_list.append(self)
-		ee.apply_effects()
+		ee.queue_apply_effects()
 	
 func on_target(triggering_card: Control, the_target: Control):
 	trigger_card = triggering_card
@@ -382,6 +384,9 @@ func _get_property_list() -> Array:
 			'change_job_progress':
 				list.append(skill_hint("progress_skill"))
 				list.append(resource_hint("progress_change", "EffectValue"))
+			'modify_pooled_stats':
+				list.append(type_hint("is_multiplier", TYPE_BOOL))
+				list.append(resource_hint("pool_change", "EffectValue"))
 			
 		if trigger_signal == "consume_used":
 			animation = "discard"

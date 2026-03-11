@@ -19,8 +19,11 @@ enum BoxType { FRONTLINE, BACKLINE }
 var all_slots: Array[TokenSlot] = []
 var current_highlight: TokenSlot = null
 var is_breached: bool = false
+var pooled_additive: int = 0
+var pooled_multiplier: float = 1.0
 
 func _ready():
+	add_to_group("UnitBoxes")
 	if box_type == BoxType.FRONTLINE:
 		stat_icon.texture = load("uid://b6lm11rvw7ni3")
 	for i in num_slots:
@@ -32,7 +35,6 @@ func _ready():
 		all_slots.append(slot)
 	
 	ee.start_turn.connect(on_start_turn)
-	Bus.trigger_occurred.connect(on_trigger)
 	mouse_exited.connect(show_highlight.bind(false))
 
 func on_start_turn(_turn_num: int, _turn_owner: String):
@@ -40,12 +42,6 @@ func on_start_turn(_turn_num: int, _turn_owner: String):
 	if box_type == BoxType.FRONTLINE:
 		stat_icon.texture = shield_icon
 	$AnimationPlayer.play("RESET")
-
-func on_trigger(trigger: String, _trigger_card: Control):
-	if Bus.Board and Bus.Board.combat_happening:
-		return
-	if trigger in ["start_turn", "discard", "play", "cast", "move"]:
-		update_preview()
 
 # --- Pooled Stats Calculation ---
 func get_units() -> Array[CardToken]:
@@ -61,6 +57,8 @@ func get_pooled_damage(real: bool = true) -> int:
 	for unit in get_units():
 		if unit.can_act and (unit.remaining_life > 0 or real):
 			total += unit.get(dmg_var)
+			
+	total = int(max(0, (total + pooled_additive) * pooled_multiplier))
 	return total
 
 func get_pooled_shield(real: bool = true) -> int:
@@ -69,7 +67,13 @@ func get_pooled_shield(real: bool = true) -> int:
 	for unit in get_units():
 		if unit.can_act:
 			total += unit.get(shield_var)
+			
+	total = int(max(0, (total + pooled_additive) * pooled_multiplier))
 	return total
+
+func reset_effects() -> void:
+	pooled_additive = 0
+	pooled_multiplier = 1.0
 
 func update_preview():
 	if box_type == BoxType.FRONTLINE:
@@ -112,8 +116,6 @@ func drop_unit(unit: Unit) -> void:
 	
 	kf.dragging = null
 	show_highlight(false)
-	update_preview()
-	Bus.Grid.update_previews()
 
 func is_drop_valid(unit: Unit) -> bool:
 	if box_owner != "Player": 

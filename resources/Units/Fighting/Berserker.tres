@@ -16,34 +16,34 @@
 script = ExtResource("4_v567m")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_t5qr6"]
 script = ExtResource("4_v567m")
 value_type = "number"
 affected_by_spell_power = false
-number = 2
+number = 2.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_mdrlk"]
 script = ExtResource("4_v567m")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_1o32s"]
 script = ExtResource("4_v567m")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_r7k4y"]
 script = ExtResource("5_a3acp")
 require_trigger = false
-required_slots = Array[int]([])
+require_line = "Any"
 require_building_name = ""
 require_job_name = ""
 require_act = false
@@ -71,6 +71,7 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
+require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
@@ -102,6 +103,7 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
+require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
@@ -118,7 +120,7 @@ require_name = ""
 script = ExtResource("4_v567m")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_5m5fo"]
@@ -134,7 +136,7 @@ value = SubResource("Resource_5h44i")
 script = ExtResource("4_v567m")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_4k2t3"]

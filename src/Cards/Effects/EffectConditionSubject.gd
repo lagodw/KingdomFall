@@ -20,6 +20,7 @@ extends Resource
 	kf.ArmorType.Light, kf.ArmorType.Heavy]
 @export var exclude_item_type_equipped: Array[kf.ItemType] = []
 @export var required_slots: Array[TokenSlot.SlotType] = []
+@export_enum("Any", "Frontline", "Backline") var require_line: String = "Any"
 ## empty array means no requirement
 @export_enum("Unit", "Spell", "Item", "Burden", "Consume") var require_card_type: Array[String] = []
 @export var minimum_damage: int = 0

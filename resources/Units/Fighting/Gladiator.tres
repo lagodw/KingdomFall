@@ -15,7 +15,7 @@
 [sub_resource type="Resource" id="Resource_jyvb1"]
 script = ExtResource("4_c44h4")
 require_trigger = false
-required_slots = Array[int]([])
+require_line = "Any"
 require_building_name = ""
 require_job_name = ""
 require_act = false
@@ -43,11 +43,13 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
+require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
 require_missing_health = false
 require_alive = false
+require_turn_phase = "Any"
 require_breach = null
 require_no_breach = null
 minimum_activation = 0
@@ -73,11 +75,13 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
+require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
 require_missing_health = false
 require_alive = false
+require_turn_phase = "Any"
 require_breach = null
 require_no_breach = null
 minimum_activation = 0
@@ -88,7 +92,7 @@ require_name = ""
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_oyus1"]
@@ -104,7 +108,7 @@ value = SubResource("Resource_t8jqi")
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_2ud6c"]
@@ -120,14 +124,14 @@ value = SubResource("Resource_csdpo")
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = -1
+number = -1.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_cgcaj"]
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = 2
+number = 2.0
 chain_value = false
 metadata/_custom_type_script = "uid://cwhy1oww3agal"
 
@@ -149,14 +153,14 @@ mult_next_value = true
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = -1
+number = -1.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_dap0s"]
 script = ExtResource("8_bi2d1")
 value_type = "number"
 affected_by_spell_power = false
-number = -1
+number = -1.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_3qmgm"]

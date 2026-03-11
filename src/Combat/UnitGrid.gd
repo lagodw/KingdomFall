@@ -32,6 +32,10 @@ func update_previews() -> void:
 	# Simulate combat phases sequentially to accurately determine remaining_life
 	execute_enemy_attack(false)
 	execute_player_attack(false)
+	player_back.update_preview()
+	player_front.update_preview()
+	enemy_back.update_preview()
+	enemy_front.update_preview()
 
 func execute_enemy_attack(real: bool) -> void:
 	# 1. ENEMY GOES FIRST: Calculate Enemy Attack vs Player Shield

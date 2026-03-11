@@ -30,7 +30,23 @@ func call_card(calling_card: Card) -> Array[Control]:
 
 func trigger(trigger_card: Control) -> Array[Control]:
 	return([trigger_card])
-	
+
+func allied_frontline_box(calling_card: Unit) -> Array[Control]:
+	var card_owner = calling_card.card_owner
+	return([Bus.Grid.get("%s_front"%card_owner.to_lower())])
+
+func allied_backline_box(calling_card: Unit) -> Array[Control]:
+	var card_owner = calling_card.card_owner
+	return([Bus.Grid.get("%s_back"%card_owner.to_lower())])
+
+func enemy_frontline_box(calling_card: Unit) -> Array[Control]:
+	var card_owner = calling_card.card_owner
+	return([Bus.Grid.get("%s_front"%kf.invert_owner(card_owner).to_lower())])
+
+func enemy_backline_box(calling_card: Unit) -> Array[Control]:
+	var card_owner = calling_card.card_owner
+	return([Bus.Grid.get("%s_back"%kf.invert_owner(card_owner).to_lower())])
+
 func host(host_card: CardToken) -> Array[Control]:
 	if host_card:
 		return([host_card])
@@ -46,22 +62,6 @@ func attachments(trigger_card: Control) -> Array[Control]:
 	
 func Faces() -> Array[Control]:
 	return([Bus.PlayerFace, Bus.EnemyFace])
-	
-func ActivationBoxes() -> Array[Control]:
-	return([Bus.PlayerActivatedCards, Bus.EnemyActivatedCards])
-	
-func ActivatedLabels() -> Array[Control]:
-	var subjects: Array[Control] = []
-	for slot in Bus.PlayerActivatedCards.get_children() + Bus.EnemyActivatedCards.get_children():
-		if slot.get_child_count() >= 1:
-			subjects.append(slot.get_children()[0])
-	return(subjects)
-	
-func AllLabels() -> Array[Control]:
-	var subjects: Array[Control] = []
-	subjects += Decks()
-	subjects += ActivatedLabels()
-	return(subjects)
 	
 func Decks() -> Array[Control]:
 	var subjects: Array[Control] = []
