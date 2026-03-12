@@ -39,34 +39,37 @@ func add_cards_for_turn(turn_num: int):
 		enemy_dupe.ranks.erase(rank)
 
 func deploy_units():
-	var units: Array = []
+	#var units: Array = []
 	
 	# 1. Gather all available enemy units (board + incoming)
-	units.append_array(Bus.Grid.enemy_front.get_units())
-	units.append_array(Bus.Grid.enemy_back.get_units())
+	#units.append_array(Bus.Grid.enemy_front.get_units())
+	#units.append_array(Bus.Grid.enemy_back.get_units())
 	
 	var max_front = Bus.Grid.enemy_front.all_slots.size()
 	var max_back = Bus.Grid.enemy_back.all_slots.size()
-	var total_capacity = max_front + max_back
+	#var total_capacity = max_front + max_back
 	
 	var grid_units = card_grid.get_children()
-	while units.size() < total_capacity and grid_units.size() > 0:
-		var deploy_card = grid_units[0]
-		if deploy_card is Control: 
-			units.append(deploy_card)
-			grid_units.erase(deploy_card)
-			
-	if units.is_empty():
-		return
+	#while units.size() < total_capacity and grid_units.size() > 0:
+		#var deploy_card = grid_units[0]
+		#if deploy_card is Control: 
+			#units.append(deploy_card)
+			#grid_units.erase(deploy_card)
+			#
+	#if units.is_empty():
+		#return
 		
 	# 2. Sort available enemy units by best attackers first
-	var available_attackers = units.duplicate()
+	var available_attackers: Array[CardToken]
+	available_attackers.append_array(Bus.Grid.enemy_front.get_units())
+	available_attackers.append_array(Bus.Grid.enemy_back.get_units())
 	available_attackers.sort_custom(sort_by_attack_ratio) # Assuming this still exists!
 	
 	# 3. Calculate Enemy's Absolute Maximum Damage
 	var max_potential_damage = 0
-	for u in available_attackers:
-		max_potential_damage += u.current_damage
+	for attacker in available_attackers:
+		if attacker.can_act:
+			max_potential_damage += attacker.current_damage
 		
 	# 4. Gather and sort Player targets by our new Priority Score
 	var player_units = Bus.Grid.get_units("Player")
@@ -81,6 +84,7 @@ func deploy_units():
 	
 	for target in player_units:
 		# Can we break the shield AND kill this target?
+		printt(target, max_potential_damage, required_damage, target.current_health)
 		if max_potential_damage >= (required_damage + target.current_health):
 			required_damage += target.current_health
 			confirmed_kills_damage = required_damage # Save the threshold
@@ -88,7 +92,7 @@ func deploy_units():
 			break # Stop planning attacks, any extra damage is just blocked anyway
 			
 	# 6. Assign roles based on required damage
-	var backline_units: Array = []
+	var backline_units: Array = grid_units
 	var frontline_units: Array = []
 	var committed_damage = 0
 	
@@ -104,7 +108,7 @@ func deploy_units():
 		else:
 			if backline_units.size() < max_back:
 				backline_units.append(unit)
-
+	
 	# 7. Execute Movement 
 	var back_slots = Bus.Grid.enemy_back.all_slots.duplicate()
 	var front_slots = Bus.Grid.enemy_front.all_slots.duplicate()

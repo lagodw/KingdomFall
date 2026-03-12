@@ -38,7 +38,12 @@ func explore():
 	for unit in $Bottom/UnitPanel.get_units():
 		unit.card_resource.fatigue -= 5
 	if not check_for_upgrades():
-		leave()
+		#leave()
+		night_fall()
+		
+func night_fall():
+	Bus.map.current_location = Bus.map.act.night_combat[Bus.map.day_counter - 1]
+	kf.load_scene("uid://dvld0lyuo33oq")
 
 func leave():
 	kf.load_map()
