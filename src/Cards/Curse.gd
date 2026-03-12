@@ -50,4 +50,4 @@ func register(token: CardToken) -> void:
 	effect.calling_card = token
 	effect.trigger_card = token
 	effect.apply_effect({})
-	ee.queue_apply_effects()
+	ee.apply_effects()

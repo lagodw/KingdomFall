@@ -11,7 +11,8 @@ func _ready() -> void:
 	Bus.trigger_occurred.connect(on_trigger)
 
 func on_trigger(trigger: String, _trigger_card: Control) -> void:
-	if trigger in ['target', 'cast', 'discard', 'attach', 'move', 'consume_used']:
+	if trigger in ['target', 'cast', 'discard', 'attach', 
+			'move', 'consume_used', 'start_turn']:
 		await get_tree().process_frame
 		update_previews()
 
@@ -48,10 +49,9 @@ func execute_enemy_attack(real: bool) -> void:
 		if enemy_overflow > 0:
 			# Predict which units will take damage so we can animate them sequentially
 			var temp_damage = enemy_overflow
-			var valid_targets = get_units("Player").filter(func(u): return u.current_health > 0)
 			
-			# Use your existing threat logic to sort the targets
-			valid_targets.sort_custom(func(a, b): return _sort_by_threat(a, b, true, temp_damage))
+			# Ask the Enemy AI for its target list instead of calculating it here
+			var valid_targets = Bus.enemy.get_sorted_targets(true, temp_damage)
 			
 			for unit in valid_targets:
 				if temp_damage <= 0: break
@@ -64,8 +64,9 @@ func execute_enemy_attack(real: bool) -> void:
 	if enemy_overflow > 0:
 		set_breach_preview("Player", true)
 		Bus.Board.is_breached = true
-		# Cleaned up the if/else since 'real' handles the boolean directly
-		distribute_overflow_damage(enemy_overflow, "Player", real) 
+		
+		# DELEGATE TO ENEMY AI: Let the enemy handle the targeting and damage application
+		Bus.enemy.distribute_damage(enemy_overflow, real) 
 	else:
 		set_breach_preview("Player", false)
 		Bus.Board.is_breached = false

@@ -65,7 +65,7 @@ func change_max_activation(subjects: Array, calling_card: Control, trigger_card:
 		if persistent_effect:
 			subject.register_activation_modifier(val)
 		else:
-			subject.base_activation += val
+			subject.base_activation += int(val)
 
 func attach(subjects: Array, calling_card: Control):
 	if subjects.size() == 1:
@@ -104,7 +104,7 @@ func change_art(subjects: Array, new_art: String) -> void:
 func damage(subjects: Array, calling_card: Control, trigger_card: Control,
 		damage_amt: EffectValue, blocked_by_shield: bool, effect_dict: Dictionary):
 	for subject in subjects:
-		var dmg: int = damage_amt.get_value(subject, trigger_card, calling_card, effect_dict)
+		var dmg: int = int(damage_amt.get_value(subject, trigger_card, calling_card, effect_dict))
 		subject.take_damage(dmg, calling_card, blocked_by_shield)
 #
 #func delayed_effect(subjects: Array, trigger_card: Card, delayed_effects: DelayedEffect):
@@ -219,7 +219,7 @@ func add_skill(subjects: Array, calling_card: Control, trigger_card: Control,
 		if skill.effect_value:
 			var amt = skill.effect_value.get_value(subject, 
 					trigger_card, calling_card, effect_dict)
-			skill.amount = amt
+			skill.amount = int(amt)
 		subject.card_resource.skills.append(skill)
 
 ## affect_max determines whether the change is applied to the card resource
@@ -227,7 +227,7 @@ func change_fatigue(subjects: Array, calling_card: Control, trigger_card: Contro
 		fatigue_change: EffectValue, affect_max: bool, effect_dict: Dictionary):
 	for subject: Unit in subjects:
 		var amt = fatigue_change.get_value(subject, trigger_card, calling_card, effect_dict)
-		subject.current_fatigue += amt
+		subject.current_fatigue += int(amt)
 		if affect_max:
 			subject.card_resource.fatigue += amt
 

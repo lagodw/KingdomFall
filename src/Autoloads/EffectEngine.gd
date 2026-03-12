@@ -107,6 +107,7 @@ func apply_effects() -> void:
 	# make sure units reset their stats so effects aren't being double applied
 	get_tree().call_group("Tokens", "reset_effects")
 	get_tree().call_group("UnitBoxes", "reset_effects")
+	await get_tree().process_frame
 	var current_effects: Array[Effect] = []
 	# only keep effects where trigger hasn't been queued
 	# can't use effect_list.erase() because it will throw off loop

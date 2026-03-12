@@ -5,6 +5,7 @@ var enemy_dupe: EnemyResource
 var card_grid: Control
 
 func _ready() -> void:
+	Bus.enemy = self
 	var res: EnemyResource = Bus.map.current_location.enemy
 	enemy_dupe = res.dupe()
 	Bus.trigger_occurred.connect(on_trigger)
@@ -40,61 +41,71 @@ func add_cards_for_turn(turn_num: int):
 func deploy_units():
 	var units: Array = []
 	
-	# 1. Gather units already on the board
+	# 1. Gather all available enemy units (board + incoming)
 	units.append_array(Bus.Grid.enemy_front.get_units())
 	units.append_array(Bus.Grid.enemy_back.get_units())
 	
-	# 2. Determine max capacity
 	var max_front = Bus.Grid.enemy_front.all_slots.size()
 	var max_back = Bus.Grid.enemy_back.all_slots.size()
 	var total_capacity = max_front + max_back
 	
 	var grid_units = card_grid.get_children()
-	# 3. Pull new units from the queue until we hit capacity
 	while units.size() < total_capacity and grid_units.size() > 0:
 		var deploy_card = grid_units[0]
-		
-		if deploy_card is Unit:
+		if deploy_card is Control: 
 			units.append(deploy_card)
-			if grid_units.has(deploy_card):
-				grid_units.erase(deploy_card)
+			grid_units.erase(deploy_card)
 			
 	if units.is_empty():
 		return
 		
-	var backline_units: Array[Unit] = []
-	var frontline_units: Array[Unit] = []
+	# 2. Sort available enemy units by best attackers first
+	var available_attackers = units.duplicate()
+	available_attackers.sort_custom(sort_by_attack_ratio) # Assuming this still exists!
 	
-	# 4. Assess incoming damage
-	# Get the base damage the player *would* deal this turn
-	var incoming_damage = Bus.Grid.player_back.get_pooled_damage(true)
-	var pooled_block = 0
+	# 3. Calculate Enemy's Absolute Maximum Damage
+	var max_potential_damage = 0
+	for u in available_attackers:
+		max_potential_damage += u.current_damage
+		
+	# 4. Gather and sort Player targets by our new Priority Score
+	var player_units = Bus.Grid.get_units("Player")
 	
-	# 5. Sort units by block efficiency to find the best blockers first
-	var block_candidates = units.duplicate()
-	block_candidates.sort_custom(sort_by_block_efficiency)
+	# UPDATED: Pass 'true' for real stats, and 'max_potential_damage' to check for lethality
+	player_units.sort_custom(func(a, b): return _get_target_priority(a, true, max_potential_damage) > _get_target_priority(b, true, max_potential_damage))
 	
-	# 6. Assign frontline blockers until incoming damage is blocked (or we run out of space)
-	for unit in block_candidates:
-		if incoming_damage > 0 and pooled_block < incoming_damage and frontline_units.size() < max_front:
-			frontline_units.append(unit)
-			pooled_block += unit.current_shield
-			units.erase(unit)
+	# 5. Determine required damage for kills
+	var player_front_shield = Bus.Grid.player_front.get_pooled_shield(false)
+	var required_damage = player_front_shield
+	var confirmed_kills_damage = 0
 	
-	# 7. Sort remaining units by attack efficiency for the backline
-	units.sort_custom(sort_by_attack_ratio)
+	for target in player_units:
+		# Can we break the shield AND kill this target?
+		if max_potential_damage >= (required_damage + target.current_health):
+			required_damage += target.current_health
+			confirmed_kills_damage = required_damage # Save the threshold
+		else:
+			break # Stop planning attacks, any extra damage is just blocked anyway
+			
+	# 6. Assign roles based on required damage
+	var backline_units: Array = []
+	var frontline_units: Array = []
+	var committed_damage = 0
 	
-	# 8. Fill the rest of the board with the remaining units
-	for unit in units:
-		if backline_units.size() < max_back:
+	for unit in available_attackers:
+		# If we haven't met our kill quota, and there's room, put them in back
+		if committed_damage < confirmed_kills_damage and backline_units.size() < max_back:
 			backline_units.append(unit)
+			committed_damage += unit.current_damage
+		# Otherwise, we don't need their damage, so put them in front to defend
 		elif frontline_units.size() < max_front:
 			frontline_units.append(unit)
+		# If the front is full, overflow back into the backline
 		else:
-			# If both are full, mathematically shouldn't happen based on total_capacity but just in case
 			if backline_units.size() < max_back:
 				backline_units.append(unit)
-			
+
+	# 7. Execute Movement 
 	var back_slots = Bus.Grid.enemy_back.all_slots.duplicate()
 	var front_slots = Bus.Grid.enemy_front.all_slots.duplicate()
 	
@@ -106,26 +117,16 @@ func deploy_units():
 		if unit.current_slot and unit.current_slot.box == Bus.Grid.enemy_front:
 			front_slots.erase(unit.current_slot)
 	
-	# 9. Move backline units to slots
 	for unit in backline_units:
-		if back_slots.is_empty():
-			continue
-		if unit.current_slot:
-			if unit.current_slot.box == Bus.Grid.enemy_back:
-				continue
-		var slot = back_slots.pop_front()
-		unit.move_to(slot)
+		if back_slots.is_empty(): continue
+		if unit.current_slot and unit.current_slot.box == Bus.Grid.enemy_back: continue
+		unit.move_to(back_slots.pop_front())
 			
-	# 10. Move frontline units to slots
 	for unit in frontline_units:
-		if front_slots.is_empty():
-			continue
-		if unit.current_slot:
-			if unit.current_slot.box == Bus.Grid.enemy_front:
-				continue
-		var slot = front_slots.pop_front()
-		unit.move_to(slot)
-
+		if front_slots.is_empty(): continue
+		if unit.current_slot and unit.current_slot.box == Bus.Grid.enemy_front: continue
+		unit.move_to(front_slots.pop_front())
+		
 func on_trigger(trigger: String, trigger_card: Control):
 	if enemy_dupe.ranks.size() > 0:
 		return
@@ -179,3 +180,60 @@ func sort_by_block_efficiency(unit1, unit2) -> bool:
 	if r1 > r2: return true
 	if r1 == r2: return (unit1.current_shield + unit1.current_health) >= (unit2.current_shield + unit2.current_health)
 	return false
+
+func _get_target_priority(unit: Control, real: bool, available_damage: int) -> float:
+	# 1. Absolute Priority: Taunt
+	if unit.has_method("has_tag") and unit.has_tag("Taunt"):
+		return 9999.0
+		
+	var hp = unit.current_health if real else unit.remaining_life
+	var dmg = unit.current_damage if real else unit.remaining_base_damage
+	var shield = unit.current_shield
+	
+	if hp <= 0:
+		return -1.0 # Dead units are ignored
+		
+	var score: float = 0.0
+	
+	# 2. Value per HP: Target high-value, fragile units (Glass Cannons or weak Tanks)
+	score += float(dmg + shield) / float(hp)
+	
+	# 3. Lethality Check: Massive priority to units we can completely kill this turn
+	var kill_bonus = 100.0
+	if available_damage >= hp:
+		score += kill_bonus
+		
+	return score
+
+func get_sorted_targets(real: bool, available_damage: int) -> Array:
+	# Gather living player units
+	var player_units = Bus.Grid.get_units("Player").filter(func(u): return (u.current_health if real else u.remaining_life) > 0)
+	
+	# Sort them using the AI priority system
+	player_units.sort_custom(func(a, b): return _get_target_priority(a, real, available_damage) > _get_target_priority(b, real, available_damage))
+	
+	return player_units
+
+func distribute_damage(amount: int, real: bool) -> void:
+	var remaining_damage = amount
+	var valid_targets = get_sorted_targets(real, remaining_damage)
+	
+	# Apply damage sequentially based on AI priority
+	for unit in valid_targets:
+		if remaining_damage <= 0:
+			break
+			
+		var hp = unit.current_health if real else unit.remaining_life
+		var health_dmg = min(remaining_damage, hp)
+		
+		if real:
+			unit.current_health -= health_dmg
+			remaining_damage -= health_dmg
+		else:
+			# Preview update
+			unit.remaining_life -= health_dmg
+			remaining_damage -= health_dmg
+			
+	# Hit the gate if real combat overflows past all units
+	if remaining_damage > 0 and real and Bus.gate:
+		Bus.gate.current_health -= remaining_damage

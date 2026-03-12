@@ -169,7 +169,7 @@ func apply_effect(new_dict: Dictionary):
 				Bus.get("%sGraveyard"%calling_card.card_owner).add_card(calling_card)
 	if persistent_effect and not ee.effect_list.has(self):
 		ee.effect_list.append(self)
-		ee.queue_apply_effects()
+		ee.apply_effects()
 	
 func on_target(triggering_card: Control, the_target: Control):
 	trigger_card = triggering_card

@@ -40,8 +40,8 @@ func get_modified_combat(attacker: CardToken, defender: CardToken, is_attacker: 
 	# order of attacker/defender only matter if value is stat
 	# if it is a stat the order of application would matter so that's bad idea
 	if affect_whos_damage == "Attacker":
-		attacker_change = value.get_value(attacker, effect_owner, effect_owner)
+		attacker_change = int(value.get_value(attacker, effect_owner, effect_owner))
 	else:
-		defender_change = value.get_value(defender, effect_owner, effect_owner)
+		defender_change = int(value.get_value(defender, effect_owner, effect_owner))
 	
 	return([attacker_change, defender_change])

@@ -109,6 +109,7 @@ var Grid: UnitGrid
 var discard: Pile
 var PlayerGraveyard: Pile
 var EnemyGraveyard: Pile
+var enemy: Enemy
 var gate: Gate
 var energy: int:
 	set(val):

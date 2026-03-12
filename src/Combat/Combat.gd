@@ -16,11 +16,11 @@ var is_breached: bool = false
 var breach_amount: int = 0
 
 enum TurnPhase {
-	ENEMY_ATTACK,
-	ENEMY_ACTION,
+	PLAYER_ACTION,
 	PLAYER_ATTACK,
 	BREACH_CONFIRM,
-	PLAYER_ACTION
+	ENEMY_ACTION,
+	ENEMY_ATTACK
 }
 var current_phase: TurnPhase = TurnPhase.ENEMY_ACTION:
 	set(val):
@@ -67,11 +67,11 @@ func select_card(button: Button):
 
 func end_turn():
 	if current_phase == TurnPhase.PLAYER_ACTION:
-		run_enemy_attack()
+		run_player_attack()
 	elif current_phase == TurnPhase.BREACH_CONFIRM:
 		# Player confirmed breach targets
 		Bus.Grid.apply_breach_damage()
-		run_player_action()
+		run_enemy_action()
 
 func run_enemy_attack():
 	current_phase = TurnPhase.ENEMY_ATTACK
@@ -79,7 +79,7 @@ func run_enemy_attack():
 	# Skip attack phase entirely if there's no damage
 	var enemy_dmg = Bus.Grid.enemy_back.get_pooled_damage(true)
 	if enemy_dmg <= 0:
-		run_enemy_action()
+		run_player_action()
 		return
 		
 	combat_happening = true
@@ -89,7 +89,7 @@ func run_enemy_attack():
 	if combat_over:
 		return
 		
-	run_enemy_action()
+	run_player_action()
 
 func run_enemy_action():
 	current_phase = TurnPhase.ENEMY_ACTION
@@ -97,7 +97,7 @@ func run_enemy_action():
 	
 	# Wait for deployment animations
 	await get_tree().create_timer(kf.tween_time * 2).timeout
-	run_player_attack()
+	run_enemy_attack()
 
 func run_player_attack():
 	current_phase = TurnPhase.PLAYER_ATTACK
@@ -105,7 +105,7 @@ func run_player_attack():
 	# Skip attack phase entirely if there's no damage
 	var player_dmg = Bus.Grid.player_back.get_pooled_damage(true)
 	if player_dmg <= 0:
-		run_player_action()
+		run_enemy_action()
 		return
 		
 	combat_happening = true
@@ -119,7 +119,7 @@ func run_player_attack():
 		current_phase = TurnPhase.BREACH_CONFIRM
 		# UI waits for player to distribute breach damage and click End Turn again
 	else:
-		run_player_action()
+		run_enemy_action()
 
 func run_player_action():
 	current_phase = TurnPhase.PLAYER_ACTION
