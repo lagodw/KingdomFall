@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=31 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
 [ext_resource type="Texture2D" uid="uid://cc6bmnrsfqlpa" path="res://assets/Combat/CombatBoard.png" id="2_jkim7"]
@@ -25,7 +25,13 @@
 [ext_resource type="Texture2D" uid="uid://cverjpfc2bevk" path="res://assets/UI/Deck_Icon.png" id="18_60py1"]
 [ext_resource type="PackedScene" uid="uid://cngo42s45sirp" path="res://src/Combat/GameOver.tscn" id="18_wbuvy"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="19_rlcqg"]
+[ext_resource type="Texture2D" uid="uid://djca5lmdfkm8n" path="res://assets/NewUI/Window_Table.png" id="22_1vl0l"]
 [ext_resource type="PackedScene" uid="uid://ddu14f5y2d8sj" path="res://src/Combat/CombatWon.tscn" id="23_vywh8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fs6sf"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fs6sf"]
+allow_unpress = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fs6sf"]
 bg_color = Color(0, 0, 0, 0.5)
@@ -196,9 +202,9 @@ process_mode = 3
 visible = false
 z_index = 2
 anchors_preset = 0
-offset_left = 300.0
+offset_left = 150.0
 offset_top = 52.0
-offset_right = 1773.0
+offset_right = 1673.0
 offset_bottom = 1029.0
 
 [node name="MarginContainer" type="MarginContainer" parent="DeckChoice"]
@@ -270,7 +276,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 50.0
+offset_left = 300.0
 offset_top = 150.0
 offset_right = -50.0
 offset_bottom = -175.0
@@ -282,7 +288,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 25
-columns = 6
+columns = 5
 
 [node name="DeckIcon" type="TextureRect" parent="DeckChoice"]
 layout_mode = 1
@@ -314,6 +320,65 @@ grow_vertical = 2
 theme = ExtResource("19_rlcqg")
 theme_override_font_sizes/font_size = 64
 text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="DeckChoice"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 191.0
+offset_right = 273.0
+offset_bottom = 712.0
+texture = ExtResource("22_1vl0l")
+expand_mode = 1
+
+[node name="Filters" type="VBoxContainer" parent="DeckChoice"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 207.0
+offset_right = 251.0
+offset_bottom = 689.0
+theme_override_constants/separation = 10
+
+[node name="UnitFilter" type="Button" parent="DeckChoice/Filters"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fs6sf")
+text = "Units"
+
+[node name="SpellFilter" type="Button" parent="DeckChoice/Filters"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fs6sf")
+text = "Spells"
+
+[node name="ItemFilter" type="Button" parent="DeckChoice/Filters"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fs6sf")
+text = "Items"
+
+[node name="ConsumeFilter" type="Button" parent="DeckChoice/Filters"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fs6sf")
+text = "Consumes"
+
+[node name="FatigueFilter" type="CheckButton" parent="DeckChoice/Filters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
+text = "Hide Fatigued"
 
 [node name="Enemy" type="Control" parent="."]
 anchors_preset = 0

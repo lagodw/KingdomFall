@@ -27,7 +27,10 @@ var current_phase: TurnPhase = TurnPhase.ENEMY_ACTION:
 	set(val):
 		current_phase = val
 		$Phase.text = TurnPhase.keys()[val]
-
+# filters for cards during deck choice
+enum FilterType { ALL, UNIT, ITEM, CONSUMABLE, SPELL }
+var current_filter: FilterType = FilterType.ALL
+var hide_fatigued_units: bool = false
 
 func _ready() -> void:
 	Bus.Board = self
@@ -41,6 +44,17 @@ func _ready() -> void:
 	%ConfirmDeck.pressed.connect(begin_combat)
 	$CombatWon.choices = Bus.map.current_location.unit_options
 	$CombatWon.setup()
+	$DeckChoice/Filters/UnitFilter.toggled.connect(
+			_on_type_filter_toggled.bind(FilterType.UNIT))
+	$DeckChoice/Filters/SpellFilter.toggled.connect(
+			_on_type_filter_toggled.bind(FilterType.SPELL))
+	$DeckChoice/Filters/ItemFilter.toggled.connect(
+			_on_type_filter_toggled.bind(FilterType.ITEM))
+	$DeckChoice/Filters/ConsumeFilter.toggled.connect(
+			_on_type_filter_toggled.bind(FilterType.CONSUMABLE))
+	$DeckChoice/Filters/FatigueFilter.toggled.connect(
+			toggle_fatigued_filter)
+	
 	add_deck_choice()
 	get_tree().paused = true
 	$DeckChoice.visible = true
@@ -49,13 +63,20 @@ func _ready() -> void:
 	$Cheat.pressed.connect(combat_won)
 
 func add_deck_choice():
-	for resource in Bus.deck.cards:
+	# Duplicate the deck array so we don't accidentally scramble the underlying deck
+	var sorted_cards = Bus.deck.cards.duplicate()
+	sorted_cards.sort_custom(sort_deck)
+	
+	for resource in sorted_cards:
 		var card = kf.create_card(resource)
 		var button = card_button.instantiate()
 		button.card = card
 		button.add_child(card)
 		button.pressed.connect(select_card.bind(button))
 		deck_choice_grid.add_child(button)
+		
+	# Make sure filters apply properly on initial load
+	apply_filters()
 		
 func select_card(button: Button):
 	if selected_cards.has(button):
@@ -178,3 +199,61 @@ func combat_won():
 	get_tree().paused = true
 	combat_over = true
 	$CombatWon.visible = true
+
+func sort_deck(a: CardResource, b: CardResource) -> bool:
+	var a_is_unit = a is UnitResource
+	var b_is_unit = b is UnitResource
+	
+	# 1. Units always come first
+	if a_is_unit and not b_is_unit:
+		return true
+	elif not a_is_unit and b_is_unit:
+		return false
+		
+	# 2. If both are units, check fatigue
+	elif a_is_unit and b_is_unit:
+		if a.fatigue != b.fatigue:
+			return a.fatigue < b.fatigue
+		# If fatigue is equal, we let the code fall through to the alphabetical check below
+
+	# 3. Fallback: Sort alphabetically by card_name
+	# (This handles units with tied fatigue, and all non-unit cards)
+	return a.card_name < b.card_name
+	
+func _on_type_filter_toggled(toggled_on: bool, type: FilterType):
+	if toggled_on:
+		# A specific filter was turned on
+		current_filter = type
+	else:
+		# The active filter was turned off, revert to showing everything
+		current_filter = FilterType.ALL
+		
+	apply_filters()
+
+func toggle_fatigued_filter(toggled_on: bool):
+	hide_fatigued_units = toggled_on
+	apply_filters()
+
+func apply_filters():
+	for button in deck_choice_grid.get_children():
+		var card_res = button.card.card_resource
+		var is_card_visible = true
+		
+		# 1. Check Card Type Filter
+		match current_filter:
+			FilterType.UNIT:
+				if not card_res is UnitResource: is_card_visible = false
+			FilterType.ITEM:
+				if not card_res is ItemResource: is_card_visible = false
+			FilterType.CONSUMABLE:
+				if not card_res is ConsumeResource: is_card_visible = false
+			FilterType.SPELL:
+				if not card_res is SpellResource: is_card_visible = false
+				
+		# 2. Check Fatigue Filter
+		if hide_fatigued_units and card_res is UnitResource:
+			# Assuming a unit with fatigue > 0 is considered fatigued
+			if card_res.fatigue > 0:
+				is_card_visible = false
+				
+		button.visible = is_card_visible
