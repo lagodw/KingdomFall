@@ -7,6 +7,7 @@ const tag_dict: Dictionary[String, String] = {
 		"Taunt": "Must be targeted first",
 		"Flying": "Can only be attacked by Ranged or Flying",
 		"Resistant": "Not affected by Magic",
+		"Prompt": "Provides block the same turn as being deployed",
 		#"Magic": "Does not affect Resistant units",
 		"Mounted": "Attacks before the enemy units",
 		"Stealth": "Cannot be blocked",

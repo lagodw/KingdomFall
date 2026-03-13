@@ -84,7 +84,6 @@ func deploy_units():
 	
 	for target in player_units:
 		# Can we break the shield AND kill this target?
-		printt(target, max_potential_damage, required_damage, target.current_health)
 		if max_potential_damage >= (required_damage + target.current_health):
 			required_damage += target.current_health
 			confirmed_kills_damage = required_damage # Save the threshold

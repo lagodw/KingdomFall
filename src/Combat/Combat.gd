@@ -6,6 +6,7 @@ extends Control
 @onready var discard_pile: Pile = $Discard
 @onready var energy_txt: Label = $Energy/EnergyText
 @onready var deck_count: Label = %DeckCount
+@onready var deck_choice_grid: GridContainer = %DeckChoiceGrid
 
 var turn_counter: int = 0
 var combat_happening: bool = false
@@ -54,7 +55,7 @@ func add_deck_choice():
 		button.card = card
 		button.add_child(card)
 		button.pressed.connect(select_card.bind(button))
-		%DeckChoiceGrid.add_child(button)
+		deck_choice_grid.add_child(button)
 		
 func select_card(button: Button):
 	if selected_cards.has(button):

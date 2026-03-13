@@ -7,7 +7,7 @@ var force_load_calling: EffectConditionCalling
 var force_load_if: EffectIf
 
 enum Tag {Creature, Taunt, Resistant, Magic, Stealth, Mounted, Flying,
-		Physical, Undead, Fairie, Giant, Immortal, Indestructible, Volley}
+		Physical, Undead, Fairie, Giant, Immortal, Indestructible, Prompt}
 enum AttackType {Melee, Ranged, Magic}
 enum ArmorType {Light, Heavy, Inanimate}
 enum ItemType {Weapon, Armor, Jewelry}

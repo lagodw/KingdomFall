@@ -65,12 +65,13 @@ func get_pooled_shield(real: bool = true) -> int:
 	var total = 0
 	var shield_var = "current_shield" if real else "current_shield"
 	for unit in get_units():
-		if unit.can_act:
+		# Add shield if the unit can act OR if the unit has the Prompt tag
+		if unit.can_act or kf.Tag.Prompt in unit.tags:
 			total += unit.get(shield_var)
 			
 	total = int(max(0, (total + pooled_additive) * pooled_multiplier))
 	return total
-
+	
 func reset_effects() -> void:
 	pooled_additive = 0
 	pooled_multiplier = 1.0
