@@ -12,7 +12,7 @@
 [sub_resource type="Resource" id="Resource_ugadp"]
 script = ExtResource("2_7o44j")
 require_trigger = false
-required_slots = Array[int]([])
+require_line = "Any"
 require_building_name = ""
 require_job_name = ""
 require_act = false
@@ -40,11 +40,15 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
+require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
 require_missing_health = false
 require_alive = false
+require_turn_phase = "Any"
+require_breach = false
+require_no_breach = false
 minimum_activation = 0
 maximum_activation = 99
 require_name = ""
@@ -68,11 +72,15 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
+require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
 require_missing_health = false
 require_alive = false
+require_turn_phase = "Any"
+require_breach = false
+require_no_breach = false
 minimum_activation = 0
 maximum_activation = 99
 require_name = ""
@@ -81,7 +89,7 @@ require_name = ""
 script = ExtResource("6_d5um6")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_sj4q7"]
@@ -97,7 +105,7 @@ value = SubResource("Resource_pwtv2")
 script = ExtResource("6_d5um6")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_uyrog"]

@@ -38,15 +38,15 @@ func explore():
 	for unit in $Bottom/UnitPanel.get_units():
 		unit.card_resource.fatigue -= 5
 	if not check_for_upgrades():
-		#leave()
-		night_fall()
+		leave()
 		
 func night_fall():
 	Bus.map.current_location = Bus.map.act.night_combat[Bus.map.day_counter - 1]
 	kf.load_scene("uid://dvld0lyuo33oq")
 
 func leave():
-	kf.load_map()
+	night_fall()
+	#kf.load_map()
 
 func add_building(resource: BuildingResource):
 	var building = building_scene.instantiate()
@@ -88,7 +88,7 @@ func select_upgrade_unit(chosen_button: Button):
 		new_resource.skills = resource.skills
 		new_resource.fatigue = resource.fatigue
 		new_resource.curses = resource.curses
-		var card = kf.create_card(upgrade)
+		var card: Unit = kf.create_card(new_resource)
 		var button = upgrade_button.instantiate()
 		button.card = card
 		button.add_child(card)

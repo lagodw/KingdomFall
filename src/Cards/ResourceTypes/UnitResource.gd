@@ -77,7 +77,7 @@ func get_skill_count(check_skill: UnitSkill.Skill) -> int:
 	return(count)
 
 func check_upgrade_requirements(upgrade: UnitResource) -> bool:
-	if not Bus.player.charters.has(upgrade):
+	if not Bus.player.charter_names.has(upgrade.card_name):
 		return(false)
 	for requirement in upgrade.upgrade_requirements:
 		if get_skill_count(requirement.skill) < requirement.amount:

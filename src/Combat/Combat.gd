@@ -189,11 +189,9 @@ func combat_won():
 	await get_tree().create_timer(kf.tween_time*1.5).timeout
 	for card in Bus.hand.get_children():
 		card.queue_free()
-	#for unit in Bus.deck.get_units():
-		#if selected_unit_resources.has(unit):
-			#unit.fatigue += 5
-		#else:
-			#unit.fatigue -= 5
+	for unit in Bus.deck.get_units():
+		if not selected_unit_resources.has(unit):
+			unit.fatigue -= 5
 	#for card in Bus.PlayerGraveyard.get_units():
 		#card.card_resource.fatigue += 10
 	get_tree().paused = true
