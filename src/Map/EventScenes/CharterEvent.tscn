@@ -1,12 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dexaru84td4iw"]
+[gd_scene load_steps=5 format=3 uid="uid://dexaru84td4iw"]
 
-[ext_resource type="Script" uid="uid://do8i6qq1tmcpo" path="res://src/Map/EventScenes/CharterEvent.gd" id="1_vio6n"]
 [ext_resource type="Texture2D" uid="uid://ddg5m3gsefs1g" path="res://assets/Events/CharterRoom.png" id="2_ckkof"]
-[ext_resource type="Texture2D" uid="uid://docmg4uihkhbg" path="res://assets/NewUI/Panel.png" id="3_a7qod"]
-[ext_resource type="Texture2D" uid="uid://d3g3488ppbb23" path="res://assets/NewUI/Corners.png" id="4_oyei6"]
-[ext_resource type="Texture2D" uid="uid://djca5lmdfkm8n" path="res://assets/NewUI/Window_Table.png" id="5_phtrg"]
-[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_8vntv"]
-[ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="7_ok28a"]
+[ext_resource type="PackedScene" uid="uid://bcrcovt4j8847" path="res://src/Map/CharterChoice.tscn" id="2_thfx5"]
 [ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="12_8vntv"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="13_ok28a"]
 
@@ -17,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vio6n")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -29,96 +23,7 @@ grow_vertical = 2
 texture = ExtResource("2_ckkof")
 expand_mode = 1
 
-[node name="CharterChoice" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 487.0
-offset_top = 221.0
-offset_right = 1508.0
-offset_bottom = 880.0
-
-[node name="MarginContainer" type="MarginContainer" parent="CharterChoice"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CharterChoice/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 8
-
-[node name="TextureRect" type="TextureRect" parent="CharterChoice/MarginContainer/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("3_a7qod")
-expand_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="CharterChoice/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("4_oyei6")
-expand_mode = 1
-
-[node name="Control" type="Control" parent="CharterChoice/MarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CharterChoice/MarginContainer/Control"]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 212.0
-offset_right = 907.0
-offset_bottom = 570.0
-texture = ExtResource("5_phtrg")
-expand_mode = 1
-
-[node name="Choices" type="HBoxContainer" parent="CharterChoice/MarginContainer/Control"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -387.0
-offset_top = 257.0
-offset_right = 365.0
-offset_bottom = 522.0
-grow_horizontal = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="Label" type="Label" parent="CharterChoice"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -415.5
-offset_top = 83.5
-offset_right = 415.5
-offset_bottom = 142.5
-grow_horizontal = 2
-theme = ExtResource("6_8vntv")
-theme_override_font_sizes/font_size = 48
-text = "Issue a Royal Charter"
-horizontal_alignment = 1
-
-[node name="Confirm" type="Button" parent="CharterChoice"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -127.5
-offset_top = -163.5
-offset_right = 127.5
-offset_bottom = -75.5
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("7_ok28a")
-theme_override_font_sizes/font_size = 40
-text = "Confirm"
+[node name="CharterChoice" parent="." instance=ExtResource("2_thfx5")]
 
 [node name="UI" parent="." instance=ExtResource("12_8vntv")]
 layout_mode = 1
