@@ -230,7 +230,7 @@ func distribute_damage(amount: int, real: bool) -> void:
 		var health_dmg = min(remaining_damage, hp)
 		
 		if real:
-			unit.current_health -= health_dmg
+			unit.take_damage(health_dmg)
 			remaining_damage -= health_dmg
 		else:
 			# Preview update
@@ -239,4 +239,4 @@ func distribute_damage(amount: int, real: bool) -> void:
 			
 	# Hit the gate if real combat overflows past all units
 	if remaining_damage > 0 and real and Bus.gate:
-		Bus.gate.current_health -= remaining_damage
+		Bus.gate.take_damage(remaining_damage)

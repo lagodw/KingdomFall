@@ -191,9 +191,9 @@ func revert_to_snapshot() -> void:
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	if card_owner == "Enemy" or disabled:
 		return null
-	if (get_tree().current_scene is Combat and current_activation > Bus.energy
-			and self is not CardToken):
-		return null
+	#if (get_tree().current_scene is Combat and current_activation > Bus.energy
+			#and self is not CardToken):
+		#return null
 	if Bus.Board:
 		if Bus.Board.combat_over:
 			return

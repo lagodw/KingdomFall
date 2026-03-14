@@ -9,7 +9,6 @@ var token: CardToken
 var label: CardLabel
 
 var pop: VBoxContainer
-var popup_hover_time := 1.0
 var animation_path := ""
 var card_art: String
 var tween: Tween

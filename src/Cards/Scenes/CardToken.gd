@@ -64,14 +64,14 @@ func type_only_setup():
 	for curse in card_resource.curses:
 		# need deferred so card ready doesn't override stats
 		curse.call_deferred("register", self)
-	poison_effect = load("uid://bbrcqb4snqdfe").dupe()
-	vulnerable_effect = load("uid://0gbxtn83ia3d").duplicate(true)
-	feeble_effect = load("uid://d28pv07bwhpva").duplicate(true)
 	for modifier in card_resource.combat_modifiers:
 		combat_modifiers.append(modifier)
-	combat_modifiers.append(vulnerable_effect)
-	combat_modifiers.append(feeble_effect)
-	effects.append(poison_effect)
+	#poison_effect = load("uid://bbrcqb4snqdfe").dupe()
+	#vulnerable_effect = load("uid://0gbxtn83ia3d").duplicate(true)
+	#feeble_effect = load("uid://d28pv07bwhpva").duplicate(true)
+	#combat_modifiers.append(vulnerable_effect)
+	#combat_modifiers.append(feeble_effect)
+	#effects.append(poison_effect)
 	add_animation()
 	for effect in effects:
 		effect.connect_signal(self)
@@ -168,8 +168,6 @@ func discard():
 		current_slot = null
 	Audio.play_sfx("Death")
 	ee.emit_signal("discard", self)
-	# prevent arrow from targeting as card is being discarded
-	disabled = true
 	turn_to_card()
 	if card_owner == "Enemy":
 		Bus.get("%sGraveyard"%card_owner).add_card(card)
@@ -178,7 +176,7 @@ func discard():
 		current_fatigue += 5
 		Bus.discard.add_card(card)
 	
-func take_damage(dmg = 0, damaging_card: Card = null, blocked_by_shield: bool = true):
+func take_damage(dmg = 0, damaging_card: Card = null, blocked_by_shield: bool = false):
 	if disabled:
 		return
 	var shield_dmg = min(dmg, current_shield)
