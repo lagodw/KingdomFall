@@ -421,15 +421,6 @@ visible = false
 [node name="CombatWon" parent="." instance=ExtResource("23_vywh8")]
 visible = false
 
-[node name="Phase" type="Label" parent="."]
-layout_mode = 0
-offset_left = 84.0
-offset_top = 91.0
-offset_right = 454.0
-offset_bottom = 158.0
-theme_override_font_sizes/font_size = 48
-text = "Phase"
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 

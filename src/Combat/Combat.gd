@@ -79,11 +79,11 @@ func end_turn():
 	await Bus.Grid.start_combat()
 	combat_happening = false
 	await Bus.hand.discard()
+	turn_counter += 1
 	ee.emit_signal("start_turn", turn_counter)
 	draw_pile.draw_cards(5)
 	Bus.energy = 3
 	update_energy()
-	turn_counter += 1
 
 func update_energy():
 	energy_txt.text = str(Bus.energy)

@@ -3,14 +3,14 @@ extends Resource
 
 ## key denotes what turn number the rank will be deployed on
 @export var face: UnitResource
-@export var ranks: Array[EnemyRank]
+@export var ranks: Dictionary[int, EnemyRank]
 @export var is_night_enemy: bool = false
 @export var is_final_enemy: bool = false
 
 func dupe() -> EnemyResource:
 	var duped: EnemyResource = duplicate(true)
-	var duped_ranks: Array[EnemyRank]
-	for rank in ranks:
-		duped_ranks.append(rank.dupe())
+	var duped_ranks: Dictionary[int, EnemyRank]
+	for turn in ranks.keys():
+		duped_ranks[turn] = ranks[turn].dupe()
 	duped.ranks = duped_ranks
 	return(duped)

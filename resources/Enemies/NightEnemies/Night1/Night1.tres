@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=12 format=3 uid="uid://d3024l3wyhs5m"]
+
+[ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_sj6cc"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_a0b2t"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_33ol1"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="4_0gvhf"]
+[ext_resource type="Resource" uid="uid://bmpc0ety5bqxi" path="res://resources/Units/Fighting/Sentry.tres" id="5_kym0m"]
+[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="6_2juup"]
+[ext_resource type="Script" uid="uid://bue1g4huq61xk" path="res://src/Combat/EnemyResource.gd" id="7_688vi"]
+
+[sub_resource type="Resource" id="Resource_cxahr"]
+script = ExtResource("1_sj6cc")
+units = Array[ExtResource("2_a0b2t")]([ExtResource("3_33ol1"), ExtResource("4_0gvhf"), ExtResource("4_0gvhf")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_743lx"]
+script = ExtResource("1_sj6cc")
+units = Array[ExtResource("2_a0b2t")]([ExtResource("3_33ol1"), ExtResource("3_33ol1")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_74quq"]
+script = ExtResource("1_sj6cc")
+units = Array[ExtResource("2_a0b2t")]([ExtResource("3_33ol1"), ExtResource("5_kym0m"), ExtResource("6_2juup")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_81evp"]
+script = ExtResource("1_sj6cc")
+units = Array[ExtResource("2_a0b2t")]([ExtResource("5_kym0m"), ExtResource("6_2juup"), ExtResource("5_kym0m"), ExtResource("6_2juup")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[resource]
+script = ExtResource("7_688vi")
+ranks = Dictionary[int, ExtResource("1_sj6cc")]({
+1: SubResource("Resource_cxahr"),
+2: SubResource("Resource_743lx"),
+3: SubResource("Resource_74quq"),
+4: SubResource("Resource_81evp")
+})
+is_night_enemy = true
+is_final_enemy = false
+metadata/_custom_type_script = "uid://bue1g4huq61xk"

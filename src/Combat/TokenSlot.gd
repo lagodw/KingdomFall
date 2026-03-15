@@ -40,6 +40,8 @@ var temporary_bumped_unit: CardToken
 
 func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exit)
+	
+func show_outline():
 	if card_owner == "Player":
 		$PlayerOutline.visible = true
 	else:

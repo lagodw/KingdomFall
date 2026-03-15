@@ -46,6 +46,7 @@ func setup_slots():
 	for i in job.capacity:
 		var slot: TokenSlot = slot_scene.instantiate()
 		slot.job = self
+		slot.show_outline()
 		if disabled:
 			slot.card_owner = "Enemy"
 		else:
