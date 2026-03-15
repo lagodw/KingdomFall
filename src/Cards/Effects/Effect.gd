@@ -197,20 +197,16 @@ func on_activate(triggering_card: Control):
 func on_move(triggering_card: Control):
 	trigger_card = triggering_card
 	apply_effect({})
-func on_start_turn(turn_num: int, turn_owner: String):
+func on_start_turn(turn_num: int):
 	apply_effect({
-		"turn_num": turn_num,
-		"turn_owner": turn_owner
+		"turn_num": turn_num
 	})
 func on_combat_start():
 	trigger_card = Bus.Board
 	apply_effect({})
-func on_combat_finished(attacking_side: String, breach: bool):
+func on_combat_finished():
 	trigger_card = Bus.Board
-	apply_effect({
-		"attacking_side": attacking_side,
-		"breach": breach
-	})
+	apply_effect({})
 func on_damage_taken(triggering_card: Control, damage_taken: int):
 	trigger_card = triggering_card
 	var dict = {

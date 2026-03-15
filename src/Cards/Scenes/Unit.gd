@@ -7,6 +7,7 @@ var has_support: bool = false
 var base_health: int
 var base_damage: int
 var base_shield: int
+var base_speed: int
 var base_activation: int
 var current_health: int:
 	set(val):
@@ -34,6 +35,14 @@ var max_shield: int:
 	set(val):
 		max_shield = max(0, val)
 		compare_stat("Shield", current_shield, max_shield)
+var current_speed: int:
+	set(val):
+		current_speed = clamp(val, 0, max_speed)
+		compare_stat("Speed", current_speed, max_speed)
+var max_speed: int:
+	set(val):
+		max_speed = max(0, val)
+		compare_stat("Speed", current_speed, max_speed)
 var current_activation: int:
 	set(val):
 		current_activation = clamp(val, 0, max_activation)

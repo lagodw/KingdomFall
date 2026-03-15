@@ -7,6 +7,7 @@ extends CardResource
 @export var damage: int = 1
 @export var health: int = 1
 @export var shield: int = 0
+@export var speed: int = 5
 @export var attack_type: kf.AttackType = kf.AttackType.Melee
 @export var armor_type: kf.ArmorType = kf.ArmorType.Light
 @export var has_support: bool = false

@@ -69,7 +69,7 @@ func add_token(token: CardToken):
 		# Double check that the previous box actually thinks it holds this token
 		# (Prevents clearing a slot that has already been taken over by someone else)
 		if token.current_slot.occupied_unit == token:
-			token.current_slot.clear_unit()
+			token.current_slot.occupied_unit = null
 	# Only add as child if it isn't already our child
 	if token.get_parent() != self:
 		# Safety check: Remove from old parent if it has one
@@ -84,6 +84,25 @@ func add_token(token: CardToken):
 func show_highlight(highlight: bool = true):
 	border.visible = highlight
 
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	if not box:
+		return false
+	
+	# 1. Drive State: Update the zone immediately
+	current_mouse_zone = _calculate_zone(at_position)
+	
+	# 2. Drive Logic: Ask Box if we can drop using this zone
+	if box.has_method("can_drop_on_slot"):
+		return box.can_drop_on_slot(self, data, current_mouse_zone)
+		
+	return false
+
+func _drop_data(_at_position: Vector2, data: Variant):
+	if not box:
+		return(false)
+	if box.has_method("drop_unit_on_slot"):
+		box.drop_unit_on_slot(self, data)
+
 func get_token_position() -> Vector2:
 	var target_pos: Vector2 = global_position
 	#target_pos.x += Bus.token_size.x / 2
@@ -96,11 +115,6 @@ func set_unit(unit: Unit) -> void:
 # Called when dragging *from* this slot
 func clear_unit() -> void:
 	occupied_unit = null
-	# Tell the parent box to collapse any gaps left behind
-	if box and box.has_method("shift_units"):
-		# Use call_deferred to ensure the shift happens after the current 
-		# drag/remove operation finishes processing
-		box.call_deferred("shift_units")
 
 # Called by the File
 func get_occupied_unit_data() -> Unit:

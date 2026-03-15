@@ -113,8 +113,7 @@ func get_count_units(trigger_card: Control) -> Array[Unit]:
 						units.append(label.preview_card)
 			"Units":
 				for box in count_boxes:
-					var box_name = "%s_%s" % [player.to_lower(), box.to_lower()]
-					for unit in Bus.Grid.get(box_name).get_units():
+					for unit in Bus.get("%sGrid"%player).get_box_units(box):
 						units.append(unit)
 	return(units)
 	

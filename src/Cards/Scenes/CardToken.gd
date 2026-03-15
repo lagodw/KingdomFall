@@ -48,7 +48,6 @@ var attacked_this_turn: bool = false
 var recalculating_stats: bool = false
 var _cached_damage_taken: int = -1
 var _cached_shield_damage_taken: int = -1
-var assigned_breach_damage: int = 0
 
 func set_fatigue(val):
 	current_fatigue = clamp(val, 0, 10)
@@ -125,12 +124,10 @@ func _process(_delta):
 	else:
 		mouse_filter = Control.MOUSE_FILTER_STOP
 		
-func on_turn_start(_turn_num: int, turn_owner: String):
+func on_turn_start(_turn_num: int):
 	if not current_slot or current_health <= 0: return
-	if card_owner == turn_owner:
-		set_act(true)
-	#if max_shield > 0:
-		#current_shield = max_shield
+	set_act(true)
+	current_shield = max_shield
 	remaining_base_damage = current_damage
 	attacked_this_turn = false
 	
@@ -176,7 +173,7 @@ func discard():
 		current_fatigue += 5
 		Bus.discard.add_card(card)
 	
-func take_damage(dmg = 0, damaging_card: Card = null, blocked_by_shield: bool = false):
+func take_damage(dmg = 0, damaging_card: Card = null, blocked_by_shield: bool = true):
 	if disabled:
 		return
 	var shield_dmg = min(dmg, current_shield)
@@ -212,14 +209,6 @@ func _gui_input(event):
 	if disabled: 
 		return
 	if event is InputEventMouseButton:
-		if card_owner == "Enemy" and event.is_pressed() and event.get_button_index() == MOUSE_BUTTON_LEFT:
-			if Bus.Board.is_breached and Bus.Board.current_phase == Combat.TurnPhase.BREACH_CONFIRM:
-				if (remaining_life <= 0 and assigned_breach_damage > 0) or (
-					Bus.Board.breach_amount == 0):
-					_remove_breach_damage()
-				elif remaining_life > 0:
-					_assign_breach_damage()
-			return
 		if event.is_pressed() and event.get_button_index() == 2 and highlighted and can_act:
 			var target_effects = get_trigger_effects("target")
 			if target_effects:
@@ -327,13 +316,16 @@ func reset_remaining():
 	current_bonus_damage = adjust_for_fatigue(calculate_max_bonus())
 	remaining_bonus_damage = current_bonus_damage
 	remaining_base_damage = current_damage
-	remaining_life = current_health
+	remaining_life = current_health + current_shield
 	
 func update_damage_preview() -> void:
-	var incoming_damage = current_health - remaining_life
-	var health_damage = incoming_damage + poison
+	var incoming_damage = current_health + current_shield - remaining_life
+	var shield_damage = min(current_shield, incoming_damage)
+	var health_damage = incoming_damage - shield_damage + poison
 	%HealthPreviewText.text = "-%s"%health_damage
 	%HealthPreview.visible = (health_damage > 0 and remaining_life - poison > 0)
+	#%ShieldPreviewText.text = "-%s"%shield_damage
+	#%ShieldPreview.visible = (shield_damage > 0 and remaining_life > 0)
 	
 	if health_damage >= current_health:
 		%Skull.visible = true
@@ -482,22 +474,3 @@ func move_card():
 
 func adjust_for_fatigue(num: int) -> int:
 	return(roundi((20.0 - current_fatigue) / 20.0 * num))
-
-func _assign_breach_damage():
-	if remaining_life <= 0 or Bus.Board.breach_amount <= 0: 
-		return
-		
-	var amount_to_assign = min(Bus.Board.breach_amount, remaining_life)
-	
-	assigned_breach_damage += amount_to_assign
-	Bus.Board.breach_amount -= amount_to_assign
-	remaining_life -= amount_to_assign 
-
-# New function to undo damage assignment
-func _remove_breach_damage():
-	if assigned_breach_damage <= 0:
-		return
-		
-	Bus.Board.breach_amount += assigned_breach_damage
-	remaining_life += assigned_breach_damage 
-	assigned_breach_damage = 0

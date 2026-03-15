@@ -1,47 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b307r73bvmxl0"]
+[gd_scene load_steps=2 format=3 uid="uid://b307r73bvmxl0"]
 
 [ext_resource type="Script" uid="uid://bx7s3uj5vtumm" path="res://src/Combat/UnitGrid.gd" id="1_gcvdu"]
-[ext_resource type="PackedScene" uid="uid://butr5cp6lgmmp" path="res://src/Combat/UnitBox.tscn" id="2_6r7g3"]
 
-[node name="UnitGrid" type="VBoxContainer" node_paths=PackedStringArray("player_front", "player_back", "enemy_front", "enemy_back")]
-offset_right = 775.0
-offset_bottom = 520.0
+[node name="UnitGrid" type="VBoxContainer"]
 mouse_filter = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 0
+alignment = 1
 script = ExtResource("1_gcvdu")
-player_front = NodePath("Player/PlayerFront")
-player_back = NodePath("Player/PlayerBack")
-enemy_front = NodePath("Enemy/EnemyFront")
-enemy_back = NodePath("Enemy/EnemyBack")
-
-[node name="Enemy" type="VBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 10
-
-[node name="EnemyBack" parent="Enemy" instance=ExtResource("2_6r7g3")]
-layout_mode = 2
-box_owner = "Enemy"
-box_type = 1
-num_slots = 5
-
-[node name="EnemyFront" parent="Enemy" instance=ExtResource("2_6r7g3")]
-layout_mode = 2
-box_owner = "Enemy"
-num_slots = 5
-
-[node name="Player" type="VBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 10
-
-[node name="PlayerFront" parent="Player" instance=ExtResource("2_6r7g3")]
-layout_mode = 2
-num_slots = 5
-
-[node name="PlayerBack" parent="Player" instance=ExtResource("2_6r7g3")]
-layout_mode = 2
-box_type = 1
-num_slots = 5

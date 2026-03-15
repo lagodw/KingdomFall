@@ -1,5 +1,5 @@
 class_name UnitFile
-extends Control
+extends MarginContainer
 
 @onready var slot_scene = preload("uid://cshkmwknv7s5g")
 @onready var PlayerBox: UnitBox = $Boxes/PlayerBox
