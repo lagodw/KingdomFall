@@ -34,6 +34,10 @@ var current_shield: int:
 var max_shield: int:
 	set(val):
 		max_shield = max(0, val)
+		#if max_shield > 0:
+			#show_shield(true)
+		#else:
+			#show_shield(false)
 		compare_stat("Shield", current_shield, max_shield)
 var current_speed: int:
 	set(val):
@@ -75,7 +79,7 @@ func class_setup():
 		%SkillBox.add_tags()
 
 func setup_stats():
-	for stat in ['health', 'damage', 'shield', 'activation']:
+	for stat in ['health', 'damage', 'shield', 'speed']:
 		set("base_%s"%stat, card_resource.get(stat))
 		set("max_%s"%stat, card_resource.get(stat))
 		set("current_%s"%stat, card_resource.get(stat))
@@ -172,10 +176,14 @@ func refresh_stats_labels():
 	compare_stat("Health", current_health, max_health)
 	compare_stat("Damage", current_damage, max_damage)
 	compare_stat("Shield", current_shield, max_shield)
+	compare_stat("Speed", current_speed, max_speed)
 	compare_stat("Fatigue", current_fatigue, current_fatigue)
-
-	compare_stat("Activation", current_activation, max_activation)
 	check_act()
+	
+func show_shield(value):
+	%Shield.visible = value
+	%ShieldSpacing.visible = not value
+	$%ShieldSpacing2.visible = not value
 	
 func check_act():
 	return(can_act)
