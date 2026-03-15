@@ -46,6 +46,8 @@ func leave():
 	visible = false
 	get_tree().paused = false
 	if Bus.map.current_location.enemy.is_night_enemy:
+		Bus.map.current_location = null
 		kf.load_scene("uid://djtcf3x2wg721")
 	else:
+		Bus.map.current_location = null
 		kf.load_map()

@@ -24,8 +24,10 @@ func confirm():
 	if card_option_selected:
 		Bus.deck.add_card(card_option_selected.card.card_resource)
 	if Bus.map.current_location.enemy.is_night_enemy:
+		Bus.map.current_location = null
 		kf.load_scene("uid://djtcf3x2wg721")
 	else:
+		Bus.map.current_location = null
 		kf.load_map()
 
 func create_cards() -> void:

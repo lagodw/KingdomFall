@@ -332,6 +332,7 @@ theme = ExtResource("11_tojqf")
 theme_override_constants/separation = 10
 
 [node name="Sun" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("12_tvvq8")
 expand_mode = 2
