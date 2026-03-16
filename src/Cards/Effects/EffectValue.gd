@@ -19,7 +19,6 @@ var count_what: String = "units":
 var count_whos: Array[String] = ["Owner"]
 var which_card: String = "trigger"
 var count_where: String = "Units"
-var count_boxes: Array[String] = ["Front", "Back"]
 var log_turn: String = "current_turn"
 var log_event: String = "play"
 var count_filter: String = "any":
@@ -112,9 +111,10 @@ func get_count_units(trigger_card: Control) -> Array[Unit]:
 					if label.preview_card is Unit:
 						units.append(label.preview_card)
 			"Units":
-				for box in count_boxes:
-					for unit in Bus.get("%sGrid"%player).get_box_units(box):
-						units.append(unit)
+				for unit in Bus.Grid.get_units("Player"):
+					units.append(unit)
+				for unit in Bus.Grid.get_units("Enemy"):
+					units.append(unit)
 	return(units)
 	
 func get_count_log(trigger_card: Card) -> float:
@@ -210,8 +210,6 @@ func _get_property_list() -> Array:
 				match count_what:
 					"units":
 						list.append(string_enum_hint("count_where", "Hand,Units,Discard"))
-						if count_where == "Units":
-							list.append(string_array_hint("count_boxes", "Front,Back"))
 						list.append(string_enum_hint("count_filter", "any,tag,card_name,attack_type,armor_type"))
 						match count_filter:
 							'any':

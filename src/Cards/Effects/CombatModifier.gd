@@ -8,8 +8,9 @@ extends Resource
 @export var require_opponent_armor_type: Array[kf.ArmorType] = []
 @export var require_slot_types: Array[TokenSlot.SlotType] = [
 	TokenSlot.SlotType.Vanguard, TokenSlot.SlotType.Assault, TokenSlot.SlotType.Support]
+@export var require_target_face: bool = false
 ## for now can only be used on attackers
-#@export var unit_comparison: StatComparison
+@export var unit_comparison: StatComparison
 @export var value: EffectValue = EffectValue.new()
 
 ## returns [attacker_change, defender_change]
@@ -37,11 +38,17 @@ func get_modified_combat(attacker: CardToken, defender: CardToken, is_attacker: 
 		return([0, 0])
 	if not require_slot_types.has(effect_owner.current_slot.slot_type):
 		return([0, 0])
+	if require_target_face and defender is not Face:
+		return([0, 0])
+	if unit_comparison:
+		if not unit_comparison.compare_units(attacker, defender):
+			# then comparison has failed so don't apply
+			return([0, 0])
 	# order of attacker/defender only matter if value is stat
 	# if it is a stat the order of application would matter so that's bad idea
 	if affect_whos_damage == "Attacker":
-		attacker_change = int(value.get_value(attacker, effect_owner, effect_owner))
+		attacker_change = int(round(value.get_value(attacker, effect_owner, effect_owner)))
 	else:
-		defender_change = int(value.get_value(defender, effect_owner, effect_owner))
+		defender_change = int(round(value.get_value(defender, effect_owner, effect_owner)))
 	
 	return([attacker_change, defender_change])

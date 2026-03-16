@@ -11,7 +11,7 @@ extends CardResource
 @export var attack_type: kf.AttackType = kf.AttackType.Melee
 @export var armor_type: kf.ArmorType = kf.ArmorType.Light
 @export var has_support: bool = false
-@export var combat_modifiers: Array[CombatModifier] = []
+@export var combat_modifiers: Array[CombatModifier]
 @export var default_animation: String = "sword"
 @export var curses: Array[Curse]
 @export var skills: Array[UnitSkill]

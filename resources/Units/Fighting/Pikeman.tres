@@ -1,161 +1,31 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=23 format=3 uid="uid://ba02uh2ch7fy4"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=11 format=3 uid="uid://ba02uh2ch7fy4"]
 
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="1_5cx8x"]
 [ext_resource type="Script" uid="uid://dkjmwv20h6rdr" path="res://src/Cards/Curse.gd" id="2_i14sl"]
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="3_jrh3i"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_10i7x"]
 [ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="4_gy8x1"]
-[ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="5_36jf2"]
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="5_lecue"]
-[ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="6_fyieq"]
 [ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="6_gy8x1"]
-[ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="7_lv5fs"]
-[ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="8_3oqll"]
 
-[sub_resource type="Resource" id="Resource_avu37"]
-script = ExtResource("5_36jf2")
-require_trigger = false
-require_line = "Frontline"
-require_building_name = ""
-require_job_name = ""
-require_act = false
-minimum_damage = 0
-require_alive = false
-require_owner = "Either"
-require_turn = -1
-
-[sub_resource type="Resource" id="Resource_gp3b1"]
-script = ExtResource("6_fyieq")
-require_allied = false
-require_enemies = false
-exclude_trigger = false
-require_act = false
-exclude_act = false
-require_act_disabled = false
-exclude_act_disabled = false
-exclude_faces = true
-require_activated = true
-require_same_file = false
-require_same_rank = false
-require_tags = Array[int]([])
-exclude_tags = Array[int]([])
-require_attack_type = Array[int]([0, 1, 2])
-require_armor_type = Array[int]([0, 1])
-exclude_item_type_equipped = Array[int]([])
-required_slots = Array[int]([])
-require_line = "Any"
-require_card_type = Array[String]([])
-minimum_damage = 0
-minimum_shield = 0
-require_missing_health = false
-require_alive = false
-require_turn_phase = "Any"
-require_breach = false
-require_no_breach = false
-minimum_activation = 0
-maximum_activation = 99
-require_name = ""
-
-[sub_resource type="Resource" id="Resource_h5oa3"]
-script = ExtResource("6_fyieq")
-require_allied = false
-require_enemies = false
-exclude_trigger = false
-require_act = false
-exclude_act = false
-require_act_disabled = false
-exclude_act_disabled = false
-exclude_faces = true
-require_activated = true
-require_same_file = false
-require_same_rank = false
-require_tags = Array[int]([])
-exclude_tags = Array[int]([])
-require_attack_type = Array[int]([0, 1, 2])
-require_armor_type = Array[int]([0, 1])
-exclude_item_type_equipped = Array[int]([])
-required_slots = Array[int]([])
-require_line = "Any"
-require_card_type = Array[String]([])
-minimum_damage = 0
-minimum_shield = 0
-require_missing_health = false
-require_alive = false
-require_turn_phase = "Any"
-require_breach = false
-require_no_breach = false
-minimum_activation = 0
-maximum_activation = 99
-require_name = ""
-
-[sub_resource type="Resource" id="Resource_o1yrn"]
+[sub_resource type="Resource" id="Resource_i14sl"]
 script = ExtResource("4_gy8x1")
 value_type = "number"
 affected_by_spell_power = false
-number = 0.0
-chain_value = false
-
-[sub_resource type="Resource" id="Resource_pj4bk"]
-script = ExtResource("8_3oqll")
-time_frame = "now"
-who = "Owner"
-what = "value"
-minimum = 0
-maximum = 999
-value = SubResource("Resource_o1yrn")
-
-[sub_resource type="Resource" id="Resource_5rk6b"]
-script = ExtResource("4_gy8x1")
-value_type = "number"
-affected_by_spell_power = false
-number = 0.0
-chain_value = false
-
-[sub_resource type="Resource" id="Resource_tlq6f"]
-script = ExtResource("8_3oqll")
-time_frame = "now"
-who = "Owner"
-what = "value"
-minimum = 0
-maximum = 999
-value = SubResource("Resource_5rk6b")
-
-[sub_resource type="Resource" id="Resource_36jf2"]
-script = ExtResource("4_gy8x1")
-value_type = "number"
-affected_by_spell_power = false
-number = 0.5
+number = 3.0
 chain_value = false
 metadata/_custom_type_script = "uid://cwhy1oww3agal"
 
-[sub_resource type="Resource" id="Resource_gy8x1"]
-script = ExtResource("4_gy8x1")
-value_type = "stat"
-affected_by_spell_power = false
-which_card = "calling"
-what_stat = "damage"
-whos_stat = "subject"
-negative = false
-chain_value = true
-next_value = SubResource("Resource_36jf2")
-mult_next_value = true
-metadata/_custom_type_script = "uid://cwhy1oww3agal"
-
-[sub_resource type="Resource" id="Resource_tpw3p"]
-script = ExtResource("3_jrh3i")
-function_script = ExtResource("7_lv5fs")
-function = "modify_pooled_stats"
-trigger_signal = "move"
-subject = "allied_backline_box"
-conditions_calling = SubResource("Resource_avu37")
-conditions_trigger = SubResource("Resource_h5oa3")
-conditions_subject = SubResource("Resource_gp3b1")
-if_calling_card = SubResource("Resource_pj4bk")
-if_subject = SubResource("Resource_tlq6f")
-animation = "none"
-is_multiplier = false
-pool_change = SubResource("Resource_gy8x1")
-metadata/_custom_type_script = "uid://c1s3857yqcx8q"
+[sub_resource type="Resource" id="Resource_jrh3i"]
+script = ExtResource("1_5cx8x")
+affect_when = "Attack"
+affect_whos_damage = "Attacker"
+require_opponent_tag = Array[int]([])
+require_opponent_attack_type = Array[int]([])
+require_opponent_armor_type = Array[int]([0])
+require_slot_types = Array[int]([0, 1, 2])
+value = SubResource("Resource_i14sl")
+metadata/_custom_type_script = "uid://j7jh5ywx3mkb"
 
 [sub_resource type="Resource" id="Resource_fyieq"]
 script = ExtResource("6_gy8x1")
@@ -167,13 +37,14 @@ metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 [resource]
 script = ExtResource("4_10i7x")
 fatigue = 0
-damage = 2
-health = 4
-shield = 5
+damage = 4
+health = 10
+shield = 0
+speed = 5
 attack_type = 0
 armor_type = 0
 has_support = false
-combat_modifiers = Array[ExtResource("1_5cx8x")]([])
+combat_modifiers = Array[ExtResource("1_5cx8x")]([SubResource("Resource_jrh3i")])
 default_animation = "sword"
 curses = Array[ExtResource("2_i14sl")]([])
 skills = Array[ExtResource("5_lecue")]([])
@@ -187,7 +58,7 @@ card_name = "Pikeman"
 card_type = "Unit"
 activation = 1
 tags = Array[int]([])
-text = "Adds half of [b]Damage[/b] when in Frontline"
-effects = Array[ExtResource("3_jrh3i")]([SubResource("Resource_tpw3p")])
+text = "+3[b]Damage[/b] when attacking [b]Light[/b] units"
+effects = Array[ExtResource("3_jrh3i")]([])
 card_art_path = ""
 metadata/_custom_type_script = "uid://fjs70167oea6"
