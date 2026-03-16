@@ -36,7 +36,7 @@ func choose_units():
 		charters.append(candidates[unit_name])
 
 func choose_charter(unit: UnitResource):
-	Bus.player.charters.append(unit)
+	Bus.player.add_charter(unit)
 	leave()
 	
 #func leave():

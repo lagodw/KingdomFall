@@ -5,6 +5,9 @@ extends MarginContainer
 @onready var PlayerBox: UnitBox = $Boxes/PlayerBox
 @onready var EnemyBox: UnitBox = $Boxes/EnemyBox
 
+func _ready() -> void:
+	ee.start_turn.connect(on_start_turn)
+
 func create_slots(num_player_slots: int = 1, num_enemy_slots: int = 1) -> void:
 	PlayerBox.file = self
 	EnemyBox.file = self
@@ -15,6 +18,10 @@ func create_slots(num_player_slots: int = 1, num_enemy_slots: int = 1) -> void:
 		
 	PlayerBox.setup()
 	EnemyBox.setup()
+	
+func on_start_turn(_turn_num: int):
+	for unit in get_units("Player"):
+		unit.current_fatigue += 1
 	
 func add_slot(slot_owner: String):
 	var slot: TokenSlot = slot_scene.instantiate()

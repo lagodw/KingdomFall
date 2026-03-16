@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://bngom8jutoivr"]
+
+[ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_55qg4"]
+[ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="2_us7qh"]
+
+[resource]
+script = ExtResource("2_us7qh")
+mana_cost = 1
+target = "none_needed"
+card_name = ""
+card_type = ""
+activation = 1
+tags = Array[int]([])
+text = ""
+effects = Array[ExtResource("1_55qg4")]([])
+card_art_path = ""
+metadata/_custom_type_script = "uid://cg0darnb2y3ae"
