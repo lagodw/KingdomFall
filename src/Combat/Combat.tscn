@@ -78,12 +78,14 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Draw" parent="." instance=ExtResource("6_nthc5")]
+layout_mode = 0
 offset_left = 35.0
 offset_top = 568.0
 offset_right = 239.0
 offset_bottom = 872.0
 
 [node name="Discard" parent="." instance=ExtResource("6_nthc5")]
+layout_mode = 0
 offset_left = 1676.0
 offset_top = 609.0
 offset_right = 1880.0
@@ -92,6 +94,7 @@ type = 1
 
 [node name="PlayerGraveyard" parent="." instance=ExtResource("6_nthc5")]
 visible = false
+layout_mode = 0
 offset_left = 1676.0
 offset_top = 153.0
 offset_right = 1880.0
@@ -114,6 +117,7 @@ texture = ExtResource("7_rlcqg")
 expand_mode = 1
 
 [node name="EnemyGraveyard" parent="." instance=ExtResource("6_nthc5")]
+layout_mode = 0
 offset_left = 36.0
 offset_top = 206.0
 offset_right = 240.0

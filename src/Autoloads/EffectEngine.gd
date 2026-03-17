@@ -197,6 +197,15 @@ func exclude_trigger(subject: Control, trigger_card: Control, is_trigger_exclude
 		return(true)
 	return(subject != trigger_card)
 
+func require_on_board(subject: Control, _trigger_card: Control, is_board_required: bool) -> bool:
+	if not is_board_required:
+		return(true)
+	if subject is not CardToken:
+		return(false)
+	if not subject.current_slot:
+		return(false)
+	return(true)
+
 func require_act(subject: Control, _trigger_card: Control, is_act_required: bool) -> bool:
 	if not is_act_required or subject is not Card:
 		return(true)

@@ -43,6 +43,7 @@ chain_value = false
 [sub_resource type="Resource" id="Resource_0i8wp"]
 script = ExtResource("5_ip1cq")
 require_trigger = false
+require_on_board = true
 require_building_name = ""
 require_job_name = ""
 require_act = false
