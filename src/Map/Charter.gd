@@ -2,6 +2,7 @@ extends Control
 
 @export var card_resource: UnitResource
 @onready var button: Button = %Choose
+var card: Card
 
 func setup():
 	var token: CardToken = kf.create_token(card_resource)
@@ -11,6 +12,11 @@ func setup():
 	token.remaining_life = token.current_health
 	set_description()
 	set_requirements()
+	card = kf.create_card(card_resource)
+	card.disabled = true
+	$CardSpot.add_child(card)
+	$Choose.mouse_entered.connect(show_card.bind(true))
+	$Choose.mouse_exited.connect(show_card.bind(false))
 	
 func set_description():
 	var sp_text = ""
@@ -41,3 +47,7 @@ func add_icon(texture: Texture):
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rect.texture = texture
 	%Requirements.add_child(rect)
+
+func show_card(to_show: bool):
+	$CardSpot.visible = to_show
+	card.show_popups(to_show)

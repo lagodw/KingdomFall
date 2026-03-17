@@ -115,21 +115,21 @@ value = SubResource("Resource_d4jq0")
 script = ExtResource("8_2xv12")
 value_type = "number"
 affected_by_spell_power = false
-number = 0.0
+number = -1.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_tjb6q"]
 script = ExtResource("8_2xv12")
 value_type = "number"
 affected_by_spell_power = false
-number = 0.0
+number = -1.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_afhka"]
 script = ExtResource("8_2xv12")
 value_type = "number"
 affected_by_spell_power = false
-number = 0.0
+number = -1.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_iye00"]
