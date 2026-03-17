@@ -82,6 +82,9 @@ var pool_change: EffectValue = EffectValue.new()
 var host_card: CardToken
 var effect_dict: Dictionary = {}
 
+var num_cards: EffectValue = EffectValue.new()
+var card_draw_type: String = "Any"
+
 func connect_signal(call_card: Control = null):
 	script_instance = function_script.new()
 	if call_card:
@@ -144,6 +147,7 @@ func apply_effect(new_dict: Dictionary):
 		else:
 			actual_args.append(get(arg))
 	
+	#print(func_args)
 	#printt("applying effect, calling:", calling_card, "function: ", 
 			#function, "args: ", actual_args)
 	#print(effect_dict)
@@ -383,6 +387,10 @@ func _get_property_list() -> Array:
 			'modify_pooled_stats':
 				list.append(type_hint("is_multiplier", TYPE_BOOL))
 				list.append(resource_hint("pool_change", "EffectValue"))
+			'draw_cards':
+				list.append(resource_hint("num_cards", "EffectValue"))
+				list.append(type_hint("card_draw_type", TYPE_STRING, PROPERTY_HINT_ENUM,
+						"Any,Unit,Spell,Item,Burden,Consume"))
 			
 		if trigger_signal == "consume_used":
 			animation = "discard"
@@ -393,7 +401,7 @@ func _get_property_list() -> Array:
 			'add_card_to_deck', 'add_tag',\
 					'attach', 'attack', 'block', 'damage', 'delayed_event',\
 					'discard', 'remove_tag', 'set_act', 'new_art', 'add_debuff',\
-					'change_bus_var', 'add_card', 'advance_activation':
+					'change_bus_var', 'add_card', 'advance_activation', 'draw_cards':
 				persistent_effect = false
 	return(list)
 

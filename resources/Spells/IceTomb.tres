@@ -11,7 +11,6 @@
 [sub_resource type="Resource" id="Resource_tfian"]
 script = ExtResource("2_igde3")
 require_trigger = true
-required_slots = Array[int]([])
 require_building_name = null
 require_job_name = ""
 require_act = false
@@ -80,7 +79,7 @@ require_name = ""
 script = ExtResource("6_x7m4u")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_1jivx"]
@@ -96,7 +95,7 @@ value = SubResource("Resource_46jg7")
 script = ExtResource("6_x7m4u")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_rbt8v"]
