@@ -247,12 +247,13 @@ func _notification(notification_type):
 			if kf.dragging:
 				if kf.dragging == self:
 					kf.dragging = null
-					visible = true
-					position = Vector2(0, 0)
-					if current_slot:
-						# If the slot thinks it's holding someone else (or no one),
-						# and we haven't been successfully placed elsewhere (which would update current_slot),
-						# then we need to force our way back in.
-						if current_slot.occupied_unit != self:
-							# Re-add ourselves to the slot officially
-							current_slot.add_token(self)
+					if not get_viewport().gui_is_drag_successful():
+						visible = true
+						position = Vector2(0, 0)
+						if current_slot:
+							# If the slot thinks it's holding someone else (or no one),
+							# and we haven't been successfully placed elsewhere (which would update current_slot),
+							# then we need to force our way back in.
+							if current_slot.occupied_unit != self:
+								# Re-add ourselves to the slot officially
+								current_slot.add_token(self)
