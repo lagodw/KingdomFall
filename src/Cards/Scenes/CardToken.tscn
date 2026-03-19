@@ -361,6 +361,12 @@ theme = ExtResource("1_sclck")
 theme_override_constants/separation = 3
 alignment = 1
 
+[node name="FatigueSpacing" type="Control" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
 [node name="Fatigue" type="TextureRect" parent="Frame/BottomBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 16)

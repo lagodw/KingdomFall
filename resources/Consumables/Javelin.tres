@@ -11,6 +11,7 @@
 [sub_resource type="Resource" id="Resource_1i5jk"]
 script = ExtResource("2_sgsoe")
 require_trigger = true
+require_on_board = false
 require_building_name = ""
 require_job_name = ""
 require_act = false
@@ -79,7 +80,7 @@ require_name = ""
 script = ExtResource("4_eofs7")
 value_type = "number"
 affected_by_spell_power = false
-number = 2.0
+number = 3.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_0xdg3"]
@@ -128,7 +129,7 @@ if_calling_card = SubResource("Resource_mwra6")
 if_subject = SubResource("Resource_22gbt")
 animation = "discard"
 damage_amt = SubResource("Resource_yq68d")
-blocked_by_shield = false
+blocked_by_shield = true
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [resource]
@@ -138,7 +139,7 @@ card_name = "Javelin"
 card_type = "Consume"
 activation = 1
 tags = Array[int]([])
-text = "Deal 2 damage to an enemy unit"
+text = "Deal 3[b]Damage[/b] to an enemy unit"
 effects = Array[ExtResource("1_25qob")]([SubResource("Resource_e0m64")])
 card_art_path = ""
 metadata/_custom_type_script = "uid://cjmgvah8070i"

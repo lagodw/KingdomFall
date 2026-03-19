@@ -14,8 +14,9 @@
 [sub_resource type="Resource" id="Resource_tm6hy"]
 script = ExtResource("2_dc64d")
 require_trigger = false
-required_slots = Array[int]([])
+require_on_board = false
 require_building_name = null
+require_job_name = ""
 require_act = false
 minimum_damage = 0
 require_alive = false
@@ -82,7 +83,7 @@ require_name = ""
 script = ExtResource("6_w6xts")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_ch3tu"]
@@ -98,7 +99,7 @@ value = SubResource("Resource_la6qr")
 script = ExtResource("6_w6xts")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_hulfa"]
@@ -112,7 +113,7 @@ value = SubResource("Resource_1a23u")
 
 [sub_resource type="Resource" id="Resource_1n3ou"]
 script = ExtResource("7_vs7ux")
-skill_type = 2
+skill = 2
 amount = 1
 
 [sub_resource type="Resource" id="Resource_3exww"]
@@ -136,7 +137,6 @@ description = "Grants occupants 1 [b]Productivity[/b]"
 capacity = 2
 effects = Array[ExtResource("2_8hov8")]([SubResource("Resource_3exww")])
 requirements = Array[ExtResource("7_dc64d")]([])
-progress = Array[ExtResource("7_dc64d")]([])
 metadata/_custom_type_script = "uid://druilahufs03l"
 
 [resource]
@@ -144,6 +144,5 @@ script = ExtResource("2_3fx71")
 building_name = "Guild Hall"
 building_description = "Grants occupants 1 [b]Productivity[/b]"
 construction_cost = 6
-current_construction = 0
 jobs = Array[ExtResource("1_vnnx8")]([SubResource("Resource_0s05g")])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

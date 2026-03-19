@@ -59,6 +59,9 @@ func set_fatigue(val):
 func type_only_setup():
 	add_to_group("Tokens")
 	reset_remaining()
+	if card_owner == "Enemy":
+		%Fatigue.visible = false
+		%FatigueSpacing.visible = true
 	Bus.effects_finished.connect(on_effects_finished)
 	for curse in card_resource.curses:
 		# need deferred so card ready doesn't override stats
@@ -201,7 +204,10 @@ func show_popups(value: bool = true, _left_side: bool = false):
 		card.global_position.y = min(card.global_position.y, get_viewport_rect().size.y - card.size.y)
 		card.global_position.y = max(card.global_position.y, Bus.ui.size.y)
 		
-		card.z_index = 3
+		if value:
+			card.z_index = 15
+		else:
+			card.z_index = 1
 		card.visible = value
 		card.show_popups(value)
 	

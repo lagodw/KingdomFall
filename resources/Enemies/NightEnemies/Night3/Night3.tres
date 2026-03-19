@@ -10,12 +10,12 @@
 
 [sub_resource type="Resource" id="Resource_cxahr"]
 script = ExtResource("1_3eydo")
-units = Array[ExtResource("2_e7j08")]([ExtResource("3_0tojf"), ExtResource("4_lyvqa"), ExtResource("4_lyvqa")])
+units = Array[ExtResource("2_e7j08")]([ExtResource("3_0tojf"), ExtResource("3_0tojf"), ExtResource("4_lyvqa")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [sub_resource type="Resource" id="Resource_743lx"]
 script = ExtResource("1_3eydo")
-units = Array[ExtResource("2_e7j08")]([ExtResource("3_0tojf"), ExtResource("3_0tojf")])
+units = Array[ExtResource("2_e7j08")]([ExtResource("3_0tojf"), ExtResource("5_sjdhe")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [sub_resource type="Resource" id="Resource_74quq"]
