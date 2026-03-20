@@ -18,9 +18,9 @@ func choose_units():
 	#var candidates: Array[UnitResource]
 	var candidates: Dictionary[String, UnitResource]
 	var existing_names: Array
-	for unit: UnitResource in Bus.player.charters:
+	for unit: UnitResource in Bus.player.charters.values():
 		existing_names.append(unit.card_name)
-	for unit: UnitResource in Bus.player.charters:
+	for unit: UnitResource in Bus.player.charters.values():
 		for upgrade in unit.upgrade_options:
 			if upgrade.card_name in candidates:
 				continue

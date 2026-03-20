@@ -2,8 +2,7 @@ class_name Player
 extends UnitResource
 
 @export var deck: Deck = load("uid://daukdeewyd6ke")
-@export var charters: Array[CardResource]
-@export var charter_names: Array[String]
+@export var charters: Dictionary[String, UnitResource]
 @export var town: TownResource = load("uid://bmwj3jl3o8tm4")
 @export var gate: UnitResource = load("uid://cnr0bb4lxr83a")
 @export var gold: int = 0
@@ -26,9 +25,9 @@ func dupe() -> Player:
 	duped.deck = deck.dupe()
 	duped.town = town.dupe()
 	duped.gate = gate.dupe()
-	var duped_charters: Array[CardResource]
-	for charter in charters:
-		duped_charters.append(charter.dupe())
+	var duped_charters: Dictionary[String, UnitResource]
+	for charter in charters.keys():
+		duped_charters[charter] = charters[charter].dupe()
 	duped.charters = duped_charters
 	# current_health is getting set to 1 for some reason
 	duped.current_health = health
@@ -42,6 +41,5 @@ func dupe() -> Player:
 	duped.effects = new_effects
 	return(duped)
 
-func add_charter(unit: UnitResource):
-	charters.append(unit)
-	charter_names.append(unit.card_name)
+func add_charter(card: UnitResource):
+	charters[card.card_name] = card

@@ -9,11 +9,17 @@
 
 [node name="CharterChoice" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 487.0
-offset_top = 221.0
-offset_right = 1508.0
-offset_bottom = 880.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -633.0
+offset_top = -405.0
+offset_right = 634.0
+offset_bottom = 424.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_6r1se")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -48,22 +54,26 @@ layout_mode = 2
 layout_mode = 0
 offset_left = 94.0
 offset_top = 212.0
-offset_right = 907.0
-offset_bottom = 570.0
+offset_right = 1194.0
+offset_bottom = 752.0
 texture = ExtResource("3_68ygo")
 expand_mode = 1
 
-[node name="Choices" type="HBoxContainer" parent="MarginContainer/Control"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/TextureRect"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -387.0
-offset_top = 257.0
-offset_right = 365.0
-offset_bottom = 522.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Choices" type="HBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
