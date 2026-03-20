@@ -258,7 +258,7 @@ func on_effects_finished():
 	#if current_health <= 0: return
 	# don't want stats to get reset when a unit is discarded during combat
 	if Bus.Board:
-		if Bus.Board.combat_happening:
+		if Bus.Board.combat_happening or recalculating_stats:
 			return
 	recalculating_stats = true
 	
@@ -286,7 +286,7 @@ func on_effects_finished():
 	max_health = base_stats['health']
 	max_damage = base_stats['damage']
 	max_shield = base_stats['shield']
-	
+
 	current_health = max_health - damage_taken
 	if max_health < damage_taken:
 		_cached_damage_taken = damage_taken

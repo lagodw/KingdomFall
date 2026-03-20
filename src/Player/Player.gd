@@ -15,7 +15,7 @@ extends UnitResource
 		current_health = clamp(val, 0, health)
 		if Bus.ui:
 			Bus.ui.set_health_text()
-@export var max_mana: int = 5
+@export var max_mana: int = 10
 @export var spell_power: int = 0
 #@export var boons: Array[Boon]
 

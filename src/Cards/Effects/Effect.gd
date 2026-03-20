@@ -131,8 +131,9 @@ func apply_effect(new_dict: Dictionary):
 		if ee.check_conditions_subject(a_subject, calling_card, conditions_subject):
 			filtered_subjects.append(a_subject)
 	effect_dict['subjects'] = filtered_subjects
-	#print("effect passed conditions: %s for function %s with args %s"%[
-			#calling_card, function, effect_dict])
+	print_stack()
+	print("effect passed conditions: %s for function %s with args %s"%[
+			calling_card, function, effect_dict])
 	
 	var func_methods = function_script.get_script_method_list()
 	var func_args: Array[String]

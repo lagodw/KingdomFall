@@ -121,7 +121,7 @@ conditions_subject = SubResource("Resource_ffgem")
 if_calling_card = SubResource("Resource_1jivx")
 if_subject = SubResource("Resource_rbt8v")
 animation = "discard"
-can_act = true
+can_act = false
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [resource]
