@@ -1,12 +1,20 @@
-[gd_resource type="Resource" script_class="ConsumeResource" load_steps=17 format=3 uid="uid://drogiujdpv3sn"]
+[gd_resource type="Resource" script_class="ConsumeResource" load_steps=19 format=3 uid="uid://drogiujdpv3sn"]
 
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_25qob"]
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="1_mwiot"]
 [ext_resource type="Script" uid="uid://fxyjcva6koop" path="res://src/Cards/Effects/EffectConditionCalling.gd" id="2_sgsoe"]
 [ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="3_tqt24"]
 [ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="4_eofs7"]
 [ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_vrui1"]
 [ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="6_pax4p"]
 [ext_resource type="Script" uid="uid://cjmgvah8070i" path="res://src/Cards/ResourceTypes/ConsumeResource.gd" id="7_om01x"]
+
+[sub_resource type="Resource" id="Resource_1qsmi"]
+script = ExtResource("1_mwiot")
+skill = 2
+amount = 2.0
+progress = 0.0
+metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [sub_resource type="Resource" id="Resource_1i5jk"]
 script = ExtResource("2_sgsoe")
@@ -135,6 +143,7 @@ metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 [resource]
 script = ExtResource("7_om01x")
 uses = 5
+craft_requirements = Array[ExtResource("1_mwiot")]([SubResource("Resource_1qsmi")])
 card_name = "Javelin"
 card_type = "Consume"
 activation = 1

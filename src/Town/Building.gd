@@ -25,6 +25,12 @@ func _ready() -> void:
 func setup():
 	if get_tree().current_scene is not Town:
 		return
+		
+	if resource.startup_script:
+		var startup_instance = resource.startup_script.new()
+		if startup_instance.has_method("setup_building"):
+			startup_instance.setup_building(self)
+			
 	for job in resource.jobs:
 		if job.description == "Construction":
 			under_construction = true
@@ -32,13 +38,7 @@ func setup():
 			job.capacity = requirement.amount - requirement.progress
 			capacity = job.capacity
 			$Button/UnderConstruction.visible = true
-		var container: JobContainer = job_container.instantiate()
-		container.job = job
-		container.bldg = self
-		if under_construction and job.description != "Construction":
-			container.disabled = true
-		jobs_box.add_child(container)
-		job_containers.append(container)
+		add_job_container(job)
 	if not under_construction:
 		for job in resource.jobs:
 			capacity += job.capacity
@@ -48,6 +48,15 @@ func setup():
 	set_popup_position()
 	set_art()
 	setup_capacity_panels()
+	
+func add_job_container(job: Job):
+	var container: JobContainer = job_container.instantiate()
+	container.job = job
+	container.bldg = self
+	if under_construction and job.description != "Construction":
+		container.disabled = true
+	jobs_box.add_child(container)
+	job_containers.append(container)
 	
 func _on_mouse_exit():
 	show_highlight(false)
@@ -77,7 +86,7 @@ func set_art():
 func fill_capacity_slot(token: CardToken):
 	for panel in capacity_grid.get_children():
 		if not panel.occupant:
-			panel.fill_panel(token, under_construction)
+			panel.fill_panel(token)
 			return
 
 func empty_capacity_slot(token: CardToken):
@@ -123,7 +132,7 @@ func setup_capacity_panels():
 		for i in job.job.capacity:
 			var cap = capacity_panel.instantiate()
 			capacity_grid.add_child(cap)
-			cap.set_panel(false, under_construction)
+			cap.set_color(under_construction)
 
 func demolish():
 	for token in get_occupants():

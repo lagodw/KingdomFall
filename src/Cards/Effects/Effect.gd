@@ -78,6 +78,7 @@ var progress_skill: UnitSkill.Skill
 var progress_change: EffectValue = EffectValue.new()
 var is_multiplier: bool = false
 var pool_change: EffectValue = EffectValue.new()
+var craft_consume: ConsumeResource
 
 var host_card: CardToken
 var effect_dict: Dictionary = {}
