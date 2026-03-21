@@ -74,20 +74,21 @@ func set_art():
 			["**%s.png"%resource.building_name])[0]
 	$Button/Art.texture = texture
 		
-func fill_capacity_slot():
+func fill_capacity_slot(token: CardToken):
 	for panel in capacity_grid.get_children():
-		if not panel.full:
-			panel.set_panel(true, under_construction)
+		if not panel.occupant:
+			panel.fill_panel(token, under_construction)
 			return
 
-func empty_capacity_slot():
+func empty_capacity_slot(token: CardToken):
 	var slots: Array = capacity_grid.get_children()
 	# add from front but remove from rear
 	slots.reverse()
 	for panel in slots:
-		if panel.full:
-			panel.set_panel(false, under_construction)
-			return
+		if panel.occupant:
+			if panel.occupant == token:
+				panel.empty_panel()
+				return
 
 func show_popup(value: bool):
 	set_popup_position()

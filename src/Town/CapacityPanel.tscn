@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctc1gy8wqgc02"]
+[gd_scene load_steps=4 format=3 uid="uid://ctc1gy8wqgc02"]
 
 [ext_resource type="Script" uid="uid://dg2wfvdx2qyv7" path="res://src/Town/CapacityPanel.gd" id="1_y16t1"]
+[ext_resource type="Texture2D" uid="uid://doy0y4ndc6hu4" path="res://assets/CardArt/Footman/Footman.png" id="2_bh1wn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp1s1"]
 bg_color = Color(0, 0.310293, 0.527446, 1)
@@ -16,8 +17,23 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="CapacityPanel" type="Panel"]
-custom_minimum_size = Vector2(40, 60)
+custom_minimum_size = Vector2(40, 40)
 offset_right = 40.0
-offset_bottom = 60.0
+offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yp1s1")
 script = ExtResource("1_y16t1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bh1wn")
+expand_mode = 1

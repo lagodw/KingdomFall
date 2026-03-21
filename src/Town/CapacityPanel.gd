@@ -1,14 +1,24 @@
 extends Panel
 
-var full: bool = false
+var occupant: CardToken
 
-func set_panel(filled: bool = false, under_construction: bool = false):
+func fill_panel(token: CardToken, under_construction: bool = false):
+	occupant = token
+	$TextureRect.texture = token.get_node("%CardArt").texture
+	$TextureRect.visible = true
 	var color: Color = Color("004f86")
 	if under_construction:
 		color = Color.GRAY
 	var box: StyleBoxFlat = get_theme_stylebox("panel").duplicate()
-	box.draw_center = filled
-	box.bg_color = color
 	box.border_color = color
 	add_theme_stylebox_override("panel", box)
-	full = filled
+
+func empty_panel():
+	occupant = null
+	$TextureRect.visible = false
+
+func _get_drag_data(_at_position: Vector2) -> Variant:
+	if not occupant:
+		return(null)
+	
+	return(occupant._get_drag_data(_at_position))
