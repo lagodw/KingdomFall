@@ -9,6 +9,9 @@ extends VBoxContainer
 var files: Array[UnitFile]
 
 func _ready() -> void:
+	num_files = Bus.map.current_location.enemy.num_files
+	num_enemy_slots = Bus.map.current_location.enemy.num_enemy_ranks
+	num_player_slots = Bus.map.current_location.enemy.num_player_ranks
 	Bus.Grid = self
 	for i in num_files:
 		add_file()

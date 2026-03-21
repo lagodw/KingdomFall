@@ -6,6 +6,9 @@
 [resource]
 script = ExtResource("6_tiw8i")
 ranks = Dictionary[int, ExtResource("1_1me7o")]({})
+num_files = 3
+num_player_ranks = 2
+num_enemy_ranks = 2
 is_night_enemy = false
 is_final_enemy = false
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

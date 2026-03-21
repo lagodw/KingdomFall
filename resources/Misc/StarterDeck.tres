@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Deck" load_steps=13 format=3 uid="uid://daukdeewyd6ke"]
+[gd_resource type="Resource" script_class="Deck" load_steps=11 format=3 uid="uid://daukdeewyd6ke"]
 
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="1_dxewv"]
 [ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="2_rqv0j"]
@@ -10,12 +10,10 @@
 [ext_resource type="Resource" uid="uid://d2op0py23nj42" path="res://resources/Items/Sword.tres" id="7_vuv8t"]
 [ext_resource type="Resource" uid="uid://bmpc0ety5bqxi" path="res://resources/Units/Fighting/Sentry.tres" id="8_nd6rd"]
 [ext_resource type="Resource" uid="uid://cfyn548y5xqpd" path="res://resources/Spells/DivineIntervention.tres" id="10_edw0l"]
-[ext_resource type="Resource" uid="uid://b7n3opvwiyt8c" path="res://resources/Spells/IceTomb.tres" id="11_wxvyb"]
-[ext_resource type="Resource" uid="uid://clxlpqlwy25lg" path="res://resources/Spells/HandsofLight.tres" id="12_6q125"]
 
 [resource]
 script = ExtResource("3_xc5uk")
 sort_deck = false
-cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t"), ExtResource("7_1cset"), ExtResource("8_nd6rd"), ExtResource("10_edw0l"), ExtResource("11_wxvyb"), ExtResource("12_6q125"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j")])
+cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t"), ExtResource("7_1cset"), ExtResource("8_nd6rd"), ExtResource("10_edw0l"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("6_5jrsl"), ExtResource("5_s2fhi")])
 graveyard = Array[ExtResource("1_dxewv")]([])
 metadata/_custom_type_script = "uid://d3cbj7orsdpk2"

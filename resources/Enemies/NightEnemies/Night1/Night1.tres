@@ -36,6 +36,9 @@ ranks = Dictionary[int, ExtResource("1_sj6cc")]({
 3: SubResource("Resource_74quq"),
 4: SubResource("Resource_81evp")
 })
+num_files = 5
+num_player_ranks = 2
+num_enemy_ranks = 2
 is_night_enemy = true
 is_final_enemy = false
 metadata/_custom_type_script = "uid://bue1g4huq61xk"
