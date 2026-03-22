@@ -25,8 +25,8 @@ func tutorial():
 	kf.load_tutorial_scene("uid://dnm8jinnsrswh")
 	
 func place_act(act: Act):
-	var max_row: int = act.paths["N"].length + 1
-	var max_width: int = act.paths["E"].length + 1
+	var max_row: int = act.segments * 2 + 1
+	var max_width: int = act.segments * 2 + 1
 	grid.columns = max_width * 2 + 1
 	for row in range(max_row, -max_row - 1, -1):
 		for col in range(-max_width, max_width + 1):

@@ -175,8 +175,6 @@ metadata/_custom_type_script = "uid://npjl5q4abl4n"
 [sub_resource type="Resource" id="Resource_aipha"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(0, 1)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -185,8 +183,6 @@ metadata/_custom_type_script = "uid://xuvplrw1mym0"
 [sub_resource type="Resource" id="Resource_ujbl3"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(1, 0)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("16_touhe"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -195,8 +191,6 @@ metadata/_custom_type_script = "uid://xuvplrw1mym0"
 [sub_resource type="Resource" id="Resource_uujht"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(-1, 0)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -205,8 +199,6 @@ metadata/_custom_type_script = "uid://xuvplrw1mym0"
 [sub_resource type="Resource" id="Resource_6ihth"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(0, -1)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -221,6 +213,8 @@ paths = Dictionary[String, Object]({
 "W": SubResource("Resource_6ihth")
 })
 night_combat = Array[ExtResource("1_bsh7t")]([SubResource("Resource_qa35n"), SubResource("Resource_uu51w"), SubResource("Resource_vnf7u"), SubResource("Resource_keb62"), SubResource("Resource_od8pk"), SubResource("Resource_c0uvk"), SubResource("Resource_4vcs2")])
+reward_events = Array[ExtResource("1_bsh7t")]([ExtResource("16_touhe"), ExtResource("3_aipha")])
+segments = 5
 revealed_spots = Array[Vector2]([])
 spots_done = Array[Vector2]([])
 events = Dictionary[Vector2, ExtResource("1_bsh7t")]({})

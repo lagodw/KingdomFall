@@ -8,6 +8,8 @@ extends Resource
 	"W": Path.new()
 }
 @export var night_combat: Array[Event]
+@export var reward_events: Array[Event]
+@export var segments: int = 3
 @export var revealed_spots: Array[Vector2]
 @export var spots_done: Array[Vector2]
 @export var events: Dictionary[Vector2, Event]
@@ -15,8 +17,9 @@ extends Resource
 
 
 func setup():
+	var combat_event: Event = load("uid://bka1cinml3y5h")
 	for path: Path in paths.values():
-		path.setup()
+		path.setup(segments, reward_events, combat_event)
 		events.merge(path.event_dict)
 		for point in path.connection_dict:
 			if connection_dict.has(point):

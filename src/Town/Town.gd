@@ -45,8 +45,8 @@ func night_fall():
 	kf.load_scene("uid://dvld0lyuo33oq")
 
 func leave():
-	night_fall()
-	#kf.load_map()
+	#night_fall()
+	kf.load_map()
 
 func add_building(resource: BuildingResource):
 	var building = building_scene.instantiate()
