@@ -31,9 +31,9 @@ var current_zoom: float = 1.0 :
 		Bus.emit_signal("map_scale_changed", current_zoom)
 		
 @export var zoom_speed: float = 0.1     
-@export var min_zoom: float = 0.5  
+@export var min_zoom: float = 0.25
 @export var max_zoom: float = 1.0
-var starting_zoom: float = 0.35  
+var starting_zoom: float = 0.5
 
 # --- Initialization ---
 func _ready():

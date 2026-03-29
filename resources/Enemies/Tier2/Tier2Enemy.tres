@@ -1,11 +1,35 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://dv8mkst3gcyjo"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=11 format=3 uid="uid://dv8mkst3gcyjo"]
 
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_2srqo"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_mjc1i"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="3_gqejv"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="4_jg6ju"]
+[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="5_u3grf"]
 [ext_resource type="Script" uid="uid://bue1g4huq61xk" path="res://src/Combat/EnemyResource.gd" id="6_fdqfi"]
+[ext_resource type="Resource" uid="uid://bmpc0ety5bqxi" path="res://resources/Units/Fighting/Sentry.tres" id="6_j4kav"]
+
+[sub_resource type="Resource" id="Resource_5cdhn"]
+script = ExtResource("1_2srqo")
+units = Array[ExtResource("2_mjc1i")]([ExtResource("3_gqejv"), ExtResource("3_gqejv"), ExtResource("4_jg6ju")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_5knjo"]
+script = ExtResource("1_2srqo")
+units = Array[ExtResource("2_mjc1i")]([ExtResource("4_jg6ju"), ExtResource("3_gqejv"), ExtResource("5_u3grf")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_xluio"]
+script = ExtResource("1_2srqo")
+units = Array[ExtResource("2_mjc1i")]([ExtResource("3_gqejv"), ExtResource("6_j4kav"), ExtResource("5_u3grf")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [resource]
 script = ExtResource("6_fdqfi")
-ranks = Dictionary[int, ExtResource("1_2srqo")]({})
+ranks = Dictionary[int, ExtResource("1_2srqo")]({
+1: SubResource("Resource_5cdhn"),
+2: SubResource("Resource_5knjo"),
+3: SubResource("Resource_xluio")
+})
 num_files = 5
 num_player_ranks = 2
 num_enemy_ranks = 2

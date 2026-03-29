@@ -13,7 +13,6 @@ process_mode = 3
 script = ExtResource("1_n7pbb")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,3 +128,4 @@ theme_override_font_sizes/font_size = 40
 text = "Confirm"
 
 [node name="CharterChoice" parent="." instance=ExtResource("7_yijp0")]
+visible = false

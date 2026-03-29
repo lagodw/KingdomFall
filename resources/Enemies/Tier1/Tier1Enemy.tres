@@ -1,11 +1,34 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://dj8s4dpdpvjog"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=10 format=3 uid="uid://dj8s4dpdpvjog"]
 
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_1me7o"]
+[ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_g58sq"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="3_gfgjn"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="4_puk2q"]
+[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="5_60waj"]
 [ext_resource type="Script" uid="uid://bue1g4huq61xk" path="res://src/Combat/EnemyResource.gd" id="6_tiw8i"]
+
+[sub_resource type="Resource" id="Resource_y6bbn"]
+script = ExtResource("1_1me7o")
+units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn"), ExtResource("3_gfgjn")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_ir0y2"]
+script = ExtResource("1_1me7o")
+units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn"), ExtResource("4_puk2q")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
+
+[sub_resource type="Resource" id="Resource_1kpye"]
+script = ExtResource("1_1me7o")
+units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn"), ExtResource("5_60waj")])
+metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [resource]
 script = ExtResource("6_tiw8i")
-ranks = Dictionary[int, ExtResource("1_1me7o")]({})
+ranks = Dictionary[int, ExtResource("1_1me7o")]({
+1: SubResource("Resource_y6bbn"),
+2: SubResource("Resource_ir0y2"),
+3: SubResource("Resource_1kpye")
+})
 num_files = 3
 num_player_ranks = 2
 num_enemy_ranks = 2
