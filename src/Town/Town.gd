@@ -22,9 +22,10 @@ func _ready() -> void:
 	if Bus.player.town.buildings.size() < Bus.player.town.building_spots:
 		var construction = load("uid://df7bb45nih6i8").instantiate()
 		building_grid.add_child(construction)
-	$UnitUpgrades/Done.pressed.connect(leave)
+	$UnitUpgrades/Done.pressed.connect(select_day_cards)
 	Bus.town = self
 	Bus.mana = Bus.max_mana
+	Bus.deck_chosen.connect(leave)
 	
 func explore():
 	for building in building_grid.get_children():
@@ -38,14 +39,20 @@ func explore():
 	for unit in $Bottom/UnitPanel.get_units():
 		unit.card_resource.fatigue -= 5
 	if not check_for_upgrades():
-		leave()
+		select_day_cards()
 		
 func night_fall():
 	Bus.map.current_location = Bus.map.act.night_combat[Bus.map.day_counter - 1]
 	kf.load_scene("uid://dvld0lyuo33oq")
 
-func leave():
-	#night_fall()
+func select_day_cards():
+	$UnitUpgrades.visible = false
+	var choice = load("uid://bm1r3rnq4vc3w").instantiate()
+	choice.available_cards = Bus.deck.cards
+	add_child(choice)
+
+func leave(cards: Array[CardResource]):
+	Bus.player.day_deck = cards
 	kf.load_map()
 
 func add_building(resource: BuildingResource):

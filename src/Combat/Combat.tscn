@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dvld0lyuo33oq"]
+[gd_scene load_steps=21 format=3 uid="uid://dvld0lyuo33oq"]
 
 [ext_resource type="Script" uid="uid://oc3mlf6upnji" path="res://src/Combat/Combat.gd" id="1_jmdji"]
 [ext_resource type="Texture2D" uid="uid://cc6bmnrsfqlpa" path="res://assets/Combat/CombatBoard.png" id="2_jkim7"]
@@ -16,22 +16,10 @@
 [ext_resource type="Script" uid="uid://02o7a8o8wjjd" path="res://src/Combat/Enemy.gd" id="12_55i6c"]
 [ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="14_bx2u5"]
 [ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Icons/Activation.png" id="15_3cf12"]
-[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="16_7vgw0"]
 [ext_resource type="Theme" path="res://assets/Theme/TextTheme.tres" id="16_whu61"]
-[ext_resource type="Texture2D" uid="uid://docmg4uihkhbg" path="res://assets/NewUI/Panel.png" id="17_fs6sf"]
 [ext_resource type="PackedScene" uid="uid://dhlijfvm4rjj5" path="res://src/Combat/Gate.tscn" id="17_whu61"]
-[ext_resource type="Texture2D" uid="uid://d3g3488ppbb23" path="res://assets/NewUI/Corners.png" id="18_1vl0l"]
-[ext_resource type="Theme" uid="uid://d272ryafvp8p2" path="res://assets/Theme/ButtonRectangleRed.tres" id="18_7vgw0"]
-[ext_resource type="Texture2D" uid="uid://cverjpfc2bevk" path="res://assets/UI/Deck_Icon.png" id="18_60py1"]
 [ext_resource type="PackedScene" uid="uid://cngo42s45sirp" path="res://src/Combat/GameOver.tscn" id="18_wbuvy"]
-[ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="19_rlcqg"]
-[ext_resource type="Texture2D" uid="uid://djca5lmdfkm8n" path="res://assets/NewUI/Window_Table.png" id="22_1vl0l"]
 [ext_resource type="PackedScene" uid="uid://ddu14f5y2d8sj" path="res://src/Combat/CombatWon.tscn" id="23_vywh8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fs6sf"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_fs6sf"]
-allow_unpress = true
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -197,189 +185,6 @@ anchors_preset = 0
 anchor_right = 0.0
 offset_right = 1920.0
 grow_horizontal = 1
-
-[node name="DeckChoice" type="Control" parent="."]
-process_mode = 3
-visible = false
-z_index = 2
-anchors_preset = 0
-offset_left = 150.0
-offset_top = 52.0
-offset_right = 1673.0
-offset_bottom = 1029.0
-
-[node name="MarginContainer" type="MarginContainer" parent="DeckChoice"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 6
-
-[node name="TextureRect" type="TextureRect" parent="DeckChoice/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("17_fs6sf")
-expand_mode = 1
-
-[node name="Border" type="NinePatchRect" parent="DeckChoice"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 2.0
-anchor_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("18_1vl0l")
-patch_margin_left = 300
-patch_margin_top = 300
-patch_margin_right = 300
-patch_margin_bottom = 300
-
-[node name="Label" type="Label" parent="DeckChoice"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 31.0
-offset_bottom = 90.0
-grow_horizontal = 2
-theme = ExtResource("16_7vgw0")
-theme_override_font_sizes/font_size = 48
-text = "Choose which cards to bring to the battle"
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="ConfirmDeck" type="Button" parent="DeckChoice"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -145.0
-offset_top = -127.0
-offset_right = 145.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("18_7vgw0")
-theme_override_font_sizes/font_size = 40
-text = "Confirm"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="DeckChoice"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 300.0
-offset_top = 150.0
-offset_right = -50.0
-offset_bottom = -175.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DeckChoiceGrid" type="GridContainer" parent="DeckChoice/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 25
-theme_override_constants/v_separation = 25
-columns = 5
-
-[node name="DeckIcon" type="TextureRect" parent="DeckChoice"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -195.0
-offset_top = 23.0
-offset_right = -131.0
-offset_bottom = 112.0
-grow_horizontal = 0
-texture = ExtResource("18_60py1")
-expand_mode = 1
-
-[node name="DeckCount" type="Label" parent="DeckChoice/DeckIcon"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 31.0
-offset_top = -41.5
-offset_right = 115.0
-offset_bottom = 42.5
-grow_horizontal = 0
-grow_vertical = 2
-theme = ExtResource("19_rlcqg")
-theme_override_font_sizes/font_size = 64
-text = "0"
-
-[node name="TextureRect" type="TextureRect" parent="DeckChoice"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 191.0
-offset_right = 273.0
-offset_bottom = 712.0
-texture = ExtResource("22_1vl0l")
-expand_mode = 1
-
-[node name="Filters" type="VBoxContainer" parent="DeckChoice"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 207.0
-offset_right = 251.0
-offset_bottom = 689.0
-theme_override_constants/separation = 10
-
-[node name="UnitFilter" type="Button" parent="DeckChoice/Filters"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_fs6sf")
-text = "Units"
-
-[node name="SpellFilter" type="Button" parent="DeckChoice/Filters"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_fs6sf")
-text = "Spells"
-
-[node name="ItemFilter" type="Button" parent="DeckChoice/Filters"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_fs6sf")
-text = "Items"
-
-[node name="ConsumeFilter" type="Button" parent="DeckChoice/Filters"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_fs6sf")
-text = "Consumes"
-
-[node name="FatigueFilter" type="CheckButton" parent="DeckChoice/Filters"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fs6sf")
-text = "Hide Fatigued"
 
 [node name="Enemy" type="Control" parent="."]
 anchors_preset = 0
