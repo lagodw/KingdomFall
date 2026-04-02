@@ -8,6 +8,5 @@ script = ExtResource("2_ry3ir")
 building_name = "Library"
 building_description = "Unlocks cards or something"
 construction_cost = 6
-current_construction = 0
 jobs = Array[ExtResource("1_t3ns6")]([])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

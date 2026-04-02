@@ -11,7 +11,6 @@
 [sub_resource type="Resource" id="Resource_br3lw"]
 script = ExtResource("2_br3lw")
 require_trigger = true
-required_slots = Array[int]([])
 require_building_name = ""
 require_job_name = ""
 require_act = false
@@ -80,14 +79,14 @@ require_name = ""
 script = ExtResource("6_ddihv")
 value_type = "number"
 affected_by_spell_power = false
-number = 2
+number = 2.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_wy6p5"]
 script = ExtResource("6_ddihv")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_ox8fb"]
@@ -103,7 +102,7 @@ value = SubResource("Resource_wy6p5")
 script = ExtResource("6_ddihv")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_j6p0p"]
@@ -135,7 +134,6 @@ metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 [sub_resource type="Resource" id="Resource_nl0qd"]
 script = ExtResource("2_br3lw")
 require_trigger = true
-required_slots = Array[int]([])
 require_building_name = ""
 require_job_name = ""
 require_act = false
@@ -204,7 +202,7 @@ require_name = ""
 script = ExtResource("6_ddihv")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_g47lc"]
@@ -220,7 +218,7 @@ value = SubResource("Resource_ddihv")
 script = ExtResource("6_ddihv")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_vh5n4"]

@@ -20,7 +20,6 @@ extends Resource
 	kf.ArmorType.Light, kf.ArmorType.Heavy]
 @export var exclude_item_type_equipped: Array[kf.ItemType] = []
 @export var required_slots: Array[TokenSlot.SlotType] = []
-@export_enum("Any", "Frontline", "Backline") var require_line: String = "Any"
 ## empty array means no requirement
 @export_enum("Unit", "Spell", "Item", "Burden", "Consume") var require_card_type: Array[String] = []
 @export var minimum_damage: int = 0
@@ -28,9 +27,6 @@ extends Resource
 @export var require_missing_health := false
 ## remaining_life > 0
 @export var require_alive: bool = false
-@export_enum("Any", "Owner", "Opponent") var require_turn_phase: String = "Any"
-@export var require_breach: bool = false
-@export var require_no_breach: bool = false
 @export var minimum_activation: int = 0
 @export var maximum_activation: int = 99
 @export var require_name: String = ""

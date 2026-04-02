@@ -6,16 +6,16 @@
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="2_kd8nf"]
 [ext_resource type="Resource" uid="uid://bka1cinml3y5h" path="res://resources/Events/Combat.tres" id="2_ujbl3"]
 [ext_resource type="Resource" uid="uid://c1enwdobam10u" path="res://resources/Events/Recruit.tres" id="3_aipha"]
-[ext_resource type="Resource" uid="uid://d3024l3wyhs5m" path="res://resources/Enemies/NightEnemies/Night1/Night1Enemy.tres" id="3_touhe"]
+[ext_resource type="Resource" uid="uid://d3024l3wyhs5m" path="res://resources/Enemies/NightEnemies/Night1/Night1.tres" id="3_touhe"]
 [ext_resource type="Script" uid="uid://hat3dgsvixk8" path="res://src/Cards/ResourceTypes/ItemResource.gd" id="4_lyjab"]
 [ext_resource type="Script" uid="uid://cg0darnb2y3ae" path="res://src/Cards/ResourceTypes/SpellResource.gd" id="5_edvu8"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="6_gsojp"]
-[ext_resource type="Resource" uid="uid://dp1q60332um1i" path="res://resources/Enemies/NightEnemies/Night2/Night2Enemy.tres" id="7_esk16"]
-[ext_resource type="Resource" uid="uid://b61agxylit14y" path="res://resources/Enemies/NightEnemies/Night3/Night3Enemy.tres" id="8_ltkti"]
-[ext_resource type="Resource" uid="uid://ri2gayuxrhwh" path="res://resources/Enemies/NightEnemies/Night4/Night4Enemy.tres" id="9_u0god"]
-[ext_resource type="Resource" uid="uid://dgv4hth2d7a7l" path="res://resources/Enemies/NightEnemies/Night5/Night5Enemy.tres" id="10_dqkuh"]
-[ext_resource type="Resource" uid="uid://bjbg1mes54rvk" path="res://resources/Enemies/NightEnemies/Night6/Night6Enemy.tres" id="11_kfvqn"]
-[ext_resource type="Resource" uid="uid://mvl4eayy5h4c" path="res://resources/Enemies/NightEnemies/Night7/Night7Enemy.tres" id="12_mm4lf"]
+[ext_resource type="Resource" uid="uid://dgnwesgq2qo6l" path="res://resources/Enemies/NightEnemies/Night2/Night2.tres" id="7_lyjab"]
+[ext_resource type="Resource" uid="uid://bxp7xogkyuqnm" path="res://resources/Enemies/NightEnemies/Night3/Night3.tres" id="8_edvu8"]
+[ext_resource type="Resource" uid="uid://ojqjxnfio8ub" path="res://resources/Enemies/NightEnemies/Night4/Night4.tres" id="9_gsojp"]
+[ext_resource type="Resource" uid="uid://bvjhq0slbdvlf" path="res://resources/Enemies/NightEnemies/Night5/Night5.tres" id="10_esk16"]
+[ext_resource type="Resource" uid="uid://cisikrsiqxyud" path="res://resources/Enemies/NightEnemies/Night6/Night6.tres" id="11_ltkti"]
+[ext_resource type="Resource" uid="uid://bevkfkvyaswlt" path="res://resources/Enemies/NightEnemies/Night7/Night7.tres" id="12_u0god"]
 [ext_resource type="Resource" uid="uid://c1f4w5nyu48hy" path="res://resources/Events/Charter.tres" id="16_touhe"]
 
 [sub_resource type="Resource" id="Resource_qa35n"]
@@ -51,7 +51,7 @@ num_reward_choices = 0
 music = "Blades Before Dawn"
 spot = Vector2(0, 0)
 tier = 0
-enemy = ExtResource("7_esk16")
+enemy = ExtResource("7_lyjab")
 unit_options = Array[ExtResource("6_gsojp")]([])
 spell_options = Array[ExtResource("5_edvu8")]([])
 item_options = Array[ExtResource("4_lyjab")]([])
@@ -73,7 +73,7 @@ num_reward_choices = 0
 music = "Blades Before Dawn"
 spot = Vector2(0, 0)
 tier = 0
-enemy = ExtResource("8_ltkti")
+enemy = ExtResource("8_edvu8")
 unit_options = Array[ExtResource("6_gsojp")]([])
 spell_options = Array[ExtResource("5_edvu8")]([])
 item_options = Array[ExtResource("4_lyjab")]([])
@@ -95,7 +95,7 @@ num_reward_choices = 0
 music = "Blades Before Dawn"
 spot = Vector2(0, 0)
 tier = 0
-enemy = ExtResource("9_u0god")
+enemy = ExtResource("9_gsojp")
 unit_options = Array[ExtResource("6_gsojp")]([])
 spell_options = Array[ExtResource("5_edvu8")]([])
 item_options = Array[ExtResource("4_lyjab")]([])
@@ -117,7 +117,7 @@ num_reward_choices = 0
 music = "Blades Before Dawn"
 spot = Vector2(0, 0)
 tier = 0
-enemy = ExtResource("10_dqkuh")
+enemy = ExtResource("10_esk16")
 unit_options = Array[ExtResource("6_gsojp")]([])
 spell_options = Array[ExtResource("5_edvu8")]([])
 item_options = Array[ExtResource("4_lyjab")]([])
@@ -139,7 +139,7 @@ num_reward_choices = 0
 music = "Blades Before Dawn"
 spot = Vector2(0, 0)
 tier = 0
-enemy = ExtResource("11_kfvqn")
+enemy = ExtResource("11_ltkti")
 unit_options = Array[ExtResource("6_gsojp")]([])
 spell_options = Array[ExtResource("5_edvu8")]([])
 item_options = Array[ExtResource("4_lyjab")]([])
@@ -161,7 +161,7 @@ num_reward_choices = 0
 music = "Blades Before Dawn"
 spot = Vector2(0, 0)
 tier = 0
-enemy = ExtResource("12_mm4lf")
+enemy = ExtResource("12_u0god")
 unit_options = Array[ExtResource("6_gsojp")]([])
 spell_options = Array[ExtResource("5_edvu8")]([])
 item_options = Array[ExtResource("4_lyjab")]([])
@@ -175,8 +175,6 @@ metadata/_custom_type_script = "uid://npjl5q4abl4n"
 [sub_resource type="Resource" id="Resource_aipha"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(0, 1)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -185,8 +183,6 @@ metadata/_custom_type_script = "uid://xuvplrw1mym0"
 [sub_resource type="Resource" id="Resource_ujbl3"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(1, 0)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("16_touhe"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -195,8 +191,6 @@ metadata/_custom_type_script = "uid://xuvplrw1mym0"
 [sub_resource type="Resource" id="Resource_uujht"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(-1, 0)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -205,8 +199,6 @@ metadata/_custom_type_script = "uid://xuvplrw1mym0"
 [sub_resource type="Resource" id="Resource_6ihth"]
 script = ExtResource("2_duchc")
 forward_direction = Vector2(0, -1)
-length = 5
-max_width = 3
 events = Array[ExtResource("1_bsh7t")]([ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3"), ExtResource("3_aipha"), ExtResource("2_ujbl3")])
 event_dict = Dictionary[Vector2, ExtResource("1_bsh7t")]({})
 connection_dict = Dictionary[Vector2, Array]({})
@@ -221,6 +213,8 @@ paths = Dictionary[String, Object]({
 "W": SubResource("Resource_6ihth")
 })
 night_combat = Array[ExtResource("1_bsh7t")]([SubResource("Resource_qa35n"), SubResource("Resource_uu51w"), SubResource("Resource_vnf7u"), SubResource("Resource_keb62"), SubResource("Resource_od8pk"), SubResource("Resource_c0uvk"), SubResource("Resource_4vcs2")])
+reward_events = Array[ExtResource("1_bsh7t")]([ExtResource("16_touhe"), ExtResource("3_aipha")])
+segments = 5
 revealed_spots = Array[Vector2]([])
 spots_done = Array[Vector2]([])
 events = Dictionary[Vector2, ExtResource("1_bsh7t")]({})

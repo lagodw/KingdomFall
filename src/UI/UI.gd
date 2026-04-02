@@ -75,6 +75,10 @@ func _ready() -> void:
 	%CloseCards.pressed.connect(close_preview)
 	%ViewDeck.pressed.connect(view_deck)
 	%DayCount.text = str(Bus.map.day_counter)
+	if Bus.map.current_location:
+		if Bus.map.current_location.enemy:
+			if Bus.map.current_location.enemy.is_night_enemy:
+				%Sun.texture = load("uid://bykswg6tafcfx")
 	update_amounts()
 	gold_change = Bus.gold_change
 	wood_change = Bus.wood_change

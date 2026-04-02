@@ -7,5 +7,5 @@ script = ExtResource("1_gvtp4")
 base_folder = "res://assets/Buildings"
 includes = Array[String](["**"])
 excludes = Array[String]([])
-paths = Array[String](["res://assets/Buildings/Barracks.png", "res://assets/Buildings/Church.png", "res://assets/Buildings/Farm.png", "res://assets/Buildings/Guild Hall.png", "res://assets/Buildings/Library.png", "res://assets/Buildings/School.png"])
+paths = Array[String](["res://assets/Buildings/Barracks.png", "res://assets/Buildings/Church.png", "res://assets/Buildings/Farm.png", "res://assets/Buildings/Guild Hall.png", "res://assets/Buildings/Library.png", "res://assets/Buildings/School.png", "res://assets/Buildings/Workshop.png"])
 metadata/_custom_type_script = "uid://da1l0ib1csn4e"

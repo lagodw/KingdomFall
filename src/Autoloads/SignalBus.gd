@@ -14,6 +14,7 @@ signal restart_turn
 signal currency_changed(currency: String, old_amt: int, change: int)
 signal map_scale_changed(new_scale: float)
 signal energy_changed
+signal deck_chosen(cards: Array[CardResource])
 
 var map: Map
 var player: Player

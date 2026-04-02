@@ -20,9 +20,10 @@ metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 [resource]
 script = ExtResource("4_t0rs8")
 fatigue = 0
-damage = 3
-health = 5
-shield = 3
+damage = 4
+health = 10
+shield = 0
+speed = 4
 attack_type = 0
 armor_type = 1
 has_support = false

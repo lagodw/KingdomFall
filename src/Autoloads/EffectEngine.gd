@@ -9,9 +9,9 @@ signal discard(discarded_card: Card)
 signal attach(attaching_card: Card, host: Card)
 signal activate(activating_label: CardLabel)
 signal move(moving_unit: Unit)
-signal start_turn(turn_num: int, turn_owner: String)
+signal start_turn(turn_num: int)
 signal combat_start
-signal combat_finished(attacking_side: String, breach: bool)
+signal combat_finished
 signal damage_taken(damaged_unit: CardToken, damage_taken: int)
 ## Only fired once per turn if unit attacks
 signal unit_first_attack(attacking_card: CardToken)
@@ -100,7 +100,7 @@ func on_trigger(trigger_signal: String, trigger_card: Control):
 			
 	apply_effects()
 	
-func on_turn_start(_turn_num: int, _turn_owner: String):
+func on_turn_start(_turn_num: int):
 	this_turn_effects = []
 		
 func apply_effects() -> void:
@@ -196,6 +196,15 @@ func exclude_trigger(subject: Control, trigger_card: Control, is_trigger_exclude
 	if not is_trigger_excluded:
 		return(true)
 	return(subject != trigger_card)
+
+func require_on_board(subject: Control, _trigger_card: Control, is_board_required: bool) -> bool:
+	if not is_board_required:
+		return(true)
+	if subject is not CardToken:
+		return(false)
+	if not subject.current_slot:
+		return(false)
+	return(true)
 
 func require_act(subject: Control, _trigger_card: Control, is_act_required: bool) -> bool:
 	if not is_act_required or subject is not Card:
@@ -321,18 +330,6 @@ func require_job_name(subject: Control, _trigger_card: Control, required_job: St
 		return(false)
 	return(subject.current_job.description == required_job)
 
-func require_line(subject: Control, _trigger_card: Control, line: String) -> bool:
-	if line == "Any" or subject is not CardToken:
-		return(true)
-	if not subject.current_slot:
-		return false
-	if line == "Frontline":
-		return subject.current_slot.box.box_type == UnitBox.BoxType.FRONTLINE
-	elif line == "Backline":
-		return subject.current_slot.box.box_type == UnitBox.BoxType.BACKLINE
-			
-	return(false)
-
 func require_card_type(subject: Control, _trigger_card: Control, required_types: Array) -> bool:
 	if required_types.size() == 0 or (subject is not Card and subject is not CardLabel):
 		return(true)
@@ -371,31 +368,6 @@ func require_name(subject: Control, _trigger_card: Control, required_name: Strin
 		return(true)
 	return(subject.card_name == required_name)
 
-func require_breach(_subject: Control, _trigger_card: Control, breach_required: bool) -> bool:
-	if not breach_required:
-		return(true)
-	return(Bus.Board.is_breached)
-
-func require_no_breach(_subject: Control, _trigger_card: Control, no_breach_required: bool) -> bool:
-	if not no_breach_required:
-		return(true)
-	return(not Bus.Board.is_breached)
-
-func require_turn_phase(_subject: Control, call_card: Control, turn_phase_required: String) -> bool:
-	if turn_phase_required == "Any":
-		return(true)
-	
-	if Bus.Board:
-		# Determine if it's the player's turn or enemy's turn phase
-		var is_player_turn = Bus.Board.current_phase in [Combat.TurnPhase.PLAYER_ACTION, Combat.TurnPhase.PLAYER_ATTACK, Combat.TurnPhase.BREACH_CONFIRM]
-		var is_owner_player = call_card.card_owner == "Player"
-		
-		match turn_phase_required:
-			"Owner": return is_player_turn == is_owner_player
-			"Opponent": return is_player_turn != is_owner_player
-			
-	return(true)
-
 ## typed array giving weird error with delayed effects
 func discard_card(subject: Control):
 	for effect in effect_list:
@@ -422,11 +394,11 @@ func on_activate(activated_label: CardLabel):
 	Bus.emit_signal("trigger_occurred", "activate", activated_label)
 func on_move(moving_unit: Unit):
 	Bus.emit_signal("trigger_occurred", "move", moving_unit)
-func on_start_turn(_turn_num: int, _turn_owner: String):
+func on_start_turn(_turn_num: int):
 	Bus.emit_signal("trigger_occurred", "start_turn", Bus.Board)
 func on_combat_start():
 	Bus.emit_signal("trigger_occurred", "combat_start", Bus.Board)
-func on_combat_finished(_attacking_side: String, _breach: bool):
+func on_combat_finished():
 	Bus.emit_signal("trigger_occurred", "combat_finished", Bus.Board)
 func on_damage_taken(damaged_unit: CardToken, _damage_taken: int):
 	Bus.emit_signal("trigger_occurred", "damage_taken", damaged_unit)

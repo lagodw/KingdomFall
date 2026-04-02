@@ -2,7 +2,7 @@ class_name EffectConditionCalling
 extends Resource
 
 @export var require_trigger: bool = true
-@export_enum("Any", "Frontline", "Backline") var require_line: String = "Any"
+@export var require_on_board: bool = false
 @export var require_building_name: String
 @export var require_job_name: String = ""
 @export var require_act: bool = false

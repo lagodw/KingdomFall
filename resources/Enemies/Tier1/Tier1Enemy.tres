@@ -7,27 +7,31 @@
 [ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="5_60waj"]
 [ext_resource type="Script" uid="uid://bue1g4huq61xk" path="res://src/Combat/EnemyResource.gd" id="6_tiw8i"]
 
-[sub_resource type="Resource" id="Resource_wnerq"]
+[sub_resource type="Resource" id="Resource_y6bbn"]
 script = ExtResource("1_1me7o")
-turn = 0
-units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn")])
+units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn"), ExtResource("3_gfgjn")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
-[sub_resource type="Resource" id="Resource_tavvl"]
+[sub_resource type="Resource" id="Resource_ir0y2"]
 script = ExtResource("1_1me7o")
-turn = 1
-units = Array[ExtResource("2_g58sq")]([ExtResource("4_puk2q"), ExtResource("3_gfgjn")])
+units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn"), ExtResource("4_puk2q")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
-[sub_resource type="Resource" id="Resource_1s86m"]
+[sub_resource type="Resource" id="Resource_1kpye"]
 script = ExtResource("1_1me7o")
-turn = 3
-units = Array[ExtResource("2_g58sq")]([ExtResource("4_puk2q"), ExtResource("5_60waj")])
+units = Array[ExtResource("2_g58sq")]([ExtResource("3_gfgjn"), ExtResource("5_60waj")])
 metadata/_custom_type_script = "uid://jdj8k4tksnow"
 
 [resource]
 script = ExtResource("6_tiw8i")
-ranks = Array[ExtResource("1_1me7o")]([SubResource("Resource_wnerq"), SubResource("Resource_tavvl"), SubResource("Resource_1s86m")])
+ranks = Dictionary[int, ExtResource("1_1me7o")]({
+1: SubResource("Resource_y6bbn"),
+2: SubResource("Resource_ir0y2"),
+3: SubResource("Resource_1kpye")
+})
+num_files = 3
+num_player_ranks = 2
+num_enemy_ranks = 2
 is_night_enemy = false
 is_final_enemy = false
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="TownResource" load_steps=5 format=3 uid="uid://bmwj3jl3o8tm4"]
+[gd_resource type="Resource" script_class="TownResource" load_steps=7 format=3 uid="uid://bmwj3jl3o8tm4"]
 
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_gcq3e"]
 [ext_resource type="Script" uid="uid://dmrjpysoe3qk2" path="res://src/Town/TownResource.gd" id="2_b573t"]
 [ext_resource type="Resource" uid="uid://bnu4cowv70yck" path="res://resources/Buildings/Farm.tres" id="2_lti62"]
 [ext_resource type="Resource" uid="uid://cdvm1hhuxdo1r" path="res://resources/Buildings/Barracks.tres" id="3_f7ulh"]
+[ext_resource type="Resource" uid="uid://cwqmkyak1im51" path="res://resources/Buildings/Workshop.tres" id="4_iegms"]
+[ext_resource type="Resource" uid="uid://bl83qwrme1kgv" path="res://resources/Buildings/GuildHall.tres" id="4_j2o1s"]
 
 [resource]
 script = ExtResource("2_b573t")
 building_spots = 10
-buildings = Array[ExtResource("1_gcq3e")]([ExtResource("2_lti62"), ExtResource("2_lti62"), ExtResource("3_f7ulh")])
+buildings = Array[ExtResource("1_gcq3e")]([ExtResource("3_f7ulh"), ExtResource("4_j2o1s"), ExtResource("4_iegms"), ExtResource("2_lti62"), ExtResource("2_lti62"), ExtResource("2_lti62"), ExtResource("2_lti62")])
 metadata/_custom_type_script = "uid://dmrjpysoe3qk2"

@@ -1,5 +1,5 @@
 class_name Pile
-extends Control
+extends Button
 
 enum PileType {DRAW, DISCARD}
 
@@ -7,9 +7,10 @@ enum PileType {DRAW, DISCARD}
 @export var player_pile: bool = true
 
 @onready var cards: Control = $Cards
+@onready var highlight: Panel = $Highlight
 
 func _ready() -> void:
-	$View.pressed.connect(preview_cards)
+	pressed.connect(preview_cards)
 	mouse_exited.connect(show_highlight.bind(false))
 
 func load_deck(resources: Array[CardResource]):
@@ -84,7 +85,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	data.current_health = data.max_health
 
 func show_highlight(to_show: bool):
-	$Highlight.visible = to_show
+	highlight.visible = to_show
 
 func preview_cards():
 	var resources: Array[CardResource]

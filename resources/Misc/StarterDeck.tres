@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Deck" load_steps=10 format=3 uid="uid://daukdeewyd6ke"]
+[gd_resource type="Resource" script_class="Deck" load_steps=14 format=3 uid="uid://daukdeewyd6ke"]
 
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="1_dxewv"]
 [ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="2_rqv0j"]
@@ -9,10 +9,14 @@
 [ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="7_1cset"]
 [ext_resource type="Resource" uid="uid://d2op0py23nj42" path="res://resources/Items/Sword.tres" id="7_vuv8t"]
 [ext_resource type="Resource" uid="uid://bmpc0ety5bqxi" path="res://resources/Units/Fighting/Sentry.tres" id="8_nd6rd"]
+[ext_resource type="Resource" uid="uid://cfyn548y5xqpd" path="res://resources/Spells/DivineIntervention.tres" id="10_edw0l"]
+[ext_resource type="Resource" uid="uid://dvy3pj5myigxj" path="res://resources/Consumables/ManaPotion.tres" id="10_wxvyb"]
+[ext_resource type="Resource" uid="uid://3abo3r1nn3a0" path="res://resources/Consumables/DragonsBlood.tres" id="11_6q125"]
+[ext_resource type="Resource" uid="uid://da8bgcdxggfet" path="res://resources/Spells/ArcaneIntelligence.tres" id="12_s2fhi"]
 
 [resource]
 script = ExtResource("3_xc5uk")
 sort_deck = false
-cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t"), ExtResource("7_1cset"), ExtResource("8_nd6rd")])
+cards = Array[ExtResource("1_dxewv")]([ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("3_wxvyb"), ExtResource("3_wxvyb"), ExtResource("5_s2fhi"), ExtResource("6_5jrsl"), ExtResource("7_vuv8t"), ExtResource("7_1cset"), ExtResource("8_nd6rd"), ExtResource("10_edw0l"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("2_rqv0j"), ExtResource("6_5jrsl"), ExtResource("5_s2fhi"), ExtResource("10_wxvyb"), ExtResource("11_6q125"), ExtResource("12_s2fhi")])
 graveyard = Array[ExtResource("1_dxewv")]([])
 metadata/_custom_type_script = "uid://d3cbj7orsdpk2"

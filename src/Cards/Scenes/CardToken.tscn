@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://64ksoqa1gi7w"]
+[gd_scene load_steps=23 format=3 uid="uid://64ksoqa1gi7w"]
 
 [ext_resource type="Script" uid="uid://dcd6psvxgk1fb" path="res://src/Cards/Scenes/CardToken.gd" id="1_00mgh"]
 [ext_resource type="Theme" uid="uid://0yhcig2qvcny" path="res://assets/Theme/NumberTheme.tres" id="1_sclck"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dwmvkbkwnjymf" path="res://assets/Card/Icons/Discard.png" id="14_7m80x"]
 [ext_resource type="Texture2D" uid="uid://b2w6h4cy8bbnr" path="res://assets/Card/Icons/Activation.png" id="15_5ews0"]
 [ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="16_7m80x"]
+[ext_resource type="Texture2D" uid="uid://cq3jcn3yjscxt" path="res://assets/Card/Icons/Speed.png" id="17_5jmab"]
 [ext_resource type="Shader" uid="uid://xt0mhmnlmr5x" path="res://src/UI/BlockText.gdshader" id="17_vglqt"]
 [ext_resource type="Texture2D" uid="uid://ccablnn8jxip4" path="res://assets/Theme/silver_texture.png" id="18_g26p3"]
 
@@ -350,19 +351,25 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 85.0
+offset_left = 87.0
 offset_top = -96.0
-offset_right = -4.0
+offset_right = -6.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_sclck")
-theme_override_constants/separation = 4
+theme_override_constants/separation = 3
 alignment = 1
+
+[node name="FatigueSpacing" type="Control" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
 [node name="Fatigue" type="TextureRect" parent="Frame/BottomBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 texture = ExtResource("7_u756d")
 expand_mode = 1
@@ -372,10 +379,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -6.0
-offset_right = 14.0
-offset_bottom = 6.0
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 13.0
+offset_bottom = 5.0
 grow_vertical = 2
 texture = ExtResource("15_5ews0")
 expand_mode = 1
@@ -388,28 +395,61 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
+offset_left = -23.0
 offset_top = -12.0
 offset_right = 2.0
-offset_bottom = 14.25
+offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("9_sclck")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShieldSpacing" type="Control" parent="Frame/BottomBox"]
+[node name="Speed" type="TextureRect" parent="Frame/BottomBox"]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
-size_flags_horizontal = 3
+texture = ExtResource("7_u756d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Frame/BottomBox/Speed"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 13.0
+offset_bottom = 5.0
+grow_vertical = 2
+texture = ExtResource("17_5jmab")
+expand_mode = 1
+
+[node name="SpeedText" type="Label" parent="Frame/BottomBox/Speed"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -12.0
+offset_right = 2.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_sclck")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Damage" type="TextureRect" parent="Frame/BottomBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 texture = ExtResource("7_u756d")
 expand_mode = 1
@@ -419,10 +459,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -6.0
-offset_right = 14.0
-offset_bottom = 6.0
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 13.0
+offset_bottom = 5.0
 grow_vertical = 2
 texture = ExtResource("11_lr5n7")
 expand_mode = 1
@@ -435,21 +475,28 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
+offset_left = -23.0
 offset_top = -12.0
 offset_right = 2.0
-offset_bottom = 14.25
+offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("9_sclck")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ShieldSpacing" type="Control" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="Shield" type="TextureRect" parent="Frame/BottomBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 texture = ExtResource("7_u756d")
 expand_mode = 1
@@ -459,10 +506,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -6.0
-offset_right = 14.0
-offset_bottom = 6.0
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 13.0
+offset_bottom = 5.0
 grow_vertical = 2
 texture = ExtResource("12_4r546")
 expand_mode = 1
@@ -475,21 +522,28 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
+offset_left = -23.0
 offset_top = -12.0
 offset_right = 2.0
-offset_bottom = 14.25
+offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("9_sclck")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ShieldSpacing2" type="Control" parent="Frame/BottomBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="Health" type="TextureRect" parent="Frame/BottomBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 texture = ExtResource("7_u756d")
 expand_mode = 1
@@ -499,10 +553,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -6.0
-offset_right = 14.0
-offset_bottom = 6.0
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 13.0
+offset_bottom = 5.0
 grow_vertical = 2
 texture = ExtResource("13_7hai3")
 expand_mode = 1
@@ -515,28 +569,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
+offset_left = -23.0
 offset_top = -12.0
 offset_right = 2.0
-offset_bottom = 14.25
+offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("9_sclck")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ShieldSpacing2" type="Control" parent="Frame"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-anchors_preset = 0
-offset_left = 4.0
-offset_top = 99.0
-offset_right = 4.0
-offset_bottom = 99.0
-size_flags_horizontal = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

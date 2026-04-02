@@ -6,9 +6,10 @@
 
 [node name="TokenSlot1" type="TextureRect"]
 custom_minimum_size = Vector2(125, 100)
-offset_right = 85.0
-offset_bottom = 120.0
+offset_right = 125.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource("1_65l8j")
 expand_mode = 1
 script = ExtResource("2_g3pui")
@@ -53,12 +54,16 @@ editor_only = false
 [node name="PlayerOutline" type="ReferenceRect" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-border_color = Color(0.0612042, 0.492045, 0.19923, 1)
+border_color = Color(0, 0.309804, 0.52549, 1)
 border_width = 4.0
 editor_only = false

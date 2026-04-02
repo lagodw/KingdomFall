@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ConsumeResource" load_steps=20 format=3 uid="uid://7sln2klfpe2j"]
+[gd_resource type="Resource" script_class="ConsumeResource" load_steps=22 format=3 uid="uid://7sln2klfpe2j"]
 
+[ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="1_ibc7n"]
 [ext_resource type="Script" uid="uid://c1s3857yqcx8q" path="res://src/Cards/Effects/Effect.gd" id="1_yuwel"]
 [ext_resource type="Script" uid="uid://cjmgvah8070i" path="res://src/Cards/ResourceTypes/ConsumeResource.gd" id="2_14est"]
 [ext_resource type="Script" uid="uid://cwhy1oww3agal" path="res://src/Cards/Effects/EffectValue.gd" id="2_ltfua"]
@@ -7,6 +8,13 @@
 [ext_resource type="Script" uid="uid://t23f7hxjdfl5" path="res://src/Cards/Effects/EffectConditionSubject.gd" id="4_fs4mo"]
 [ext_resource type="Script" uid="uid://bx1wbh0860dbc" path="res://src/Cards/Effects/EffectFunctions.gd" id="5_5xhvy"]
 [ext_resource type="Script" uid="uid://btp4ue8m7mw43" path="res://src/Cards/Effects/EffectIf.gd" id="6_vyba0"]
+
+[sub_resource type="Resource" id="Resource_5ycj7"]
+script = ExtResource("1_ibc7n")
+skill = 2
+amount = 1.0
+progress = 0.0
+metadata/_custom_type_script = "uid://s8u4yjsynpdl"
 
 [sub_resource type="Resource" id="Resource_6ipwy"]
 script = ExtResource("2_ltfua")
@@ -39,7 +47,7 @@ chain_value = false
 [sub_resource type="Resource" id="Resource_76pvx"]
 script = ExtResource("3_krxig")
 require_trigger = true
-require_line = "Any"
+require_on_board = false
 require_building_name = ""
 require_job_name = ""
 require_act = false
@@ -67,15 +75,11 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
-require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
 require_missing_health = true
 require_alive = false
-require_turn_phase = "Any"
-require_breach = false
-require_no_breach = false
 minimum_activation = 0
 maximum_activation = 99
 require_name = ""
@@ -99,15 +103,11 @@ require_attack_type = Array[int]([0, 1, 2])
 require_armor_type = Array[int]([0, 1])
 exclude_item_type_equipped = Array[int]([])
 required_slots = Array[int]([])
-require_line = "Any"
 require_card_type = Array[String]([])
 minimum_damage = 0
 minimum_shield = 0
 require_missing_health = false
 require_alive = false
-require_turn_phase = "Any"
-require_breach = false
-require_no_breach = false
 minimum_activation = 0
 maximum_activation = 99
 require_name = ""
@@ -168,6 +168,7 @@ metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 [resource]
 script = ExtResource("2_14est")
 uses = 5
+craft_requirements = Array[ExtResource("1_ibc7n")]([SubResource("Resource_5ycj7")])
 card_name = "Bandages"
 card_type = "Consume"
 activation = 0

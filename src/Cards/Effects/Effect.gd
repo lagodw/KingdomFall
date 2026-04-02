@@ -78,9 +78,13 @@ var progress_skill: UnitSkill.Skill
 var progress_change: EffectValue = EffectValue.new()
 var is_multiplier: bool = false
 var pool_change: EffectValue = EffectValue.new()
+var craft_consume: ConsumeResource
 
 var host_card: CardToken
 var effect_dict: Dictionary = {}
+
+var num_cards: EffectValue = EffectValue.new()
+var card_draw_type: String = "Any"
 
 func connect_signal(call_card: Control = null):
 	script_instance = function_script.new()
@@ -144,6 +148,7 @@ func apply_effect(new_dict: Dictionary):
 		else:
 			actual_args.append(get(arg))
 	
+	#print(func_args)
 	#printt("applying effect, calling:", calling_card, "function: ", 
 			#function, "args: ", actual_args)
 	#print(effect_dict)
@@ -197,20 +202,16 @@ func on_activate(triggering_card: Control):
 func on_move(triggering_card: Control):
 	trigger_card = triggering_card
 	apply_effect({})
-func on_start_turn(turn_num: int, turn_owner: String):
+func on_start_turn(turn_num: int):
 	apply_effect({
-		"turn_num": turn_num,
-		"turn_owner": turn_owner
+		"turn_num": turn_num
 	})
 func on_combat_start():
 	trigger_card = Bus.Board
 	apply_effect({})
-func on_combat_finished(attacking_side: String, breach: bool):
+func on_combat_finished():
 	trigger_card = Bus.Board
-	apply_effect({
-		"attacking_side": attacking_side,
-		"breach": breach
-	})
+	apply_effect({})
 func on_damage_taken(triggering_card: Control, damage_taken: int):
 	trigger_card = triggering_card
 	var dict = {
@@ -387,6 +388,10 @@ func _get_property_list() -> Array:
 			'modify_pooled_stats':
 				list.append(type_hint("is_multiplier", TYPE_BOOL))
 				list.append(resource_hint("pool_change", "EffectValue"))
+			'draw_cards':
+				list.append(resource_hint("num_cards", "EffectValue"))
+				list.append(type_hint("card_draw_type", TYPE_STRING, PROPERTY_HINT_ENUM,
+						"Any,Unit,Spell,Item,Burden,Consume"))
 			
 		if trigger_signal == "consume_used":
 			animation = "discard"
@@ -397,7 +402,7 @@ func _get_property_list() -> Array:
 			'add_card_to_deck', 'add_tag',\
 					'attach', 'attack', 'block', 'damage', 'delayed_event',\
 					'discard', 'remove_tag', 'set_act', 'new_art', 'add_debuff',\
-					'change_bus_var', 'add_card', 'advance_activation':
+					'change_bus_var', 'add_card', 'advance_activation', 'draw_cards':
 				persistent_effect = false
 	return(list)
 

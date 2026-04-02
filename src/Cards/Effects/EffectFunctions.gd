@@ -254,3 +254,47 @@ func modify_pooled_stats(subjects: Array, calling_card: Control, trigger_card: C
 		else:
 			var prop_name = "pooled_additive"
 			subject.set(prop_name, subject.get(prop_name) + val)
+
+func draw_cards(subjects: Array, calling_card: Control, trigger_card: Control,
+		num_cards: EffectValue, card_draw_type: String, effect_dict: Dictionary):
+	if not Bus.draw:
+		return
+	
+	var amt: int = 0
+	if subjects.size() > 0:
+		amt = int(num_cards.get_value(subjects[0], trigger_card, calling_card, effect_dict))
+	else:
+		amt = int(num_cards.get_value(calling_card, trigger_card, calling_card, effect_dict))
+	
+	if card_draw_type == "" or card_draw_type == "Any":
+		Bus.draw.draw_cards(amt)
+		return
+		
+	var drawn = 0
+	while drawn < amt:
+		if Bus.draw.cards.get_child_count() == 0:
+			await Bus.discard.shuffle_discard()
+		
+		# if still 0 after checking discard, no more cards overall
+		if Bus.draw.cards.get_child_count() == 0:
+			break
+			
+		var found_card = null
+		for card in Bus.draw.cards.get_children():
+			if card.card_resource.card_type == card_draw_type:
+				found_card = card
+				break
+				
+		if not found_card:
+			if Bus.discard.cards.get_child_count() > 0:
+				await Bus.discard.shuffle_discard()
+				for card in Bus.draw.cards.get_children():
+					if card.card_resource.card_type == card_draw_type:
+						found_card = card
+						break
+						
+		if found_card:
+			Bus.hand.draw_card(found_card)
+			drawn += 1
+		else:
+			break

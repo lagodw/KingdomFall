@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="Player" load_steps=17 format=3 uid="uid://db7yf88j38mhe"]
+[gd_resource type="Resource" script_class="Player" load_steps=18 format=3 uid="uid://db7yf88j38mhe"]
 
-[ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="1_bif3o"]
 [ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="2_dvs27"]
 [ext_resource type="Script" uid="uid://j7jh5ywx3mkb" path="res://src/Cards/Effects/CombatModifier.gd" id="2_wtifa"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_gqjev"]
@@ -10,17 +9,28 @@
 [ext_resource type="Script" uid="uid://drdotx584e6fe" path="res://src/Player/Player.gd" id="5_dvs27"]
 [ext_resource type="Resource" uid="uid://daukdeewyd6ke" path="res://resources/Misc/StarterDeck.tres" id="5_u1kbv"]
 [ext_resource type="Resource" uid="uid://bmpc0ety5bqxi" path="res://resources/Units/Fighting/Sentry.tres" id="5_vl4qe"]
-[ext_resource type="Resource" uid="uid://bnjos02ragx2m" path="res://resources/Units/Scholars/Apprentice.tres" id="6_t7aik"]
 [ext_resource type="Script" uid="uid://bn2lsa6d725jx" path="res://src/Cards/ResourceTypes/UnitSkill.gd" id="6_u1kbv"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="7_32hjy"]
 [ext_resource type="Resource" uid="uid://cnr0bb4lxr83a" path="res://resources/Misc/Gate.tres" id="7_gqjev"]
 [ext_resource type="Script" uid="uid://s8u4yjsynpdl" path="res://src/Cards/ResourceTypes/UpgradeRequirement.gd" id="8_gqjev"]
 [ext_resource type="Resource" uid="uid://bmwj3jl3o8tm4" path="res://resources/Misc/StarterTown.tres" id="10_t7aik"]
+[ext_resource type="Script" uid="uid://cjmgvah8070i" path="res://src/Cards/ResourceTypes/ConsumeResource.gd" id="11_vl4qe"]
+[ext_resource type="Resource" uid="uid://7sln2klfpe2j" path="res://resources/Consumables/Bandages.tres" id="12_8jhbm"]
+[ext_resource type="Resource" uid="uid://drogiujdpv3sn" path="res://resources/Consumables/Javelin.tres" id="13_g6rp1"]
 
 [resource]
 script = ExtResource("5_dvs27")
 deck = ExtResource("5_u1kbv")
-charters = Array[ExtResource("1_bif3o")]([ExtResource("2_dvs27"), ExtResource("3_gqjev"), ExtResource("4_t7aik"), ExtResource("5_vl4qe"), ExtResource("6_t7aik")])
+charters = Dictionary[String, ExtResource("7_32hjy")]({
+"Archer": ExtResource("4_t7aik"),
+"Footman": ExtResource("3_gqjev"),
+"Peasant": ExtResource("2_dvs27"),
+"Sentry": ExtResource("5_vl4qe")
+})
+manuscripts = Dictionary[String, ExtResource("11_vl4qe")]({
+"Bandages": ExtResource("12_8jhbm"),
+"Javelin": ExtResource("13_g6rp1")
+})
 town = ExtResource("10_t7aik")
 gate = ExtResource("7_gqjev")
 gold = 0
@@ -28,12 +38,13 @@ wood = 10
 stone = 10
 food = 20
 current_health = 80
-max_mana = 5
+max_mana = 10
 spell_power = 0
 fatigue = 0
 damage = 1
 health = 1
 shield = 0
+speed = 5
 attack_type = 0
 armor_type = 0
 has_support = false

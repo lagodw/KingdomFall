@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://2e28fvpdufxt"]
+[gd_scene load_steps=10 format=3 uid="uid://2e28fvpdufxt"]
 
 [ext_resource type="Texture2D" uid="uid://c5vuv1nmcxxf4" path="res://assets/Buildings/Farm.png" id="1_286lr"]
 [ext_resource type="Script" uid="uid://h2ihf5bt4qi8" path="res://src/Town/Building.gd" id="1_p6hl2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b6qclnwqj7vy4" path="res://assets/Town/Upgrade.png" id="8_h4yar"]
 [ext_resource type="Texture2D" uid="uid://d3ljyqot8354n" path="res://assets/Town/Demolish.png" id="9_la14e"]
 [ext_resource type="Texture2D" uid="uid://b1thkoa8fjyes" path="res://assets/UI/wood_frame.png" id="11_2xmfc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h4yar"]
 
 [node name="Building" type="Control"]
 custom_minimum_size = Vector2(200, 200)
@@ -25,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h4yar")
 
 [node name="Art" type="TextureRect" parent="Button"]
 layout_mode = 1

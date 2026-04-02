@@ -11,8 +11,8 @@
 [sub_resource type="Resource" id="Resource_tfian"]
 script = ExtResource("2_igde3")
 require_trigger = true
-required_slots = Array[int]([])
-require_building_name = null
+require_on_board = false
+require_building_name = ""
 require_job_name = ""
 require_act = false
 minimum_damage = 0
@@ -80,7 +80,7 @@ require_name = ""
 script = ExtResource("6_x7m4u")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_1jivx"]
@@ -96,7 +96,7 @@ value = SubResource("Resource_46jg7")
 script = ExtResource("6_x7m4u")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_rbt8v"]
@@ -111,7 +111,7 @@ value = SubResource("Resource_k7luk")
 [sub_resource type="Resource" id="Resource_rveq7"]
 script = ExtResource("1_2uebn")
 function_script = ExtResource("4_k6em1")
-function = "disable_act"
+function = "set_act"
 trigger_signal = "target"
 target_type = "Unit"
 subject = "target"
@@ -121,8 +121,7 @@ conditions_subject = SubResource("Resource_ffgem")
 if_calling_card = SubResource("Resource_1jivx")
 if_subject = SubResource("Resource_rbt8v")
 animation = "discard"
-act_disabled = true
-persistent_effect = false
+can_act = false
 metadata/_custom_type_script = "uid://c1s3857yqcx8q"
 
 [resource]
@@ -133,7 +132,7 @@ card_name = "Ice Tomb"
 card_type = "Spell"
 activation = 0
 tags = Array[int]([])
-text = "Freeze a unit for a turn"
+text = "Target does not attack for one turn"
 effects = Array[ExtResource("1_2uebn")]([SubResource("Resource_rveq7")])
 card_art_path = ""
 metadata/_custom_type_script = "uid://cg0darnb2y3ae"

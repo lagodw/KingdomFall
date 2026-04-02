@@ -7,6 +7,7 @@ var has_support: bool = false
 var base_health: int
 var base_damage: int
 var base_shield: int
+var base_speed: int
 var base_activation: int
 var current_health: int:
 	set(val):
@@ -33,7 +34,19 @@ var current_shield: int:
 var max_shield: int:
 	set(val):
 		max_shield = max(0, val)
+		#if max_shield > 0:
+			#show_shield(true)
+		#else:
+			#show_shield(false)
 		compare_stat("Shield", current_shield, max_shield)
+var current_speed: int:
+	set(val):
+		current_speed = clamp(val, 0, max_speed)
+		compare_stat("Speed", current_speed, max_speed)
+var max_speed: int:
+	set(val):
+		max_speed = max(0, val)
+		compare_stat("Speed", current_speed, max_speed)
 var current_activation: int:
 	set(val):
 		current_activation = clamp(val, 0, max_activation)
@@ -66,7 +79,7 @@ func class_setup():
 		%SkillBox.add_tags()
 
 func setup_stats():
-	for stat in ['health', 'damage', 'shield', 'activation']:
+	for stat in ['health', 'damage', 'shield', 'speed']:
 		set("base_%s"%stat, card_resource.get(stat))
 		set("max_%s"%stat, card_resource.get(stat))
 		set("current_%s"%stat, card_resource.get(stat))
@@ -103,7 +116,8 @@ func play_token(target: TokenSlot, animation: bool = true):
 	visible = false
 	var mouse_position: bool = (card_owner == "Player")
 	token.move_to(target, animation, mouse_position)
-	token.can_act = false
+	if get_tree().current_scene is Combat:
+		token.can_act = false
 	ee.emit_signal("play", token)
 	disabled = true
 	$Area2D/CollisionShape2D.disabled = true
@@ -163,10 +177,14 @@ func refresh_stats_labels():
 	compare_stat("Health", current_health, max_health)
 	compare_stat("Damage", current_damage, max_damage)
 	compare_stat("Shield", current_shield, max_shield)
+	compare_stat("Speed", current_speed, max_speed)
 	compare_stat("Fatigue", current_fatigue, current_fatigue)
-
-	compare_stat("Activation", current_activation, max_activation)
 	check_act()
+	
+func show_shield(value):
+	%Shield.visible = value
+	%ShieldSpacing.visible = not value
+	$%ShieldSpacing2.visible = not value
 	
 func check_act():
 	return(can_act)
@@ -229,12 +247,13 @@ func _notification(notification_type):
 			if kf.dragging:
 				if kf.dragging == self:
 					kf.dragging = null
-					visible = true
-					position = Vector2(0, 0)
-					if current_slot:
-						# If the slot thinks it's holding someone else (or no one),
-						# and we haven't been successfully placed elsewhere (which would update current_slot),
-						# then we need to force our way back in.
-						if current_slot.occupied_unit != self:
-							# Re-add ourselves to the slot officially
-							current_slot.add_token(self)
+					if not get_viewport().gui_is_drag_successful():
+						visible = true
+						position = Vector2(0, 0)
+						if current_slot:
+							# If the slot thinks it's holding someone else (or no one),
+							# and we haven't been successfully placed elsewhere (which would update current_slot),
+							# then we need to force our way back in.
+							if current_slot.occupied_unit != self:
+								# Re-add ourselves to the slot officially
+								current_slot.add_token(self)

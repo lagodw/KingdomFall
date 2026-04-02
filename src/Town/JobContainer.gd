@@ -46,6 +46,7 @@ func setup_slots():
 	for i in job.capacity:
 		var slot: TokenSlot = slot_scene.instantiate()
 		slot.job = self
+		slot.show_outline()
 		if disabled:
 			slot.card_owner = "Enemy"
 		else:
@@ -72,7 +73,12 @@ func find_first_slot() -> TokenSlot:
 	return(null)
 
 func add_unit(unit: Unit):
-	bldg.fill_capacity_slot()
+	var token: CardToken
+	if unit is CardToken:
+		token = unit
+	else:
+		token = unit.token
+	bldg.fill_capacity_slot(token)
 	var slot = find_first_slot()
 	unit.move_to(slot, false)
 	if unit is not CardToken:
@@ -97,7 +103,7 @@ func release_unit(token: CardToken):
 	token.current_slot.occupied_unit = null
 	token.current_job = null
 	move_tokens_up()
-	bldg.empty_capacity_slot()
+	bldg.empty_capacity_slot(token)
 	update_currency_preview(token, false)
 	
 func show_highlight(value: bool):

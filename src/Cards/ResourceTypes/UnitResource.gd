@@ -7,10 +7,11 @@ extends CardResource
 @export var damage: int = 1
 @export var health: int = 1
 @export var shield: int = 0
+@export var speed: int = 5
 @export var attack_type: kf.AttackType = kf.AttackType.Melee
 @export var armor_type: kf.ArmorType = kf.ArmorType.Light
 @export var has_support: bool = false
-@export var combat_modifiers: Array[CombatModifier] = []
+@export var combat_modifiers: Array[CombatModifier]
 @export var default_animation: String = "sword"
 @export var curses: Array[Curse]
 @export var skills: Array[UnitSkill]
@@ -77,7 +78,7 @@ func get_skill_count(check_skill: UnitSkill.Skill) -> int:
 	return(count)
 
 func check_upgrade_requirements(upgrade: UnitResource) -> bool:
-	if not Bus.player.charter_names.has(upgrade.card_name):
+	if not upgrade.card_name in Bus.player.charters:
 		return(false)
 	for requirement in upgrade.upgrade_requirements:
 		if get_skill_count(requirement.skill) < requirement.amount:

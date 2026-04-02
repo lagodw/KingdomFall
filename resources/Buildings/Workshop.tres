@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=4 format=3 uid="uid://cwqmkyak1im51"]
+
+[ext_resource type="Script" uid="uid://druilahufs03l" path="res://src/Town/Job.gd" id="1_fxnak"]
+[ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="2_yk6rj"]
+[ext_resource type="Script" uid="uid://cmooomrrp8j1y" path="res://resources/Buildings/Startups/WorkshopStart.gd" id="10_rdch3"]
+
+[resource]
+script = ExtResource("2_yk6rj")
+building_name = "Workshop"
+building_description = "Create consumable items"
+construction_cost = 5
+jobs = Array[ExtResource("1_fxnak")]([])
+startup_script = ExtResource("10_rdch3")
+metadata/_custom_type_script = "uid://8ulf8s82ml2o"

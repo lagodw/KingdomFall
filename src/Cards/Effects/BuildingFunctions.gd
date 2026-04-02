@@ -5,3 +5,6 @@ func complete_construction(trigger_card: Building):
 	for job in resource.jobs:
 		if job.description == "Construction":
 			resource.jobs.erase(job)
+
+func create_consume(craft_consume: ConsumeResource):
+	Bus.deck.add_card(craft_consume)

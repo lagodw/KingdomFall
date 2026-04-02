@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b618uajmemsmj"]
+
+[ext_resource type="Script" uid="uid://bmxsyhptcrltd" path="res://src/Events/RecruitScene.gd" id="1_4wuid"]
+[ext_resource type="Texture2D" uid="uid://cbss4bnjfjbxa" path="res://assets/Events/training_ground.png" id="1_f4g8d"]
+[ext_resource type="PackedScene" uid="uid://cihxpoxjgeg3b" path="res://assets/Events/CardChoicePanel.tscn" id="3_3a24o"]
+
+[node name="Recruit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4wuid")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_f4g8d")
+expand_mode = 1
+
+[node name="CardChoicePanel" parent="." instance=ExtResource("3_3a24o")]
+layout_mode = 1

@@ -14,8 +14,9 @@
 [sub_resource type="Resource" id="Resource_qvm2w"]
 script = ExtResource("2_685yy")
 require_trigger = false
-required_slots = Array[int]([])
+require_on_board = false
 require_building_name = null
+require_job_name = ""
 require_act = false
 minimum_damage = 0
 require_alive = false
@@ -82,7 +83,7 @@ require_name = ""
 script = ExtResource("6_qvm2w")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_c28ie"]
@@ -98,7 +99,7 @@ value = SubResource("Resource_tgni6")
 script = ExtResource("6_qvm2w")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_nycfe"]
@@ -112,7 +113,7 @@ value = SubResource("Resource_terrj")
 
 [sub_resource type="Resource" id="Resource_befyy"]
 script = ExtResource("7_08h5k")
-skill_type = 1
+skill = 0
 amount = 1
 
 [sub_resource type="Resource" id="Resource_016yn"]
@@ -136,7 +137,6 @@ description = "Grants occupants 1 [b]Education[/b]"
 capacity = 2
 effects = Array[ExtResource("1_wixdu")]([SubResource("Resource_016yn")])
 requirements = Array[ExtResource("9_xm1e8")]([])
-progress = Array[ExtResource("9_xm1e8")]([])
 metadata/_custom_type_script = "uid://druilahufs03l"
 
 [resource]
@@ -144,6 +144,5 @@ script = ExtResource("2_kx51n")
 building_name = "School"
 building_description = "Grants occupants 1 [b]Education[/b]"
 construction_cost = 6
-current_construction = 0
 jobs = Array[ExtResource("1_decqy")]([SubResource("Resource_n48qa")])
 metadata/_custom_type_script = "uid://8ulf8s82ml2o"

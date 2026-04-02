@@ -3,6 +3,7 @@ extends Control
 
 @onready var targeting_arrow: TargetingArrow = $TargetLine
 @onready var frame_rect: TextureRect = %Frame
+@onready var highlight: Control = $Highlight
 
 @export var card_resource: CardResource
 var token: CardToken
@@ -74,9 +75,8 @@ func common_setup():
 	Bus.take_snapshot.connect(take_snapshot)
 	Bus.restart_turn.connect(revert_to_snapshot)
 	
-func on_turn_start(_turn_num: int, turn_owner: String):
-	if card_owner == turn_owner:
-		set_act(true)
+func on_turn_start(_turn_num: int):
+	set_act(true)
 	
 func on_currency_change(currency: String, _old_amt: int, _change: int):
 	if currency == "spell_power":

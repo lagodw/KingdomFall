@@ -14,7 +14,7 @@
 [sub_resource type="Resource" id="Resource_xwpur"]
 script = ExtResource("2_s0l2h")
 require_trigger = false
-required_slots = Array[int]([])
+require_on_board = false
 require_building_name = null
 require_job_name = ""
 require_act = false
@@ -83,7 +83,7 @@ require_name = ""
 script = ExtResource("6_oh6mm")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_onapd"]
@@ -99,7 +99,7 @@ value = SubResource("Resource_qie5c")
 script = ExtResource("6_oh6mm")
 value_type = "number"
 affected_by_spell_power = false
-number = 0
+number = 0.0
 chain_value = false
 
 [sub_resource type="Resource" id="Resource_rp2mj"]
@@ -113,7 +113,7 @@ value = SubResource("Resource_b2v77")
 
 [sub_resource type="Resource" id="Resource_hd3tf"]
 script = ExtResource("7_s0l2h")
-skill_type = 0
+skill = 0
 amount = 1
 
 [sub_resource type="Resource" id="Resource_45cqn"]

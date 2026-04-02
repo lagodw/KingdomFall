@@ -13,8 +13,6 @@ func _ready() -> void:
 	
 func start_game():
 	Bus.player = load("uid://db7yf88j38mhe").dupe()
-	for charter in Bus.player.charters:
-		Bus.player.charter_names.append(charter.card_name)
 	var map: Map = Map.new()
 	map.setup()
 	Bus.map = map

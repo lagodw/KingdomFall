@@ -3,40 +3,30 @@
 [ext_resource type="Script" uid="uid://deabnlvn6klst" path="res://src/Combat/UnitFile.gd" id="1_lytbq"]
 [ext_resource type="PackedScene" uid="uid://butr5cp6lgmmp" path="res://src/Combat/UnitBox.tscn" id="2_lsgl3"]
 
-[node name="File1" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="File1" type="MarginContainer"]
 offset_right = 700.0
 offset_bottom = 120.0
-size_flags_vertical = 3
 script = ExtResource("1_lytbq")
 
 [node name="EnemyOutline" type="ReferenceRect" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 360.0
-offset_right = 615.0
-offset_bottom = 120.0
+layout_mode = 2
 border_color = Color(0.384402, 0.374436, 0.384177, 1)
 border_width = 4.0
 
 [node name="PlayerOutline" type="ReferenceRect" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 85.0
-offset_right = 340.0
-offset_bottom = 120.0
+layout_mode = 2
 border_color = Color(0.384402, 0.374436, 0.384177, 1)
 border_width = 4.0
 
 [node name="Boxes" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Spacing" type="Control" parent="Boxes"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="EnemyBox" parent="Boxes" instance=ExtResource("2_lsgl3")]
 layout_mode = 2
@@ -44,3 +34,7 @@ layout_mode = 2
 [node name="PlayerBox" parent="Boxes" instance=ExtResource("2_lsgl3")]
 layout_mode = 2
 player_box = true
+
+[node name="Spacing2" type="Control" parent="Boxes"]
+layout_mode = 2
+size_flags_horizontal = 3
