@@ -5,6 +5,11 @@ var ticks_waited: int = 0
 
 func enter() -> void:
 	ticks_waited = 0
+	if is_instance_valid(unit.tree):
+		unit.tree.get("parameters/playback").travel("Attack")
+		if is_instance_valid(unit.target):
+			var dir = (unit.target.global_position - unit.global_position).normalized()
+			unit.tree.set("parameters/Attack/BlendSpace2D/blend_position", dir)
 
 func on_tick() -> void:
 	if not is_instance_valid(unit.target) or unit.target.current_health <= 0:

@@ -12,40 +12,22 @@ offset_right = 109.0
 offset_bottom = 35.0
 text = "Start"
 
-[node name="AutoUnit" parent="." instance=ExtResource("2_w5mkd")]
+[node name="P1" parent="." instance=ExtResource("2_w5mkd")]
 position = Vector2(393, 294)
-is_enemy = false
-max_health = 50
-attack_range = 1
-attack_damage = 10
 
-[node name="AutoUnit2" parent="." instance=ExtResource("2_w5mkd")]
+[node name="P2" parent="." instance=ExtResource("2_w5mkd")]
 position = Vector2(359, 577)
-is_enemy = false
-max_health = 50
-attack_range = 1
-attack_damage = 10
 
-[node name="AutoUnit3" parent="." instance=ExtResource("2_w5mkd")]
+[node name="P3" parent="." instance=ExtResource("2_w5mkd")]
 position = Vector2(413, 902)
-is_enemy = false
-max_health = 50
-attack_range = 1
-attack_damage = 10
 
-[node name="AutoUnit4" parent="." instance=ExtResource("2_w5mkd")]
+[node name="E1" parent="." instance=ExtResource("2_w5mkd")]
 position = Vector2(1344, 354)
 is_enemy = true
-max_health = 50
-attack_range = 1
-attack_damage = 10
 
-[node name="AutoUnit5" parent="." instance=ExtResource("2_w5mkd")]
+[node name="E2" parent="." instance=ExtResource("2_w5mkd")]
 position = Vector2(1472, 651)
 is_enemy = true
-max_health = 50
-attack_range = 1
-attack_damage = 10
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.25

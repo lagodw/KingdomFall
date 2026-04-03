@@ -20,7 +20,6 @@ func transition_to(state_name: String) -> void:
 	new_state.enter()
 	current_state = new_state
 
-# The Manager calls this directly now! No signals needed.
 func on_tick() -> void:
 	if current_state:
 		current_state.on_tick()

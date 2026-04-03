@@ -5,8 +5,15 @@ var ticks_waited: int = 0
 
 func enter() -> void:
 	ticks_waited = 0
+	if is_instance_valid(unit.tree):
+		unit.tree.get("parameters/playback").travel("Walk")
+		if is_instance_valid(unit.target):
+			var dir = (unit.target.global_position - unit.global_position).normalized()
+			unit.tree.set("parameters/Walk/BlendSpace2D/blend_position", dir)
 
 func on_tick() -> void:
+	unit.find_nearest_target()
+	
 	if not is_instance_valid(unit.target) or unit.target.current_health <= 0:
 		transitioned.emit(self, "Idle")
 		return
@@ -23,31 +30,30 @@ func on_tick() -> void:
 		ticks_waited = 0 # Reset for the next hex step
 
 func execute_move() -> void:
-	var best_hex = unit.hex_pos
-	var shortest_dist = unit.manager.hex_distance(unit.hex_pos, unit.target.hex_pos)
+	var path = unit.manager.get_path_to_hex(unit.hex_pos, unit.target.hex_pos)
 	
-	# Look at all 6 neighboring hexes
-	for dir in unit.manager.HEX_DIRECTIONS:
-		var neighbor = unit.hex_pos + dir
+	if path.size() > 1:
+		var best_hex = path[1]
 		
 		# Skip if someone is already standing there
-		if unit.manager.grid.has(neighbor):
-			continue 
+		if not unit.manager.grid.has(best_hex):
+			# 1. Update the logical grid immediately so no one else claims it
+			unit.manager.grid.erase(unit.hex_pos)
+			unit.manager.set_hex_occupied(unit.hex_pos, false)
 			
-		var dist_to_target = unit.manager.hex_distance(neighbor, unit.target.hex_pos)
-		if dist_to_target < shortest_dist:
-			shortest_dist = dist_to_target
-			best_hex = neighbor
+			unit.manager.grid[best_hex] = unit
+			unit.manager.set_hex_occupied(best_hex, true)
 			
-	if best_hex != unit.hex_pos:
-		# 1. Update the logical grid immediately so no one else claims it
-		unit.manager.grid.erase(unit.hex_pos)
-		unit.manager.grid[best_hex] = unit
-		unit.hex_pos = best_hex
-		
-		# 2. Visually slide to the new hex over the duration of the next movement cycle
-		var pixel_dest = unit.manager.hex_to_pixel(best_hex)
-		var tween_time = unit.manager.heartbeat_timer.wait_time * unit.move_ticks
-		
-		var tween = create_tween()
-		tween.tween_property(unit, "global_position", pixel_dest, tween_time).set_trans(Tween.TRANS_LINEAR)
+			unit.hex_pos = best_hex
+			
+			# 2. Visually slide to the new hex over the duration of the next movement cycle
+			var pixel_dest = unit.manager.hex_to_pixel(best_hex)
+			
+			if is_instance_valid(unit.tree) and pixel_dest != unit.global_position:
+				var dir = (pixel_dest - unit.global_position).normalized()
+				unit.tree.set("parameters/Walk/BlendSpace2D/blend_position", dir)
+				
+			var tween_time = unit.manager.heartbeat_timer.wait_time * unit.move_ticks
+			
+			var tween = create_tween()
+			tween.tween_property(unit, "global_position", pixel_dest, tween_time).set_trans(Tween.TRANS_LINEAR)

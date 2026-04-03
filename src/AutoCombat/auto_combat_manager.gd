@@ -7,12 +7,65 @@ extends Node2D
 @export var hex_size: float = 40.0 
 var grid: Dictionary = {}
 
+var astar: AStar2D = AStar2D.new()
+var hex_to_id: Dictionary = {}
+var id_to_hex: Dictionary = {}
+
 # Keep track of all living units in combat
 var active_units: Array[AutoUnit] = []
 
 func _ready() -> void:
 	start_button.pressed.connect(start_combat)
 	heartbeat_timer.timeout.connect(_on_heartbeat)
+	_initialize_astar()
+
+func _initialize_astar() -> void:
+	var board_hexes = generate_board_hexes(board_radius)
+	var id = 0
+	for hex in board_hexes:
+		astar.add_point(id, Vector2(hex.x, hex.y))
+		hex_to_id[hex] = id
+		id_to_hex[id] = hex
+		id += 1
+		
+	# Connect neighbors
+	for hex in board_hexes:
+		var current_id = hex_to_id[hex]
+		for dir in HEX_DIRECTIONS:
+			var neighbor = hex + dir
+			if hex_to_id.has(neighbor):
+				var neighbor_id = hex_to_id[neighbor]
+				if not astar.are_points_connected(current_id, neighbor_id):
+					astar.connect_points(current_id, neighbor_id)
+
+func set_hex_occupied(hex: Vector2i, occupied: bool) -> void:
+	if hex_to_id.has(hex):
+		astar.set_point_disabled(hex_to_id[hex], occupied)
+
+func get_path_to_hex(start_hex: Vector2i, target_hex: Vector2i) -> Array[Vector2i]:
+	if not hex_to_id.has(start_hex) or not hex_to_id.has(target_hex):
+		return []
+		
+	var start_id = hex_to_id[start_hex]
+	var target_id = hex_to_id[target_hex]
+	
+	# Temporarily enable target hex so an exact path can be found
+	var was_disabled = astar.is_point_disabled(target_id)
+	if was_disabled:
+		astar.set_point_disabled(target_id, false)
+		
+	var path_ids = astar.get_id_path(start_id, target_id)
+	
+	# Restore disabled state
+	if was_disabled:
+		astar.set_point_disabled(target_id, true)
+		
+	var path_hexes: Array[Vector2i] = []
+	for pid in path_ids:
+		path_hexes.append(id_to_hex[pid])
+		
+	return path_hexes
+	
 func start_combat() -> void:
 	start_button.visible = false
 	
@@ -27,6 +80,7 @@ func start_combat() -> void:
 			var start_hex = pixel_to_hex(unit.global_position)
 			unit.hex_pos = start_hex
 			grid[start_hex] = unit
+			set_hex_occupied(start_hex, true)
 			unit.global_position = hex_to_pixel(start_hex)
 			unit.manager = self
 			

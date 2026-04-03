@@ -19,6 +19,7 @@ var manager: AutoCombatManager
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hp_bar: ProgressBar = $Health
+@onready var tree: AnimationTree = $AnimationTree
 
 func _ready() -> void:
 	current_health = max_health
@@ -53,6 +54,7 @@ func take_damage(amount: int) -> void:
 func die() -> void:
 	visible = false
 	manager.grid.erase(hex_pos) # Free up the hex
+	manager.set_hex_occupied(hex_pos, false)
 	remove_from_group("enemy_units" if is_enemy else "player_units")
 	state_machine.transition_to("Dead")
 
