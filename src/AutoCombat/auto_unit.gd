@@ -16,6 +16,8 @@ var target: AutoUnit = null
 
 # References
 var manager: AutoCombatManager
+var grid: CombatGrid:
+	get: return manager.combat_grid if manager else null
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hp_bar: ProgressBar = $Health
@@ -38,7 +40,7 @@ func find_nearest_target() -> void:
 	
 	for potential in possible_targets:
 		if potential.current_health > 0:
-			var dist = manager.hex_distance(hex_pos, potential.hex_pos)
+			var dist = grid.hex_distance(hex_pos, potential.hex_pos)
 			if dist < shortest_distance:
 				shortest_distance = dist
 				target = potential
@@ -53,8 +55,8 @@ func take_damage(amount: int) -> void:
 
 func die() -> void:
 	visible = false
-	manager.grid.erase(hex_pos) # Free up the hex
-	manager.set_hex_occupied(hex_pos, false)
+	grid.grid.erase(hex_pos) # Free up the hex
+	grid.set_hex_occupied(hex_pos, false)
 	remove_from_group("enemy_units" if is_enemy else "player_units")
 	state_machine.transition_to("Dead")
 

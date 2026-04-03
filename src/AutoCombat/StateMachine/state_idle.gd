@@ -14,7 +14,7 @@ func on_tick() -> void:
 		unit.find_nearest_target()
 		
 	if is_instance_valid(unit.target) and unit.target.current_health > 0:
-		var dist = unit.manager.hex_distance(unit.hex_pos, unit.target.hex_pos)
+		var dist = unit.grid.hex_distance(unit.hex_pos, unit.target.hex_pos)
 		if dist <= unit.attack_range:
 			transitioned.emit(self, "Attacking")
 		else:

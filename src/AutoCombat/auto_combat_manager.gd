@@ -3,69 +3,18 @@ extends Node2D
 
 @onready var heartbeat_timer: Timer = $TickTimer
 @onready var start_button: Button = $Start
-
-@export var hex_size: float = 40.0 
-var grid: Dictionary = {}
-
-var astar: AStar2D = AStar2D.new()
-var hex_to_id: Dictionary = {}
-var id_to_hex: Dictionary = {}
+@onready var combat_grid: CombatGrid = $CombatGrid
 
 # Keep track of all living units in combat
 var active_units: Array[AutoUnit] = []
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+		
 	start_button.pressed.connect(start_combat)
 	heartbeat_timer.timeout.connect(_on_heartbeat)
-	_initialize_astar()
 
-func _initialize_astar() -> void:
-	var board_hexes = generate_board_hexes(board_radius)
-	var id = 0
-	for hex in board_hexes:
-		astar.add_point(id, Vector2(hex.x, hex.y))
-		hex_to_id[hex] = id
-		id_to_hex[id] = hex
-		id += 1
-		
-	# Connect neighbors
-	for hex in board_hexes:
-		var current_id = hex_to_id[hex]
-		for dir in HEX_DIRECTIONS:
-			var neighbor = hex + dir
-			if hex_to_id.has(neighbor):
-				var neighbor_id = hex_to_id[neighbor]
-				if not astar.are_points_connected(current_id, neighbor_id):
-					astar.connect_points(current_id, neighbor_id)
-
-func set_hex_occupied(hex: Vector2i, occupied: bool) -> void:
-	if hex_to_id.has(hex):
-		astar.set_point_disabled(hex_to_id[hex], occupied)
-
-func get_path_to_hex(start_hex: Vector2i, target_hex: Vector2i) -> Array[Vector2i]:
-	if not hex_to_id.has(start_hex) or not hex_to_id.has(target_hex):
-		return []
-		
-	var start_id = hex_to_id[start_hex]
-	var target_id = hex_to_id[target_hex]
-	
-	# Temporarily enable target hex so an exact path can be found
-	var was_disabled = astar.is_point_disabled(target_id)
-	if was_disabled:
-		astar.set_point_disabled(target_id, false)
-		
-	var path_ids = astar.get_id_path(start_id, target_id)
-	
-	# Restore disabled state
-	if was_disabled:
-		astar.set_point_disabled(target_id, true)
-		
-	var path_hexes: Array[Vector2i] = []
-	for pid in path_ids:
-		path_hexes.append(id_to_hex[pid])
-		
-	return path_hexes
-	
 func start_combat() -> void:
 	start_button.visible = false
 	
@@ -77,11 +26,11 @@ func start_combat() -> void:
 		if unit is AutoUnit:
 			active_units.append(unit) # Add to our managed queue
 			
-			var start_hex = pixel_to_hex(unit.global_position)
+			var start_hex = combat_grid.pixel_to_hex(unit.global_position)
 			unit.hex_pos = start_hex
-			grid[start_hex] = unit
-			set_hex_occupied(start_hex, true)
-			unit.global_position = hex_to_pixel(start_hex)
+			combat_grid.grid[start_hex] = unit
+			combat_grid.set_hex_occupied(start_hex, true)
+			unit.global_position = combat_grid.hex_to_pixel(start_hex)
 			unit.manager = self
 			
 			if unit.current_health > 0:
@@ -102,86 +51,3 @@ func _on_heartbeat() -> void:
 	# Now we tick them one by one in the newly randomized order
 	for unit in active_units:
 		unit.state_machine.on_tick()
-
-# ==========================================
-# HEXAGON MATH (Axial Coordinates)
-# ==========================================
-
-# 6 possible directions a unit can move on a flat-topped hex grid
-const HEX_DIRECTIONS = [
-	Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), 
-	Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(0, 1)
-]
-
-func hex_distance(a: Vector2i, b: Vector2i) -> int:
-	return (abs(a.x - b.x) + abs(a.x + a.y - b.x - b.y) + abs(a.y - b.y)) / 2
-
-func hex_to_pixel(hex: Vector2i) -> Vector2:
-	var x = hex_size * (3.0/2.0 * hex.x)
-	var y = hex_size * (sqrt(3.0)/2.0 * hex.x + sqrt(3.0) * hex.y)
-	return Vector2(x, y)
-
-func pixel_to_hex(pixel: Vector2) -> Vector2i:
-	var q = (2.0/3.0 * pixel.x) / hex_size
-	var r = (-1.0/3.0 * pixel.x + sqrt(3.0)/3.0 * pixel.y) / hex_size
-	return hex_round(q, r)
-
-func hex_round(q: float, r: float) -> Vector2i:
-	var s = -q - r
-	var rq = round(q)
-	var rr = round(r)
-	var rs = round(s)
-	
-	var q_diff = abs(rq - q)
-	var r_diff = abs(rr - r)
-	var s_diff = abs(rs - s)
-	
-	if q_diff > r_diff and q_diff > s_diff:
-		rq = -rr - rs
-	elif r_diff > s_diff:
-		rr = -rq - rs
-		
-	return Vector2i(rq, rr)
-
-# Add a variable to control how big the battlefield is
-@export var board_radius: int = 5 
-
-# We add _draw() which Godot automatically calls once when the node is added to the scene
-func _draw() -> void:
-	var board_hexes = generate_board_hexes(board_radius)
-	var line_color = Color(1, 1, 1, 0.2) # White, but highly transparent
-	var line_thickness = 2.0
-	
-	for hex in board_hexes:
-		var center = hex_to_pixel(hex)
-		var corners = get_hex_corners(center)
-		
-		# draw_polyline needs the first point added to the end again to "close" the loop
-		corners.append(corners[0]) 
-		
-		draw_polyline(corners, line_color, line_thickness)
-
-# ==========================================
-# BOARD GENERATION & DRAWING HELPERS
-# ==========================================
-
-# Generates a list of all hex coordinates that form a giant hexagon shape
-func generate_board_hexes(radius: int) -> Array[Vector2i]:
-	var hexes: Array[Vector2i] = []
-	for q in range(-radius, radius + 1):
-		var r1 = max(-radius, -q - radius)
-		var r2 = min(radius, -q + radius)
-		for r in range(r1, r2 + 1):
-			hexes.append(Vector2i(q, r))
-	return hexes
-
-# Calculates the 6 pixel corners of a flat-topped hex
-func get_hex_corners(center: Vector2) -> PackedVector2Array:
-	var corners = PackedVector2Array()
-	for i in 6:
-		# Flat topped hexes have corners at 0, 60, 120, 180, 240, 300 degrees
-		var angle_deg = 60 * i
-		var angle_rad = deg_to_rad(angle_deg)
-		var point = center + Vector2(hex_size * cos(angle_rad), hex_size * sin(angle_rad))
-		corners.append(point)
-	return corners

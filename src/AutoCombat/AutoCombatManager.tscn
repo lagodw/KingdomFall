@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://qf4loljwncfw"]
+[gd_scene load_steps=5 format=3 uid="uid://qf4loljwncfw"]
 
 [ext_resource type="Script" uid="uid://b6ba00v04lilk" path="res://src/AutoCombat/auto_combat_manager.gd" id="1_1vrym"]
 [ext_resource type="PackedScene" uid="uid://b4gwox2k3ggkw" path="res://src/AutoCombat/AutoUnit.tscn" id="2_w5mkd"]
+[ext_resource type="Script" uid="uid://catvntmiixc2l" path="res://src/AutoCombat/combat_grid.gd" id="2_wrlbb"]
+[ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_aholl"]
 
 [node name="AutoCombatManager" type="Node2D"]
 script = ExtResource("1_1vrym")
-board_radius = 50
+
+[node name="CombatGrid" type="Node2D" parent="."]
+script = ExtResource("2_wrlbb")
 
 [node name="Start" type="Button" parent="."]
 offset_right = 109.0
@@ -13,21 +17,37 @@ offset_bottom = 35.0
 text = "Start"
 
 [node name="P1" parent="." instance=ExtResource("2_w5mkd")]
-position = Vector2(393, 294)
+position = Vector2(423, 105)
 
 [node name="P2" parent="." instance=ExtResource("2_w5mkd")]
-position = Vector2(359, 577)
+position = Vector2(423, 383)
 
 [node name="P3" parent="." instance=ExtResource("2_w5mkd")]
-position = Vector2(413, 902)
+position = Vector2(423, 590)
 
 [node name="E1" parent="." instance=ExtResource("2_w5mkd")]
-position = Vector2(1344, 354)
+position = Vector2(1383, 176)
 is_enemy = true
 
 [node name="E2" parent="." instance=ExtResource("2_w5mkd")]
-position = Vector2(1472, 651)
+position = Vector2(1383, 453)
 is_enemy = true
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Bottom" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -350.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UnitPanel" parent="CanvasLayer/Bottom" instance=ExtResource("3_aholl")]
+offset_right = 1920.0
+offset_bottom = 350.0

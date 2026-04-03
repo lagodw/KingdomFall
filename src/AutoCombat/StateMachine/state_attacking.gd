@@ -16,7 +16,7 @@ func on_tick() -> void:
 		transitioned.emit(self, "Idle")
 		return
 		
-	var dist = unit.manager.hex_distance(unit.hex_pos, unit.target.hex_pos)
+	var dist = unit.grid.hex_distance(unit.hex_pos, unit.target.hex_pos)
 	if dist > unit.attack_range:
 		transitioned.emit(self, "Moving")
 		return
