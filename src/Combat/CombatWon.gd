@@ -26,6 +26,7 @@ func confirm():
 		if not Bus.map.current_location.enemy.is_night_enemy:
 			Bus.player.day_deck.append(card_option_selected.card.card_resource)
 	if Bus.map.current_location.enemy.is_night_enemy:
+		
 		Bus.map.current_location = null
 		kf.load_scene("uid://djtcf3x2wg721")
 	else:

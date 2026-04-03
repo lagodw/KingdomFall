@@ -7,5 +7,5 @@ script = ExtResource("1_ayfor")
 base_folder = "res://resources/Spells"
 includes = Array[String](["**.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://resources/Spells/Bladestorm.tres", "res://resources/Spells/DivineIntervention.tres", "res://resources/Spells/ForceMarch.tres", "res://resources/Spells/HandsofLight.tres", "res://resources/Spells/IceTomb.tres", "res://resources/Spells/Invigorate.tres", "res://resources/Spells/RaisetheFyrd.tres", "res://resources/Spells/ArcaneIntelligence.tres"])
+paths = Array[String](["res://resources/Spells/ArcaneIntelligence.tres", "res://resources/Spells/Bladestorm.tres", "res://resources/Spells/DivineIntervention.tres", "res://resources/Spells/ForceMarch.tres", "res://resources/Spells/HandsofLight.tres", "res://resources/Spells/IceTomb.tres", "res://resources/Spells/Invigorate.tres", "res://resources/Spells/RaisetheFyrd.tres"])
 metadata/_custom_type_script = "uid://da1l0ib1csn4e"

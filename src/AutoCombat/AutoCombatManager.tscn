@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://qf4loljwncfw"]
+
+[ext_resource type="Script" uid="uid://b6ba00v04lilk" path="res://src/AutoCombat/auto_combat_manager.gd" id="1_1vrym"]
+[ext_resource type="PackedScene" uid="uid://b4gwox2k3ggkw" path="res://src/AutoCombat/AutoUnit.tscn" id="2_w5mkd"]
+
+[node name="AutoCombatManager" type="Node2D"]
+script = ExtResource("1_1vrym")
+board_radius = 50
+
+[node name="Start" type="Button" parent="."]
+offset_right = 109.0
+offset_bottom = 35.0
+text = "Start"
+
+[node name="AutoUnit" parent="." instance=ExtResource("2_w5mkd")]
+position = Vector2(393, 294)
+is_enemy = false
+max_health = 50
+attack_range = 1
+attack_damage = 10
+
+[node name="AutoUnit2" parent="." instance=ExtResource("2_w5mkd")]
+position = Vector2(359, 577)
+is_enemy = false
+max_health = 50
+attack_range = 1
+attack_damage = 10
+
+[node name="AutoUnit3" parent="." instance=ExtResource("2_w5mkd")]
+position = Vector2(413, 902)
+is_enemy = false
+max_health = 50
+attack_range = 1
+attack_damage = 10
+
+[node name="AutoUnit4" parent="." instance=ExtResource("2_w5mkd")]
+position = Vector2(1344, 354)
+is_enemy = true
+max_health = 50
+attack_range = 1
+attack_damage = 10
+
+[node name="AutoUnit5" parent="." instance=ExtResource("2_w5mkd")]
+position = Vector2(1472, 651)
+is_enemy = true
+max_health = 50
+attack_range = 1
+attack_damage = 10
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.25

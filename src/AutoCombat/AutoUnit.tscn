@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4gwox2k3ggkw"]
+
+[ext_resource type="Script" uid="uid://dy7bkqk7sey8h" path="res://src/AutoCombat/auto_unit.gd" id="1_cf03w"]
+[ext_resource type="Texture2D" uid="uid://b65o6v616dvop" path="res://assets/SpriteSheets/GiantKnight_SS.png" id="2_cf03w"]
+[ext_resource type="Script" uid="uid://bykyxjqj0c23e" path="res://src/AutoCombat/StateMachine/state_machine.gd" id="3_1q7u4"]
+[ext_resource type="Script" uid="uid://dp3s5tk3jdd3k" path="res://src/AutoCombat/StateMachine/state_moving.gd" id="4_raoor"]
+[ext_resource type="Script" uid="uid://fafloska03fh" path="res://src/AutoCombat/StateMachine/state_attacking.gd" id="5_m446x"]
+[ext_resource type="Script" path="res://src/AutoCombat/StateMachine/state_idle.gd" id="6_idle"]
+[ext_resource type="Script" path="res://src/AutoCombat/StateMachine/state_dead.gd" id="7_dead"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cf03w"]
+resource_local_to_scene = true
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q7u4"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.392157, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="AutoUnit" type="Node2D"]
+script = ExtResource("1_cf03w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8935, 0.8935)
+texture = ExtResource("2_cf03w")
+hframes = 35
+vframes = 8
+frame = 147
+
+[node name="Health" type="ProgressBar" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = -40.0
+offset_right = 26.0
+offset_bottom = -32.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cf03w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1q7u4")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("3_1q7u4")
+
+[node name="Moving" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_raoor")
+
+[node name="Attacking" type="Node2D" parent="StateMachine"]
+script = ExtResource("5_m446x")
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_idle")
+
+[node name="Dead" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_dead")
