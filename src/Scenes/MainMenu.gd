@@ -16,7 +16,8 @@ func start_game():
 	var map: Map = Map.new()
 	map.setup()
 	Bus.map = map
-	kf.load_scene("uid://djtcf3x2wg721")
+	#kf.load_scene("uid://djtcf3x2wg721")
+	kf.load_scene("uid://qf4loljwncfw")
 
 func show_settings():
 	$Settings.visible = true

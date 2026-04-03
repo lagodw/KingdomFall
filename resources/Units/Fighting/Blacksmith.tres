@@ -43,6 +43,7 @@ chain_value = false
 [sub_resource type="Resource" id="Resource_u4304"]
 script = ExtResource("5_llvmo")
 require_trigger = true
+require_on_board = false
 require_building_name = ""
 require_job_name = ""
 require_act = true

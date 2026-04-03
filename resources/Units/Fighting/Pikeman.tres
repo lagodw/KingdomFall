@@ -24,6 +24,7 @@ require_opponent_tag = Array[int]([])
 require_opponent_attack_type = Array[int]([])
 require_opponent_armor_type = Array[int]([0])
 require_slot_types = Array[int]([0, 1, 2])
+require_target_face = false
 value = SubResource("Resource_i14sl")
 metadata/_custom_type_script = "uid://j7jh5ywx3mkb"
 

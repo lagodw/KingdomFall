@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Kingdom Fall"
-run/main_scene="uid://qf4loljwncfw"
+run/main_scene="uid://bw1l202axfrki"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://cj1m8aroronnd"
 

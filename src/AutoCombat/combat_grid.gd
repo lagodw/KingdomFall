@@ -22,6 +22,11 @@ var astar: AStar2D = AStar2D.new()
 var hex_to_id: Dictionary = {}
 var id_to_hex: Dictionary = {}
 
+var manager: Node
+var hovered_hex: Vector2i = Vector2i(-999, -999)
+var is_hover_valid: bool = false
+var drop_zone: Control
+
 const HEX_DIRECTIONS = [
 	Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), 
 	Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(0, 1)
@@ -31,6 +36,16 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_initialize_astar()
+	
+	drop_zone = Control.new()
+	var script = load("res://src/AutoCombat/grid_drop_zone.gd")
+	if script:
+		drop_zone.set_script(script)
+	drop_zone.grid = self
+	drop_zone.mouse_filter = Control.MOUSE_FILTER_PASS
+	drop_zone.size = Vector2(4000, 4000)
+	drop_zone.position = Vector2(-1000, -1000)
+	add_child(drop_zone)
 
 func _initialize_astar() -> void:
 	var board_hexes = generate_rectangular_board()
@@ -84,8 +99,14 @@ func _draw() -> void:
 	var line_color = Color(1, 1, 1, 0.4) 
 	var line_thickness = 2.0
 	
+	if hovered_hex != Vector2i(-999, -999):
+		var center = to_local(hex_to_pixel(hovered_hex))
+		var corners = get_hex_corners(center)
+		var fill_color = Color(0, 1, 0, 0.4) if is_hover_valid else Color(1, 0, 0, 0.4)
+		draw_colored_polygon(corners, fill_color)
+	
 	for hex in board_hexes:
-		var center = hex_to_pixel(hex)
+		var center = to_local(hex_to_pixel(hex))
 		var corners = get_hex_corners(center)
 		corners.append(corners[0]) 
 		draw_polyline(corners, line_color, line_thickness)
@@ -118,11 +139,12 @@ func hex_distance(a: Vector2i, b: Vector2i) -> int:
 func hex_to_pixel(hex: Vector2i) -> Vector2:
 	var x = hex_size * (3.0/2.0 * hex.x)
 	var y = hex_size * (sqrt(3.0)/2.0 * hex.x + sqrt(3.0) * hex.y)
-	return Vector2(x, y)
+	return to_global(Vector2(x, y))
 
 func pixel_to_hex(pixel: Vector2) -> Vector2i:
-	var q = (2.0/3.0 * pixel.x) / hex_size
-	var r = (-1.0/3.0 * pixel.x + sqrt(3.0)/3.0 * pixel.y) / hex_size
+	var local_pixel = to_local(pixel)
+	var q = (2.0/3.0 * local_pixel.x) / hex_size
+	var r = (-1.0/3.0 * local_pixel.x + sqrt(3.0)/3.0 * local_pixel.y) / hex_size
 	return hex_round(q, r)
 
 func hex_round(q: float, r: float) -> Vector2i:
