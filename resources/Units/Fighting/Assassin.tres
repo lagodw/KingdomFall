@@ -20,6 +20,7 @@ fatigue = 0
 damage = 8
 health = 6
 shield = 0
+attack_range = 1
 speed = 6
 attack_type = 0
 armor_type = 0

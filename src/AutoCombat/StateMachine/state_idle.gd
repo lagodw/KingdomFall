@@ -16,6 +16,8 @@ func on_tick() -> void:
 	if is_instance_valid(unit.target) and unit.target.current_health > 0:
 		var dist = unit.grid.hex_distance(unit.hex_pos, unit.target.hex_pos)
 		if dist <= unit.attack_range:
+			if unit.target.is_visually_moving():
+				return # Maintain Idle state until they finish sliding into range
 			transitioned.emit(self, "Attacking")
 		else:
 			transitioned.emit(self, "Moving")

@@ -6,9 +6,9 @@ extends Node2D
 @export var max_health: int = 50
 
 # TICK BASED STATS
-@export var move_ticks: int = 2     # Takes 2 heartbeats to step 1 hex
-@export var attack_ticks: int = 4   # Takes 4 heartbeats to swing weapon
-@export var attack_range: int = 1   # Measured in hexes (1 = melee)
+@export var move_ticks: int = 2
+@export var attack_ticks: int = 2
+@export var attack_range: int = 1
 @export var attack_damage: int = 10
 
 var current_health: int
@@ -28,6 +28,7 @@ func _ready() -> void:
 	max_health = resource.health
 	current_health = max_health
 	attack_damage = resource.damage
+	attack_range = resource.attack_range
 	$Label.text = resource.card_name
 	if is_enemy:
 		add_to_group("enemy_units")
@@ -48,6 +49,13 @@ func find_nearest_target() -> void:
 			if dist < shortest_distance:
 				shortest_distance = dist
 				target = potential
+
+func is_visually_moving() -> bool:
+	if is_instance_valid(state_machine) and is_instance_valid(state_machine.current_state):
+		if state_machine.current_state is StateMoving:
+			var state = state_machine.current_state as StateMoving
+			return state.ticks_waited < move_ticks
+	return false
 
 func take_damage(amount: int) -> void:
 	if current_health <= 0: return

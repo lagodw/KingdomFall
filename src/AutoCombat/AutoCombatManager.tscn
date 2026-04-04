@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qf4loljwncfw"]
+[gd_scene load_steps=8 format=3 uid="uid://qf4loljwncfw"]
 
 [ext_resource type="Script" uid="uid://b6ba00v04lilk" path="res://src/AutoCombat/auto_combat_manager.gd" id="1_1vrym"]
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="2_iffdt"]
@@ -6,10 +6,11 @@
 [ext_resource type="Script" uid="uid://catvntmiixc2l" path="res://src/AutoCombat/combat_grid.gd" id="2_wrlbb"]
 [ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_aholl"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_mahej"]
+[ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="4_mahej"]
 
 [node name="AutoCombatManager" type="Node2D"]
 script = ExtResource("1_1vrym")
-sample_units = Array[ExtResource("2_iffdt")]([ExtResource("3_mahej"), ExtResource("3_mahej"), ExtResource("3_mahej")])
+sample_units = Array[ExtResource("2_iffdt")]([ExtResource("3_mahej"), ExtResource("3_mahej"), ExtResource("4_mahej")])
 
 [node name="CombatGrid" type="Node2D" parent="."]
 position = Vector2(77, 75)

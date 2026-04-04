@@ -10,26 +10,40 @@ func enter() -> void:
 		if is_instance_valid(unit.target):
 			var dir = (unit.target.global_position - unit.global_position).normalized()
 			unit.tree.set("parameters/Walk/BlendSpace2D/blend_position", dir)
+			unit.tree.set("parameters/Idle/BlendSpace2D/blend_position", dir)
+	# Start our very first hex move the moment we enter the state
+	execute_move()
 
 func on_tick() -> void:
-	unit.find_nearest_target()
-	
-	if not is_instance_valid(unit.target) or unit.target.current_health <= 0:
-		transitioned.emit(self, "Idle")
-		return
-		
-	var dist = unit.grid.hex_distance(unit.hex_pos, unit.target.hex_pos)
-	if dist <= unit.attack_range:
-		transitioned.emit(self, "Attacking")
-		return
-		
-	# Process Movement Tick
+	# Keep the unit locked into the current move cycle until the visual tween finishes
 	ticks_waited += 1
+	
 	if ticks_waited >= unit.move_ticks:
+		# Visual step complete. Now we look around!
+		unit.find_nearest_target()
+		
+		# If everyone is dead, battle over
+		if not is_instance_valid(unit.target) or unit.target.current_health <= 0:
+			transitioned.emit(self, "Idle")
+			return
+			
+		# If our target is now in range, start swinging!
+		var dist = unit.grid.hex_distance(unit.hex_pos, unit.target.hex_pos)
+		if dist <= unit.attack_range:
+			if unit.target.is_visually_moving():
+				transitioned.emit(self, "Idle")
+				return
+			transitioned.emit(self, "Attacking")
+			return
+			
+		# Still out of range. Start the next move step!
 		execute_move()
-		ticks_waited = 0 # Reset for the next hex step
+		ticks_waited = 0
 
 func execute_move() -> void:
+	if not is_instance_valid(unit.target):
+		return
+		
 	var path = unit.grid.get_path_to_hex(unit.hex_pos, unit.target.hex_pos)
 	
 	if path.size() > 1:
@@ -52,7 +66,7 @@ func execute_move() -> void:
 			if is_instance_valid(unit.tree) and pixel_dest != unit.global_position:
 				var dir = (pixel_dest - unit.global_position).normalized()
 				unit.tree.set("parameters/Walk/BlendSpace2D/blend_position", dir)
-				
+				unit.tree.set("parameters/Idle/BlendSpace2D/blend_position", dir)
 			var tween_time = unit.manager.heartbeat_timer.wait_time * unit.move_ticks
 			
 			var tween = create_tween()
