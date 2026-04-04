@@ -1007,7 +1007,7 @@ transitions = ["Attack", "Stun", SubResource("AnimationNodeStateMachineTransitio
 script = ExtResource("1_cf03w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8935, 0.8935)
+scale = Vector2(2, 2)
 texture = ExtResource("2_cf03w")
 hframes = 35
 vframes = 8

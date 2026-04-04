@@ -2,12 +2,13 @@ class_name AutoCombatManager
 extends Node2D
 
 @onready var heartbeat_timer: Timer = $TickTimer
-@onready var start_button: Button = $Start
-@onready var combat_grid: CombatGrid = $CombatGrid
+@onready var start_button: Button = %Start
+@onready var combat_grid: CombatGrid
 @onready var unit_panel = $CanvasLayer/Bottom/UnitPanel
 @onready var bottom_ui = $CanvasLayer/Bottom
 
 @export var sample_units: Array[CardResource] = []
+@export var enemy_army_scene: PackedScene
 
 const AUTO_UNIT_SCENE = preload("res://src/AutoCombat/AutoUnit.tscn")
 
@@ -18,21 +19,46 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 		
-	combat_grid.manager = self
+	# Overwrite grid if an army configuration provided
+	if enemy_army_scene:
+		var army = enemy_army_scene.instantiate()
+		var custom_grid = army.get_node_or_null("CombatGrid")
 		
+		if custom_grid:
+			army.remove_child(custom_grid)
+			custom_grid.owner = null  # Unset owner to prevent hierarchy inconsistency warnings
+			add_child(custom_grid)
+			combat_grid = custom_grid
+			
+		combat_grid.manager = self
+		# Wait one frame for the Grid's ready to execute if it was just injected
+		if custom_grid and not custom_grid.is_node_ready():
+			await custom_grid.ready
+		
+		# Hydrate our grid with the spawned enemies
+		for child in army.get_children():
+			if child is EnemySpawn and child.unit_resource:
+				var enemy_unit = AUTO_UNIT_SCENE.instantiate()
+				enemy_unit.is_enemy = true
+				enemy_unit.resource = child.unit_resource
+				
+				# Physically snap them to the grid coordinates securely based on visual Editor layout
+				var hex = combat_grid.pixel_to_hex(child.global_position)
+				enemy_unit.hex_pos = hex
+				enemy_unit.global_position = combat_grid.hex_to_pixel(hex)
+				
+				combat_grid.grid[hex] = enemy_unit
+				combat_grid.set_hex_occupied(hex, true)
+				
+				add_child(enemy_unit)
+				enemy_unit.manager = self
+				
+		army.queue_free()
+	else:
+		combat_grid.manager = self
+
 	start_button.pressed.connect(start_combat)
 	heartbeat_timer.timeout.connect(_on_heartbeat)
-	
-	if sample_units.size() == 0:
-		var unit_res_script = load("res://src/Cards/ResourceTypes/UnitResource.gd")
-		for i in 3:
-			var dummy = unit_res_script.new()
-			dummy.card_name = "Test Unit " + str(i+1)
-			dummy.health = 50
-			dummy.damage = 10
-			dummy.shield = 0
-			dummy.speed = 2
-			sample_units.append(dummy)
 			
 	if sample_units.size() > 0:
 		unit_panel.load_units(sample_units)
@@ -49,8 +75,8 @@ func start_combat() -> void:
 		if unit is AutoUnit:
 			active_units.append(unit) # Add to our managed queue
 			
-			# Ensure hex pos matches visual location if not manually deployed
-			if unit.hex_pos == Vector2i(0, 0) and not combat_grid.grid.has(Vector2i(0, 0)) or unit.is_enemy:
+			# Ensure hex pos matches visual location if not manually deployed (player units)
+			if unit.hex_pos == Vector2i(0, 0) and not combat_grid.grid.has(Vector2i(0, 0)):
 				unit.hex_pos = combat_grid.pixel_to_hex(unit.global_position)
 				
 			var hex = unit.hex_pos

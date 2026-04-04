@@ -2,17 +2,17 @@
 class_name CombatGrid
 extends Node2D
 
-@export var grid_width: int = 35:
+@export var grid_width: int = 15:
 	set(value):
 		grid_width = max(1, value)
 		queue_redraw()
 
-@export var grid_height: int = 10:
+@export var grid_height: int = 5:
 	set(value):
 		grid_height = max(1, value)
 		queue_redraw()
 
-@export var hex_size: float = 40.0:
+@export var hex_size: float = 80.0:
 	set(value):
 		hex_size = max(10.0, value)
 		queue_redraw()

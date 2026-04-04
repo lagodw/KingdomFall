@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://qf4loljwncfw"]
+[gd_scene load_steps=7 format=3 uid="uid://qf4loljwncfw"]
 
 [ext_resource type="Script" uid="uid://b6ba00v04lilk" path="res://src/AutoCombat/auto_combat_manager.gd" id="1_1vrym"]
+[ext_resource type="PackedScene" uid="uid://dogvqc5w1rl1r" path="res://src/AutoCombat/EnemyScenes/EnemyTest.tscn" id="2_7htcq"]
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="2_iffdt"]
-[ext_resource type="PackedScene" uid="uid://b4gwox2k3ggkw" path="res://src/AutoCombat/AutoUnit.tscn" id="2_w5mkd"]
-[ext_resource type="Script" uid="uid://catvntmiixc2l" path="res://src/AutoCombat/combat_grid.gd" id="2_wrlbb"]
 [ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_aholl"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_mahej"]
 [ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="4_mahej"]
@@ -11,27 +10,7 @@
 [node name="AutoCombatManager" type="Node2D"]
 script = ExtResource("1_1vrym")
 sample_units = Array[ExtResource("2_iffdt")]([ExtResource("3_mahej"), ExtResource("3_mahej"), ExtResource("4_mahej")])
-
-[node name="CombatGrid" type="Node2D" parent="."]
-position = Vector2(77, 75)
-script = ExtResource("2_wrlbb")
-grid_width = 30
-grid_height = 9
-
-[node name="Start" type="Button" parent="."]
-offset_right = 109.0
-offset_bottom = 35.0
-text = "Start"
-
-[node name="E1" parent="." instance=ExtResource("2_w5mkd")]
-position = Vector2(1401, 153)
-resource = ExtResource("3_mahej")
-is_enemy = true
-
-[node name="E2" parent="." instance=ExtResource("2_w5mkd")]
-position = Vector2(1401, 493)
-resource = ExtResource("3_mahej")
-is_enemy = true
+enemy_army_scene = ExtResource("2_7htcq")
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.25
@@ -51,3 +30,11 @@ grow_vertical = 0
 [node name="UnitPanel" parent="CanvasLayer/Bottom" instance=ExtResource("3_aholl")]
 offset_right = 1920.0
 offset_bottom = 350.0
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 1749.0
+offset_top = 765.0
+offset_right = 1875.0
+offset_bottom = 823.0
+text = "Start"
