@@ -24,10 +24,12 @@ text = "Start"
 
 [node name="E1" parent="." instance=ExtResource("2_w5mkd")]
 position = Vector2(1401, 153)
+resource = ExtResource("3_mahej")
 is_enemy = true
 
 [node name="E2" parent="." instance=ExtResource("2_w5mkd")]
 position = Vector2(1401, 493)
+resource = ExtResource("3_mahej")
 is_enemy = true
 
 [node name="TickTimer" type="Timer" parent="."]

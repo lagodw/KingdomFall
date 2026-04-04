@@ -1,6 +1,7 @@
 class_name AutoUnit
 extends Node2D
 
+@export var resource: UnitResource
 @export var is_enemy: bool = false
 @export var max_health: int = 50
 
@@ -24,7 +25,10 @@ var grid: CombatGrid:
 @onready var tree: AnimationTree = $AnimationTree
 
 func _ready() -> void:
+	max_health = resource.health
 	current_health = max_health
+	attack_damage = resource.damage
+	$Label.text = resource.card_name
 	if is_enemy:
 		add_to_group("enemy_units")
 		sprite.modulate = Color(1, 0.2, 0.2) 

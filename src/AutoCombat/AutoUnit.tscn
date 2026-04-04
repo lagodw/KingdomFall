@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://b4gwox2k3ggkw"]
+[gd_scene load_steps=124 format=3 uid="uid://b4gwox2k3ggkw"]
 
 [ext_resource type="Script" uid="uid://dy7bkqk7sey8h" path="res://src/AutoCombat/auto_unit.gd" id="1_cf03w"]
 [ext_resource type="Texture2D" uid="uid://b65o6v616dvop" path="res://assets/SpriteSheets/GiantKnight_SS.png" id="2_cf03w"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://fafloska03fh" path="res://src/AutoCombat/StateMachine/state_attacking.gd" id="5_m446x"]
 [ext_resource type="Script" uid="uid://dweqmlnkik5va" path="res://src/AutoCombat/StateMachine/state_idle.gd" id="6_idle"]
 [ext_resource type="Script" uid="uid://61erqogg4qq3" path="res://src/AutoCombat/StateMachine/state_dead.gd" id="7_dead"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="8_8838w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cf03w"]
 resource_local_to_scene = true
@@ -1056,3 +1057,12 @@ parameters/Stun/BlendSpace2D/blend_position = Vector2(0, 0)
 parameters/Stun/TimeScale/scale = 1.0
 parameters/Walk/BlendSpace2D/blend_position = Vector2(0, 0)
 parameters/Walk/TimeScale/scale = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -25.0
+offset_top = -13.0
+offset_right = 25.0
+offset_bottom = 2.0
+theme = ExtResource("8_8838w")
+theme_override_font_sizes/font_size = 12
+text = "Footman"

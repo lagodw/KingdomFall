@@ -64,17 +64,13 @@ func start_combat() -> void:
 				
 	heartbeat_timer.start(0.25)
 
-func deploy_unit(card_node: Node, hex: Vector2i) -> void:
+func deploy_unit(card: Unit, hex: Vector2i) -> void:
 	var auto_unit = AUTO_UNIT_SCENE.instantiate()
 	
 	auto_unit.is_enemy = false
 	auto_unit.hex_pos = hex
+	auto_unit.resource = card.card_resource
 	
-	if card_node.get("max_health"):
-		auto_unit.max_health = card_node.get("max_health")
-	if card_node.get("max_damage"):
-		auto_unit.attack_damage = card_node.get("max_damage")
-		
 	combat_grid.grid[hex] = auto_unit
 	combat_grid.set_hex_occupied(hex, true)
 	auto_unit.global_position = combat_grid.hex_to_pixel(hex)
@@ -82,7 +78,7 @@ func deploy_unit(card_node: Node, hex: Vector2i) -> void:
 	add_child(auto_unit)
 	auto_unit.manager = self
 	
-	card_node.queue_free()
+	card.queue_free()
 
 func _on_heartbeat() -> void:
 	# 1. Clean up any dead units from the array
