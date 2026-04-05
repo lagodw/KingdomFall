@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://qf4loljwncfw"]
+[gd_scene load_steps=10 format=3 uid="uid://qf4loljwncfw"]
 
 [ext_resource type="Script" uid="uid://b6ba00v04lilk" path="res://src/AutoCombat/auto_combat_manager.gd" id="1_1vrym"]
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="2_iffdt"]
 [ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_aholl"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_mahej"]
 [ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="4_mahej"]
+[ext_resource type="PackedScene" uid="uid://dglfstjlbuudi" path="res://src/UI/UI.tscn" id="6_4dige"]
+[ext_resource type="Theme" uid="uid://cujbvn4cbvnf2" path="res://assets/Theme/CenturyTextTheme.tres" id="6_aholl"]
 [ext_resource type="PackedScene" uid="uid://ddu14f5y2d8sj" path="res://src/Combat/CombatWon.tscn" id="7_mahej"]
+[ext_resource type="PackedScene" uid="uid://k4x5rr75uoch" path="res://src/UI/EscapeMenu.tscn" id="8_aholl"]
 
 [node name="AutoCombatManager" type="Node2D"]
 script = ExtResource("1_1vrym")
@@ -32,11 +35,17 @@ offset_bottom = 350.0
 
 [node name="Start" type="Button" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 1749.0
-offset_top = 765.0
-offset_right = 1875.0
-offset_bottom = 823.0
+offset_left = 1722.0
+offset_top = 83.0
+offset_right = 1881.0
+offset_bottom = 148.0
+theme = ExtResource("6_aholl")
 text = "Start"
 
+[node name="UI" parent="CanvasLayer" instance=ExtResource("6_4dige")]
+
 [node name="CombatWon" parent="." instance=ExtResource("7_mahej")]
+visible = false
+
+[node name="Escape" parent="." instance=ExtResource("8_aholl")]
 visible = false

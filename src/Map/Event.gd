@@ -79,7 +79,7 @@ func setup_Combat():
 		enemy = enemies.pick_random().duplicate(true)
 	gold_amt = randi_range(12, 20)
 	wood_amt = randi_range(3, 6)
-	stone_amt = randi_range(3, 6)
+	stone_amt = randi_range(3, 6) 
 	generate_unit_options(3)
 	
 func setup_Recruit():

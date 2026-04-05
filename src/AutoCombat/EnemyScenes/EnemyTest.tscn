@@ -7,13 +7,13 @@
 [node name="EnemyTest" type="Node2D"]
 
 [node name="CombatGrid" type="Node2D" parent="."]
-position = Vector2(104, 71)
+position = Vector2(104, 151)
 script = ExtResource("1_2qosj")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("2_0o5uo")]
-position = Vector2(1280, 197)
+position = Vector2(1280, 269)
 unit_resource = ExtResource("3_t10lp")
 
 [node name="EnemySpawn2" parent="." instance=ExtResource("2_0o5uo")]
-position = Vector2(1278, 432)
+position = Vector2(1278, 504)
 unit_resource = ExtResource("3_t10lp")
