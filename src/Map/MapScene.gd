@@ -121,4 +121,4 @@ func place_castle():
 func night_fall():
 	# day counter incremented in town
 	Bus.map.current_location = Bus.map.act.night_combat[Bus.map.day_counter - 1]
-	kf.load_scene("uid://dvld0lyuo33oq")
+	kf.load_scene("uid://qf4loljwncfw")

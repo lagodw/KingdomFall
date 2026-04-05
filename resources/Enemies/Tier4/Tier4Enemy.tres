@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=18 format=3 uid="uid://dth1656jlvlfu"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=19 format=3 uid="uid://dth1656jlvlfu"]
 
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_ka5gs"]
+[ext_resource type="PackedScene" uid="uid://dogvqc5w1rl1r" path="res://src/AutoCombat/EnemyScenes/EnemyTest.tscn" id="1_vpoeq"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_j0amy"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_eofye"]
 [ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="4_ewmun"]
@@ -47,6 +48,7 @@ ranks = Dictionary[int, ExtResource("1_ka5gs")]({
 4: SubResource("Resource_cvnv6"),
 5: SubResource("Resource_f27y1")
 })
+grid_scene = ExtResource("1_vpoeq")
 num_files = 5
 num_player_ranks = 3
 num_enemy_ranks = 3

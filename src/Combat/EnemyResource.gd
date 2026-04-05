@@ -4,6 +4,7 @@ extends Resource
 ## key denotes what turn number the rank will be deployed on
 @export var face: UnitResource
 @export var ranks: Dictionary[int, EnemyRank]
+@export var grid_scene: PackedScene
 @export var num_files: int = 5
 @export var num_player_ranks: int = 3
 @export var num_enemy_ranks: int = 3

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://qf4loljwncfw"]
+[gd_scene load_steps=7 format=3 uid="uid://qf4loljwncfw"]
 
 [ext_resource type="Script" uid="uid://b6ba00v04lilk" path="res://src/AutoCombat/auto_combat_manager.gd" id="1_1vrym"]
-[ext_resource type="PackedScene" uid="uid://dogvqc5w1rl1r" path="res://src/AutoCombat/EnemyScenes/EnemyTest.tscn" id="2_7htcq"]
 [ext_resource type="Script" uid="uid://dcrytj3q0pgux" path="res://src/Cards/ResourceTypes/CardResource.gd" id="2_iffdt"]
 [ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_aholl"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_mahej"]
@@ -11,7 +10,6 @@
 [node name="AutoCombatManager" type="Node2D"]
 script = ExtResource("1_1vrym")
 sample_units = Array[ExtResource("2_iffdt")]([ExtResource("3_mahej"), ExtResource("3_mahej"), ExtResource("4_mahej")])
-enemy_army_scene = ExtResource("2_7htcq")
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.5

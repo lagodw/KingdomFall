@@ -8,7 +8,7 @@ extends Node2D
 @onready var bottom_ui = $CanvasLayer/Bottom
 
 @export var sample_units: Array[CardResource] = []
-@export var enemy_army_scene: PackedScene
+var enemy_army_scene: PackedScene
 var selected_unit_resources: Array[UnitResource]
 
 const AUTO_UNIT_SCENE = preload("res://src/AutoCombat/AutoUnit.tscn")
@@ -19,9 +19,10 @@ var combat_over: bool = false
 var tick_time: float = 0.5
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
+	$CombatWon.choices = Bus.map.current_location.unit_options
+	$CombatWon.setup()
 		
+	enemy_army_scene = Bus.map.current_location.enemy.grid_scene
 	# Overwrite grid if an army configuration provided
 	if enemy_army_scene:
 		var army = enemy_army_scene.instantiate()
@@ -62,9 +63,17 @@ func _ready() -> void:
 
 	start_button.pressed.connect(start_combat)
 	heartbeat_timer.timeout.connect(_on_heartbeat)
-			
-	if sample_units.size() > 0:
-		unit_panel.load_units(sample_units)
+	
+	var units: Array[CardResource]
+	if Bus.map.current_location.enemy.is_night_enemy:
+		for card in Bus.deck.cards:
+			if card is UnitResource:
+				units.append(card)
+	else:
+		for card in Bus.player.day_deck:
+			if card is UnitResource:
+				units.append(card)
+	unit_panel.load_units(units)
 
 func start_combat() -> void:
 	start_button.visible = false

@@ -321,6 +321,7 @@ fatigue = 0
 damage = 2
 health = 8
 shield = 0
+attack_range = 1
 speed = 5
 attack_type = 0
 armor_type = 0

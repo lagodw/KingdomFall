@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=12 format=3 uid="uid://ojqjxnfio8ub"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=13 format=3 uid="uid://ojqjxnfio8ub"]
 
+[ext_resource type="PackedScene" uid="uid://dogvqc5w1rl1r" path="res://src/AutoCombat/EnemyScenes/EnemyTest.tscn" id="1_ktmsw"]
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_tntgq"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_082to"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_pjx8y"]
@@ -36,6 +37,10 @@ ranks = Dictionary[int, ExtResource("1_tntgq")]({
 3: SubResource("Resource_74quq"),
 4: SubResource("Resource_81evp")
 })
+grid_scene = ExtResource("1_ktmsw")
+num_files = 5
+num_player_ranks = 3
+num_enemy_ranks = 3
 is_night_enemy = true
 is_final_enemy = false
 metadata/_custom_type_script = "uid://bue1g4huq61xk"

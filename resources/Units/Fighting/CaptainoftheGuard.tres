@@ -173,6 +173,7 @@ fatigue = 0
 damage = 3
 health = 4
 shield = 4
+attack_range = 1
 speed = 5
 attack_type = 0
 armor_type = 1
