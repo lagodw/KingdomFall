@@ -9,11 +9,13 @@ extends Node2D
 
 @export var sample_units: Array[CardResource] = []
 @export var enemy_army_scene: PackedScene
+var selected_unit_resources: Array[UnitResource]
 
 const AUTO_UNIT_SCENE = preload("res://src/AutoCombat/AutoUnit.tscn")
 
 # Keep track of all living units in combat
 var active_units: Array[AutoUnit] = []
+var combat_over: bool = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -110,12 +112,56 @@ func _on_heartbeat() -> void:
 	# 1. Clean up any dead units from the array
 	active_units = active_units.filter(func(u): return is_instance_valid(u) and u.current_health > 0)
 	
-	# 2. SORTING (The Tie-Breaker)
+	# 2. Check for Victory or Loss
+	var enemies_alive = false
+	for u in active_units:
+		if u.is_enemy:
+			enemies_alive = true
+			break
+			
+	if not enemies_alive:
+		heartbeat_timer.stop()
+		combat_won()
+		return
+
+	var players_alive = false
+	for u in active_units:
+		if not u.is_enemy:
+			players_alive = true
+			break
+	
+	if not players_alive:
+		heartbeat_timer.stop()
+		combat_lost()
+		return
+	
+	# 3. Sorting (The Tie-Breaker)
 	# Shuffle the array so that ties are resolved completely randomly each tick.
 	# This prevents the same unit from always bullying others out of a hex.
 	active_units.shuffle()
 	
-	# 3. Execution
+	# 4. Execution
 	# Now we tick them one by one in the newly randomized order
 	for unit in active_units:
 		unit.state_machine.on_tick()
+
+func combat_won():
+	#if Bus.map.current_location.enemy.is_final_enemy:
+		#kf.load_scene("uid://b5u1o6v1y4j3i")
+		#return
+	# wait for last units to tween
+	# TODO: hide remaining cards instead
+	#await get_tree().create_timer(kf.tween_time*1.5).timeout
+	#for card in Bus.hand.get_children():
+		#card.queue_free()
+	#for unit in Bus.deck.get_units():
+		#if not selected_unit_resources.has(unit) and Bus.map.current_location.enemy.is_night_enemy:
+			#unit.fatigue -= 5
+	#for card in Bus.PlayerGraveyard.get_units():
+		#card.card_resource.fatigue += 10
+	get_tree().paused = true
+	combat_over = true
+	$CombatWon.visible = true
+	
+func combat_lost():
+	kf.load_scene("uid://bw1l202axfrki")

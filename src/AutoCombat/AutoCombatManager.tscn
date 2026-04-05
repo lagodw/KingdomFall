@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qf4loljwncfw"]
+[gd_scene load_steps=8 format=3 uid="uid://qf4loljwncfw"]
 
 [ext_resource type="Script" uid="uid://b6ba00v04lilk" path="res://src/AutoCombat/auto_combat_manager.gd" id="1_1vrym"]
 [ext_resource type="PackedScene" uid="uid://dogvqc5w1rl1r" path="res://src/AutoCombat/EnemyScenes/EnemyTest.tscn" id="2_7htcq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://v20hmf2pmd2d" path="res://src/Town/UnitPanel.tscn" id="3_aholl"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_mahej"]
 [ext_resource type="Resource" uid="uid://dacsxay2ixbib" path="res://resources/Units/Fighting/Archer.tres" id="4_mahej"]
+[ext_resource type="PackedScene" uid="uid://ddu14f5y2d8sj" path="res://src/Combat/CombatWon.tscn" id="7_mahej"]
 
 [node name="AutoCombatManager" type="Node2D"]
 script = ExtResource("1_1vrym")
@@ -38,3 +39,6 @@ offset_top = 765.0
 offset_right = 1875.0
 offset_bottom = 823.0
 text = "Start"
+
+[node name="CombatWon" parent="." instance=ExtResource("7_mahej")]
+visible = false
