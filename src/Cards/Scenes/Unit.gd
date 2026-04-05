@@ -227,17 +227,36 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 				current_slot.clear_unit()
 
 	var control = Control.new()
-	var preview: Control
-	if self is CardToken:
-		preview = self.duplicate(false)
+	
+	# Instantiate a dummy AutoUnit simply to steal its exact dynamic Sprite configuration
+	var auto_unit_scene = load("uid://b4gwox2k3ggkw")
+	if auto_unit_scene:
+		var dummy = auto_unit_scene.instantiate()
+		var unit_sprite = dummy.get_node_or_null("Sprite2D")
+		if unit_sprite and unit_sprite.texture:
+			var tex = Sprite2D.new()
+			tex.texture = unit_sprite.texture
+			tex.hframes = unit_sprite.hframes
+			tex.vframes = unit_sprite.vframes
+			tex.frame = unit_sprite.frame
+			tex.scale = unit_sprite.scale
+			control.add_child(tex)
+		dummy.free()
 	else:
-		preview = token.duplicate(false)
-	preview.visible = true
-	preview.get_node("Frame/Previews").visible = false
-	preview.get_node("CardArt/Skull").visible = false
-	control.add_child(preview)
+		var preview: Control
+		if self is CardToken:
+			preview = self.duplicate(false)
+		else:
+			preview = token.duplicate(false)
+		preview.visible = true
+		if preview.has_node("Frame/Previews"):
+			preview.get_node("Frame/Previews").visible = false
+		if preview.has_node("CardArt/Skull"):
+			preview.get_node("CardArt/Skull").visible = false
+		preview.position = -0.5 * preview.size
+		control.add_child(preview)
+
 	control.z_index = 999
-	preview.position = -0.5 * preview.size
 	set_drag_preview(control)
 	return self
 

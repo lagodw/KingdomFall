@@ -1,6 +1,7 @@
 extends Control
 
 var grid
+var dragged_unit: AutoUnit = null
 
 func _ready() -> void:
 	# Keep it in background so it doesn't block other clicks unless dragging
@@ -16,9 +17,42 @@ func is_valid_hex(hex: Vector2i) -> bool:
 		return false
 	return true
 
+func _get_drag_data(_at_position: Vector2) -> Variant:
+	# Don't allow repositioning if combat has already started
+	if is_instance_valid(grid) and is_instance_valid(grid.manager) and grid.manager.start_button and not grid.manager.start_button.visible:
+		return null
+		
+	var mouse_pos = grid.get_global_mouse_position()
+	var hex = grid.pixel_to_hex(mouse_pos)
+	
+	if grid.grid.has(hex):
+		var unit = grid.grid[hex]
+		if unit is AutoUnit and not unit.is_enemy:
+			# Create a visual preview of what we're dragging
+			var preview = Control.new()
+			if is_instance_valid(unit.sprite) and unit.sprite.texture:
+				var tex = Sprite2D.new()
+				tex.texture = unit.sprite.texture
+				tex.hframes = unit.sprite.hframes
+				tex.vframes = unit.sprite.vframes
+				tex.frame = unit.sprite.frame
+				tex.modulate = Color(1, 1, 1, 1.0)
+				tex.scale = unit.sprite.scale
+				preview.add_child(tex)
+			set_drag_preview(preview)
+			
+			unit.modulate.a = 0.3 # Make original transparent while dragging
+			dragged_unit = unit
+			return unit
+			
+	return null
+
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	# Accept only Unit cards
-	if not (data is Unit or (typeof(data) == TYPE_OBJECT and data.has_method("get_class") and data.get_class() == "Unit")):
+	# Accept Unit cards or already deployed AutoUnits
+	var is_card = data is Unit or (typeof(data) == TYPE_OBJECT and data.has_method("get_class") and data.get_class() == "Unit")
+	var is_deployed_unit = data is AutoUnit
+	
+	if not (is_card or is_deployed_unit):
 		grid.hovered_hex = Vector2i(-999, -999)
 		grid.queue_redraw()
 		return false
@@ -29,6 +63,13 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	
 	grid.hovered_hex = hex
 	var valid = is_valid_hex(hex)
+	
+	if valid and grid.grid.has(hex):
+		if is_deployed_unit and grid.grid[hex] == data:
+			pass # It's our own hex, valid move!
+		else:
+			valid = false # Tile is occupied!
+			
 	grid.is_hover_valid = valid
 	
 	grid.queue_redraw()
@@ -48,8 +89,22 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		grid.hovered_hex = Vector2i(-999, -999)
 		grid.queue_redraw()
 		
-		# Hooking up with manager
-		if grid.manager and grid.manager.has_method("deploy_unit"):
+		# Prevent overlap
+		if grid.grid.has(hex) and grid.grid[hex] != data:
+			return
+			
+		if data is AutoUnit:
+			# Update the grid references and mathematically swap the unit locations
+			var old_hex = data.hex_pos
+			grid.grid.erase(old_hex)
+			grid.set_hex_occupied(old_hex, false)
+			
+			data.hex_pos = hex
+			grid.grid[hex] = data
+			grid.set_hex_occupied(hex, true)
+			data.global_position = grid.hex_to_pixel(hex)
+			
+		elif grid.manager and grid.manager.has_method("deploy_unit"):
 			grid.manager.deploy_unit(data, hex)
 
 func _notification(what: int) -> void:
@@ -57,3 +112,7 @@ func _notification(what: int) -> void:
 		if is_instance_valid(grid):
 			grid.hovered_hex = Vector2i(-999, -999)
 			grid.queue_redraw()
+		# Restore unit visibility regardless of drop success
+		if is_instance_valid(dragged_unit):
+			dragged_unit.modulate.a = 1.0
+			dragged_unit = null

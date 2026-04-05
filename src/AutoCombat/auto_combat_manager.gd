@@ -16,6 +16,7 @@ const AUTO_UNIT_SCENE = preload("res://src/AutoCombat/AutoUnit.tscn")
 # Keep track of all living units in combat
 var active_units: Array[AutoUnit] = []
 var combat_over: bool = false
+var tick_time: float = 0.5
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -90,7 +91,7 @@ func start_combat() -> void:
 			if unit.current_health > 0:
 				unit.state_machine.transition_to("Idle")
 				
-	heartbeat_timer.start(0.25)
+	heartbeat_timer.start(tick_time)
 
 func deploy_unit(card: Unit, hex: Vector2i) -> void:
 	var auto_unit = AUTO_UNIT_SCENE.instantiate()

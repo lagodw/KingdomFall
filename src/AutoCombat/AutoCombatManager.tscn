@@ -14,7 +14,7 @@ sample_units = Array[ExtResource("2_iffdt")]([ExtResource("3_mahej"), ExtResourc
 enemy_army_scene = ExtResource("2_7htcq")
 
 [node name="TickTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
