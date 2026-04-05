@@ -3,15 +3,16 @@ extends Node2D
 
 @export var resource: UnitResource
 @export var is_enemy: bool = false
-@export var max_health: int = 50
 
 # TICK BASED STATS
-@export var move_ticks: int = 2
-@export var attack_ticks: int = 2
-@export var attack_range: int = 1
-@export var attack_damage: int = 10
+var move_ticks: int = 2
+var attack_ticks: int = 2
+var attack_range: int = 1
+var attack_damage: int = 10
 
+var max_health: int
 var current_health: int
+var block: int
 var hex_pos: Vector2i
 var target: AutoUnit = null
 
@@ -29,6 +30,7 @@ func _ready() -> void:
 	current_health = max_health
 	attack_damage = resource.damage
 	attack_range = resource.attack_range
+	block = resource.shield
 	$Label.text = resource.card_name
 	if is_enemy:
 		add_to_group("enemy_units")
@@ -59,7 +61,7 @@ func is_visually_moving() -> bool:
 
 func take_damage(amount: int) -> void:
 	if current_health <= 0: return
-	
+	amount = max(0, amount - block)
 	current_health -= amount
 	update_hp_bar()
 	if current_health <= 0:
