@@ -18,6 +18,7 @@ var active_units: Array[AutoUnit] = []
 var combat_over: bool = false
 var tick_time: float = 0.5
 
+
 func _ready() -> void:
 	$CombatWon.choices = Bus.map.current_location.unit_options
 	$CombatWon.setup()
@@ -60,6 +61,7 @@ func _ready() -> void:
 		army.queue_free()
 	else:
 		combat_grid.manager = self
+
 
 	start_button.pressed.connect(start_combat)
 	heartbeat_timer.timeout.connect(_on_heartbeat)

@@ -6,16 +6,19 @@ extends Node2D
 	set(value):
 		grid_width = max(1, value)
 		queue_redraw()
+		if is_node_ready(): update_camera_limits()
 
 @export var grid_height: int = 5:
 	set(value):
 		grid_height = max(1, value)
 		queue_redraw()
+		if is_node_ready(): update_camera_limits()
 
 @export var hex_size: float = 80.0:
 	set(value):
 		hex_size = max(10.0, value)
 		queue_redraw()
+		if is_node_ready(): update_camera_limits()
 
 var grid: Dictionary = {}
 var astar: AStar2D = AStar2D.new()
@@ -26,6 +29,13 @@ var manager: Node
 var hovered_hex: Vector2i = Vector2i(-999, -999)
 var is_hover_valid: bool = false
 var drop_zone: Control
+
+# Viewport Camera Variables
+var is_panning: bool = false
+var min_zoom: float = 0.3
+var max_zoom: float = 2.0
+var zoom_speed: float = 0.1
+var camera: Camera2D
 
 const HEX_DIRECTIONS = [
 	Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), 
@@ -46,6 +56,12 @@ func _ready() -> void:
 	drop_zone.size = Vector2(4000, 4000)
 	drop_zone.position = Vector2(-1000, -1000)
 	add_child(drop_zone)
+	
+	# Instantiate a dynamic camera for zooming and panning across large grids
+	camera = Camera2D.new()
+	add_child(camera)
+	camera.make_current()
+	update_camera_limits()
 
 func _initialize_astar() -> void:
 	var board_hexes = generate_rectangular_board()
@@ -163,3 +179,105 @@ func hex_round(q: float, r: float) -> Vector2i:
 		rr = -rq - rs
 		
 	return Vector2i(rq, rr)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT or event.button_index == MOUSE_BUTTON_MIDDLE:
+			if event.pressed:
+				is_panning = true
+			else:
+				is_panning = false
+				
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			_zoom_camera(1.0 + zoom_speed, get_global_mouse_position())
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			_zoom_camera(1.0 - zoom_speed, get_global_mouse_position())
+			
+	elif event is InputEventMouseMotion and is_panning:
+		camera.position -= event.relative / camera.zoom
+		_clamp_camera_hard()
+
+func _zoom_camera(factor: float, mouse_pos: Vector2) -> void:
+	if not is_instance_valid(camera): return
+	var previous_zoom = camera.zoom
+	var new_zoom = camera.zoom * factor
+	new_zoom.x = clamp(new_zoom.x, min_zoom, max_zoom)
+	new_zoom.y = clamp(new_zoom.y, min_zoom, max_zoom)
+	
+	if new_zoom == previous_zoom:
+		return
+		
+	camera.global_position = camera.global_position + (mouse_pos - camera.global_position) * (1.0 - previous_zoom.x / new_zoom.x)
+	camera.zoom = new_zoom
+	_clamp_camera_hard()
+
+func get_pixel_bounds() -> Rect2:
+	var min_x = 999999.0
+	var min_y = 999999.0
+	var max_x = -999999.0
+	var max_y = -999999.0
+	var board = generate_rectangular_board()
+	if board.is_empty():
+		return Rect2(0, 0, 1920, 1080)
+		
+	for hex in board:
+		var center = hex_to_pixel(hex)
+		var corners = get_hex_corners(center)
+		for point in corners:
+			min_x = min(min_x, point.x)
+			min_y = min(min_y, point.y)
+			max_x = max(max_x, point.x)
+			max_y = max(max_y, point.y)
+	return Rect2(min_x, min_y, max_x - min_x, max_y - min_y)
+
+func update_camera_limits() -> void:
+	if not is_instance_valid(camera): return
+	
+	var bounds = get_pixel_bounds()
+	var available_w = 1920.0
+	var available_h = 1080.0 - 350.0 - 50.0 
+	
+	var min_z_x = available_w / bounds.size.x
+	var min_z_y = available_h / bounds.size.y
+	min_zoom = max(min_z_x, min_z_y)
+	max_zoom = max(2.5, min_zoom)
+	
+	# We rely solely on logic clamping to prevent zoom scaling offset gaps 
+	camera.limit_left = -10000000
+	camera.limit_top = -10000000
+	camera.limit_right = 10000000
+	camera.limit_bottom = 10000000
+	
+	camera.zoom = Vector2(min_zoom, min_zoom)
+	camera.position = bounds.get_center()
+	_clamp_camera_hard()
+
+func _clamp_camera_hard() -> void:
+	if not is_instance_valid(camera): return
+	var cam_w = (1920.0 / 2.0) / camera.zoom.x
+	var cam_h = (1080.0 / 2.0) / camera.zoom.y
+	
+	var bounds = get_pixel_bounds()
+	
+	# Natively transform Screen UI padding into active World distances so it perfectly docks
+	var lim_top = bounds.position.y - (50.0 / camera.zoom.y)
+	var lim_bot = bounds.end.y + (350.0 / camera.zoom.y)
+	var lim_left = bounds.position.x
+	var lim_right = bounds.end.x
+	
+	var min_x = lim_left + cam_w
+	var max_x = lim_right - cam_w
+	if min_x > max_x:
+		min_x = (lim_left + lim_right) / 2.0
+		max_x = min_x
+		
+	var min_y = lim_top + cam_h
+	var max_y = lim_bot - cam_h
+	if min_y > max_y:
+		min_y = (lim_top + lim_bot) / 2.0
+		max_y = min_y
+		
+	camera.global_position = Vector2(
+		clamp(camera.global_position.x, min_x, max_x),
+		clamp(camera.global_position.y, min_y, max_y)
+	)
