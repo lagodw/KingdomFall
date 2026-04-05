@@ -113,10 +113,10 @@ func _draw() -> void:
 
 func generate_rectangular_board() -> Array[Vector2i]:
 	var hexes: Array[Vector2i] = []
-	for col in range(grid_width):
-		for row in range(grid_height):
-			var q = col
-			var r = row - int(floor(col / 2.0))
+	for row in range(grid_height):
+		for col in range(grid_width):
+			var q = col - int(floor(row / 2.0))
+			var r = row
 			hexes.append(Vector2i(q, r))
 	return hexes
 
@@ -127,7 +127,7 @@ func generate_rectangular_board() -> Array[Vector2i]:
 func get_hex_corners(center: Vector2) -> PackedVector2Array:
 	var corners = PackedVector2Array()
 	for i in 6:
-		var angle_deg = 60 * i
+		var angle_deg = 60 * i - 30 # -30 offsets angles to form pointy-topped hexes (flat vertical edges)
 		var angle_rad = deg_to_rad(angle_deg)
 		var point = center + Vector2(hex_size * cos(angle_rad), hex_size * sin(angle_rad))
 		corners.append(point)
@@ -137,14 +137,14 @@ func hex_distance(a: Vector2i, b: Vector2i) -> int:
 	return (abs(a.x - b.x) + abs(a.x + a.y - b.x - b.y) + abs(a.y - b.y)) / 2
 
 func hex_to_pixel(hex: Vector2i) -> Vector2:
-	var x = hex_size * (3.0/2.0 * hex.x)
-	var y = hex_size * (sqrt(3.0)/2.0 * hex.x + sqrt(3.0) * hex.y)
+	var x = hex_size * sqrt(3.0) * (hex.x + hex.y / 2.0)
+	var y = hex_size * (3.0 / 2.0 * hex.y)
 	return to_global(Vector2(x, y))
 
 func pixel_to_hex(pixel: Vector2) -> Vector2i:
 	var local_pixel = to_local(pixel)
-	var q = (2.0/3.0 * local_pixel.x) / hex_size
-	var r = (-1.0/3.0 * local_pixel.x + sqrt(3.0)/3.0 * local_pixel.y) / hex_size
+	var q = (sqrt(3.0)/3.0 * local_pixel.x - 1.0/3.0 * local_pixel.y) / hex_size
+	var r = (2.0/3.0 * local_pixel.y) / hex_size
 	return hex_round(q, r)
 
 func hex_round(q: float, r: float) -> Vector2i:
