@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ivyftaql0tuv"]
+
+[ext_resource type="Script" uid="uid://catvntmiixc2l" path="res://src/AutoCombat/combat_grid.gd" id="1_gujxp"]
+[ext_resource type="PackedScene" uid="uid://buogop00hrhc" path="res://src/AutoCombat/enemy_spawn.tscn" id="2_lu42x"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_8sqsk"]
+
+[node name="EnemyTest" type="Node2D"]
+
+[node name="CombatGrid" type="Node2D" parent="."]
+position = Vector2(104, 151)
+script = ExtResource("1_gujxp")
+
+[node name="EnemySpawn" parent="." instance=ExtResource("2_lu42x")]
+position = Vector2(1280, 269)
+unit_resource = ExtResource("3_8sqsk")
+
+[node name="EnemySpawn2" parent="." instance=ExtResource("2_lu42x")]
+position = Vector2(1278, 504)
+unit_resource = ExtResource("3_8sqsk")

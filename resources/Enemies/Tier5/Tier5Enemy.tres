@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyResource" load_steps=19 format=3 uid="uid://b2w54uk4ekcxq"]
 
-[ext_resource type="PackedScene" uid="uid://dogvqc5w1rl1r" path="res://src/AutoCombat/EnemyScenes/EnemyTest.tscn" id="1_7jgb8"]
+[ext_resource type="PackedScene" uid="uid://bd2je88fei73o" path="res://src/AutoCombat/EnemyScenes/Tier5.tscn" id="1_7jgb8"]
 [ext_resource type="Script" uid="uid://jdj8k4tksnow" path="res://src/Combat/EnemyRank.gd" id="1_40qkl"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="2_3ec2w"]
 [ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_6gogv"]

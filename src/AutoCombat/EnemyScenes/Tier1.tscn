@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv33e6anrv3d0"]
+
+[ext_resource type="Script" uid="uid://catvntmiixc2l" path="res://src/AutoCombat/combat_grid.gd" id="1_ksx5y"]
+[ext_resource type="PackedScene" uid="uid://buogop00hrhc" path="res://src/AutoCombat/enemy_spawn.tscn" id="2_uhi52"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_phnix"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="4_uhi52"]
+
+[node name="EnemyTest" type="Node2D"]
+
+[node name="CombatGrid" type="Node2D" parent="."]
+position = Vector2(104, 151)
+script = ExtResource("1_ksx5y")
+grid_width = 13
+
+[node name="EnemySpawn" parent="." instance=ExtResource("2_uhi52")]
+position = Vector2(1560, 269)
+unit_resource = ExtResource("3_phnix")
+
+[node name="EnemySpawn2" parent="." instance=ExtResource("2_uhi52")]
+position = Vector2(1558, 504)
+unit_resource = ExtResource("3_phnix")
+
+[node name="EnemySpawn3" parent="." instance=ExtResource("2_uhi52")]
+position = Vector2(1627, 387)
+unit_resource = ExtResource("4_uhi52")
+
+[node name="EnemySpawn4" parent="." instance=ExtResource("2_uhi52")]
+position = Vector2(1631, 153)
+unit_resource = ExtResource("4_uhi52")
+
+[node name="EnemySpawn5" parent="." instance=ExtResource("2_uhi52")]
+position = Vector2(1630, 630)
+unit_resource = ExtResource("4_uhi52")

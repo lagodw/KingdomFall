@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="Event" load_steps=7 format=3 uid="uid://bka1cinml3y5h"]
+[gd_resource type="Resource" script_class="Event" load_steps=6 format=3 uid="uid://bka1cinml3y5h"]
 
 [ext_resource type="Script" uid="uid://8ulf8s82ml2o" path="res://src/Town/BuildingResource.gd" id="1_pijcy"]
-[ext_resource type="Resource" uid="uid://dj8s4dpdpvjog" path="res://resources/Enemies/Tier1/Tier1Enemy.tres" id="2_pijcy"]
 [ext_resource type="Script" uid="uid://hat3dgsvixk8" path="res://src/Cards/ResourceTypes/ItemResource.gd" id="3_oy3pu"]
 [ext_resource type="Script" uid="uid://fjs70167oea6" path="res://src/Cards/ResourceTypes/UnitResource.gd" id="4_k5ivh"]
 [ext_resource type="Script" uid="uid://npjl5q4abl4n" path="res://src/Map/Event.gd" id="5_wmi0b"]
@@ -18,7 +17,6 @@ num_reward_choices = 0
 music = "Blades Before Dawn"
 spot = Vector2(0, 0)
 tier = 0
-enemy = ExtResource("2_pijcy")
 unit_options = Array[ExtResource("4_k5ivh")]([])
 spell_options = Array[ExtResource("6_8x0ui")]([])
 item_options = Array[ExtResource("3_oy3pu")]([])

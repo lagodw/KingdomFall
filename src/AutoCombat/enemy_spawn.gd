@@ -2,7 +2,7 @@
 class_name EnemySpawn
 extends Node2D
 
-@export var unit_resource: Resource:
+@export var unit_resource: UnitResource:
 	set(val):
 		unit_resource = val
 		queue_redraw()

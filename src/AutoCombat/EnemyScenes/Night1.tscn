@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://smwlcfmgkk8i"]
+
+[ext_resource type="Script" uid="uid://catvntmiixc2l" path="res://src/AutoCombat/combat_grid.gd" id="1_s3p27"]
+[ext_resource type="PackedScene" uid="uid://buogop00hrhc" path="res://src/AutoCombat/enemy_spawn.tscn" id="2_sltcg"]
+[ext_resource type="Resource" uid="uid://dpbdi1nbjxtop" path="res://resources/Units/Fighting/Footman.tres" id="3_g7bnr"]
+[ext_resource type="Resource" uid="uid://cywtfroq4868q" path="res://resources/Units/Workers/Peasant.tres" id="4_sltcg"]
+
+[node name="EnemyTest" type="Node2D"]
+
+[node name="CombatGrid" type="Node2D" parent="."]
+position = Vector2(104, 151)
+script = ExtResource("1_s3p27")
+grid_width = 13
+
+[node name="EnemySpawn" parent="." instance=ExtResource("2_sltcg")]
+position = Vector2(1560, 269)
+unit_resource = ExtResource("3_g7bnr")
+
+[node name="EnemySpawn2" parent="." instance=ExtResource("2_sltcg")]
+position = Vector2(1558, 504)
+unit_resource = ExtResource("3_g7bnr")
+
+[node name="EnemySpawn3" parent="." instance=ExtResource("2_sltcg")]
+position = Vector2(1629, 386)
+unit_resource = ExtResource("4_sltcg")
+
+[node name="EnemySpawn4" parent="." instance=ExtResource("2_sltcg")]
+position = Vector2(1627, 627)
+unit_resource = ExtResource("4_sltcg")
+
+[node name="EnemySpawn5" parent="." instance=ExtResource("2_sltcg")]
+position = Vector2(1625, 149)
+unit_resource = ExtResource("4_sltcg")
